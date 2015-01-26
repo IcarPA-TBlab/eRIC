@@ -1,0 +1,32 @@
+# comments begin with a '#'
+# the format is <mime type> <space separated file extensions>
+application/msword              doc
+application/octet-stream        bin dms lha lzh exe class so dll
+application/pdf                 pdf
+application/rtf                 rtf
+application/x-gzip              gz tgz
+application/x-rpm               rpm
+application/xhtml+xml           xhtml xht
+image/bmp                       bmp
+image/gif                       gif
+image/ief                       ief
+image/jpeg                      jpeg jpg jpe
+image/png                       png
+image/tiff                      tiff tif
+image/x-rgb                     rgb
+image/x-xbitmap                 xbm
+image/x-xpixmap                 xpm
+image/x-xwindowdump             xwd
+text/html                       html htm
+text/plain                      asc txt
+text/rtf                        rtf
+text/sgml                       sgml sgm
+text/tab-separated-values       tsv
+text/xml                        wsdl xml xsl xsd
+video/mpeg                      mpeg mpg mpe
+video/quicktime                 qt mov
+video/vnd.mpegurl               mxu
+video/x-msvideo                 avi
+video/x-sgi-movie               movie
+x-conference/x-cooltalk         ice
+

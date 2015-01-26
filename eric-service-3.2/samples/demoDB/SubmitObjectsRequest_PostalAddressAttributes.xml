@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/demoDB/SubmitObjectsRequest_PostalAddressAttributes.xml,v 1.4 2007/05/25 17:18:51 farrukh_najmi Exp $-->
+<SubmitObjectsRequest xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../schema/lcm.xsd" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:query21="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim30="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../schema/lcm.xsd">
+  <rs:RequestSlotList>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+	<rim:RegistryObjectList>                                              
+    <rim:ClassificationScheme lid="urn:oasis:names:tc:ebxml-regrep:classificationScheme:PostalAddressAttributes" id="urn:freebxml:registry:demoDB:classificationScheme:PostalAddressAttributes" isInternal="true" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="PostalAddressAttributes"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="This is the PostalAddressAttributes ClassificationScheme needed by JAXR TCK."/>
+      </rim:Description>
+      <rim:ClassificationNode lid="urn:freebxml:registry:demoDB:PostalAddressAttributes:StreetNumber" code="StreetNumber" id="urn:freebxml:registry:demoDB:PostalAddressAttributes:StreetNumber">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="StreetNumber"/>
+        </rim:Name>
+      </rim:ClassificationNode>
+      <rim:ClassificationNode lid="urn:freebxml:registry:demoDB:PostalAddressAttributes:Street" code="Street" id="urn:freebxml:registry:demoDB:PostalAddressAttributes:Street">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="Street"/>
+        </rim:Name>
+      </rim:ClassificationNode>
+      <rim:ClassificationNode lid="urn:freebxml:registry:demoDB:PostalAddressAttributes:City" code="City" id="urn:freebxml:registry:demoDB:PostalAddressAttributes:City">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="City"/>
+        </rim:Name>
+      </rim:ClassificationNode>
+      <rim:ClassificationNode lid="urn:freebxml:registry:demoDB:PostalAddressAttributes:State" code="State" id="urn:freebxml:registry:demoDB:PostalAddressAttributes:State">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="State"/>
+        </rim:Name>
+      </rim:ClassificationNode>
+      <rim:ClassificationNode lid="urn:freebxml:registry:demoDB:PostalAddressAttributes:PostalCode" code="PostalCode" id="urn:freebxml:registry:demoDB:PostalAddressAttributes:PostalCode">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="PostalCode"/>
+        </rim:Name>
+      </rim:ClassificationNode>
+      <rim:ClassificationNode lid="urn:freebxml:registry:demoDB:PostalAddressAttributes:Country" code="Country" id="urn:freebxml:registry:demoDB:PostalAddressAttributes:Country">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="Country"/>
+        </rim:Name>
+      </rim:ClassificationNode>
+    </rim:ClassificationScheme>
+                       
+	</rim:RegistryObjectList>
+</SubmitObjectsRequest>

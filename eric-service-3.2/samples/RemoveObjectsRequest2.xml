@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/RemoveObjectsRequest2.xml,v 1.3 2005/01/31 20:33:13 farrukh_najmi Exp $-->
+<!-- It is to test how the registry responses when deleting a object to which 
+there exists any other objects referencing the objects to be deleted. The two
+objects in this documents are two ClassificationNode from
+SubmitObjectsRequest_ISO3166.xml.
+-->
+<rs:RemoveObjectsRequest 
+	xmlns = "urn:oasis:names:tc:ebxml-regrep:rim:xsd:2.0" 
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:rim:xsd:2.0 http://www.oasis-open.org/committees/regrep/documents/2.0/schema/rim.xsd urn:oasis:names:tc:ebxml-regrep:registry:xsd:2.0 http://www.oasis-open.org/committees/regrep/documents/2.0/schema/rs.xsd" 
+	xmlns:rim = "urn:oasis:names:tc:ebxml-regrep:rim:xsd:2.0" 
+	xmlns:rs = "urn:oasis:names:tc:ebxml-regrep:registry:xsd:2.0"
+	deletionScope="urn:oasis:names:tc:ebxml-regrep:DeletionScopeType:DeleteAll">
+	<ObjectRefList>
+			<!-- This is a non-leaf ClassificationNode. Commenting this will not
+			you to delete the second ClassficaitonNode
+			-->
+			<ObjectRef id="urn:uuid:4fd867ed-7f78-4cba-adfd-e9f3c993ba61"/>
+			<!-- This is a leaf ClassificationNode-->
+			<ObjectRef id="urn:uuid:df2c7cd6-af41-4d14-b6ce-eb968489a86f" />
+	</ObjectRefList>
+</rs:RemoveObjectsRequest>

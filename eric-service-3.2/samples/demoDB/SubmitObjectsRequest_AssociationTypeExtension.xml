@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/demoDB/SubmitObjectsRequest_AssociationTypeExtension.xml,v 1.4 2007/05/25 17:18:51 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../schema/lcm.xsd" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:query21="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rim30="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../schema/lcm.xsd">
+  <rs:RequestSlotList>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+  <rim:RegistryObjectList>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:AssociationType" lid="urn:freebxml:demodb:AssociationType:HasChild" code="HasChild" id="urn:freebxml:registry:demodb:AssociationType:HasChild">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="HasChild"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:AssociationType" lid="urn:freebxml:demodb:AssociationType:HasParent" code="HasParent" id="urn:freebxml:registry:demodb:AssociationType:HasParent">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="HasParent"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

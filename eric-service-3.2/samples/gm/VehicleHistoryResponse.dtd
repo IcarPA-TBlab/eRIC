@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/gm/VehicleHistoryResponse.dtd,v 1.1.1.1 2003/09/24 03:55:07 farrukh_najmi Exp $-->
+<!ELEMENT thisDocumentIdentifier (ProprietaryDocumentIdentifier)>
+<!ELEMENT VehicleHistoryResponse (DocumentFunctionId,thisDocumentIdentifier,thisDocumentGenerationDateTime,PartnerInfo,VehicleHistoryQueryData+)>
+<!ELEMENT thisDocumentGenerationDateTime (DateTimeStamp)>
+<!ELEMENT PartnerInfo (Name,TelephoneNumber,EmailAddress)>
+<!ELEMENT VehicleHistoryQueryData (vin,VehicleHistoryResponseData)>
+<!ELEMENT VehicleHistoryResponseData (mileage,VehicleServiceRecord*)>
+<!ELEMENT VehicleServiceRecord (date,mileage,description)>
+<!ELEMENT ProprietaryDocumentIdentifier (#PCDATA)>
+<!ELEMENT DocumentFunctionId (#PCDATA)>
+<!ELEMENT DateTimeStamp (#PCDATA)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT TelephoneNumber (#PCDATA)>
+<!ELEMENT EmailAddress (#PCDATA)>
+<!ELEMENT vin (#PCDATA)>
+<!ELEMENT mileage (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT description (#PCDATA)>

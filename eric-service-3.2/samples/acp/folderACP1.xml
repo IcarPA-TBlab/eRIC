@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PolicySet PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:permit-overrides" PolicySetId="urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:policy:folderACP1" xmlns="urn:oasis:names:tc:xacml:1.0:policy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xacml:1.0:policy  http://www.oasis-open.org/committees/download.php/915/cs-xacml-schema-policy-01.xsd">
+  <Description>This PolicySet restricts adding members to RegistryPackage resource to Role ProjectLead</Description>
+  <Target>
+    <Subjects>
+      <AnySubject/>
+    </Subjects>
+    <Resources>
+      <AnyResource/>
+    </Resources>
+    <Actions>
+      <AnyAction/>
+    </Actions>
+  </Target>
+  <PolicyIdReference>urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:policy:policyid:permit-anyone-to-read</PolicyIdReference>
+  <PolicyIdReference>urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:policy:policyid:permit-owner-all</PolicyIdReference>
+  <PolicyIdReference>urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:policy:policyid:permit-registryadministrator-all</PolicyIdReference>
+  <Policy PolicyId="urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:policy:permit-projectLead-addMember" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+    <Description>Allow Subjects with ProjectLead role to add members to any resource associated with this ACP.</Description>
+    <Target>
+      <Subjects>
+        <AnySubject/>
+      </Subjects>
+      <Resources>
+        <AnyResource/>
+      </Resources>
+      <Actions>
+        <AnyAction/>
+      </Actions>
+    </Target>
+    <Rule Effect="Permit" RuleId="urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:rule:ruleid:permit-projectLead-addMember-rule">
+      <Description>Allow Subjects with ProjectLead role to add members to any resource.</Description>
+      <Target>
+        <Subjects>
+          <Subject>
+            <!-- Match role ProjectLead -->
+            <SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+              <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">/urn:oasis:names:tc:ebxml-regrep:classificationScheme:SubjectRole/ProjectMember/ProjectLead</AttributeValue>
+              <SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:subject:roles" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+            </SubjectMatch>
+          </Subject>
+        </Subjects>
+        <Resources>
+          <AnyResource/>
+        </Resources>
+        <Actions>
+          <Action>
+            <!-- Match "reference" action -->
+            <ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+              <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">reference</AttributeValue>
+              <ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+            </ActionMatch>
+          </Action>
+        </Actions>
+      </Target>
+      <!--
+           Match condition where all the following are true:
+           1. reference is being made via the attribute sourceObject (from an Association instance)
+           2. The associationType attribute of the Association matches the id for associationType HasMember
+           
+           Above is equivalent to saying Match any HasMember associations where the resource
+           (the RegistryPackage) is the sourceObject.
+      -->
+      <Condition FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">SourceObject</AttributeValue>
+          <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+            <ActionAttributeDesignator AttributeId="urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:action:reference-source-attribute" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+          </Apply>
+        </Apply>
+        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">urn:oasis:names:tc:ebxml-regrep:AssociationType:HasMember</AttributeValue>
+          <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:anyURI-one-and-only">
+            <ActionAttributeDesignator AttributeId="urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:action:reference-source-attribute-filter:associationType" DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+          </Apply>
+        </Apply>
+      </Condition>
+    </Rule>
+  </Policy>
+</PolicySet>

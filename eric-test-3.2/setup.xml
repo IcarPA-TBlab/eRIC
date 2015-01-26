@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE setup.xml>
+
+<project basedir="." default="dummy" name="eric-test">
+
+    <dirname property="eric.basedir" file="${ant.file.eric-test}"/>
+	<property name="apacheLog" value="org.apache.commons.logging.impl.NoOpLog"/>
+	<import file="../eric-service-3.2/setup.xml"/>
+ 
+     <!-- load local and default properties -->
+    <property name="jaxr-ebxml.properties" value="${eric.basedir}/src/jaxr-ebxml.properties"/>
+    <property file="${jaxr-ebxml.properties}"/>
+	
+	<property name="jaxr-ebxml.home" value="/opt/eric/3.2/jaxr-ebxml"/>
+	<property name="jaxr-ebxml.security.keystoreDir" value="${jaxr-ebxml.home}/security"/>
+	<property name="jaxr-ebxml.security.keystoreFile" value="${jaxr-ebxml.security.keystoreDir}/keystore.jks"/>
+	<property name="eric.home" value="/opt/eric/3.2"/>
+
+	<property name="eric.registry.baseurl" value="http://localhost:8080/eric/registry"/>
+	
+	<!-- Dummy default target, does nothing -->
+	<target name="dummy"/>
+
+	  <!-- ======================================================== -->
+	  <!-- Targets to create and load a test user                   -->
+	  <!-- ======================================================== -->
+
+	  <target name="clean.jaxr-ebxml">
+	    <delete failonerror="false" file="${jaxr-ebxml.security.keystoreFile}"/>
+	  </target>
+	    	
+	  <target name="createTestUser" depends="genkeyTestUser, loadTestUser"/>
+
+	  <target name="genkeyTestUser" depends="clean.jaxr-ebxml">
+	    <echo message="Generating key for TestUser (run 'ant loadTestUser' if key already exists)"/>
+	    <echo message="Keystore: ${jaxr-ebxml.security.keystoreFile}"/>
+	    <dirname file="${jaxr-ebxml.security.keystoreFile}" property="jaxr-ebxml.security.keystoreDir"/>
+	    <mkdir dir="${jaxr-ebxml.security.keystoreDir}"/>
+	    <genkey keyalg="RSA" alias="${jaxr-ebxml.security.test.alias}" keypass="${jaxr-ebxml.security.test.keypass}" keystore="${jaxr-ebxml.security.keystoreFile}" storepass="${jaxr-ebxml.security.storepass}">
+	      <dname>
+	        <param name="CN" value="TestUser"/>
+	        <param name="OU" value="unknown"/>
+	        <param name="O" value="SourceForge"/>
+	        <param name="C" value="unknown"/>
+	      </dname>
+	    </genkey>
+	  </target>
+
+	  <target name="loadTestUser">
+	    <echo message="Loading TestUser as TestUser"/>
+	    <!--Can't support localCall mode in SOAPSender since client AND server keyStores need to store the keys.-->
+	    <soapSender req="src/SubmitObjectsRequest_TestUser.xml" localCall="false"/>
+	  </target>
+
+</project>

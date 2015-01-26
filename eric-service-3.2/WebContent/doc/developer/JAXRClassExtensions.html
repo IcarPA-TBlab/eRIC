@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--$Header: /cvsroot/ebxmlrr/omar/doc/3.0/developer/JAXRClassExtensions.html,v 1.3 2005/07/21 08:55:26 doballve Exp $-->
+    <html>
+      <head>
+          <title>
+            Extending JAXR Infomodel Classes
+          </title>
+      </head>
+      <body class="composite">
+    <div style="text-align: center;">
+    <h1>Extending JAXR Infomodel Classes</h1>
+    </div>
+
+<h2><a name="Introduction"></a>Introduction</h2>
+
+    <p><b>Rational:</b> to take advantage of the extensibility of RIM model by
+    creating concrete implementations classes for extensible RIM objects
+    (initialy Associations and ExtrinsicObjects are supported).</p>
+
+    <p><b>How does it work:</b></p>
+    <ol>
+
+    <li><a href="#1._CreateExtendingClass">Create and extending class</a> for
+    your special type</li>
+
+    <li><a href="#2._MapTypeToClass">Map the type to the class</a> in
+    jaxr-ebxml.properties</li>
+
+    </ol>
+
+<h2><a name="1._CreateExtendingClass"></a>1. Create and extending class</h2>
+
+    <p>First you need to create an extending class for your special type. The
+    type must be an ExtrinsicObject type or an Association type, for which you
+    have already created a Concept in the corresponding ClassificationScheme.</p>
+    
+    <p>The class must extend the corresponding supported type (i.e., 
+    <tt>org.freebxml.omar.client.xml.registry.infomodel.ExtrinsicObjectImpl</tt>
+    or <tt>org.freebxml.omar.client.xml.registry.infomodel.AssociationImpl</tt>)
+    and must provide the same constructors available in the extended class, with
+    calls to corresponding constructor in the extended class.</p>
+    
+    <p>Getter/setters and other convenience methods can then be added to give
+    direct access to slots or associated objects.
+    
+    <p><b>Example:</b> suppose you want to have an extension class for XML Schema
+    type that will contain 1 predefined slot for storing the Schema's namespace
+    in slot named <tt>urn:freebxml:slot:xml-schema:namespace</tt>. You would
+    probably have some code like this:</p>
+
+
+<code>package my.package;</code><br>
+<code></code><br>
+<code>import java.util.ArrayList;</code><br>
+<code>import java.util.Collection;</code><br>
+<code>import javax.xml.registry.JAXRException;</code><br>
+<code>import javax.xml.registry.infomodel.Slot;</code><br>
+<code>import org.freebxml.omar.client.xml.registry.LifeCycleManagerImpl;</code><br>
+<code>import org.freebxml.omar.client.xml.registry.infomodel.ExtrinsicObjectImpl;</code><br>
+<code>import org.oasis.ebxml.registry.bindings.rim.ExtrinsicObjectType;</code><br>
+<code></code><br>
+<code>public class XMLSchema extends ExtrinsicObjectImpl {</code><br>
+<code>    </code><br>
+<code>    /** Creates a new instance of XMLSchema */</code><br>
+<code>    public XMLSchema(LifeCycleManagerImpl lcm)</code><br>
+<code>    throws JAXRException {</code><br>
+<code>        super(lcm);</code><br>
+<code>    }</code><br>
+<code>    </code><br>
+<code>    /** Creates a new instance of XMLSchema binding to an existing RegistryObject */</code><br>
+<code>    public XMLSchema(LifeCycleManagerImpl lcm, ExtrinsicObjectType eoType)</code><br>
+<code>    throws JAXRException {</code><br>
+<code>        super(lcm, eoType);</code><br>
+<code>    }</code><br>
+<code>    </code><br>
+<code>    /** Sets the value to property _namespace. Maps to a Slot named</code><br>
+<code>     *  'urn:freebxml:slot:xml-schema:namespace'.</code><br>
+<code>     *</code><br>
+<code>     * @param _namespace String value to be set.</code><br>
+<code>     * @throws JAXRException if any exception occurs.</code><br>
+<code>     */</code><br>
+<code>   public void setNamespace(String _namespace) throws JAXRException {</code><br>
+<code>        String name = "urn:freebxml:slot:xml-schema:namespace";</code><br>
+<code>        Collection values = new ArrayList();</code><br>
+<code>        values.add(_namespace);</code><br>
+<code>        Slot slot = getSlot(name);</code><br>
+<code>        if (slot == null) {</code><br>
+<code>            slot = getLifeCycleManager().createSlot(name, values, "String");</code><br>
+<code>        } else {</code><br>
+<code>            removeSlot(name);</code><br>
+<code>            slot.setValues(values);</code><br>
+<code>        }</code><br>
+<code>        addSlot(slot);</code><br>
+<code>    }</code><br>
+<code>    </code><br>
+<code>    /** Gets the value of property _namespace. Maps to a Slot named</code><br>
+<code>     *  'urn:freebxml:slot:xml-schema:namespace'.</code><br>
+<code>     *</code><br>
+<code>     * @return String value of property _namespace.</code><br>
+<code>     * @throws JAXRException if any exception occurs.</code><br>
+<code>     */</code><br>
+<code>   public String getNamespace() throws JAXRException {</code><br>
+<code>        String name = "urn:freebxml:slot:xml-schema:namespace";</code><br>
+<code>        Slot slot = getSlot(name);</code><br>
+<code>        if (slot == null) {</code><br>
+<code>            return null;</code><br>
+<code>        } else {</code><br>
+<code>            return (String)slot.getValues().iterator.next();</code><br>
+<code>        }</code><br>
+<code>    }</code><br>
+<code>}</code><br>
+
+    <p>Note: this example does not explain how the namespace slot is initially
+    set to the ExtrinsicObject. You could for instance define a content
+    cataloguing that would automatically do that upon submission.</p>
+    
+<h2><a name="2._MapTypeToClass"></a>2. Map the type to the class</h2>
+
+    <p>Next step is to instruct JAXR ebXML provider to instantiate your new class
+    when it is supposed to instantiate an object of the special type. This is 
+    done by setting a property in <tt>jaxr-ebxml.properties</tt>, following one
+    of these patterns:<br><br>
+    <tt>jaxr-ebxml.extensionclass.association.MyAssociationTypeConceptID=MY_ASSOCIATION_CLASSNAME</tt><br>
+    <tt>jaxr-ebxml.extensionclass.extrinsicobject.MyObjectTypeConceptID=MY_EXTRINSIC_OBJECT_CLASSNAME</tt><br>
+    </p>
+
+    <p>Continuing our XMLSchema example, we want JAXR provider to instantiate a
+    <tt>XMLSchema</tt> instead of an <tt>ExtrinsicObjectImpl</tt>. What you'd
+    need to do is to add the following line to <tt>jaxr-ebxml.properties</tt>:<br><br>
+    <tt>jaxr-ebxml.extensionclass.extrinsicobject.urn\:oasis\:names\:tc\:ebxml-regrep\:ObjectType\:RegistryObject\:ExtrinsicObject\:XMLSchema=my.package.XMLSchema</tt>
+    </p>
+    
+    <p>Notice that ':' has to be excaped to '\:' on property names.</p>
+    
+    <p><b>NOTE:</b> Make sure you have your class and the modified
+    jaxr-ebxml.properties in your JAXR client classpath.</p>
+    </body>
+</html>

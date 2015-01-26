@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="StandaloneTestService" targetNamespace="urn:your:urn:goes:here" xmlns:tns="urn:your:urn:goes:here" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types/>
+  <message name="StandaloneTest_sendMessage">
+    <part name="Message" type="xsd:string"/>
+  </message>
+  <message name="StandaloneTest_sendResponse">
+    <part name="Response" type="xsd:string"/>
+  </message>
+  <portType name="StandaloneTestPortType">
+    <documentation>Test WSDL portType description</documentation>
+    <operation name="sendMessage" parameterOrder="Message">
+      <input message="tns:StandaloneTest_sendMessage"/>
+      <output message="tns:StandaloneTest_sendResponse"/>
+    </operation>
+  </portType>
+  <binding name="StandaloneTestBinding" type="tns:StandaloneTestPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <operation name="sendMessage">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="urn:your:urn:goes:here"/></input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="urn:your:urn:goes:here"/></output>
+    </operation>    
+    <documentation>Test WSDL binding description</documentation>
+  </binding>
+  <service name="StandaloneTestService">
+    <documentation>Test WSDL service description</documentation>
+    <port name="StandaloneTestPort" binding="tns:StandaloneTestBinding">
+      <soap:address location="http://your.server.com/soap"/>    
+      <documentation>Test WSDL port description</documentation>
+    </port>
+  </service>
+</definitions>

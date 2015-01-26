@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/CompoundWithCompoundAndSimpleClauses.xml,v 1.1.1.1 2003/09/24 03:40:35 farrukh_najmi Exp $-->
+<Clause xmlns = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 query.xsd">
+	<!-- ( ("Smoker" = False)And(("Age" =< 45)Or("American"=True)) ) -->
+	<CompoundClause connectivePredicate = "And">
+		<Clause>
+			<SimpleClause leftArgument = "Smoker">
+				<BooleanClause booleanPredicate = "False"/>
+			</SimpleClause>
+		</Clause>
+		<Clause>
+			<CompoundClause connectivePredicate = "Or">
+				<Clause>
+					<SimpleClause leftArgument = "Age">
+						<RationalClause logicalPredicate = "LE">
+							<IntClause>45</IntClause>
+						</RationalClause>
+					</SimpleClause>
+				</Clause>
+				<Clause>
+					<SimpleClause leftArgument = "American">
+						<BooleanClause booleanPredicate = "True"/>
+					</SimpleClause>
+				</Clause>
+			</CompoundClause>
+		</Clause>
+	</CompoundClause>
+</Clause>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SubmitObjectsRequest>
+  <rim:RegistryObjectList>
+    <rim:AdhocQuery id="urn:freebxml:registry:query:BusinessQuery">
+      <rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+        SELECT * from $tableName ro, Name_ nm, Description d
+        WHERE
+        objectType = ''$objectType''
+        AND (nm.parent = ro.id AND UPPER ( nm.value ) LIKE UPPER ( ''$name'' ) )
+        AND (d.parent = ro.id AND UPPER ( d.value ) LIKE UPPER ( ''$description'' ) )
+        AND (ro.id IN ( SELECT classifiedObject FROM Classification WHERE classificationNode IN (  SELECT id
+        FROM ClassificationNode WHERE path LIKE ''$classificationPath1'' OR
+	path LIKE ''$classificationPath1'' || ''/%'' ) ))
+      </rim:QueryExpression>
+    </rim:AdhocQuery>
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

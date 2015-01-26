@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/demoDB/SubmitObjectsRequest_URLTypeScheme.xml,v 1.4 2007/05/25 17:18:52 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../schema/lcm.xsd" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:query21="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rim30="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../schema/lcm.xsd">
+  <rs:RequestSlotList>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+  <rim:RegistryObjectList>
+    <rim:ClassificationScheme lid="urn:oasis:names:tc:ebxml-regrep:classificationScheme:URLType" id="urn:uuid:f5d2afd5-d71f-4c76-ac76-d31e8754ebae" isInternal="true" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="URLType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="This is the canonical ClassificationScheme for pre-defined URL types"/>
+      </rim:Description>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:URLType:HTTP" code="HTTP" id="urn:uuid:0b0f8082-4d96-4da9-b883-b4300ba400d4"/>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:URLType:HTTPS" code="HTTPS" id="urn:uuid:26fdb78f-79cb-4a13-b0c2-c3042283cd73"/>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:URLType:SMTP" code="SMTP" id="urn:uuid:3988bb8c-884f-4892-b48d-ccdc4600c2ea"/>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:URLType:Phone" code="PHONE" id="urn:uuid:3b5145be-3ec5-4afa-afc8-ef0ed80aabbb"/>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:URLType:FAX" code="FAX" id="urn:uuid:77c2e898-ca82-43b8-9163-e22551b372fc"/>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:URLType:OTHER" code="OTHER" id="urn:uuid:f95b2642-da7b-43dd-a334-dfadca5afb17"/>
+    </rim:ClassificationScheme>
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ebXML Business Process Specification Schema -->
+<!-- Author: janthony -->
+<!-- Created: Tuesday, May 21, 2002 4:09:18 PM -->
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/gm/RentalCarBuyerCollaboration.xml,v 1.1.1.1 2003/09/24 03:55:06 farrukh_najmi Exp $-->
+
+
+<ProcessSpecification name="RENTALCARBUYERSCOLLABORATION"
+   version="0.1"
+   uuid="[EC407063-123A-4270-A18F-741DA6B8B57C]">
+   <BusinessDocument name="AvailableVehiclesResponseDocument"
+      specificationLocation="AVAILABLEVEHICLESRESPONSE.dtd"/>
+   <BusinessDocument name="AvailableVehiclesQueryDocument"
+      specificationLocation="AVAILABLEVEHICLESQUERY.dtd"/>
+   <BusinessDocument name="DealerLocationQueryDocument"
+      specificationLocation="DEALERLOCATIONQUERY.dtd"/>
+   <BusinessDocument name="DealerLocationResponseDocument"
+      specificationLocation="DEALERLOCATIONRESPONSE.dtd"/>
+   <BusinessDocument name="VehichleHistoryQueryDocument"
+      specificationLocation="VehicleHistoryQuery.dtd"/>
+   <BusinessDocument name="VehicleHistoryResponseDocument"
+      specificationLocation="VehicleHistoryResponse.dtd"/>
+   <BusinessDocument name="VehiclePurchaseRequestDocument"
+      specificationLocation="VehiclePurchaseRequest.dtd"/>
+   <BusinessDocument name="VehiclePurchaseApprovalDocument"
+      specificationLocation="VehiclePurchaseApproval.dtd"/>
+   <BusinessTransaction name="AvailableVehicles">
+      <RequestingBusinessActivity name="Request"
+            timeToAcknowledgeAcceptance="P2D"
+            timeToAcknowledgeReceipt="P2D">
+         <DocumentEnvelope businessDocument="AvailableVehiclesQueryDocument" >
+         </DocumentEnvelope>
+      </RequestingBusinessActivity>
+      <RespondingBusinessActivity name="Respond"
+            timeToAcknowledgeReceipt="P2D">
+         <DocumentEnvelope businessDocument="AvailableVehiclesResponseDocument" >
+         </DocumentEnvelope>
+      </RespondingBusinessActivity>
+   </BusinessTransaction>
+   <BusinessTransaction name="Dealer Location">
+      <RequestingBusinessActivity name="Request"
+            timeToAcknowledgeAcceptance="P2D"
+            timeToAcknowledgeReceipt="P2D">
+         <DocumentEnvelope businessDocument="DealerLocationQueryDocument" >
+         </DocumentEnvelope>
+      </RequestingBusinessActivity>
+      <RespondingBusinessActivity name="Respond"
+            timeToAcknowledgeReceipt="P2D">
+         <DocumentEnvelope businessDocument="DealerLocationResponseDocument" >
+         </DocumentEnvelope>
+      </RespondingBusinessActivity>
+   </BusinessTransaction>
+   <BusinessTransaction name="Vehicle History">
+      <RequestingBusinessActivity name="Request"
+            timeToAcknowledgeAcceptance="P2D"
+            timeToAcknowledgeReceipt="P2D">
+         <DocumentEnvelope businessDocument="VehichleHistoryQueryDocument" >
+         </DocumentEnvelope>
+      </RequestingBusinessActivity>
+      <RespondingBusinessActivity name="Respond"
+            timeToAcknowledgeReceipt="P2D">
+         <DocumentEnvelope businessDocument="VehicleHistoryResponseDocument" >
+         </DocumentEnvelope>
+      </RespondingBusinessActivity>
+   </BusinessTransaction>
+   <BusinessTransaction name="VehiclePurchaseRequest">
+      <RequestingBusinessActivity name="Request"
+            timeToAcknowledgeAcceptance="P2D"
+            timeToAcknowledgeReceipt="P2D">
+         <DocumentEnvelope businessDocument="VehiclePurchaseRequestDocument" >
+         </DocumentEnvelope>
+      </RequestingBusinessActivity>
+      <RespondingBusinessActivity name="Respond">
+      </RespondingBusinessActivity>
+   </BusinessTransaction>
+   <BusinessTransaction name="VehiclePurchaseApproval">
+      <RequestingBusinessActivity name="Request"
+            timeToAcknowledgeAcceptance="P2D"
+            timeToAcknowledgeReceipt="P2D">
+         <DocumentEnvelope businessDocument="VehiclePurchaseApprovalDocument" >
+         </DocumentEnvelope>
+      </RequestingBusinessActivity>
+      <RespondingBusinessActivity name="Respond">
+      </RespondingBusinessActivity>
+   </BusinessTransaction>
+   <BinaryCollaboration name="Bulk Buying">
+      <InitiatingRole name="BulkUsedCarBuyers">
+      </InitiatingRole>
+      <RespondingRole name="General Motors">
+      </RespondingRole>
+      <BusinessTransactionActivity name="VehiclePurchase_Approval_Activity"
+         businessTransaction="VehiclePurchaseApproval"
+         fromAuthorizedRole="General Motors"
+         toAuthorizedRole="BulkUsedCarBuyers">
+      </BusinessTransactionActivity>
+      <BusinessTransactionActivity name="Dealer_Location_Activity"
+         businessTransaction="Dealer Location"
+         fromAuthorizedRole="BulkUsedCarBuyers"
+         toAuthorizedRole="General Motors">
+      </BusinessTransactionActivity>
+      <BusinessTransactionActivity name="Vehicle_Purchase_Request_Activity"
+         businessTransaction="VehiclePurchaseRequest"
+         fromAuthorizedRole="BulkUsedCarBuyers"
+         toAuthorizedRole="General Motors">
+      </BusinessTransactionActivity>
+      <BusinessTransactionActivity name="Vehicle_History_Activity"
+         businessTransaction="Vehicle History"
+         fromAuthorizedRole="BulkUsedCarBuyers"
+         toAuthorizedRole="General Motors">
+      </BusinessTransactionActivity>
+      <BusinessTransactionActivity name="Available_Vehicle_Activity"
+         businessTransaction="AvailableVehicles"
+         fromAuthorizedRole="BulkUsedCarBuyers"
+         toAuthorizedRole="General Motors">
+      </BusinessTransactionActivity>
+      <Start toBusinessState="Available_Vehicle_Activity"/>
+      <Success fromBusinessState="VehiclePurchase_Approval_Activity"
+               conditionGuard="Success">
+      </Success>
+      <Failure fromBusinessState="VehiclePurchase_Approval_Activity"
+               conditionGuard="BusinessFailure">
+      </Failure>
+      <Transition fromBusinessState="Available_Vehicle_Activity"
+                  toBusinessState="Dealer_Location_Activity"
+                  conditionGuard="Success">
+      </Transition>
+      <Transition fromBusinessState="Dealer_Location_Activity"
+                  toBusinessState="Vehicle_History_Activity"
+                  conditionGuard="Success">
+      </Transition>
+      <Transition fromBusinessState="Vehicle_History_Activity"
+                  toBusinessState="Vehicle_Purchase_Request_Activity"
+                  conditionGuard="Success">
+      </Transition>
+      <Transition fromBusinessState="Vehicle_Purchase_Request_Activity"
+                  toBusinessState="VehiclePurchase_Approval_Activity"
+                  conditionGuard="Success">
+      </Transition>
+   </BinaryCollaboration>
+</ProcessSpecification>

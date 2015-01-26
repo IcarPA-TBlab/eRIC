@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/CN2.xml,v 1.1.1.1 2003/09/24 03:40:34 farrukh_najmi Exp $-->
+<AdhocQueryRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 query.xsd">
+	<ResponseOption returnType = "LeafClass"/>
+	<FilterQuery>
+		<ClassificationNodeQuery>
+			<ClassificationNodeFilter>
+				<Clause>
+					<SimpleClause leftArgument = "levelNumber">
+						<RationalClause logicalPredicate = "LE">
+							<IntClause>3</IntClause>
+						</RationalClause>
+					</SimpleClause>
+				</Clause>
+			</ClassificationNodeFilter>
+			<ClassificationSchemeQuery>
+				<NameBranch>
+					<LocalizedStringFilter>
+						<Clause>
+							<SimpleClause leftArgument = "value">
+								<StringClause stringPredicate = "Equal">urn:ebxml:cs:myscheme</StringClause>
+							</SimpleClause>
+						</Clause>
+					</LocalizedStringFilter>
+				</NameBranch>
+			</ClassificationSchemeQuery>
+		</ClassificationNodeQuery>
+	</FilterQuery>
+</AdhocQueryRequest>

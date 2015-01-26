@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/demoDB/SubmitObjectsRequest_Picture1.xml,v 1.9 2006/06/15 03:17:46 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../../../../ebxmlrr-spec/misc/3.0/schema/lcm.xsd">
+  <rs:RequestSlotList>  
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+  <rim:RegistryObjectList>
+    
+    <!-- Add objectType tree for image -->
+    <rim:ClassificationNode code="image" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:image" parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="image"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="Base type for all images"/>
+      </rim:Description>
+      <rim:ClassificationNode code="gif" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:image:gif">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="gif"/>
+        </rim:Name>
+      </rim:ClassificationNode>
+      <rim:ClassificationNode code="jpeg" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:image:jpeg">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="jpeg"/>
+        </rim:Name>
+      </rim:ClassificationNode>
+    </rim:ClassificationNode>
+    <!-- The canonical ExtrinsicObject ClassificationNode -->
+    <rim:ObjectRef id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject"/>
+    <rim:ExtrinsicObject id="urn:freebxml:registry:demoDB:ExtrinsicObject:zeusDescription" mimeType="image/gif" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:image:gif">
+      <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:locator">
+        <rim:ValueList>
+          <rim:Value>/pictures/nikola/zeusDescription</rim:Value>
+        </rim:ValueList>
+      </rim:Slot>
+      <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:contentLocator">
+        <rim:ValueList>
+          <rim:Value>/pictures/nikola/zeus</rim:Value>
+        </rim:ValueList>
+      </rim:Slot>
+      <rim:Name>
+        <rim:LocalizedString xml:lang="en-US" value="Nikola and Zeus"/>
+        <rim:LocalizedString xml:lang="fi-FI" value="Nikola ja Zeus"/>
+        <rim:LocalizedString xml:lang="pt-BR" value="Nikola e Zeus"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString xml:lang="en-US" value="This was when Zeus was a little puppy"/>
+        <!--TODO: Next line was get Invalid UTF char error -->
+        <rim:LocalizedString xml:lang="pt-BR" value="Isso foi quando Zeus era um filhotinho"/>
+      </rim:Description>
+    </rim:ExtrinsicObject>
+    <!-- customACP1.xml -->
+    <rim:ExtrinsicObject id="urn:freebxml:registry:demoDB:acp:customACP1" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:XACML:PolicySet"  mimeType="text/xml">
+      <rim:Name>
+        <rim:LocalizedString xml:lang="en-US" value="customACP1.xml"/>
+        <rim:LocalizedString xml:lang="fi-FI" value="customACP1.xml"/>
+        <rim:LocalizedString xml:lang="pt-BR" value="customACP1.xml"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString xml:lang="en-US" value="A sample custom ACP"/>
+        <rim:LocalizedString xml:lang="fi-FI" value="Esimerkki custom ACP"/>
+        <rim:LocalizedString xml:lang="pt-BR" value="Exemplo the Custom ACP"/>
+      </rim:Description>
+    </rim:ExtrinsicObject>
+    <!-- Assoc between customACP1 and this picture -->
+    <rim:Association id="urn:uuid:973c2a4c-6556-4770-83cb-8f4522cbfea0" associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:AccessControlPolicyFor" sourceObject="urn:freebxml:registry:demoDB:acp:customACP1" targetObject="urn:freebxml:registry:demoDB:ExtrinsicObject:zeusDescription"/>
+    <!-- assocType AccessControPolicyFor -->
+    <rim:ObjectRef id="urn:oasis:names:tc:ebxml-regrep:AssociationType:AccessControlPolicyFor"/>
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

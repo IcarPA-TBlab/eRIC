@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="StandaloneTestService" targetNamespace="urn:your:urn:goes:here" xmlns:tns="urn:your:urn:goes:here" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <import location="../test2/Test2.wsdl" namespace="urn:your:urn:goes:here"/>
+  <service name="StandaloneTestService">
+    <documentation>Test WSDL service description</documentation>
+    <port name="StandaloneTestPort" binding="tns:StandaloneTestBinding">
+      <soap:address location="http://your.server.com/soap"/>    
+      <documentation>Test WSDL port description</documentation>
+    </port>
+  </service>
+</definitions>

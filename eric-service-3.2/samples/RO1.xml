@@ -1,0 +1,48 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<AdhocQueryRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 query.xsd">
+	<ResponseOption returnType = "RegistryEntry"/>
+	<FilterQuery>
+		<RegistryObjectQuery>
+			<ClassifiedByBranch>
+				<ClassificationFilter>
+					<Clause>
+						<SimpleClause leftArgument = "path">
+							<StringClause stringPredicate = "Equal">//Automotive</StringClause>
+						</SimpleClause>
+					</Clause>
+				</ClassificationFilter>
+				<ClassificationSchemeQuery>
+					<NameBranch>
+						<LocalizedStringFilter>
+							<Clause>
+								<SimpleClause leftArgument = "value">
+									<StringClause stringPredicate = "Equal">urn:ebxml:cs:industry</StringClause>
+								</SimpleClause>
+							</Clause>
+						</LocalizedStringFilter>
+					</NameBranch>
+				</ClassificationSchemeQuery>
+			</ClassifiedByBranch>
+			<ClassifiedByBranch>
+				<ClassificationFilter>
+					<Clause>
+						<SimpleClause leftArgument = "path">
+							<StringClause stringPredicate = "StartsWith">/Geography-id/Asia/Japan</StringClause>
+						</SimpleClause>
+					</Clause>
+				</ClassificationFilter>
+				<ClassificationSchemeQuery>
+					<NameBranch>
+						<LocalizedStringFilter>
+							<Clause>
+								<SimpleClause leftArgument = "value">
+									<StringClause stringPredicate = "Equal">urn:ebxml:cs:geography</StringClause>
+								</SimpleClause>
+							</Clause>
+						</LocalizedStringFilter>
+					</NameBranch>
+				</ClassificationSchemeQuery>
+			</ClassifiedByBranch>
+		</RegistryObjectQuery>
+	</FilterQuery>
+</AdhocQueryRequest>

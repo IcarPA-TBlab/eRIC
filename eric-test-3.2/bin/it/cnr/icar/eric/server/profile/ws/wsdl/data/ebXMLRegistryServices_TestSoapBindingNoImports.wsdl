@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This WSDL file is missing the <soap:binding> element to test validation rule 1 of the WS Profile - Validation Profile -->
+<definitions name="ebXMLRegistrySOAPService" targetNamespace="urn:oasis:names:tc:ebxml-regrep:wsdl:registry:bindings:3.0" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:bindings="urn:oasis:names:tc:ebxml-regrep:wsdl:registry:bindings:3.0" xmlns:interfaces="urn:oasis:names:tc:ebxml-regrep:wsdl:registry:interfaces:3.0" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:oasis:names:tc:ebxml-regrep:wsdl:registry:bindings:3.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <documentation>
+    Author: Matt MacKenzie, Farrukh Najmi
+    This is the the normative SOAP binding in WSDL for the OASIS ebXML Registry services.
+  </documentation>
+  <binding name="QueryManagerSOAPBinding" type="interfaces:QueryManagerPortType">
+    <operation name="submitAdhocQuery">
+      <soap:operation soapAction="urn:oasis:names:tc:ebxml-regrep:wsdl:registry:bindings:3.0:QueryManagerPortType#submitAdhocQuery"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="LifeCycleManagerSOAPBinding" type="interfaces:LifeCycleManagerPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="approveObjects">
+      <soap:operation soapAction="urn:oasis:names:tc:ebxml-regrep:wsdl:registry:bindings:3.0:LifeCycleManagerPortType#approveObjects"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="deprecateObjects">
+      <soap:operation soapAction="urn:oasis:names:tc:ebxml-regrep:wsdl:registry:bindings:3.0:LifeCycleManagerPortType#deprecateObjects"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="undeprecateObjects">
+      <soap:operation soapAction="urn:oasis:names:tc:ebxml-regrep:wsdl:registry:bindings:3.0:LifeCycleManagerPortType#undeprecateObjects"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="removeObjects">
+      <soap:operation soapAction="urn:oasis:names:tc:ebxml-regrep:wsdl:registry:bindings:3.0:LifeCycleManagerPortType#removeObjects"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="submitObjects">
+      <soap:operation soapAction="urn:oasis:names:tc:ebxml-regrep:wsdl:registry:bindings:3.0:LifeCycleManagerPortType#submitObjects"/>
+      <input>
+        <mime:multipartRelated>
+          <mime:part>
+            <soap:body part="partSubmitObjectsRequest" use="literal"/>
+          </mime:part>
+          <!--
+               mime:part for payload not included as cardinality is variable per AP 1.0:
+               R2923 A SENDER MAY send non-root MIME parts not described in the WSDL MIME binding.
+          -->
+        </mime:multipartRelated>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="updateObjects">
+      <soap:operation soapAction="urn:oasis:names:tc:ebxml-regrep:wsdl:registry:bindings:3.0:LifeCycleManagerPortType#updateObjects"/>
+      <input>
+        <mime:multipartRelated>
+          <mime:part>
+            <soap:body part="partUpdateObjectsRequest" use="literal"/>
+          </mime:part>
+          <!--
+               mime:part for payload not included as cardinality is variable per AP 1.0:
+               R2923 A SENDER MAY send non-root MIME parts not described in the WSDL MIME binding.
+          -->
+        </mime:multipartRelated>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+</definitions>

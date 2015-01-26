@@ -1,0 +1,80 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/gm/RentalCarBuyersCollaborationCPA.xml,v 1.1.1.1 2003/09/24 03:55:06 farrukh_najmi Exp $-->
+<!DOCTYPE CollaborationProtocolAgreement SYSTEM "tpa2.dtd">
+<CollaborationProtocolAgreement cpaid = "4PipTest" version = "1.2">
+	<Status value = "proposed"/>
+	<Start>2001-05-20T07:21:00Z</Start>
+	<End>2002-05-20T07:21:00Z</End>
+	<ConversationConstraints invocationLimit = "100" concurrentConversations = "100"/>
+	<PartyInfo>
+		<PartyId>Seller</PartyId>
+		<PartyRef xlink_href = "http://himagirint:8080/ebXML/msh"/>
+		<CollaborationRole id = "SellerRole">
+			<ProcessSpecification version = "1.0" name = "Order Management" xlink_type = "simple" xlink_href = "http://www.sybase.com/processes/OrderManagement.xml"/>
+			<Role name = "Seller" xlink_type = "simple" xlink_href = "http://www.sybase.com/processes/OrderManagement.xml#Seller"/>
+			<ServiceBinding channelId = "N04" packageId = "N0402" name = "Product Purchase">
+				<Service type = "string">Product Purchase</Service>
+			</ServiceBinding>
+		</CollaborationRole>
+		<DeliveryChannel channelId = "N04" transportId = "N05" docExchangeId = "N06">
+			<Characteristics syncReplyMode = "none" nonrepudiationOfOrigin = "false" nonrepudiationOfReceipt = "false" secureTransport = "false" confidentiality = "false" authenticated = "false" authorized = "false"/>
+		</DeliveryChannel>
+		<Transport transportId = "N05">
+			<SendingProtocol version = "1.1">HTTP</SendingProtocol>
+			<ReceivingProtocol version = "1.1">HTTP</ReceivingProtocol>
+			<Endpoint uri = "http://himagirint:8080/ebXML/msh" type = "allPurpose"/>
+			<Endpoint uri = "http://himagirint:8080/ebXML/msh" type = "request"/>
+			<Endpoint uri = "http://himagirint:8080/ebXML/msh" type = "response"/>
+			<Endpoint uri = "http://himagirint:8080/ebXML/msh" type = "error"/>
+		</Transport>
+		<DocExchange docExchangeId = "N06">
+			<ebXMLBinding version = "1.0">
+			 	<ReliableMessaging deliverySemantics="BestEffort" idempotency="false" messageOrderSemantics="NotGuaranteed"/>
+			</ebXMLBinding>
+		</DocExchange>
+	</PartyInfo>
+	<PartyInfo>
+		<PartyId type = "DUNS">Buyer</PartyId>
+		<PartyRef xlink_type = "simple" xlink_href = "http://himagiripc:8080/ebXML/msh"/>
+		<CollaborationRole id = "N30">
+			<ProcessSpecification version = "1.0" name = "Order Management" xlink_type = "simple" xlink_href = "http://www.sybase.com/processes/OrderManagement.xml"/>
+			<Role name = "Buyer" xlink_type = "simple" xlink_href = "http://www.sybase.com/processes/OrderManagement.xml#Buyer"/>
+			<ServiceBinding channelId = "N34" packageId = "N0402" name = "Product Purchase">
+				<Service type = "string">Product Purchase</Service>
+			</ServiceBinding>
+		</CollaborationRole>
+		<DeliveryChannel channelId = "N34" transportId = "N35" docExchangeId = "N36">
+			<Characteristics syncReplyMode = "none" nonrepudiationOfOrigin = "false" nonrepudiationOfReceipt = "false" secureTransport = "false" confidentiality = "false" authenticated = "false" authorized = "false"/>
+		</DeliveryChannel>
+		<Transport transportId = "N35">
+			<SendingProtocol version = "1.1">HTTP</SendingProtocol>
+			<ReceivingProtocol version = "1.1">HTTP</ReceivingProtocol>
+			<Endpoint uri = "http://himagiripc:8080/ebXML/msh" type = "allPurpose"/>
+			<Endpoint uri = "http://himagiripc:8080/ebXML/msh" type = "request"/>
+			<Endpoint uri = "http://himagiripc:8080/ebXML/msh" type = "response"/>
+			<Endpoint uri = "http://himagiripc:8080/ebXML/msh" type = "error"/>
+		</Transport>
+		<DocExchange docExchangeId = "N36">
+			<ebXMLBinding version = "1.0">
+			 	<ReliableMessaging deliverySemantics="BestEffort" idempotency="false" messageOrderSemantics="NotGuaranteed"/>
+			</ebXMLBinding>
+		</DocExchange>
+	</PartyInfo>
+	<Packaging id = "N0402">
+		<ProcessingCapabilities parse = "true" generate = "true"/>
+		<SimplePart id = "N40" mimetype = "text/xml">
+			<NamespaceSupported location = "http://ebxml.org/project_teams/transport/messageService.xsd" version = "1.0">http://www.ebxml.org/namespaces/messageService</NamespaceSupported>
+			<NamespaceSupported location = "http://ebxml.org/project_teams/transport/xmldsig-core-schema.xsd" version = "1.0">http://www.w3.org/2000/09/xmldsig</NamespaceSupported>
+		</SimplePart>
+		<SimplePart id = "N41" mimetype = "text/xml">
+			<NamespaceSupported location = "http://ebxml.org/processes/buysell.xsd" version = "1.0">http://ebxml.org/processes/buysell.xsd</NamespaceSupported>
+		</SimplePart>
+		<CompositeList>
+			<Composite id = "N42" mimetype = "multipart/related" mimeparameters = "type=text/xml;">
+				<Constituent idref = "N40"/>
+				<Constituent idref = "N41"/>
+			</Composite>
+		</CompositeList>
+	</Packaging>
+	<Comment xml:lang = "en-US">CPA for sample Order Management</Comment>
+</CollaborationProtocolAgreement>

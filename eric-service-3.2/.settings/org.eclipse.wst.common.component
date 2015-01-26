@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="eric-service-3.2">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="eric-client-3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/eric-client-3.2/eric-client-3.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="eric-saml-common-3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/eric-saml-common-3.2/eric-saml-common-3.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="eric-common-3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/eric-common-3.2/eric-common-3.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="eric-saml-server-3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/eric-saml-server-3.2/eric-saml-server-3.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="eric-server-3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/eric-server-3.2/eric-server-3.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="eric-saml-client-3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/eric-saml-client-3.2/eric-saml-client-3.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dom4j-2.0.0-ALPHA-2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/dom4j-2.0.0-ALPHA-2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jsf-api.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/jsf-api.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="slf4j-api-1.6.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/slf4j-api-1.6.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-logging.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/commons-logging.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="joda-time-1.6.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/joda-time-1.6.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activation.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/activation.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="log4j-1.2.16.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/log4j-1.2.16.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jta-spec1_0_1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/jta-spec1_0_1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xmlsec-1.4.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/xmlsec-1.4.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-beanutils-bean-collections-1.8.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/commons-beanutils-bean-collections-1.8.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="openws-1.4.2-1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/openws-1.4.2-1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="concurrent.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/concurrent.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="derbynet.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/derbynet.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="standard.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/standard.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xmltooling-1.3.2-1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/xmltooling-1.3.2-1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jgraph.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/jgraph.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mail.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/mail.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-beanutils-core-1.8.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/commons-beanutils-core-1.8.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ant-1.7.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/ant-1.7.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jaxrpc-spi.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/jaxrpc-spi.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-beanutils-1.8.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/commons-beanutils-1.8.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="derby.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/derby.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="slf4j-log4j12-1.6.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/slf4j-log4j12-1.6.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/hibernate2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jsf-impl.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/jsf-impl.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ant-launcher-1.7.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/ant-launcher-1.7.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="wss4j-1.6.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/wss4j-1.6.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-digester-2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/commons-digester-2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ehcache-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/ehcache-1.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="opensaml-2.5.1-1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/opensaml-2.5.1-1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jaxr-api.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/jaxr-api.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-collections-3.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/commons-collections-3.2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jaxrpc-api.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/jaxrpc-api.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jaxrpc-impl.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/jaxrpc-impl.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jaxb-impl.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/jaxb-impl.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sunxacml.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/sunxacml.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="asm-all-3.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/asm-all-3.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cglib-2.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/eric-libraries-3.2/lib/cglib-2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="oasis-regrep-3.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/oasis-regrep-3.0/oasis-regrep-3.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/eric-service-3.2/build/classes"/>
+        <property name="context-root" value="eric"/>
+    </wb-module>
+</project-modules>

@@ -1,0 +1,1126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns="urn:oasis:names:tc:ebxml-regrep:config:xsd:3.0"
+	       xmlns:cfg="urn:oasis:names:tc:ebxml-regrep:config:xsd:3.0"
+	       xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0"
+	       xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0"
+	       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	       xsi:schemaLocation=
+	       "urn:oasis:names:tc:ebxml-regrep:config:xsd:3.0
+		browserConfig.xsd">
+  <Property name="test" value="val"/>
+  <RegistryURIList>
+    <RegistryURI>http://localhost:8080/eric/registry/soap</RegistryURI>
+  </RegistryURIList>
+  <Query>
+    <!--rim:Name>
+      <rim:LocalizedString charset="UTF-8" value="label.FindAllMyObjects"/>
+    </rim:Name>
+    <rim:Description>
+      <rim:LocalizedString charset="UTF-8" value="label.FindAllMyObjects.desc"/>
+    </rim:Description-->
+    <AdhocQueryRef id="urn:oasis:names:tc:ebxml-regrep:query:FindAllMyObjects"/>
+  </Query>
+  <Query>
+    <!--rim:Name>
+      <rim:LocalizedString charset="UTF-8" value="label.GetCallersUser"/>
+    </rim:Name>
+    <rim:Description>
+      <rim:LocalizedString charset="UTF-8" value="label.GetCallersUser.desc"/>
+    </rim:Description-->
+    <AdhocQueryRef id="urn:oasis:names:tc:ebxml-regrep:query:GetCallersUser"/>
+  </Query>
+  <Query>
+    <!--rim:Name>
+      <rim:LocalizedString charset="UTF-8" value="label.RegistryObjectVersionQuery"/>
+    </rim:Name>
+    <rim:Description>
+      <rim:LocalizedString charset="UTF-8" value="label.RegistryObjectVersionQuery.desc"/>
+    </rim:Description-->
+    <AdhocQueryRef id="urn:oasis:names:tc:ebxml-regrep:query:RegistryObjectVersionQuery"/>
+    <Parameter parameterName="$lid" datatype="string" defaultValue="%Test%">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.LogicalId"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.LogicalId.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$versionName" datatype="string" defaultValue="1.1">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.VersionName"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.VersionName.desc"/>
+      </rim:Description>
+    </Parameter>
+  </Query>
+  <Query>
+    <!--rim:Name>
+      <rim:LocalizedString charset="UTF-8" value="label.ExtrinsicObjectVersionQuery"/>
+    </rim:Name>
+    <rim:Description>
+      <rim:LocalizedString charset="UTF-8" value="label.ExtrinsicObjectVersionQuery.desc"/>
+    </rim:Description-->
+    <AdhocQueryRef id="urn:oasis:names:tc:ebxml-regrep:query:ExtrinsicObjectVersionQuery"/>
+    <Parameter parameterName="$lid" datatype="string" defaultValue="%Test%">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.LogicalId"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.LogicalId.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$versionName" datatype="string" defaultValue="1.1">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.VersionName"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.VersionName.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$contentVersionName" datatype="string" defaultValue="1.1">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.ContentVersionName"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.ContentVersionName.desc"/>
+      </rim:Description>
+    </Parameter>
+  </Query>
+  <!--
+       The Busines Query and Business Query - Case Sensitive <Query>'s
+       shown below are examples of new parameterized queries.  The SQL
+       is stored in the Registry's database, not in this file.
+       Parameter values sent by the user are bound to placeholders in
+       the stored SQL query.  For example, the first parameter shown
+       below is mapped to the placeholder '$tableName' in the query
+       'SELECT * from $tableName'
+  -->
+  <Query>
+    <!--rim:Name>
+      <rim:LocalizedString charset="UTF-8" value="label.BusinessQuery"/>
+    </rim:Name>
+    <rim:Description>
+      <rim:LocalizedString charset="UTF-8" value="label.BusinessQuery.desc"/>
+    </rim:Description-->
+    <AdhocQueryRef id="urn:freebxml:registry:query:BusinessQuery"/>
+    <Parameter parameterName="$objectTypePath" datatype="taxonomyElement" defaultValue="RegistryObject">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.ObjectType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.ObjectType.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <!-- TODO: add Registry Object Types -->
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$name" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.Name"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.Name.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$description" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.Description"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.Description.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$status" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.status"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.status.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:classificationScheme:StatusType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$classificationPath" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.ClassificationSchemes"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.ClassificationSchemes.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ClassificationScheme</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$generateClassificationLink" datatype="boolean" defaultValue="true"/>
+  </Query>
+  <Query>
+    <!--rim:Name>
+      <rim:LocalizedString value="Business Query - Case Sensitive"/>
+    </rim:Name>
+    <rim:Description>
+      <rim:LocalizedString value="Find any RegistryObject by type, name and/or description"/>
+    </rim:Description-->
+    <AdhocQueryRef id="urn:freebxml:registry:query:BusinessQueryCaseSensitive"/>
+    <Parameter parameterName="$objectTypePath" datatype="taxonomyElement" defaultValue="RegistryObject">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.ObjectType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.ObjectType.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <!-- TODO: add Registry Object Types -->
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$name" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.Name"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.Name.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$description" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.Description"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.Description.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$status" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.status"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.status.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:classificationScheme:StatusType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$classificationPath" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.ClassificationSchemes"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.ClassificationSchemes.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ClassificationScheme</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>    
+    <Parameter parameterName="$generateClassificationLink" datatype="boolean" defaultValue="true"/>
+  </Query>
+  
+  <Query>
+    <!--rim:Name>
+      <rim:LocalizedString value="label.WSDLDiscoveryQuery"/>
+    </rim:Name>
+    <rim:Description>
+      <rim:LocalizedString value="label.WSDLDiscoveryQuery.desc"/>
+    </rim:Description-->
+    <AdhocQueryRef id="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:WSDLDiscoveryQuery"/>
+    <Parameter parameterName="$name" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.Name"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.Name.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$description" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.Description"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.Description.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$status" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.status"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.status.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:classificationScheme:StatusType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$targetNamespace" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.targetNamespace"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.targetNamespace.desc"/>
+      </rim:Description>
+    </Parameter>
+    
+  </Query>
+
+  <Query>
+    <!--rim:Name>
+      <rim:LocalizedString value="label.WSDLPortTypeDiscoveryQuery"/>
+    </rim:Name>
+    <rim:Description>
+      <rim:LocalizedString value="label.WSDLPortTypeDiscoveryQuery.desc"/>
+    </rim:Description-->
+    <AdhocQueryRef id="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:PortTypeDiscoveryQuery"/>
+        
+    <Parameter parameterName="$portType.name" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.name"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.name.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$portType.description" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.description"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.description.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$portType.status" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.status"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.status.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:classificationScheme:StatusType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$portType.targetNamespace" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.targetNamespace"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.targetNamespace.desc"/>
+      </rim:Description>
+    </Parameter>
+  </Query>  
+    
+  <Query>
+    <!--rim:Name>
+      <rim:LocalizedString value="label.WSDLBindingDiscoveryQuery"/>
+    </rim:Name>
+    <rim:Description>
+      <rim:LocalizedString value="label.WSDLBindingDiscoveryQuery.desc"/>
+    </rim:Description-->
+    <AdhocQueryRef id="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:BindingDiscoveryQuery"/>
+    <Parameter parameterName="$binding.name" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.name"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.name.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$binding.description" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.description"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.description.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$binding.status" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.status"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.status.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:classificationScheme:StatusType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$binding.targetNamespace" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.targetNamespace"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.targetNamespace.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$binding.protocolType" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.protocolType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.protocolType.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:ProtocolType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$binding.transportType" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.transportType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.transportType.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:TransportType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>      
+    </Parameter>
+    <Parameter parameterName="$binding.soapStyleType" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.SOAPStyleType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.SOAPStyleType.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:SOAPStyleType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>      
+    </Parameter>
+    
+    <Parameter parameterName="$considerPortType" datatype="boolean" defaultValue="false">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.considerPortType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.considerPortType.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$portType.name" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.name"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.name.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$portType.description" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.description"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.description.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$portType.status" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.status"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.status.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:classificationScheme:StatusType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$portType.targetNamespace" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.targetNamespace"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.targetNamespace.desc"/>
+      </rim:Description>
+    </Parameter>
+  </Query>
+
+  <Query>
+    <!--rim:Name>
+      <rim:LocalizedString value="WSDL Port Discovery Query"/>
+    </rim:Name>
+    <rim:Description>
+      <rim:LocalizedString value="WSDL Port Discovery Query"/>
+    </rim:Description-->
+    <AdhocQueryRef id="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:PortDiscoveryQuery"/>
+    <Parameter parameterName="$port.name" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.port.name"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.port.name.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$port.description" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.port.description"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.port.description.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$port.status" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.port.status"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.port.status.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:classificationScheme:StatusType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$port.targetNamespace" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.port.targetNamespace"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.port.targetNamespace.desc"/>
+      </rim:Description>
+    </Parameter>    
+    <Parameter parameterName="$port.accessURI" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.port.accessURI"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.port.accessURI.desc"/>
+      </rim:Description>
+    </Parameter>
+    
+    <Parameter parameterName="$considerBinding" datatype="boolean" defaultValue="false">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.considerBinding"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.considerBinding.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$binding.name" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.name"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.name.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$binding.description" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.description"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.description.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$binding.status" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.status"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.status.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:classificationScheme:StatusType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$binding.targetNamespace" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.targetNamespace"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.targetNamespace.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$binding.protocolType" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.protocolType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.protocolType.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:ProtocolType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$binding.transportType" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.transportType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.transportType.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:TransportType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>      
+    </Parameter>
+    <Parameter parameterName="$binding.soapStyleType" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.SOAPStyleType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.SOAPStyleType.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:SOAPStyleType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>      
+    </Parameter>
+    
+    <Parameter parameterName="$considerPortType" datatype="boolean" defaultValue="false">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.considerPortType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.considerPortType.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$portType.name" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.name"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.name.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$portType.description" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.description"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.description.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$portType.status" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.status"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.status.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:classificationScheme:StatusType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$portType.targetNamespace" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.targetNamespace"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.targetNamespace.desc"/>
+      </rim:Description>
+    </Parameter>
+  </Query>
+
+  <Query>
+    <!--rim:Name>
+      <rim:LocalizedString value="WSDL Service Discovery Query"/>
+    </rim:Name>
+    <rim:Description>
+      <rim:LocalizedString value="WSDL Service Discovery Query"/>
+    </rim:Description-->
+    <AdhocQueryRef id="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:ServiceDiscoveryQuery"/>
+
+    <Parameter parameterName="$service.name" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.service.name"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.service.name.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$service.description" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.service.description"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.service.description.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$service.status" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.service.status"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.service.status.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:classificationScheme:StatusType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$service.targetNamespace" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.service.targetNamespace"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.service.targetNamespace.desc"/>
+      </rim:Description>
+    </Parameter>    
+        
+    
+    <Parameter parameterName="$considerPort" datatype="boolean" defaultValue="false">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.considerPort"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.considerPort.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$port.name" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.port.name"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.port.name.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$port.description" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.port.description"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.port.description.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$port.status" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.port.status"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.port.status.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:classificationScheme:StatusType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$port.targetNamespace" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.port.targetNamespace"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.port.targetNamespace.desc"/>
+      </rim:Description>
+    </Parameter>    
+    <Parameter parameterName="$port.accessURI" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.port.accessURI"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.port.accessURI.desc"/>
+      </rim:Description>
+    </Parameter>
+    
+    <Parameter parameterName="$considerBinding" datatype="boolean" defaultValue="false">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.considerBinding"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.considerBinding.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$binding.name" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.name"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.name.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$binding.description" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.description"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.description.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$binding.status" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.status"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.status.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:classificationScheme:StatusType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$binding.targetNamespace" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.targetNamespace"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.targetNamespace.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$binding.protocolType" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.protocolType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.protocolType.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:ProtocolType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$binding.transportType" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.transportType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.transportType.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:TransportType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>      
+    </Parameter>
+    <Parameter parameterName="$binding.soapStyleType" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.SOAPStyleType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.binding.SOAPStyleType.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:SOAPStyleType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>      
+    </Parameter>
+    
+    <Parameter parameterName="$considerPortType" datatype="boolean" defaultValue="false">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.considerPortType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.considerPortType.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$portType.name" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.name"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.name.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$portType.description" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.description"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.description.desc"/>
+      </rim:Description>
+    </Parameter>
+    <Parameter parameterName="$portType.status" datatype="taxonomyElement">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.status"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.status.desc"/>
+      </rim:Description>
+      <rim:SlotList>
+        <rim:Slot name="domain">
+          <rim:ValueList>
+            <rim:Value>urn:oasis:names:tc:ebxml-regrep:classificationScheme:StatusType</rim:Value>
+          </rim:ValueList>
+        </rim:Slot>
+      </rim:SlotList>
+    </Parameter>
+    <Parameter parameterName="$portType.targetNamespace" datatype="string">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.targetNamespace"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.portType.targetNamespace.desc"/>
+      </rim:Description>
+    </Parameter>
+  </Query>      
+  
+  <Query>
+    <!--rim:Name>
+      <rim:LocalizedString value="Arbitrary query"/>
+    </rim:Name>
+    <rim:Description>
+      <rim:LocalizedString value="Arbitrary query"/>
+    </rim:Description-->
+    <AdhocQueryRef id="urn:oasis:names:tc:ebxml-regrep:query:ArbitraryQuery"/>
+    <Parameter parameterName="$query" datatype="string" defaultValue="Select s.* from ClassScheme s">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.QueryString"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.QueryString.desc"/>
+      </rim:Description>
+    </Parameter>
+  </Query>
+  <!--
+       ObjectTypeConfig:
+       
+       Configure one or more ObjectTypeConfig to customize how RegistryBrowser
+       handles Objects belonging to that ObjectType.
+       
+       
+       <complexType name = "ObjectTypeConfigType">
+       <sequence>
+       <element ref = "tns:SearchResultsConfig" minOccurs = "0" maxOccurs = "1"/>
+       </sequence>
+       <attribute name = "id" use = "required"/>
+       <attribute name = "className" use = "required"/>
+       </complexType>
+       <element name = "ObjectTypeConfig" type = "tns:ObjectTypeConfigType"/>
+       
+       Attribute id:
+       id of Concept representing an ObjectType within the canonical ObjectType ClassificationScheme.
+       May be looked up in ClassificationScheme dialog by Show Details on the ObjectType Concept.
+       Atribute className:
+       Fully qualified class name for the RIM class for this ObjectType.
+       Usually same as value of the ObjectType Concept with a suffix of "Impl".
+       
+       Element SearchResultsConfig:
+       Configures search results table for this ObjectType. Described below.
+  -->
+  <ObjectTypeConfig className="it.cnr.icar.eric.client.xml.registry.infomodel.RegistryObjectImpl" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject">
+    <!--
+         SearchResultsConfig:
+         
+         Configures how the Search Results table in RegistryBrowser
+         displays the results of a search that displays objects belonging to that ObjectType.
+         
+         <complexType name = "SearchResultsConfigType">
+         <sequence>
+         <element ref = "tns:SearchResultsColumn" minOccurs = "1" maxOccurs = "unbounded"/>
+         </sequence>
+         </complexType>
+         <element name = "SearchResultsConfig" type = "tns:SearchResultsConfigType"/>
+         
+         Element SearchResultsColumn:
+         Configures a display column within the search results table of RegistryB rowser.
+    -->
+    <SearchResultsConfig>
+      <!--
+           SearchResultsColumn:
+           
+           Configures what columns to show in Search Results table for a specific ObjectType.
+           One or more columns can be configured. For each column one can specify what attributes
+           of the search result objects to show in that column.
+           
+           <complexType name = "SearchResultsColumnType">
+           <sequence>
+           <element ref = "tns:MethodParameter" minOccurs = "0" maxOccurs = "unbounded"/>
+           </sequence>
+           <attribute name = "editable" type="boolean" default = "false"/>
+           <attribute name = "columnHeader" type="string" use = "required"/>
+           <attribute name = "columnWidth" type="integer" use = "optional" default="0"/>
+           <attribute name = "method" type="string" use = "required"/>
+           <attribute name = "columnClass" type="string" use = "required"/>
+           </complexType>
+           <element name = "SearchResultsColumn" type = "tns:SearchResultsColumnType"/>
+           
+           
+           Attrinute editable:
+           Determines whether double-click on a cell in column enters edit mode or not.
+           When true, double-click on cell enters edit mode for cell which is useful when
+           cell is a String (for copying) and required if columnClass for cell is a URL or Collection.
+           Set to true when columnClass is Collection, URL or String.
+           
+           Attribute columnHeader:
+           Specifies what column header to display for this column.
+           
+           Attribute columnWidth:
+           Specifies what column width for this column as a % of the width of the Scrollable Window.
+           If a columnWidth is 0 then it gets asigned an average value (idth of the Scrollable Window divided by number of columns).
+           If columnWidths add up to 100 then the columns will fit the Scrollable Window exactly.
+           If columnWidths add up to > 100 then columns will not all be visible and a horizontal scroll bar will appear.
+           If columnWidths add up to < 100 then there will be white space to the right of the columns.
+           
+           Attribute method:
+           Specifies what method to invoke on RegistryObject for search result row to display data for this column.
+           See JAXR API infomodel interfaces for method names.
+           You can also use any implementation specific methods (reqires reading code in it.cnr.icar.eric.client.xml.registry.infomodel package).
+           
+           Attribute columnClass:
+           Specifies the fully qualified className representing the data type for this columns data.
+           Specify java.lang.Object if not sure.
+           
+           Element MethodParameter:
+           Specifies one or more parameters that are used when invoking the mobject ethod specified by methodName.
+           <complexType name = "MethodParameterType">
+           <attribute name = "name" type="string" use = "optional"/>
+           <attribute name = "type" type="string" use = "required"/>
+           <attribute name = "value" type="string" use = "required"/>
+           </complexType>
+           <element name = "MethodParameter" type = "tns:MethodParameterType"/>
+           Examples Use Cases:
+           
+           -Show a column with the value of a Slot matching a specified slotName
+           
+           <SearchResultsColumn
+           editable = "true"
+           columnHeader="Slot example"
+           method="getSlot"
+           columnClass="java.util.Collection"
+           >
+           <MethodParameter name="slotName" type="java.lang.String" value="someSlotNameToMatch" />
+           </SearchResultsColumn>
+           
+           -Show a column with a value of Classification Concept matching a specified path prefix for the Classification Concept
+           <SearchResultsColumn
+           editable = "true"
+           columnHeader="Classification example"
+           method="getClassificationConceptsByPath"
+           columnClass="java.util.Collection"
+           >
+           <MethodParameter name="pathPrefix" type="java.lang.String" value="/urn:oasis:names:tc:ebxml-regrep:classificationScheme:AssociationType/AffiliatedWith/" />
+           </SearchResultsColumn>
+           -Show a column with a value that is a Collection of objects (e.g ExternalLinks)
+           
+           <SearchResultsColumn
+           editable = "true"
+           columnHeader="Related Links"
+           method="getExternalLinks"
+           columnClass="java.util.Collection"
+           >
+           </SearchResultsColumn>
+           
+           
+           -Show a column with a value that is a URL (e.g. ServiceBinding.accessURI, ExternalLink.externalURI)
+           <SearchResultsColumn
+           editable = "true"
+           columnHeader="Endpoint"
+           columnWidth="50"
+           method="getAccessURI"
+           columnClass="java.lang.String"
+           >
+      -->
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Object Type" columnWidth="25" editable="false" method="getObjectType"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Name" columnWidth="25" editable="true" method="getName"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Description" columnWidth="30" editable="true" method="getDescription"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Version" columnWidth="5" editable="false" method="getVersionName"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Version Comment" columnWidth="15" editable="false" method="getComment"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Status" columnWidth="15" editable="true" method="getStatusAsString"/>
+    </SearchResultsConfig>
+  </ObjectTypeConfig>
+  <ObjectTypeConfig className="it.cnr.icar.eric.client.xml.registry.infomodel.ExternalLinkImpl" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExternalLink">
+    <SearchResultsConfig>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Object Type" columnWidth="25" editable="false" method="getObjectType"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Name" columnWidth="25" editable="true" method="getName"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Description" columnWidth="40" editable="true" method="getDescription"/>
+      <SearchResultsColumn columnClass="java.lang.String" columnHeader="URI" columnWidth="25" editable="true" method="getExternalURI"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Status" columnWidth="15" editable="true" method="getStatusAsString"/>
+    </SearchResultsConfig>
+  </ObjectTypeConfig>
+  <ObjectTypeConfig className="it.cnr.icar.eric.client.xml.registry.infomodel.ExtrinsicObjectImpl" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject">
+    <SearchResultsConfig>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Object Type" columnWidth="25" editable="false" method="getObjectType"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Name" columnWidth="25" editable="true" method="getName"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Description" columnWidth="40" editable="true" method="getDescription"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Version" columnWidth="5" editable="false" method="getVersionName"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Version Comment" columnWidth="15" editable="false" method="getComment"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Content Version" columnWidth="5" editable="false" method="getContentVersionName"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Content Version Comment" columnWidth="15" editable="false" method="getContentComment"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Status" columnWidth="15" editable="true" method="getStatusAsString"/>
+    </SearchResultsConfig>
+  </ObjectTypeConfig>
+  <ObjectTypeConfig className="it.cnr.icar.eric.client.xml.registry.infomodel.ServiceBindingImpl" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ServiceBinding">
+    <SearchResultsConfig>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Object Type" columnWidth="25" editable="false" method="getObjectType"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Name" columnWidth="25" editable="true" method="getName"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Description" columnWidth="30" editable="true" method="getDescription"/>
+      <SearchResultsColumn columnClass="java.net.URL" columnHeader="Endpoint" columnWidth="20" method="getAccessURI"/>
+      <SearchResultsColumn columnClass="java.lang.Object" columnHeader="Status" columnWidth="15" editable="true" method="getStatusAsString"/>
+    </SearchResultsConfig>
+  </ObjectTypeConfig>
+</Configuration>

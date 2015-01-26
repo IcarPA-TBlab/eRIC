@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- $Header: /cvsroot/ebxmlrr/omar/doc/3.0/thinBrowser/UserRegistrationGuide.html,v 1.6 2005/08/01 08:02:27 doballve Exp $-->
+<html>
+<head>
+  <title>Registry Browser Web UI - User Registration Guide</title>
+  <style type="text/css">
+    @import url("30.css");
+  </style>
+</head>
+<body class="composite">
+
+<div class="h2">
+<h2><a name="UserRegistrationGuide">User Registration Guide</a></h2>
+<p>You can browse the public content of a registry. However, both
+access to private objects and write access to public objects require
+that you are logged in and are authorized to perform that action on
+that object. Please see the <a href="../UserRegistrationGuide.html">User
+Registration Guide</a> for an overview.</p>
+<p>You must register with a registry before you can log-on to that
+registry and perform secure operations such as object publishing,
+update and removal. After registration, you will load your client
+certificate into your web browser. This allows the Registry to
+identify and authenticate you.</p>
+<p>Registration using Registry Browser Web UI involves the following steps:</p>
+<ol>
+  <li><a href="#createUserAccount">Creating a User Account</a></li>
+  <li><a href="#loadCredentials">Loading Client Certificate into the Web Browser</a></li>
+  <li><a href="#loadCredentialsToJAXR">Loading Client Certificate to JAXR provider (optional)</a></li>
+</ol>
+<p>After that you are able to <a href="#login">authenticate</a> with the registry.</p>
+</div>
+
+<div class="h2">
+<h2><a name="createUserAccount">1. Creating a User Account</a></h2>
+<ol>
+  <li>Browse to Registry Browser Web UI welcome page</li>
+  <li>Click the 'Create User Account' on the left side menu</li>
+  <li>Click the 'Start Registration Wizard' button</li>
+  <li>Step 1: Read the requirements and click 'Next' button</li>
+  <li>Step 2: Fill in the user details. Notice that first and last name are
+required. Click 'Next' button to continue.</li>
+  <li>Step 3: Fill in the user authentication details. Unless you already have a
+CA certified digital private key, you should choose 'Generate Key pair and
+download PKCS12 KeyStore'. <b>Important</b>: remember the password you write here.
+It will be needed to import the certificate on a later step. Click 'Next' button
+to continue.</li>
+  <li>Step 4: click the 'Download' link and save the certificate file in your
+computer.</li>
+  <li>Click 'Finish' button to end the Registration Wizard.</li>
+</ol>
+</div>
+
+<div class="h2">
+<h2><a name="loadCredentials">2. Loading Client Certificate into Web Browser</a></h2>
+<p>The Web UI requires client certificates to authenticate users.
+You may still browse Registry content without authenticating, but you
+cannot publish, and you cannot see restricted content. Please see the <a
+ href="../UserRegistrationGuide.html#loadCredentials">User
+Registration Guide</a> for how load the certificate into your web
+browser.</p>
+</div>
+
+<div class="h2">
+<h2><a name="loadCredentials">3. Loading Client Certificate into Web Browser</a></h2>
+<p>The Web UI requires client certificates to authenticate users.
+You may still browse Registry content without authenticating, but you
+cannot publish, and you cannot see restricted content. Please see the <a
+ href="../UserRegistrationGuide.html#loadCredentials">User
+Registration Guide</a> for how load the certificate into your web
+browser.</p>
+</div>
+
+<div class="h2">
+<h2><a name="login">4. User Authentication</a></h2>
+<p>Authentication is based on client certificates. These certificates
+are loaded into your web browser and presented to the Registry over a
+secure connection. Usually, https is used for this connection.
+Authentication happens transparently whenever you try to add, delete
+or modify an existing Registry object. In other words, any write
+request will trigger authentication based on the client certificate
+loaded into your web browser.</p>
+<p>The following are some additional points:</p>
+<ul>
+  <li>After authentication is completed, you will be accessing the
+Registry over https. You may go back to http if you wish.</li>
+  <li>You may browse or querying the Registry over http. However,
+you may not be able to see all registry content.</li>
+  <li>When your session expires, you are no longer authenticated by the
+Registry. A subsequent write request will prompt the Web UI to
+reauthenticate you.</li>
+</ul>
+</div>
+
+</body>
+</html>

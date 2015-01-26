@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/RP1.xml,v 1.1.1.1 2003/09/24 03:41:24 farrukh_najmi Exp $-->
+<AdhocQueryRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 query.xsd">
+	<ResponseOption returnType = "LeafClass"/>
+	<FilterQuery>
+		<RegistryPackageQuery>
+			<RegistryEntryQuery>
+				<RegistryEntryFilter>
+					<Clause>
+						<SimpleClause leftArgument = "objectType">
+							<StringClause stringPredicate = "Equal">Invoice</StringClause>
+						</SimpleClause>
+					</Clause>
+				</RegistryEntryFilter>
+			</RegistryEntryQuery>
+		</RegistryPackageQuery>
+	</FilterQuery>
+</AdhocQueryRequest>

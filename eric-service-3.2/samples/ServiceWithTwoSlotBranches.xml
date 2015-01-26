@@ -1,0 +1,40 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<AdhocQueryRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0 file:///C:/Open/ebxmlrr-spec/misc/schema/v3/query.xsd urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 query.xsd">
+	<ResponseOption returnType = "LeafClass" returnComposedObjects = "true"/>
+	<FilterQuery>
+		<ServiceQuery>
+			<SlotBranch> 
+				<SlotFilter> 
+					<Clause> 
+						<SimpleClause leftArgument = "name"> 
+							<StringClause stringPredicate = "Equal">name1</StringClause> 
+						</SimpleClause> 
+					</Clause> 
+				</SlotFilter> 
+				<SlotValueFilter> 
+					<Clause> 
+						<SimpleClause leftArgument = "value"> 
+							<StringClause stringPredicate = "Contains">value1</StringClause> 
+						</SimpleClause> 
+					</Clause> 
+				</SlotValueFilter> 
+			</SlotBranch> 
+			<SlotBranch> 
+				<SlotFilter> 
+					<Clause> 
+						<SimpleClause leftArgument = "name"> 
+							<StringClause stringPredicate = "Equal">name2</StringClause> 
+						</SimpleClause> 
+					</Clause> 
+				</SlotFilter> 
+				<SlotValueFilter> 
+					<Clause> 
+						<SimpleClause leftArgument = "value"> 
+							<StringClause stringPredicate = "Contains">value2</StringClause> 
+						</SimpleClause> 
+					</Clause> 
+				</SlotValueFilter> 
+			</SlotBranch> 
+		</ServiceQuery>
+	</FilterQuery>
+</AdhocQueryRequest>

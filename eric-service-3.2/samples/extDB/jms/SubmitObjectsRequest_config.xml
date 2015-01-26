@@ -1,0 +1,67 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/extDB/jms/SubmitObjectsRequest_config.xml,v 1.1 2005/11/07 15:11:18 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest 
+  xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" 
+  xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" 
+  xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" 
+  xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" 
+  xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../../../../../ebxmlrr-spec/misc/3.0/schema/lcm.xsd">
+
+  <rs:RequestSlotList>  
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+      
+  <rim:RegistryObjectList>
+
+    <!--ObjectType extensions-->
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject" lid="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject"  code="JMSObject" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.JMSObject"/>
+      </rim:Name>
+      <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject" lid="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject:MessageService"  code="MessageService" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject:MessageService">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="label.MessageService"/>
+        </rim:Name>
+      </rim:ClassificationNode> 
+      <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject" lid="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject:Destination"  code="Destination" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject:Destination">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="label.Destination"/>
+        </rim:Name>
+        
+        <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject:Destination" lid="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject:Queue"  code="Queue" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject:Queue">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="label.Queue"/>
+          </rim:Name>
+        </rim:ClassificationNode> 
+        <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject:Destination" lid="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject:Topic"  code="Topic" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject:Topic">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="label.Topic"/>
+          </rim:Name>
+        </rim:ClassificationNode> 
+      </rim:ClassificationNode> 
+              
+      <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject" lid="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject:MessageProducer"  code="MessageProducer" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject:MessageProducer">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="label.MessageProducer"/>
+        </rim:Name>
+      </rim:ClassificationNode> 
+      <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject" lid="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject:MessageConsumer"  code="MessageConsumer" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:JMSObject:MessageConsumer">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="label.MessageConsumer"/>
+        </rim:Name>
+      </rim:ClassificationNode> 
+    </rim:ClassificationNode>
+
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

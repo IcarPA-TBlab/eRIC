@@ -1,0 +1,12 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<AdhocQueryRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0 file:///C:/Open/ebxmlrr-spec/misc/schema/v3/query.xsd urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 query.xsd">
+	<ResponseOption returnType = "LeafClass" returnComposedObjects = "true"/>
+	<FilterQuery>
+		<ServiceQuery>
+			<ServiceBindingBranch> 
+				<ServiceBindingTargetBranch> 
+				</ServiceBindingTargetBranch> 
+			</ServiceBindingBranch> 
+		</ServiceQuery>
+	</FilterQuery>
+</AdhocQueryRequest>

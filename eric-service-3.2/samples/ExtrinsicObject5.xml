@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/ExtrinsicObject5.xml,v 1.1.1.1 2003/09/24 03:40:35 farrukh_najmi Exp $-->
+<AdhocQueryRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 file:///C:/open/ebxmlrr-spec/misc/schema/query.xsd"> 
+	<ResponseOption returnType = "RegistryEntry" returnComposedObjects = "false"/> 
+	<FilterQuery> 
+		<ExtrinsicObjectQuery> 
+			<SlotBranch> 
+				<SlotFilter> 
+					<Clause> 
+						<SimpleClause leftArgument = "name"> 
+							<StringClause stringPredicate = "Equal">title</StringClause> 
+						</SimpleClause> 
+					</Clause> 
+				</SlotFilter> 
+				<SlotValueFilter> 
+					<Clause> 
+						<SimpleClause leftArgument = "value"> 
+							<StringClause stringPredicate = "Contains">xml</StringClause> 
+						</SimpleClause> 
+					</Clause> 
+				</SlotValueFilter> 
+			</SlotBranch> 
+		</ExtrinsicObjectQuery> 
+	</FilterQuery> 
+</AdhocQueryRequest>

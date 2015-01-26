@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--$Header: /cvsroot/ebxmlrr/omar/doc/3.0/PropertiesGuide.html,v 1.5 2005/07/21 08:55:26 doballve Exp $-->
+<html xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<title>Omar Properties Guide</title>
+</head>
+
+<body>
+
+<div class="h3">
+
+<h2>Omar Properties Guide - Table of Contents</h2>
+
+<p>This document describes how properties
+work for the project.</p>
+
+<ul>
+ <li><a href="#why3">Why 3 property files?</a></li>
+ <li><a href="#allprops">Common, server and client properties</a></li>
+ <li><a href="#rbprops">RegistryBrowser properties</a></li>
+ <li><a href="#loadingsequence">Property loading sequence</a></li>
+ <li><a href="#defaults">Source for default values</a></li>
+ <li><a href="#variables">Variable support in property files</a></li>
+ <li><a href="#changingprops">Where to change a property value??</a></li>
+ <li><a href="#propfilelocation">Property File Locations</a><br/>
+   <ul>
+     <li><a href="#cvslocation">Location in CVS Tree</a></li>
+     <li><a href="#buildlocation">Location in Distribution / Build Tree</a></li>
+   </ul>
+ </li>
+ <li><a href="#rootdir">Omar Home - Runtime root directory</a></li>
+ <li><a href="#changingorder">Changing the Order (dev)</a></li>
+ <li><a href="#debugging">Debugging the properties</a></li>
+ <li><a href="#links">Links</a></li>
+</ul>
+
+<h2><a name="why3"></a>Why 3 property files? </h2>
+
+<p>Because we have 3 main branches in the project source code: common,
+server and client.</p>
+
+<p>Since some classes in common also need properties AND they don</code>t
+know if they are being used by server-side or by client-side, specific
+properties needed to be defined.</p>
+
+<h2><a name="allprops"></a>Common, server and client properties</h2>
+
+<p>So, each of the 3 branches uses a different set of properties through a
+xxxProperty class: </p>
+
+<ul>
+ <li><code>org.freebxml.omar.common.CommonProperties</code>
+     for common</li>
+ <li><code>org.freebxml.omar.server.common.RegistryProperties</code>
+     for server</li>
+ <li><code>org.freebxml.omar.client.xml.registry.util.ProviderProperties</code>
+     for client</li>
+</ul>
+
+<p>These classes implement singleton pattern and properties are loaded on first
+access. Furthermore, they extend <code>org.freebxml.omar.common.AbstractProperties</code>,
+which holds common methods for property loading purposes.</p>
+
+<p><b>NOTE:</b> Both server and client property classes currently INCLUDE
+properties defined for common. See property loading <a href="#loadingsequence">
+sequence</a>.</p>
+
+<h2><a name="rbprops"></a>RegistryBrowser properties</h2>
+
+<p>RegistryBrowser (thick client) is also configurable, but that is not covered
+here. See //TODO: link.</p>
+
+<h2><a name="loadingsequence"></a>Property loading sequence</h2>
+
+<p>Currently each of the property
+classes follows this sequence:</p>
+
+<ol>
+  <li>Load properties from classpath using fully
+      qualified name for resource.
+    <ul>
+      <li><code>it/cnr/omar/common/omar-common.properties</code>
+          for common</li>
+      <li><code>it/cnr/omar/server/omar.properties</code>
+          for server</li>
+      <li><code>it/cnr/omar/client/jaxr-ebxml.properties</code>
+           for client</li>
+    </ul>
+    These are the default properties and should jarified with the classes. These
+    properties should by up-to-date with cvs/distribution and should not be
+    changed by the user.
+  </li>
+
+  <li>Load from classpath root:
+    <ul>
+      <li><code>omar-common.properties</code>
+        for common</li>
+      <li><code>omar.properties</code>
+        for server</li>
+      <li><code>jaxr-ebxml.properties</code>
+        for client</li>
+    </ul>
+    <b>NOTE:</b> This is a good place to change the properties (or at least define
+    <code>omar.home</code>, see next steps) if you</code>re planning to have
+    multiple registry installations in the same machine, under the same user.
+  </li>
+
+  <li>Load only <code>omar.home</code> property from System.properties, if
+      defined, so that it can be used by next step. This is an alternative to
+      modifying property files to define omar.home.
+  </li>
+
+  <li>Conditional load from file system, only executed when load from classpath
+      root fails. Uses last defined property <code>omar.home</code> from the
+      steps above for file system directory path.
+    <ul>
+      <li><code>${omar.home}/omar-common.properties</code>
+        for common</li>
+      <li><code>${omar.home}/omar.properties</code>
+        for server</li>
+      <li><code>${omar.home}/jaxr-ebxml.properties</code>
+        for client</li>
+    </ul>
+  </li>
+
+  <li>Load from System.properties. Append from system level properties (defined,
+      for instance, using  <code>&#8211;DpropName=propValue</code> command-line
+      switch) where property name starts with</li>
+    <ul>
+      <li><code>omar.</code> for common</li>
+      <li><code>omar.</code> for server</li>
+      <li><code>omar.</code> or <code>jaxr-ebxml</code> for client</li>
+    </ul>
+  </li>
+</ol>
+
+<p><b>IMPORTANT NOTE:</b> Both server and client property classes fully execute loading
+sequence for common and use those properties as starting point.</p>
+
+<p>See also: <a href="#variables">Variable support</a> in property files.</p>
+
+<h2><a name="defaults"></a>Source for default values</h2>
+
+<p>Default properties are loaded
+from classpath using fully qualified name for resource.</p>
+
+<ul>
+ <li><code>it/cnr/omar/common/omar-common.properties</code>
+     for common</li>
+ <li><code>it/cnr/omar/server/omar.properties</code>
+     for server</li>
+ <li><code>it/cnr/omar/client/jaxr-ebxml.properties</code>
+     for client</li>
+</ul>
+
+<h2><a name="variables"></a>Variable support in property files</h2>
+
+<p>After the loading steps, variable substitution is performed. Allowed
+variables:</p>
+
+<ul>
+ <li><code>${user.home}</code></li>
+ <li><code>${omar.home}</code></li>
+ <li><code>${jaxr-ebxml.home}</code></li>
+</ul>
+
+<h2><a name="changingprops"></a>Where to change a property value (user)</h2>
+
+<p>Prefer changing properties in the classpath root or in <code>omar.home</code>
+directory.</p>
+
+<h2><a name="propfilelocation"></a>Property File Locations</h2>
+
+<h3><a name="cvslocation"></a>Location in CVS Tree</h3>
+
+<p>Property files are located under omar/conf directory in CVS.</p>
+
+<h3><a name="buildlocation"></a>Location in Distribution / Build Tree</h3>
+
+<p>The ant script will copy property files to 3 locations under Build Tree:
+<ul>
+ <li>to omar/build/conf, preserving last modified.</li>
+ <li>to omar/build/lib/classes/xxx, overwriting with version from CVS Tree.
+     See <a href="#defaults"> defaults</a>.</li>
+ <li>to omar/build/lib/classes, using same version as for omar/build/conf</li>
+</ul>
+</p>
+
+<h2><a name="rootdir"></a>Omar Home - Runtime root directory</h2>
+
+<p>There is one directory that centralizes all the omar-related data and
+configuration files. It defaults to <user.home>/omar but can be easily changed
+throug classpath <code>omar-common.properties</code> or through System properties
+to enable multiple deployment/development environment in the same machine, for
+the same user.</p>
+
+<h2><a name="changingorder"></a>Changing the loading order (dev)</h2>
+
+<p><b>WARNING:</b> This is strongly discouraged and it is here for
+documentation purpose only!</p>
+
+<p>Property loading sequence can be changed by modifying the constructor and
+the loadProperties() method in each of the classes.</p>
+
+<h2><a name="debugging"></a>Debugging the properties</h2>
+
+<p>The property classes should use a log defined for
+<code>org.freebxml.omar.Properties</code>.</p>
+
+<p>If you want to debug the property classes of the project, change the log
+configuration. Changing the log level to <code>debug</code> will output complete
+information about loading sequence, while changing it to debug will also output
+all the loaded properties.</p>
+
+<p>When using log4j, make sure that log4j.properties is in classpath and it
+contains lines like this:</p>
+
+<p>
+<code>#Log for OMAR properties</code><br/>
+<code>logger.org.freebxml.omar.Properties = debug, Console</code>
+</p>
+
+<p>This assumes you have configured and appender named <code>Console</code>.
+if not, add this lines to your log4j.properties:
+
+<p>
+<code># An appender named 'Console' that outputs to stdout.</code><br/>
+<code>log4j.appender.Console=org.apache.log4j.ConsoleAppender</code><br/>
+<code>log4j.appender.Console.layout=org.apache.log4j.PatternLayout</code><br/>
+<code>log4j.appender.Console.layout.ConversionPattern=%d{ISO8601} %p %c[%t] - %m%n</code>
+</p>
+
+<h2><a name="links"></a>Links</h2>
+
+<ul>
+  <li>Javaworld article on properties (1):<br>
+     <a href="http://www.javaworld.com/javaworld/javaqa/2003-08/01-qa-0808-property.html">http://www.javaworld.com/javaworld/javaqa/2003-08/01-qa-0808-property.html</a></li>
+  </li>
+  <li>Javaworld article on properties (2):<br>
+     <a href="http://www.javaworld.com/javaqa/2003-08/02-qa-0822-urls.html">http://www.javaworld.com/javaqa/2003-08/02-qa-0822-urls.html</a></li>
+  </li>
+</ul>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- $Header: /cvsroot/ebxmlrr/omar/doc/3.0/developer/addingNewRIMType.html,v 1.5 2005/07/21 08:55:27 doballve Exp $-->
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Adding new RIM Type</title>
+  <meta name="author" content="Farrukh S. Najmi">
+  <meta name="description"
+ content="Describes the process for updating code when a new version of RIM adds a new class">
+</head>
+<body>
+<div class="h2">
+<h2>Adding New RIM Type Guide</h2>
+<p>
+This document describes how to update project code in order to support
+a new type when a new version of RIM becomes available:</p>
+<ul>
+  <li><a href="#Updating_XML_Schema">Updating XML Schema<br>
+    </a></li>
+  <li><a href="#Generate_JAXB_Binding">Update JAXB Bindings<br>
+    </a></li>
+  <li><a href="#Update_SQL_Bindings">Update SQL Bindings<br>
+    </a></li>
+  <li><a href="#Update_Canonical_and_Demo_Data">Update Canonical and
+Demo Data<br>
+    </a></li>
+  <li><a href="#Update_Common_Code">Update Common Code</a></li>
+  <li><a href="#Update_Server_Code">Update Server Code</a></li>
+  <li><a href="#Update_Client_Code">Update Client Code</a></li>
+  <li><a href="#Wrapup">Wrapup</a><br>
+  </li>
+  <li><a href="#links">Links</a></li>
+</ul>
+<h2><a name="Updating_XML_Schema"></a>Updating XML Schema<br>
+</h2>
+<ul>
+  <li>Update rim.xsd</li>
+  <li>validate with a Schema validator such as XML Spy. Multiple
+validators are suggested as compliance to XML Schema standard varies
+across tools. I have had good luck with XML Spy.<br>
+  </li>
+</ul>
+<h2><a name="Generate_JAXB_Binding"></a>Update JAXB Bindings<br>
+</h2>
+<ul>
+  <li>In ebxmlrr-spec module run following targets: clean, bindingsv3,
+compile, doc, dist</li>
+  <li>Copy src jar to web site so developers have access to it: <br>
+  </li>
+  <ul>
+    <li>scp
+/home/najmi/osws-v3/ebxmlrr-spec/build/lib/oasis-regrep-src.jar&nbsp;
+farrukh_najmi@ebxmlrr.sourceforge.net:/home/groups/e/eb/ebxmlrr/htdocs/tmp</li>
+  </ul>
+  <li>Copy jars to omar/misc/lib:</li>
+  <ul>
+    <li>cp /home/najmi/osws-v3/ebxmlrr-spec/build/lib/oasis-regrep*.jar
+../omar/misc/lib<br>
+    </li>
+  </ul>
+</ul>
+<h2><a name="Update_SQL_Bindings"></a>Update SQL Bindings<br>
+</h2>
+<ul>
+  <li>Update conf/database/database.sql.template for table and indexes. Dont
+forget views. Make sure to generate new UUID for objectType</li>
+  <li>Update conf/database/&lt;database&gt;-filter.properties files (all of them) for
+check.&lt;tablename&gt;<br>
+  </li>
+</ul>
+<h2><a name="Update_Canonical_and_Demo_Data"></a>Update Canonical and
+Demo Data (minDB, demoDB)</h2>
+<ul>
+  <li>Update
+misc/samples/minDB/SubmitObjectsRequest_ObjectTypeScheme.xml. Make sure
+nesting reflects OO hierarchy</li>
+  <li>Add demo data: Usually in
+misc/samples/demoDB/SubmitObjectsRequest_Organization.xml<br>
+  </li>
+</ul>
+<h2><a name="Update_Common_Code"></a>Update Common Code<br>
+</h2>
+<ul>
+  <li>Update BindingUtility to add new constant for objectType</li>
+</ul>
+<h2><a name="Update_Server_Code"></a>Update Server Code</h2>
+<ul>
+  <li>Update DAO classes:</li>
+  <ul>
+    <li>Update following methods in SQLPersistenceManagerImpl for new
+type: sortRegistryObjects, insert, update, getObjects</li>
+    <li>Update following methods in RegistryObjectDAO for new type:
+getRegistryObjectsIdsFromResultSet, getObjectsHetero<br>
+    </li>
+  </ul>
+</ul>
+<h2><a name="Test_Server_Side"></a>Test Server Side</h2>
+<ul>
+  <li>Do a clean build and deploy: ant clean, compile, deploy</li>
+  <li>Build demodb: ant cleandb, createDemoDB</li>
+  <li>Check DB and make sure that new class and its demo data has been
+loaded correctly: I use SquirrelDB GUI tool</li>
+</ul>
+<h2><a name="Update_Client_Code"></a>Update Client Code</h2>
+<ul>
+  <li>Add new class to JAXR provider code: For RIM type Foo add
+org.freebxml.omar.client.xml.registry.infomodel.FooImpl class</li>
+  <li>Update following methods in BulkResponseImpl for new class:
+processSqlQueryResult</li>
+  <li>Add new xxPanel class in RegistryBrowser: For RIM type Foo add
+org.freebxml.omar.client.ui.swing.FooPanel class</li>
+</ul>
+<h2><a name="Wrapup"></a>Wrapup</h2>
+<ul>
+  <li>Do <a
+ href="../JUnitTestGuide.html">regression
+test</a></li>
+  <li>Commit code<br>
+  </li>
+</ul>
+<br>
+<h2><a name="links"></a>Links</h2>
+<ul>
+  <li><a href="../JUnitTestGuide.html">JUnit Test Guide</a></li>
+  <li><a href="../PatchSubmissionGuide.html">Patch Submission Guide</a><br>
+  </li>
+</ul>
+<br>
+</div>
+</body>
+</html>

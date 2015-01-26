@@ -1,0 +1,17 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/FilterQuery_1.xml,v 1.1.1.1 2003/09/24 03:40:35 farrukh_najmi Exp $-->
+<query:AdhocQueryRequest xmlns:query = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 http://www.oasis-open.org/committees/regrep/documents/2.0/schema/query.xsd">
+	<query:ResponseOption returnType = "ObjectRef" returnComposedObjects = "false"/>
+	<query:FilterQuery>
+		<query:OrganizationQuery>
+			<query:OrganizationFilter>
+				<query:Clause>
+					<query:SimpleClause leftArgument = "Name">
+						<query:StringClause stringPredicate = "Equal">SubmitOrgParent</query:StringClause>
+					</query:SimpleClause>
+				</query:Clause>
+			</query:OrganizationFilter>
+		</query:OrganizationQuery>
+	</query:FilterQuery> 
+  
+</query:AdhocQueryRequest>

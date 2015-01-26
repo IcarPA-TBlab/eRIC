@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/SubmitObjectsRequest_ExtrinsicObject.xml,v 1.3 2004/08/07 22:55:10 farrukh_najmi Exp $-->
+<rs:SubmitObjectsRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0 http://www.oasis-open.org/committees/regrep/documents/2.1/schema/rim.xsd urn:oasis:names:tc:ebxml-regrep:registry:xsd:2.1 http://www.oasis-open.org/committees/regrep/documents/2.1/schema/rs.xsd" xmlns:rim = "urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs = "urn:oasis:names:tc:ebxml-regrep:registry:xsd:2.1">  
+	<LeafRegistryObjectList>
+                
+		<ExtrinsicObject id="urn:uuid:c96b4e97-0494-4d6e-a70e-cdecf40a02c1" objectType = "urn:uuid:4bec9843-2492-4119-82c9-ea680d98534c" mimeType="image/gif">                        
+			<Slot name = "NASDAQ Symbol">
+				<ValueList>
+					<Value>SUNW</Value>
+				</ValueList>
+			</Slot>
+             
+			<Name>
+				<LocalizedString lang="en-US" value = "Nikola and Zeus"/>
+				<LocalizedString lang="fi-FI" value = "Nikola ja Zeus"/>
+				<LocalizedString lang="pt-BR" value = "Nikola e Zeus"/>
+			</Name>
+			<Description>
+				<LocalizedString lang="en-US" value = "This was when Zeus was a little puppy"/>
+				<LocalizedString lang="fi-FI" value = "Tämä oli silloin kun Zeus oli pieni penttu"/>
+				<LocalizedString lang="pt-BR" value = "Isso foi quando Zeus era um filhotinho"/>
+			</Description>
+		</ExtrinsicObject>        
+
+    <!--WSDL node -->
+    <ObjectRef id="urn:uuid:4bec9843-2492-4119-82c9-ea680d98534c"/>
+               		                   		                   		    
+	</LeafRegistryObjectList>
+</rs:SubmitObjectsRequest>

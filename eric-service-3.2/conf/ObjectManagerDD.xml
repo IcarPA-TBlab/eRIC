@@ -1,0 +1,66 @@
+<!DOCTYPE ObjectManagerDD.xml>
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="urn:com.sun.ebxml.registry.ObjectManager">
+
+  <isd:provider type="java"
+	scope="Application"
+    methods="addSlots approveObjects deprecateObjects removeObjects removeSlots submitObjects">
+    <isd:java class="com.sun.ebxml.registry.soap.ObjectManager"/>
+  </isd:provider>
+
+  <isd:mappings>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	 xmlns:x="urn:org.ebxml.registry"  qname="x:AddSlotsRequest"
+      javaType="com.sun.ebxml.registry.bindings.AddSlotsRequest" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:ApproveObjectsRequest"
+      javaType="com.sun.ebxml.registry.bindings.ApproveObjectsRequest" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:DeprecateObjectsRequest"
+      javaType="com.sun.ebxml.registry.bindings.DeprecateObjectsRequest" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:RemoveObjectsRequest"
+      javaType="com.sun.ebxml.registry.bindings.RemoveObjectsRequest" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:RemoveSlotsRequest"
+      javaType="com.sun.ebxml.registry.bindings.RemoveSlotsRequest" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:SubmitObjectsRequest"
+      javaType="com.sun.ebxml.registry.bindings.SubmitObjectsRequest" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+
+
+	<!-- Response mappings -->
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:RegistryResponse"
+      javaType="com.sun.ebxml.registry.bindings.RegistryResponse" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:RegistryErrorList"
+      javaType="com.sun.ebxml.registry.bindings.RegistryErrorList" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+  </isd:mappings>
+	  
+
+  <isd:faultListener>org.apache.soap.server.DOMFaultListener</isd:faultListener>
+</isd:service>

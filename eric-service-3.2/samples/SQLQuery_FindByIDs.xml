@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/SQLQuery_FindByIDs.xml,v 1.1 2007/01/09 17:58:34 farrukh_najmi Exp $ -->
+<AdhocQueryRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0  ../../../ebxmlrr-spec/misc/3.0/schema/query.xsd">
+	<query:ResponseOption returnComposedObjects="true" returnType="LeafClassWithRepositoryItem"/>
+	<rim:AdhocQuery id="tempId">
+    <rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+SELECT ro.* FROM RegistryObject ro WHERE ro.id IN ('urn:uuid:04e9b396-3a11-4f19-ac31-dd59ad608a27', 'urn:uuid:7f750b08-e4a2-45f1-ac85-9d06738e94b2') 
+    </rim:QueryExpression>
+	</rim:AdhocQuery>
+</AdhocQueryRequest>

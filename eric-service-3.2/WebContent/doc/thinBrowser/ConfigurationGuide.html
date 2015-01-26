@@ -1,0 +1,418 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<!-- $Header: /cvsroot/ebxmlrr/omar/doc/3.0/thinBrowser/ConfigurationGuide.html,v 1.15 2005/09/05 06:17:15 doballve Exp $-->
+  <meta http-equiv="CONTENT-TYPE"
+ content="text/html; charset=iso-8859-1">
+  <title>Web UI Registry Browser Configuration Guide</title>
+  <meta name="GENERATOR" content="StarOffice 7  (Linux)">
+  <meta name="AUTHOR" content="Paul Sterk">
+  <meta name="CREATED" content="20040806;14455600">
+  <meta name="CHANGEDBY" content="Paul Sterk">
+  <meta name="CHANGED" content="20050124;19143700">
+  <meta name="DESCRIPTION"
+ content="freebXML Web UI Registry Browser Client Configuration Guide">
+  <style>
+	<!--
+		@page { size: 8.5in 11in }
+		H1 { color: #000000 }
+		P { color: #000000 }
+		A:link { color: #0000ff }
+		A:visited { color: #663399 }
+	-->
+	</style>
+</head>
+<body lang="en-US" text="#000000" link="#0000ff" vlink="#663399"
+ bgcolor="#ffffff" dir="ltr">
+
+<div class="h2">
+<h2>Web UI Registry Browser Client Configuration Guide</h2>
+<p align="center"><font size="4">(Early Draft v0.1)</font></p>
+</div>
+
+<div class="h2">
+<h2><a name="Introduction">1. Introduction</a></h2>
+<p>This document describes how to configure or customize the
+Web UI Registry Browser Client Registry Browser.</p>
+<p> The Web UI Registry Browser Client is based on Java Server Faces
+1.0
+and designed to work with standard web browsers such as Mozilla,
+Netscape and Internet Explorer. It requires that JavaScript be
+supported and enabled in the browser. </p>
+<p> To install and setup up the Web UI Registry Browser Client, first
+read
+the <a href="UserGuide.html">User Guide</a>.</p>
+</div>
+
+<div class="h2">
+<h2><a name="OverallLayout">2. Configuring the Overall Layout</a></h2>
+<p><b>Introduction</b></p>
+<p>This section describes how to configure the overall layout of the
+thin
+client. By layout, we mean the size, location and number of panels. The
+next section describes the layout in more detail.</p>
+<ol>
+  <li>
+    <p>Description of Layout</p>
+    <p> The Web UI Registry Browser Client is organized as follows - it
+has
+one main panel that contains four additional panels:</p>
+  </li>
+  <li>
+    <p>Banner panel - this is the top, horizontal panel with a
+logo, title and tool bar.</p>
+  </li>
+  <li>
+    <p>Discovery panel - this is left side panel with links to
+Explore Registry and Search Registry.&nbsp; As the title suggests, this
+panel is used to discover what content is in the Registry and
+Repository. The content is made up of Registry Information Model (RIM)
+metadata objects.</p>
+  </li>
+  <li>
+    <p>Search Results panel - this is the right upper panel that
+contains the results of a query or explore task. It contains a tabular
+display of RIM object search results.&nbsp; A subset of the RIM
+object's attributes is displayed as columns, and each result is
+displayed as rows.&nbsp; A drill-down can be done on each search result.</p>
+  </li>
+  <li>
+    <p>Detail panel - this is the right lower panel that contains
+the results of the drill-down.&nbsp; The result contains all the RIM
+object's attributes and composed objects displayed in one file
+tab.&nbsp; Other RIM objects, related to the drill down object, are
+also displayed in separate, sequential file folders.</p>
+  </li>
+</ol>
+<p>See the figure below for more information:</p>
+<p align="center"><a name="figure-4"><img src="images/layout.gif"/><br>
+<b>Figure 1 - Registry Browser Web UI - Page Layout</b></a></p>
+</div>
+
+<div class="h2">
+<h2><a name="IndividualPages">3. Configuring Individual Pages</a></h2>
+<p><b>Introduction</b></p>
+<p> The Web UI Registry Browser Client's pages are written using <a
+ href="http://java.sun.com/j2ee/javaserverfaces/reference/api/index.html">Java
+Server Faces </a>(JSF) 1.0. One can reconfigure the contents in the
+page by updating the JSF tags. Note: before making too many changes to
+the page files, it is recommended that you become familiar with JSF.
+Start by going through the Java Server Faces chapter of the <a
+ href="http://java.sun.com/webservices/docs/1.5/tutorial/doc/index.html">JWSDP
+Tutorial</a>.</p>
+<p>Also, adding new components for the JSF pages, requires the
+development
+of new Java classes. See the section below for more details.</p>
+<p><b>An Example</b></p>
+<p>The Banner.jsp file contains the following JSF tags:</p>
+<p><code> <font size="2">&lt;f:view&gt;<br>
+&nbsp;&nbsp;&lt;h:panelGrid columns="2" width="100%"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;h:panelGrid columns="2"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;h:graphicImage
+url="images/freebxmlLogo.jpg" height="50" width="250"/&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;h:outputText
+value="#{bundle.applicationTitle}"
+styleClass="bannerPanel-applicationTitle"/&gt;<br>
+&nbsp;&nbsp;&lt;/h:panelGrid&gt;<br>
+&nbsp;&nbsp;&lt;jsp:include page="ButtonPanel.jsp"/&gt;<br>
+&nbsp;&nbsp;&lt;/h:panelGrid&gt;<br>
+&lt;/f:view&gt;</font></code></p>
+<p>To change the logo that appears in the upper left corner,
+checkin a new image file to the
+omar/src/images/it/cnr/eric/client/ui/thin directory. For
+example, myLogo.gif. Then, change the name of the image file in the
+Banner.jsp page:</p>
+<p><code><font size="2">&lt;f:view&gt;<br>
+&nbsp;&nbsp;&lt;h:panelGrid columns="2" width="100%"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;h:panelGrid columns="2"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;h:graphicImage url="images/<b><i>myLogo.jpg</i></b>"
+height="50" width="250"/&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;h:outputText
+value="#{bundle.applicationTitle}"
+styleClass="bannerPanel-applicationTitle"/&gt;<br>
+&nbsp;&nbsp;&lt;/h:panelGrid&gt;<br>
+&nbsp;&nbsp;&lt;jsp:include page="ButtonPanel.jsp"/&gt;<br>
+&nbsp;&nbsp;&lt;/h:panelGrid&gt;<br>
+&lt;/f:view&gt;</font></code></p>
+<p>Redeploy the new Banner.jsp page, and you should see your logo on
+the
+Web UI Registry Browser Client.</p>
+<p>You may also make other stylistic changes to page including:</p>
+<ul>
+  <li>Change the number of columns in the &lt;h:panelGrid&gt; tag. This
+will change how the components are laid out in the page.</li>
+  <li>Change the text that is displayed in the &lt;h:outputText&gt;
+tag.
+This will involve adding a new entry to the
+omar/src/resources/it/cnr/eric/client/ui/thin/bundles/LocalizedText.properties.
+See the localization section below for more details.</li>
+  <li>- You may make changes to the HTML in the page to change things
+such as
+the background page color.</li>
+</ul>
+</div>
+
+<div class="h2">
+<h2><a name="PageNavigation">4. Configuring Page Navigation</a></h2>
+<p><b>Introduction</b></p>
+<p> Since the Web UI Registry Browser Client is based on JSF, it uses
+the
+JSF page navigation mechanism. Specifically, the page navigation rules
+are described in omar/conf/faces-config.xml.</p>
+<p><b>Example</b></p>
+<p>The following shows an example of how to change the page navigation.</p>
+<p><code><font size="2">&lt;navigation-rule&gt;<br>
+&nbsp;&nbsp;&lt;description&gt;<br>
+&nbsp;&nbsp;&lt;/description&gt;<br>
+&nbsp;&nbsp;&lt;from-view-id&gt;/Details.jsp&lt;/from-view-id&gt;<br>
+&nbsp;&nbsp;&lt;navigation-case&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;description&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/description&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;from-outcome&gt;showDetailsPage&lt;/from-outcome&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;to-view-id&gt;/DetailsWrapper.jsp&lt;/to-view-id&gt;<br>
+&nbsp;&nbsp;&lt;/navigation-case&gt;<br>
+&nbsp;&nbsp;&lt;navigation-case&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;description&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/description&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;from-outcome&gt;showDetailsHelp&lt;/from-outcome&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;to-view-id&gt;/UserGuide.html&lt;/to-view-id&gt;<br>
+&nbsp;&nbsp;&lt;/navigation-case&gt;<br>
+&lt;/navigation-rule&gt;</font></code></p>
+<p>This fragment from the omar/faces/faces-config.xml file, provides
+the
+navigation from the Details.jsp main page to the DetailsWrapper.jsp and
+UserGuide.html. If you wanted to map a different page to the
+showDetailsHelp outcome, you can change /UserGuide.html to <i>/MyUserGuide.html</i>.
+This would present your own user guide to your clients.</p>
+<p>Note: the outcome text in this example is produced by the freebxml
+Java
+Bean classes. Changing the outcome text, and other changes, requires
+advanced understanding of the Web UI Registry Browser Client. Contact
+the ebxmlrr-team alias before making such changes.</p>
+</div>
+
+<div class="h2">
+<h2><a name="Servlet">4. Configuring Web UI Registry Browser Client Servlet</a></h2>
+<p><b>Introduction</b></p>
+<p>The omar/conf/web.xml file is used to configure the Registry Browser
+Web UI Client servlet.</p>
+<p><b>Example</b></p>
+<p><code><font size="2">&lt;servlet-mapping&gt;<br>
+&nbsp;&nbsp;&lt;servlet-name&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ebxmlrr-thin-receiver-servlet<br>
+&nbsp;&nbsp;&lt;/servlet-name&gt;<br>
+&nbsp;&nbsp;&lt;url-pattern&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;/registry/thin/*<br>
+&nbsp;&nbsp;&lt;/url-pattern&gt;<br>
+&lt;/servlet-mapping&gt;</font></code></p>
+<p>You can change the Web UI Registry Browser Client URL pattern by
+changing /registry/thin to a different value.</p>
+</div>
+
+<div class="h2">
+<h2><a name="Localization">6. Configuring Localization</a></h2>
+<p><b>Introduction</b></p>
+<p>All Web UI Registry Browser Client labels and messages are stored in
+resource bundles as properties. This enables the Registry Browser Web
+UI Client to be localized. You can add additional resource bundles with
+properties for different locales.</p>
+<p>Locale for the Web UI Registry Browser Client interface can be
+selected
+form the drop-down menu on the upper right corner of the page. When
+user starts a session Web UI Registry Browser Client will try to find a
+match between its supported Locales and user supported locales. If a
+match is not found, default is used. </p>
+<p>Default Locale and list of available Locales are configurable
+through
+these properties in jaxr-ebxml.properties:</p>
+<p><code># List of locales for which thin client interface
+translations are available. Pipe -separated.</code><br>
+<code>omar.client.thinbrowser.supportedlocales=en_US|fi|fr_CA|pt_BR</code><br>
+<br>
+<code># Default locale to be shown whn thin client starts.</code><br>
+<code>omar.client.thinbrowser.defaultlocale=en_US</code></p>
+<p><b>Examples</b></p>
+<p> To add additional properties to the default locale, place them in:<br>
+omar/src/resources/it/cnr/eric/client/ui/thin/bundles/LocalizedText.properties</p>
+<p>To add additional properties to the en_US locale, place them in:<br>
+omar/src/resources/it/cnr/eric/client/ui/thin/bundles/LocalizedText_en_US.properties</p>
+<p>Other properties files may also be added to the directory above.</p>
+<p>To use a localized message property in a JSF page, do the following:</p>
+<ol>
+  <li>Import the resource bundle into the JSF page. For example:<br>
+    <code><font size="2">&lt;f:loadBundle
+basename="org.freebxml.omar.client.ui.thin.bundles.LocalizedText"
+var="bundle"/&gt;</font></code></li>
+  <li>Use a JSF tag to display the value of the property based upon the
+variable value in step 1. In this example, the variable has a value of <i>bundle</i>::<br>
+    <code><font size="2">&lt;h:outputText
+value="#{bundle.applicationTitle}"/&gt;</font></code></li>
+</ol>
+</div>
+
+<div class="h2">
+<h2><a name="Security">7. Configuring Security: Container Authentication</a></h2>
+<p><b>Introduction</b></p>
+<p>The Web UI Registry Browser Client is deployed into a web container.
+The can be configured to protect the Web UI Registry Browser Client URL
+through an authentication scheme.</p>
+<p><b>Example</b></p>
+<p>In omar/build.properties set the following property:</p>
+<p><code>deployWithSecurityConstraints=true</code></p>
+<p>Set to <i>true</i> to include the &lt;security-constraints&gt; tag
+in
+the web.xml file. This will instruct the web container to require that
+users authenticate to access the ebxmlrr web client.</p>
+<p>Then, run the build.sh deploy target. This will create a web.xml
+file
+with the following entries:</p>
+<p><code><font size="2">&lt;security-constraint&gt;<br>
+&nbsp;&nbsp;&lt;web-resource-collection&gt;<br>
+&nbsp;&nbsp;&lt;web-resource-name&gt;omar&lt;/web-resource-name&gt;<br>
+&nbsp;&nbsp;&lt;url-pattern&gt;/registry/thin/*&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&lt;url-pattern&gt;/registry/http/*&lt;/url-pattern&gt;<br>
+&nbsp;&nbsp;&lt;http-method&gt;GET&lt;/http-method&gt;<br>
+&nbsp;&nbsp;&lt;http-method&gt;POST&lt;/http-method&gt;<br>
+&nbsp;&nbsp;&lt;/web-resource-collection&gt;<br>
+&nbsp;&nbsp;&lt;auth-constraint&gt;<br>
+&nbsp;&nbsp;&lt;role-name&gt;*&lt;/role-name&gt;<br>
+&nbsp;&nbsp;&lt;/auth-constraint&gt;<br>
+&lt;/security-constraint&gt;<br>
+&lt;login-config&gt;<br>
+&nbsp;&nbsp;&lt;auth-method&gt;FORM&lt;/auth-method&gt;<br>
+&nbsp;&nbsp;&lt;realm-name&gt;default&lt;/realm-name&gt;<br>
+&nbsp;&nbsp;&lt;form-login-config&gt;<br>
+&nbsp;&nbsp;&lt;form-login-page&gt;/Login.jsp&lt;/form-login-page&gt;<br>
+&nbsp;&nbsp;&lt;form-error-page&gt;/LoginError.jsp&lt;/form-error-page&gt;<br>
+&nbsp;&nbsp;&lt;/form-login-config&gt;<br>
+&lt;/login-config</font></code></p>
+<p>This entry will protect the /registry/thin and/registry/http URIs by
+requiring users to authenticate before giving access to pages with this
+URI. If the user has not authenticated, the request is directed to
+Login.jsp.</p>
+<p>The user fills out Login.jsp, and submits it to the web container.
+The
+container then authenticates the request using one of several schemes:
+ACL file, LDAP, etc. </p>
+<p>Note: the web server must be configured properly to handle the
+authentication request. Consult your web server's documentation to do
+this.</p>
+</div>
+
+<div class="h2">
+<h2><a name="JAAS">8. Configuring Security: JAAS</a></h2>
+<p><b>Introduction</b></p>
+<p>Both the Web UI Registry Browser and Thick clients using the Java
+Authentication and Authorization Service for pluggable authentication. </p>
+<p>The <a href="http://java.sun.com/products/jaas/">Java
+Authentication
+and Authorization Service </a>(JAAS) is a set of APIs that enable
+services to authenticate and enforce access controls upon users. It
+implements a Java technology version of the standard Pluggable
+Authentication Module (PAM) framework, and supports user-based
+authorization.</p>
+<p><b>JAAS Configuration File</b></p>
+<p>JAAS uses a configuration file to determine what pluggable
+authentication modules are required. The default configuration file is
+${user.home}/.java.login.config and contains the following module:</p>
+<p><code><font size="2">jaxr-ebxml-provider-3.0-alpha2 {<br>
+&nbsp;&nbsp;com.sun.security.auth.module.KeyStoreLoginModule required<br>
+&nbsp;&nbsp;debug=true
+keyStoreURL="file:/home/user/omar/3.0-alpha2/jaxr-ebxml/security/keystore.jks";<br>
+};</font></code> </p>
+<p>This module instructions the JAAS framework to load the
+KeyStoreLoginModule.</p>
+<p>See the <a
+ href="http://java.sun.com/j2se/1.4.2/docs/guide/security/jaas/JAASRefGuide.html">JAAS
+Configuration Guide</a> for more configuration options.</p>
+<p><b>Deploying a Custom Configuration File</b></p>
+<p>If you would like to deploy a custom JAAS configuration file, do the
+following:</p>
+<ol>
+  <li>Copy of omar/conf/jaxr.java.login.config.sample to
+jaxr.java.login.config</li>
+  <li>Insert your own values into jaxr.java.login.config. See the <a
+ href="http://java.sun.com/j2se/1.4.2/docs/guide/security/jaas/JAASRefGuide.html">JAAS
+Configuration Guide</a> for details.</li>
+  <li>Deploy the jaxr.java.login.config file into the
+omar/build/lib/classes/it/cnr/eric/client/xml/registry/util
+directory. </li>
+  <li>4. Jar up these files into jaxr-ebxml.jar</li>
+</ol>
+<p>Note: at present, there is no build target that handle steps 3
+above.
+An alternative, for now, is to unjar the jaxr-ebxml.jar file, place the
+jaxr.java.login.config file into the directory shown above, and rejar.
+You can create an Ant target like this:</p>
+<p><code><font size="2">&lt;target name=&#8221;deploy.java.login.config&#8221;&gt;<br>
+&nbsp;&nbsp;&lt;unjar src="${build.jars}/jaxr-ebxml.jar"
+dest="${build.jars}/tmp"/&gt;<br>
+&nbsp;&nbsp;&lt;delete dir="${build.jars}/tmp/META-INF"/&gt;<br>
+&nbsp;&nbsp;&lt;delete file="${build.jars}/jaxr-ebxml.jar"/&gt;<br>
+&nbsp;&nbsp;&lt;copy file="config/jaxr.java.login.config" <br>
+&nbsp;&nbsp;&nbsp;&nbsp;tofile="${build.jars}/tmp/it/cnr/eric/client/xml/registry/util/jaxr.java.login.config"
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;overwrite="true"/&gt;<br>
+&nbsp;&nbsp;&lt;jar jarfile="${build.jars}/jaxr-ebxml.jar"
+basedir="${build.jars}/tmp"/&gt;<br>
+&lt;/target&gt;</font></code></p>
+<p><b>Setting the JAAS Callback Handler</b></p>
+<p>The JAAS callback handler is a pluggable class that exposes an
+interface for the gathering of authentication credentials. It can
+display a GUI to user, read credentials from a keystore based on
+properties, or some other method.</p>
+<p>The default Web UI Registry Browser Client callback handler is
+org.freebxml.omar.client.xml.registry.jaas.ThinClientCallbackHandler.
+This will read credentials from the keystore specified by the
+${user.home}/.java.login.config file.</p>
+<p>To reset the handler, set the following property in the
+jaxr-ebxml.properties file:</p>
+<p><code>jaxr-ebxml.security.jaas.callbackHandlerClassName=</code></p>
+</div>
+
+<div class="h2">
+<h2><a name="configureCertAuthn">9. Configuring Web UI Client Certificate
+Authentication</a></h2>
+<p>In order to publish content and view restricted Registry data,
+a user must be authenticated.&nbsp; Web UI authentication is based on
+client certificates.&nbsp; Below are the steps needed to configure the
+Registry to support this type of authentication:</p>
+<ol>
+  <li>Configure your web server to open a secure port (one that
+listens for https requests). The
+secure port enables your web server to obtain client certificates
+through the secure connection handshake.&nbsp; See the <a
+ href="../UsingHTTPS.html">HTTPS Configuration Guide</a> for
+details.&nbsp; This document will also
+explain how to configure your web server to use the Registry keystore
+as its trust store.</li>
+  <li>In jaxr-ebxml.properties, set this property:<br>
+    <pre>org.freebxml.omar.client.xml.registry.localCall=true</pre>
+  </li>
+  <li>Run ant deploy, and restart your web server.</li>
+</ol>
+<p>After this is done, the Web UI will automatically authenticate
+registered users using their client certificates. See the <a
+ href="../UserRegistrationGuide.html">User Registration Guide</a> for
+details on user registration and client certificates.<br>
+</p>
+</div>
+
+<div class="h2">
+<h2><a name="configureHiddenClassScheme">10. Configuring Hidden Classification
+Schemes</a></h2>
+<p>If you wish to hide some of the ClassificationSchemes so that they
+do not appear in the Basic Query's ClassificationScheme tree nor via
+the Explorer, set this property in the jaxr-ebxml.properties file:</p>
+<pre>jaxr-ebxml.registryBrowser.ConceptsTreeModel.hiddenSchemesList=
+&lt;class scheme id1&gt;|&lt;class scheme id2&gt;| ...</pre>
+<p>For example:</p>
+<pre>jaxr-ebxml.registryBrowser.ConceptsTreeModel.hiddenSchemesList=
+urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType</pre>
+<p>Above is an example that will cause the Web UI to not display the
+ObjectType Classification Scheme.&nbsp; Use the pipe '|' character as
+the delimiter for hiding multiple schemes.</p>
+</div>
+
+</body>
+</html>

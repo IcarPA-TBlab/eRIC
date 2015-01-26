@@ -1,0 +1,307 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta content="text/html; charset=iso-8859-1"
+ http-equiv="Content-Type">
+  <meta content="diego.ballve at digital-artefacts.fi" name="Author">
+  <title>Logging Guide</title>
+</head>
+<body>
+
+<div class="h2">
+<h2>Logging Guide - Table of Contents</h2>
+<ul>
+  <li><a href="#1._Introduction">1. Introduction</a></li>
+  <li><a href="#2._Basics_on_Apache_Commons-Logging">2. Basics on
+Apache Commons-Logging</a></li>
+  <li><a href="#3._Basics_on_Apache_Log4J">3. Basics on Apache Log4J</a></li>
+  <li><a href="#4._freebXML_Registry_Log_Configuration">4. freebXML
+Registry Log Configuration</a></li>
+  <li><a href="#5._Log_FAQ">5. Log FAQ</a></li>
+  <ul>
+    <li><a href="#FAQ1">How to turn trace on for RegistrySOAPServlet so
+one can see each request / response that is received/sent by the server?</a></li>
+    <li><a href="#FAQ2">How to trace log of AuthorizationServiceImpl
+(Auth checking)?</a></li>
+    <li><a href="#FAQ3">How to trace DAO activity / persistence module?</a></li>
+    <li><a href="#FAQ4">How to trace input/ouput queries to
+SQLQueryProcessor?</a></li>
+    <li><a href="#FAQ5">How to trace each request and response sent by
+the client?</a></li>
+  </ul>
+  <li><a href="#6._Links">6. Links</a></li>
+</ul>
+</div>
+
+<div class="h2">
+<h2><a name="1._Introduction">1. Introduction</a></h2>
+<p>This document describes how logging is implemented and how it can be
+configured for the freebXML Registry and related clients.<br>
+</p>
+<p>The freebXML Registry relies on <a
+ href="http://jakarta.apache.org/commons/logging/">Apache
+Commons-Logging</a> for the logging abstraction. Furthermore, it is
+deployed with <a href="http://jakarta.apache.org/commons/logging/">Apache
+Log4J</a>, which is the first implementation choice for Commons-Logging.<br>
+</p>
+<p><strong>Note:</strong> Consult 3rd party documentation for logging
+details on libraries used by the freebXML Registry.</p>
+</div>
+
+<div class="h2">
+<h2><a name="2._Basics_on_Apache_Commons-Logging">2. Basics on
+Apache Commons-Logging</a></h2>
+<p>This section briefly describes Commons Logging configuration.
+Detailed information can be obtained from <a
+ href="http://jakarta.apache.org/commons/logging/guide.html">
+Commons-Logging User Guide</a>.<br>
+</p>
+<p>Commons-Logging uses 2 abstractions: <code>Log</code> (the logger)
+and
+<code>LogFactory</code> (which creates <code>Log</code> instances).
+The <code>Log</code> implementation chosen by the default <code>LogFactory</code>
+implementation is the first match on the following discovery process:</p>
+<ol>
+  <li> Look for a configuration attribute of this factory named <code>org.apache.commons.logging.Log</code>
+in resource <code>commons-logging.properties</code>. </li>
+  <li> Look for a system property named <code>org.apache.commons.logging.Log</code><code></code>.
+  </li>
+  <li> If the Log4J is available in the class path, use it. </li>
+  <li> If the application is executing on a JDK 1.4 system, use JDK 1.4
+logger. </li>
+  <li> Finally, fall back to the default SimpleLog.</li>
+</ol>
+<p>Optionally, Commons-Logging can be turned off and produce no log at all
+by setting <code>org.apache.commons.logging.Log=</code><code>org.apache.commons.logging.NoOpLog</code>.</p>
+</div>
+
+<div class="h2">
+<h2><a name="3._Basics_on_Apache_Log4J">3. Basics on Apache Log4J</a></h2>
+<p>This section briefly describes Apache Log4J configuration. For
+detailed information, check <a
+ href="http://logging.apache.org/log4j/docs/documentation.html">Log4J
+Documentation</a>.</p>
+<p>Log4J is configured using system properties and/or a properties file
+(log4j.properties, by default). Log4J accepts many hierarchically
+configured <code>Loggers</code> (used by the source code to log
+something) with the <code>RootLogger</code> residing on top of the
+hierarchy. Loggers can be mapped to one or more appenders (which
+actually write the log message that the user can see). Both <code>Logger</code>
+and <code>Appender</code> can have a minimal <code>Priority</code> to
+start logging. These are some relevant properties:</p>
+<ul>
+  <li><strong style="font-weight: normal;">log4j.rootCategory=<i>priority</i>
+[, <i>appender</i>]*</strong> : Set the RootLogger priority and its
+appenders.</li>
+  <li><strong style="font-weight: normal;">log4j.logger.<i>logger.name</i>=<i>priority</i></strong>
+: Set the priority for the named logger and all loggers hierarchically
+below it.</li>
+  <li><strong style="font-weight: normal;">log4j.appender.<i>appender</i>.Threshold=<i>priority</i></strong>
+: Set the priority to the given appender only.</li>
+</ul>
+<p><i>priority </i>can be: <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>,
+<code>ERROR</code>,
+or <code>FATAL</code>.<br>
+<i>appender </i>corresponds to a configured output device.<br>
+<i>logger.name</i> corresponds to the parameter of <code>LogFactory.getLog(<i>logger.name</i>)</code>,
+used to create the logger instance. <code><i>logger.name</i></code>
+could be a package name, for instance <code>com.foo</code>, which
+would be a parent for a <code>com.foo</code>.Bar logger.<br>
+</p>
+</div>
+
+<div class="h2">
+<h2><a name="4._freebXML_Registry_Log_Configuration">4. freebXML
+Registry Log Configuration</a></h2>
+<p>There are 3 basic situations where log can be configured for
+freebXML Registry: build time, server runtime and client runtime.</p>
+
+<div class="h3">
+<h3><a name="4.1_Build_-time_Log">4.1 Build -time Log</a></h3>
+<p>Some of the the targets in build scripts will use the <code>apacheLog</code>
+variable to configure Commons-Logging. In build.xml, it is defined by
+default to quiet mode like this:</p>
+<p><code>&nbsp; &lt;!-- A properties to control whether apache common
+logging is enabled --&gt;<br>
+&nbsp; &lt;property name="apacheLog"
+value="org.apache.commons.logging.impl.NoOpLog"/&gt;<br>
+</code></p>
+<p>It should not be changed there, but in the build.properties file:</p>
+<p><code>#Used to control apache common logging<br>
+#Use SimpleLog to have logging output<br>
+apacheLog=org.apache.commons.logging.impl.SimpleLog</code><br>
+</p>
+<p>//TODO: Give more information on using Log4J/selective package
+logging here.<br>
+<span style="font-weight: bold;"></span></p>
+<p><span style="font-weight: bold;">Note:</span> This configures only
+the client side of the building process. For server side, see the next
+section.</p>
+</div>
+
+<div class="h3">
+<h3><a name="4.2_Server_Run_-time_Log">4.2 Server Run -time Log</a></h3>
+<p>Server side log is configured by <code>commons-logging.properties</code>
+and (possibly)<span style="font-family: monospace;">log4j</span><code>.properties</code>
+resources present in classpath. These files can be found at:<br>
+</p>
+<p style="margin-left: 40px;"><code>&lt;TOMCAT_HOME&gt;/webapps/omar/WEB-INF/classes<br>
+</code></p>
+<p><code></code> By the time this
+document was written, <code>commons-logging.properties</code> was
+setting log to <code>NoOpLog</code> (quiet mode). In order to get
+freebXMLRegistry Server to start producing log, change <code>org.apache.commons.logging.Log</code>
+property value; check the file for other possibilities or comment the
+property to fall back to Log4J.<br>
+</p>
+<p>Next you should decide the desired priority levels and appenders in <span
+ style="font-family: monospace;">log4j</span><code>.properties</code>.&nbsp;
+Again, by the time this document was written, there were 2 appenders
+configure, <code>stdout</code> (Console) and <code>R</code> <code></code>(ebxmlrr.log
+file in current directory), and priority was <code>INFO</code>. If you
+need to debug the server, you could change the RootLogger (<code>log4j.rootLogger</code>
+property) to <code>trace</code> or <code>debug</code>. Although, that
+will generate a huge amount of unnecessary log that might be quite
+difficult to follow. The solution for that is to add a new Logger just
+for the class/package you want to debug. For instance, in order to
+debug server security module, leave the RootLogger on <code>INFO</code>
+and add the following line to the configuration:<br>
+</p>
+<p style="margin-left: 40px;"><code>log4j.logger.org.freebxml.omar.server.security=trace</code><br>
+</p>
+<p><span style="font-weight: bold;">Hint:</span>&nbsp; If you want
+Tomcat to redirect Console log messages generated by OMAR webapp to a
+.log file in <code>&lt;TOMCAT_HOME&gt;/logs</code>, edit Tomcat server
+configuration (<code>&lt;TOMCAT_HOME&gt;/conf/server.xml</code>) and
+add a context like this:<br>
+</p>
+<p><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Context
+path="/omar" docBase="omar" debug="0"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+reloadable="true" crossContext="true" swallowOutput="true"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;Logger
+className="org.apache.catalina.logger.FileLogger"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+prefix="omar_log." suffix=".txt"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+timestamp="true"/&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/Context&gt;</code><br>
+</p>
+</div>
+
+<div class="h3">
+<h3><a name="4.3_Client_Run_-time_Log">4.3 Client Run -time Log</a></h3>
+<p>This section is under construction.</p>
+<p>//TODO: URGENT! reconsider choice and review this!</p>
+<p>Client runtime log is similar to server in the sense that
+Commons-Logging and Log4J are present (loaded by <code>jaxr-ebxml.jar</code>),
+although there are a couple of basic differences:<br>
+</p>
+<ol>
+  <li><code>commons-logging.properties</code>
+and <span style="font-family: monospace;">log4j</span><code>.properties</code>
+are currently packed in the client jars and can be in different jars</li>
+  <li>If run from build script, the same system property with value <code>apacheLog</code>
+presented in Buil Log section will be in use.</li>
+</ol>
+</div>
+</div>
+
+<div class="h2">
+<h2><a name="5._Log_FAQ"></a>5. Log FAQ</h2>
+<p>Help to write this section by throwing your questions to <a
+ href="mailto:ebxmlrr-tech@lists.sourceforge.net">ebxmlrr-tech@lists.sourceforge.net</a>.<br>
+</p>
+
+<div class="h4">
+<h4><a name="FAQ1">How to turn trace on for RegistrySOAPServlet so one can see each
+request / response that is received/sent by the server?</a></h4>
+<p>Follow these steps (configuration files located in <code>&lt;TOMCAT_HOME&gt;/webapps/omar/WEB-INF/classes</code>):</p>
+<ol>
+  <li>Check file <code>commons-logging.properties</code>. Make sure
+property <code>org.apache.commons.logging.Log</code>
+property in is commented or has value "<span style="font-style: italic;">org.apache.commons.logging.impl.Log4JLogger</span>".</li>
+  <li>Edit file <code>log4j.properties</code>. Add this line (or
+change, if property exists):<br>
+    <code>log4j.logger.org.freebxml.omar.server.interfaces.soap.RegistrySOAPServlet=trace</code></li>
+  <li>Restart server or reload webapp.</li>
+</ol>
+<p>Note: Currently uses the default platform charset for logging the
+request / response message.<br>
+</p>
+</div>
+
+<div class="h4">
+<h4><a name="FAQ2">How to trace log of AuthorizationServiceImpl (Auth checking)?</a></h4>
+<p>Follow these steps (configuration files located in <code>&lt;TOMCAT_HOME&gt;/webapps/omar/WEB-INF/classes</code>):</p>
+<ol>
+  <li>Check file <code>commons-logging.properties</code>. Make sure
+property <code>org.apache.commons.logging.Log</code>
+property in is commented or has value "<span style="font-style: italic;">org.apache.commons.logging.impl.Log4JLogger</span>".</li>
+  <li>Edit file <code>log4j.properties</code>. Add the line (or
+change, if property exists):<br>
+    <code>log4j.logger.org.freebxml.omar.server.security.authorization.AuthorizationServiceImpl=trace</code><br>
+or, for full Authorization package trace logging, the line</li>
+  <code>log4j.logger.org.freebxml.omar.server.security.authorization=trace</code><br>
+  <li>Restart server or reload webapp.<br>
+  </li>
+</ol>
+</div>
+
+<div class="h4">
+<h4><a name="FAQ3">How to trace DAO activity / persistence module?</a></h4>
+<p>Follow these steps (configuration files located in <code>&lt;TOMCAT_HOME&gt;/webapps/omar/WEB-INF/classes</code>):</p>
+<ol>
+  <li>Check file <code>commons-logging.properties</code>. Make sure
+property <code>org.apache.commons.logging.Log</code>
+property in is commented or has value "<span style="font-style: italic;">org.apache.commons.logging.impl.Log4JLogger</span>".</li>
+  <li>Edit file <code>log4j.properties</code>. For tracing only the
+DAO classes, add the line (or change, if property exists):<br>
+    <code>log4j.logger.org.freebxml.omar.server.persistence.rdb.AbstractDAO=trace</code><br>
+Probably it is more useful to trace (rdb) Persistence module: <br>
+    <code>log4j.logger.org.freebxml.omar.server.persistence=trace</code><br>
+Or:<br>
+    <code>log4j.logger.org.freebxml.omar.server.persistence.rdb=trace</code></li>
+  <li>Restart server or reload webapp.</li>
+</ol>
+</div>
+
+<div class="h4">
+<h4><a name="FAQ4">How to trace input/ouput queries to SQLQueryProcessor?</a></h4>
+<p>Follow these steps (configuration files located in <code>&lt;TOMCAT_HOME&gt;/webapps/omar/WEB-INF/classes</code>):</p>
+<ol>
+  <li>Check file <code>commons-logging.properties</code>. Make sure
+property <code>org.apache.commons.logging.Log</code>
+property in is commented or has value "<span style="font-style: italic;">org.apache.commons.logging.impl.Log4JLogger</span>".</li>
+  <li>Edit file <code>log4j.properties</code>. Add the line (or
+change, if property exists):<br>
+    <code>log4j.logger.org.freebxml.omar.server.query.sql.SQLQueryProcessor=trace</code><br>
+or, for full logging of SQL Query module, the line</li>
+  <code>log4j.logger.org.freebxml.omar.server.query.sql=trace</code><br>
+  <li>Restart server or reload webapp.<br>
+  </li>
+</ol>
+</div>
+
+<div class="h4">
+<h4><a name="FAQ5">How to trace each request and response sent by
+the client?</a></h4>
+<p>//TODO:</p>
+</div>
+</div>
+
+<div class="h2">
+<h2><a name="6._Links"></a>6. Links</h2>
+<ul>
+  <li>Apache Commons-Logging <a
+ href="http://jakarta.apache.org/commons/logging/">home page</a> and <a
+ href="http://jakarta.apache.org/commons/logging/guide.html">user guide</a>.</li>
+  <li>Apache Log4J <a href="http://jakarta.apache.org/commons/logging/">home
+page</a> and <a
+ href="http://logging.apache.org/log4j/docs/documentation.html">manual</a>.<br>
+  </li>
+</ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id: SQLQuery.xhtml,v 1.2 2003/12/04 18:01:56 psterk Exp $ -->
+<html xmlns:chiba="http://chiba.sourceforge.net/2003/08/xforms"
+    xmlns:xforms="http://www.w3.org/2002/xforms"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    chiba:stylesheet="query.xsl"
+    xml:base="http://localhost:8080/chiba/">
+    <head>
+    <xforms:model>
+        <xforms:submission id="query" xforms:replace="all" xforms:action="/eric/registry/thin" xforms:method="post" />
+
+        <xforms:bind id="N10009" xforms:nodeset="/query:AdhocQueryRequest/query:SQLQuery/query:QueryString" xforms:required="true()" xforms:type="string"/>
+
+        <xforms:instance>
+             <query:AdhocQueryRequest 
+                 xmlns="urn:oasis:names:tc:ebxml-regrep:query:xsd:2.5" 
+                 xmlns:query="urn:oasis:names:tc:ebxml-regrep:query:xsd:2.5" 
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                 <query:ResponseOption returnComposedObjects="true" returnType="LeafClassWithRepositoryItem" />
+                 <query:SQLQuery id="tempId">
+                     <query:QueryString xmlns="">
+                     </query:QueryString>
+                 </query:SQLQuery>
+             </query:AdhocQueryRequest>
+        </xforms:instance>
+    </xforms:model>
+    </head>
+    <body>
+    <xforms:group>
+        <xforms:group>
+            <xforms:trigger id="sendit">
+                <xforms:label>Search</xforms:label>
+                <xforms:action>
+                    <xforms:send id="submit" xforms:submission="query"/>
+                </xforms:action>
+            </xforms:trigger>
+            <xforms:trigger id="clear">
+                <xforms:label>Clear Form</xforms:label>
+                <xforms:action>
+                    <xforms:resetInstance id="reset"/>
+                </xforms:action>
+            </xforms:trigger>
+        </xforms:group>
+        <xforms:label>Search Criteria</xforms:label>
+        <xforms:input id="SQLQuery-input" xforms:bind="N10009">
+            <xforms:label>Enter SQL query: </xforms:label>
+            <xforms:alert>Please put your SQL query here</xforms:alert>
+            <xforms:hint>Please input your SQL query into this field</xforms:hint>
+        </xforms:input>
+    </xforms:group>
+    </body>
+</html>

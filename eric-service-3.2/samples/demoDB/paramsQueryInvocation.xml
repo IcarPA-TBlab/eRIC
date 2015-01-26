@@ -1,0 +1,13 @@
+<AdhocQueryRequest>
+  <query:ResponseOption returnComposedObjects="true" returnType="LeafClassWithRepositoryItem"/>
+  <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:3.0:rs:AdhocQueryRequest:queryId">
+    <rim:ValueList>
+      <rim:Value>urn:freebxml:registry:query:BusinessQuery</rim:Value>
+    </rim:ValueList>
+  </rim:Slot>
+  <rim:Slot name="$name ">
+    <rim:ValueList>
+      <rim:Value>%ebXML%</rim:Value>
+    </rim:ValueList>
+  </rim:Slot>
+</AdhocQueryRequest>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/cppa/SubmitObjectsRequest_Config.xml,v 1.12 2007/01/12 21:31:00 farrukh_najmi Exp $ -->
+<!-- Must be loaded after SubmitObjectsRequest_objectTypesSchemes -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../../../../ebxmlrr-spec/misc/3.0/schema/lcm.xsd">
+  <rs:RequestSlotList>  
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+  <rim:RegistryObjectList>
+    <rim:ExtrinsicObject id="urn:freebxml:registry:sample:profile:cpp:cms:InvocationControlFile_CPP.xsl" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:XSLT" mimeType="text/xml">
+      <rim:Name>
+        <rim:LocalizedString value="InvocationControlFile_CPP.xsl"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="XSLT Invocation Control File for CPP 2.0 content"/>
+      </rim:Description>
+    </rim:ExtrinsicObject>
+    
+    <rim:ExtrinsicObject id="urn:freebxml:registry:sample:profile:cpp:cms:FilteringControlFile_CPP.xsl" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:XSLT" mimeType="text/xml">
+      <rim:Name>
+        <rim:LocalizedString value="FilteringControlFile_CPP.xsl"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="XSLT Filtering Control File for CPP 2.0 content"/>
+      </rim:Description>
+    </rim:ExtrinsicObject>
+    
+    <rim:ClassificationScheme id="urn:freebxml:registry:sample:profile:cpp:classificationScheme:CPP_Config" isInternal="true" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="CPP Config"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="This is the classification scheme for the CPP Roles"/>
+      </rim:Description>
+      <rim:ClassificationNode code="Role" id="urn:freebxml:registry:sample:profile:cpp:CPP_Config:Role">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="Role"/>
+        </rim:Name>
+        <rim:ClassificationNode code="Buyer" id="urn:freebxml:registry:sample:profile:cpp:CPP_Config:Role:Buyer">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Buyer"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Seller" id="urn:freebxml:registry:sample:profile:cpp:CPP_Config:Role:Seller">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Seller"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Broker" id="urn:freebxml:registry:sample:profile:cpp:CPP_Config:Role:Broker">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Broker"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+      </rim:ClassificationNode>
+    </rim:ClassificationScheme>
+        
+    <!-- FIXME: Remove first association when spec and code has completed transition to supporting second association. -->
+    <!-- Assoc between InvocationControlFile_CPP.xsl and CPP rim:ClassificationNode in ObjectTypes scheme -->
+    <!--rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:InvocationControlFileFor" id="urn:uuid:33715f69-8167-4d26-bccd-ea7656720a90" sourceObject="urn:freebxml:registry:sample:profile:cpp:cms:InvocationControlFile_CPP.xsl" targetObject="urn:freebxml:registry:sample:profile:cpp:objectType:cppa:CPP"/-->
+    <!-- CatalogingControlFileFor assoc between InvocationControlFile_CPP.xsl and CPP rim:ClassificationNode in ObjectTypes scheme -->
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:InvocationControlFileFor:CatalogingControlFileFor" id="urn:freebxml:registry:sample:profile:cpp:association:InvocationControlFile_CPP.xsl:CatalogingControlFileFor:CPP" sourceObject="urn:freebxml:registry:sample:profile:cpp:cms:InvocationControlFile_CPP.xsl" targetObject="urn:freebxml:registry:sample:profile:cpp:objectType:cppa:CPP"/>
+    
+    <!-- FilteringControlFileFor assoc between FilteringControlFile_CPP.xsl and CPP rim:ClassificationNode in ObjectTypes scheme -->
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:InvocationControlFileFor:FilteringControlFileFor" id="urn:freebxml:registry:sample:profile:cpp:association:FilteringControlFile_CPP.xsl:FilteringControlFileFor:CPP" sourceObject="urn:freebxml:registry:sample:profile:cpp:cms:FilteringControlFile_CPP.xsl" targetObject="urn:freebxml:registry:sample:profile:cpp:objectType:cppa:CPP"/>
+    
+    <!-- xslt ObjectType, Defined in SubmitObjectsRequest_objectTypesSchemes -->
+    <rim:ObjectRef id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:XSLT"/>
+    <!-- CPP ObjectType, Defined in SubmitObjectsRequest_objectTypesSchemes -->
+    <rim:ObjectRef id="urn:freebxml:registry:sample:profile:cpp:objectType:cppa:CPP"/>
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

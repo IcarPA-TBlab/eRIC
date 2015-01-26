@@ -1,0 +1,1759 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/hl7/SubmitObjectsRequest_Config.xml,v 1.10 2006/06/09 15:05:41 farrukh_najmi Exp $ -->
+<!-- Must be loaded after SubmitObjectsRequest_objectTypesSchemes -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../../../../ebxmlrr-spec/misc/3.0/schema/lcm.xsd">
+  <rs:RequestSlotList>  
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+
+  <rim:RegistryObjectList>
+    <rim:Organization id="urn:uuid:3757f541-7263-40e4-9872-c5b29837b1f2" primaryContact="urn:freebxml:registry:predefinedusers:registryoperator">
+      <rim:Name>
+        <rim:LocalizedString xml:lang="en-US" value="HL7"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString xml:lang="en-US" value="Health Level Seven, Inc."/>
+      </rim:Description>
+      <rim:Address city="Ann Arbor" country="USA" postalCode="48104" stateOrProvince="MI" street="Washtenaw Avenue" streetNumber="3300, Suite 227"/>
+      <rim:TelephoneNumber areaCode="734" countryCode="1" number="677-7777" phoneType="OfficePhone"/>
+      <rim:TelephoneNumber areaCode="734" countryCode="1" number="677-6622" phoneType="FAX"/>
+    </rim:Organization>
+    <rim:ExtrinsicObject id="urn:uuid:2afc3378-387e-44dc-95a5-d1498de6497a" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:XSLT">
+      <rim:Name>
+        <rim:LocalizedString value="XSLT Invocation Control File for HL7 Conformance Profiles V2.x"/>
+      </rim:Name>
+    </rim:ExtrinsicObject>
+    <!-- Assoc between hl7CatalogDefFile and HL7 ConformanceProfile ClassificationNode in ObjectTypes scheme -->
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:InvocationControlFileFor" id="urn:uuid:11a56f89-ddeb-462d-b2c4-aa62a439754b" sourceObject="urn:uuid:2afc3378-387e-44dc-95a5-d1498de6497a" targetObject="urn:uuid:0bebcce6-e784-4472-af6b-8f3fb322b02d"/>
+    <!-- User for RegistryOperator -->
+    <rim:ObjectRef id="urn:freebxml:registry:predefinedusers:registryoperator"/>
+    <!-- xslt ObjectType, Defined in SubmitObjectsRequest_objectTypesSchemes -->
+    <rim:ObjectRef id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:XSLT"/>
+    <!-- HL7ConformanceProfile ObjectType, Defined in SubmitObjectsRequest_objectTypesSchemes -->
+    <rim:ObjectRef id="urn:uuid:0bebcce6-e784-4472-af6b-8f3fb322b02d"/>
+    <rim:ClassificationScheme id="urn:freebxml:registry:demo:schemes:HL7" isInternal="true" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode" xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="HL7"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="This is the classification scheme for Health Level 7 Standard"/>
+      </rim:Description>
+      <!-- Begin Conformance Type -->
+      <rim:ClassificationNode code="Conformance Type" id="urn:uuid:9a2b2bc7-9954-47b4-9587-86c03df5b522">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="Conformance Type"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString charset="UTF-8" value="This is the classification scheme for the HL7 Table (XXXX)"/>
+        </rim:Description>
+        <rim:ClassificationNode code="HL7" id="urn:uuid:0da4c5a3-48b9-4075-b3f4-c0274fb9e736">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="HL7 Standard Profile"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Constrainable" id="urn:uuid:3b0d04bb-11a7-4e74-befd-b59d8ffe4fec">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="HL7 Constrainable Profile (has optionality)"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Implementation" id="urn:uuid:de250145-2e39-467d-9f4a-c3ce483482a6">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="HL7 Implementation Profile (no optionality)"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+      </rim:ClassificationNode>
+      <!-- End Conformance Type -->
+      <!-- Begin EventType -->
+      <rim:ClassificationNode code="Event Type" id="urn:uuid:5844182d-1eed-4df7-9b2a-a9ec9bedbe19">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="Event Type"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString charset="UTF-8" value="This is the classification scheme for the HL7 Table (0003)"/>
+        </rim:Description>
+        <rim:ClassificationNode code="A01" id="urn:uuid:ead9eda6-f66e-4931-aae9-ece795c9c27a">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Admit a patient"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A02" id="urn:uuid:0a43c5fb-aba1-4857-bb8c-c465594513c2">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Transfer a patient"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A03" id="urn:uuid:a129cf12-5945-47a1-931d-8cf13550d44f">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Discharge a patient"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A04" id="urn:uuid:c0825188-f374-4d40-9c8b-e020a0158105">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Register a patient"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A05" id="urn:uuid:b34f160f-5588-406b-bf4f-dbcba72e2b5a">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Preadmit a patient"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A06" id="urn:uuid:973914eb-8e76-4e08-a61e-84ee05285b75">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Transfer an outpatient to inpatient"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A07" id="urn:uuid:e1b8ddd0-3155-44c8-b286-93ba09fd319f">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Transfer an inpatient to outpatient"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A08" id="urn:uuid:708adf52-c5a1-40ee-9276-aa65f84886e9">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Update patient information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A09" id="urn:uuid:1fdd87a4-9fb5-4c17-aebb-8ac96c5b7d9c">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Patient departing"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A10" id="urn:uuid:360bbe1d-1eb7-4f39-b113-bcbcda673b0a">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Patient arriving"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A11" id="urn:uuid:544ab441-3c94-4258-ab7a-a76dcf3b7b6c">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Cancel admit"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A12" id="urn:uuid:c39e7011-2f6a-411c-be00-c7eb40676b01">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Cancel transfer"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A13" id="urn:uuid:ae5ef8c4-b865-43d0-a187-8bc837792846">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Cancel discharge"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A14" id="urn:uuid:2549aaae-9e38-468c-af92-fb4796a5eda4">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Pending admit"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A15" id="urn:uuid:6abeb80d-3a9f-4808-94d1-b198c31db206">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Pending transfer"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A16" id="urn:uuid:97a13e9e-3990-40c4-913d-86bcb8d43b60">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Pending discharge"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A17" id="urn:uuid:16354828-e5ad-418a-a11e-ade9171c5d5a">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Swap patients"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A26" id="urn:uuid:6f4efa07-09b4-4f75-981d-ed1a92376648">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Cancel pending transfer"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A27" id="urn:uuid:0a8531b0-655e-4bf2-8597-fc3a9ffab5e3">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Cancel pending admit"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A28" id="urn:uuid:6b757ab9-94a6-453a-ab7a-f359dee29ca7">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Add person information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A29" id="urn:uuid:4253fec3-2f02-4898-b0b4-d2bcde54b07c">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Delete person information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A30" id="urn:uuid:20adab67-8fe2-40df-9cae-d7e7562bdfaa">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Merge person information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A31" id="urn:uuid:b0f5e5e7-fa6a-41bf-b8b7-f0a76b0b4b14">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Update person information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A32" id="urn:uuid:cce2c17a-5fd5-408e-a20a-ebd0b8e79ab1">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Cancel patient arriving"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A33" id="urn:uuid:701cd953-265d-4ce9-a5c2-bbe4c76f1c76">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Cancel patient departing"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A34" id="urn:uuid:420cb7b8-3b3f-4b0f-b778-ce475ae0727e">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Merge patient information - patient ID only"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A35" id="urn:uuid:b52adf02-f4d8-4c0f-b3d6-feb106668f99">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Merge patient information - account number only"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A36" id="urn:uuid:7ee2d955-0b54-42c2-a213-ca56e775ff15">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Merge patient information - patient ID and account number"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A37" id="urn:uuid:f938983d-f07c-4d4a-9abd-8335fe530ad3">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Unlink patient information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A38" id="urn:uuid:06f96451-a57c-4548-9415-d8bbcaa119d5">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Cancel pre-admit"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="C01" id="urn:uuid:c0e63dd9-6549-4ced-8d6e-aeab845a1a2c">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="CRM - Register a patient on a clinical trial"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="C02" id="urn:uuid:200b1ec4-7d75-45ca-a56e-a12eec8ddc4e">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="CRM - Cancel a patient registration on clinical trial (for clerical mistakes only)"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="C03" id="urn:uuid:a14ab965-56aa-4870-95a7-b4c4914d73a6">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="CRM - Correct/update registration information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="C04" id="urn:uuid:7f482c22-2485-4140-a867-99f5c069a129">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="CRM - Patient has gone off a clinical trial"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="C05" id="urn:uuid:500dfe63-03d3-4c4b-be8f-c4bc82d8922c">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="CRM - Patient enters phase of clinical trial"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="C06" id="urn:uuid:0c62f980-3265-487a-929e-cb0415755cbe">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="CRM - Cancel patient entering a phase (clerical mistake)"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="C07" id="urn:uuid:d492c63b-099c-4379-a222-9a0034f2514c">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="CRM - Correct/update phase information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="C08" id="urn:uuid:d23916f2-b071-4fae-bfe0-8ef4d5922b33">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="CRM - Patient has gone off phase of clinical trial"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="C09" id="urn:uuid:1dac9334-7eb5-4165-803b-be84cb5f9da2">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="CSU - Automated time intervals for reporting, like monthly"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="C10" id="urn:uuid:1bbe05bf-7db4-4556-b0e2-8b1da5466e53">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="CSU - Patient completes the clinical trial"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="C11" id="urn:uuid:807693ba-0f68-4e00-a9dd-a349c8235ad2">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="CSU - Patient completes a phase of the clinical trial"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="C12" id="urn:uuid:3f39f62f-fa1d-46aa-8f02-baa0926b08ff">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="CSU - Update/correction of patient order/result information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I01" id="urn:uuid:0fde72db-7d62-40e2-824c-c0c5b6354937">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RQI/RPI - Request for insurance information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I02" id="urn:uuid:67ccd643-d356-4945-8a75-eac25df965e3">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RQI/RPL - Request/receipt of patient selection display list"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I03" id="urn:uuid:e353b957-a9be-4851-91c4-ee6ad522a12e">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RQI/RPR - Request/receipt of patient selection list"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I04" id="urn:uuid:1a43698f-3d48-4bd0-ac3b-b517cc0dcbf6">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RQD/RPI - Request for patient demographic data"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I05" id="urn:uuid:29bbde82-20d6-495c-99c7-cffca0be2c78">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RQC/RCI - Request for patient clinical information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I06" id="urn:uuid:4d113a11-d71f-4948-93c1-aa4bb87611b6">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RQC/RCL - Request/receipt of clinical data listing"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I07" id="urn:uuid:d6053408-3d8d-4a40-a6ca-8c7b1b32404e">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PIN/ACK - Unsolicited insurance information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I08" id="urn:uuid:7d0f2d31-a961-48c6-9f1c-9074cfe010ff">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RQA/RPA - Request for treatment authorization information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I09" id="urn:uuid:969e79d6-bba9-4c91-b300-d673ecb93239">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RQA/RPA - Request for modification to an authorization"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I10" id="urn:uuid:39242e68-cb9a-44d6-ad9e-ca5415dc4a8e">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RQA/RPA - Request for resubmission of an authorization"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I11" id="urn:uuid:7bcdc60a-ea01-4502-b27c-b1b4e766c7f6">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RQA/RPA - Request for cancellation of an authorization"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I12" id="urn:uuid:89bb5dde-6c8b-48f8-94ea-898b54a16a55">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="REF/RRI -  Patient referral"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I13" id="urn:uuid:a8c6494d-a47e-47e1-8a88-eb7ba8a35c4b">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="REF/RRI - Modify patient referral"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I14" id="urn:uuid:d99bbc60-fa13-4128-875f-c1f3e6fba1f7">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="REF/RRI - Cancel patient referral"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="I15" id="urn:uuid:b37567dd-cf77-4e2f-b1b1-fc726991091e">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="REF/RRI - Request patient referral status"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="M01" id="urn:uuid:5d38a017-9b9b-496b-babc-92bed43aec74">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MFN/MFK - Master file not otherwise specified (for backward compatibility only)"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="M02" id="urn:uuid:69aee31c-3d17-4ce4-a7ea-8856a14869fc">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MFN/MFK - Master file - Staff Practioner"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="M03" id="urn:uuid:71f190b3-f494-4810-908a-dabe97b956e5">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MFN/MFK - Master file - Test/Observation"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="varies" id="urn:uuid:a03e035b-2717-4d76-9c0b-9d6358be0394">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MFQ/MFR - Master files query (use event same as asking for e.g., M05 - location)"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="M04" id="urn:uuid:1b158624-9d87-41a7-950d-945a02cbc59b">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MFD/ACK - Master files delayed application acknowledgement"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="M05" id="urn:uuid:6677ef06-fd8c-482c-a8ad-d4d126d72aa3">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MFN/MFK - Patient location master file"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="M06" id="urn:uuid:de027d4c-9712-4b6d-993f-b32f52203840">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MFN/MFK - Charge description master file"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="M07" id="urn:uuid:a34cd7d2-a25d-4fcf-9b4e-e60e98a2a1de">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MFN/MFK - Clinical study without phases and schedules master file"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="M08" id="urn:uuid:5068785a-995d-4634-890f-bd181bb6f0b5">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MFN/MFK - Test/Observation (Numeric) master file"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="O01" id="urn:uuid:6747dd44-3975-4f3f-8d04-f91fc98cbb52">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ORM - Order message (also RDE, RDS, RGV, RAS,"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="O02" id="urn:uuid:7ab9d222-ec5e-47c3-a194-ce4b912c5fc3">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ORR - Order response (also RRE, RRD, RRG, RRA,"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A18" id="urn:uuid:47fc411c-a0a8-402a-8590-cb83075940e2">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Merge patient information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A19" id="urn:uuid:726be894-a3b0-494e-8443-ebbe60492e73">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="QRY/ADR -  Patient query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A20" id="urn:uuid:71ec3ddb-6d29-4202-9d8a-d2ef36c5eb28">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Nursing/Census application updates"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A21" id="urn:uuid:e055d2b3-6673-4e8d-9398-b7f132cb1e70">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Leave of absence - out (leaving)"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A22" id="urn:uuid:97208516-0ef2-40ad-91ba-c806032ad822">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Leave of absence - in (returning)"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A23" id="urn:uuid:26f76090-3726-4d1d-b266-9006dccd8cff">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Delete a patient record"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A24" id="urn:uuid:b32a9439-6b89-4198-8bd3-ef9e6e7126ab">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Link patient information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A25" id="urn:uuid:80024f6c-f375-4800-b2a7-90be8d636fc1">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK -  Cancel pending discharge"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RAR" id="urn:uuid:d3b979f6-d568-4b7b-901c-f94ef8fc0d5a">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RAR - Pharmacy administration information query response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RDR" id="urn:uuid:2babef98-96a2-4f18-9759-b5ce2a794717">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RDR - Pharmacy dispense information query response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RER" id="urn:uuid:1712b79b-cbc6-4430-97d0-e8e4815626ff">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RER - Pharmacy encoded order information query response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RGR" id="urn:uuid:f0fffeb7-c3e4-4b2b-945e-8af29c5f8353">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RGR - Pharmacy dose information query response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="ROR" id="urn:uuid:d52299fb-1510-4d8f-9337-ad080618645a">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ROR - Pharmacy prescription order query response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="P01" id="urn:uuid:f91a4966-a6ba-4a3d-86ed-b138252ebea7">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="BAR/ACK - Add and update patient account"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="P02" id="urn:uuid:45710b42-025b-4c13-9eb3-a656944d22b9">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="BAR/ACK - Purge patient account"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="P03" id="urn:uuid:36132aff-d28e-4ea1-bb88-9f636e676360">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="DFT/ACK - Post detail financial transaction"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="P04" id="urn:uuid:385acdd2-338f-45ae-b28f-fdb74ff70246">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="QRY/DSP - Generate bill and A/R statements"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="P05" id="urn:uuid:751ae51b-4e1a-4be2-b184-f953117b4f46">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="BAR/ACK - Update account"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="P06" id="urn:uuid:464c148b-983a-43d6-995b-ef4f49026c64">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="BAR/ACK - End account"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Q01" id="urn:uuid:9815f189-e40b-450e-b2b2-e7840becd7aa">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="QRY/DSR - Query sent for immediate response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Q02" id="urn:uuid:ccd064bb-4bca-465c-9331-c9791c0491ae">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="QRY/ACK - Query sent for deferred response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Q03" id="urn:uuid:80ec25be-9235-43d0-8740-a73db3d24861">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="DSR/ACK - Deferred response to a query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Q05" id="urn:uuid:fc33637e-f994-4f97-933d-894fdfc9e484">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="UDM/ACK - Unsolicited display update"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="R01" id="urn:uuid:27b1bbd5-6870-432a-a4d4-f18db1458008">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ORU/ACK - Unsolicited transmission of an observation"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="R02" id="urn:uuid:357b3cd2-80a0-40d6-989a-cd33ff10984e">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="QRY - Query for results of observation"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="R03" id="urn:uuid:cc5a984b-6b86-41b4-b6e6-a84a836525e0">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Display-oriented results, query/unsol. update (for backward compatibility only)"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="R04" id="urn:uuid:7039abb7-fcbd-48eb-9451-8f4394277fc8">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ORF - Response to query; transmission of requested observation"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S01" id="urn:uuid:b604f917-23d3-402a-af35-b7a258338c69">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SRM/SRR - Request new appointment booking"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S02" id="urn:uuid:c12ac119-1e3f-4626-9824-8cbaea47fcb9">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SRM/SRR - Request appointment rescheduling"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S03" id="urn:uuid:f6487be8-f3ec-4d71-b60f-f1d69df52bb6">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SRM/SRR - Request appointment modification"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S04" id="urn:uuid:7fa597cd-a33c-42f6-b269-e7c61c4ac7f4">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SRM/SRR - Request appointment cancellation"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S05" id="urn:uuid:381a6d24-b391-43ce-b8b5-ca2ee5b7db2d">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SRM/SRR - Request appointment discontinuation"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S06" id="urn:uuid:5d996df5-4a93-463a-9397-c31e464a626f">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SRM/SRR - Request appointment deletion"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S07" id="urn:uuid:34e65f1a-7046-4317-a6e4-8fde89b3a363">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SRM/SRR - Request addition of service/resource on appointment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S08" id="urn:uuid:3c528214-6169-4641-b697-f61ea33b2ece">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SRM/SRR - Request modification of service/resource on appointment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S09" id="urn:uuid:25ed9047-5baf-437f-8b6f-956baa9f198f">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SRM/SRR - Request cancellation of service/resource on appointment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S10" id="urn:uuid:ad6912ff-2ab3-4813-bae3-d0331b1c46b2">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SRM/SRR - Request discontinuation of service/resource on appointment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S11" id="urn:uuid:ebe5e773-a7fc-4d6c-bb86-fcaac56bad1b">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SRM/SRR - Request deletion of service/resource on appointment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S12" id="urn:uuid:58bcede7-a194-4a8b-a3ad-b608ff345863">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SIU/ACK - Notification of new appointment booking"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S13" id="urn:uuid:f3b9c6b5-5962-4f8b-843c-df1b8cbf8fa9">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SIU/ACK - Notification of appointment rescheduling"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S14" id="urn:uuid:a4a99b64-b87e-44f1-9b80-bef39dd52ae1">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SIU/ACK - Notification of appointment modification"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S15" id="urn:uuid:7d07f915-cf23-4252-b397-e88b3f4a5876">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SIU/ACK - Notification of appointment cancellation"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S16" id="urn:uuid:db071a00-6480-42e4-8ff1-c4996f3b01f0">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SIU/ACK - Notification of appointment discontinuation"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S17" id="urn:uuid:4661d213-9cb6-4720-b233-9c98e588e129">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SIU/ACK - Notification of appointment deletion"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S18" id="urn:uuid:e3d05b17-fc61-4a54-94ac-ffea77252736">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SIU/ACK - Notification of addition of service/resource on appointment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S19" id="urn:uuid:49657d0f-ae7e-4060-a334-e2e58df3153d">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SIU/ACK - Notification of modification of service/resource on appointment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S20" id="urn:uuid:b27a31fd-20b5-4d41-84fc-e0879dfded1b">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SIU/ACK - Notification of cancellation of service/resource on appointment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S21" id="urn:uuid:2f4149f6-66b5-49f8-8f25-eb07c90897aa">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SIU/ACK - Notification of discontinuation of service/resource on appointment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S22" id="urn:uuid:929d2899-2111-4eed-b4ce-90c59efb9cb5">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SIU/ACK - Notification of deletion of service/resource on appointment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S23" id="urn:uuid:3ac361d5-7607-405b-aa66-d4d1f78ee966">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SIU/ACK - Notification of blocked schedule time slot(s)"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S24" id="urn:uuid:61568f5b-1ad3-409e-acb8-8958cc1d8888">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SIU/ACK - Notification of open (?unblocked?) schedule time slot(s)"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S25" id="urn:uuid:7ae1530d-ff37-4941-b307-f6916305b7fb">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SQM/SQR - Query schedule information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="T01" id="urn:uuid:16dffee2-37e0-45c9-99bf-ebb175f21272">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MDM/ACK - Original document notification"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="T02" id="urn:uuid:e2cb033a-5e96-47f9-843d-d5fbe73c3343">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MDM/ACK - Original document notification and content"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="T03" id="urn:uuid:a2d1413d-a2b0-4be8-b95d-fd095ca5d157">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MDM/ACK - Document status change notification"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="T04" id="urn:uuid:8eb65883-0d57-4850-9191-a61ca7883e71">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MDM/ACK - Document status change notification and content"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="T05" id="urn:uuid:591b6044-fd8d-4841-b70d-a027fab73a7a">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MDM/ACK - Document addendum notification"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="T06" id="urn:uuid:260531c9-4d9f-41e1-a475-d5aa7e6eb30f">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MDM/ACK - Document addendum notification and content"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="T07" id="urn:uuid:aa294914-6a97-4b94-934e-bf99ac0aa1af">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MDM/ACK - Document replace notification"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="T08" id="urn:uuid:37a8fced-81f7-4d80-9fb2-d557256a6c5c">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MDM/ACK - Document replace notification and content"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="T09" id="urn:uuid:5cb28e56-563a-473c-9511-882f20f1dc91">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MDM/ACK - Document cancel notification"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="V01" id="urn:uuid:7d41e929-2b30-4ff7-8777-9e4132a2efef">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="VXQ - Query for vaccination record"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="V02" id="urn:uuid:2071833e-a2ed-4360-9ce7-fa7dda332c10">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="VXX - Response to vaccination query returning multiple PID matches"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="V03" id="urn:uuid:8b3f59df-9974-4996-93c6-a6556240f5d7">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="VXR - Vaccination record response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="V04" id="urn:uuid:5d3ced46-81fd-4183-be77-8f7e41d62466">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="VXU - Unsolicited vaccination record update"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="W01" id="urn:uuid:6017d82f-1892-40b7-84cf-e166152bb8e5">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ORU - Waveform result, unsolicited transmission of requested information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="W02" id="urn:uuid:04d4b9aa-4986-4b87-bd4d-b89f9dda0f4b">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="QRF - Waveform result, response to query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A39" id="urn:uuid:7b625220-cef5-4d6c-b1f1-9974bfd34706">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Merge person - external ID"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A40" id="urn:uuid:a7423ccf-f75e-494c-b368-da492ad172a1">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Merge person - internal ID"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A41" id="urn:uuid:ba73082a-dd58-42ce-aee0-a3d6d352c6e7">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Merge account - patient account number"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A42" id="urn:uuid:595078d6-3c34-4b42-bc39-82a5ef9ac050">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Merge visit - visit number"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A43" id="urn:uuid:95443d7b-b03c-4c1b-acfb-961d55c2bba9">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Move patient information - internal ID"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A44" id="urn:uuid:7ab4dcbf-508f-4518-8d53-986887c6a89b">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Move account information - patient account number"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A45" id="urn:uuid:8a412326-5396-4076-b643-d47a8c04608c">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Move visit information - visit number"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A46" id="urn:uuid:53f0b4e5-2125-4482-86a1-9888ea1cc648">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Change external ID"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A47" id="urn:uuid:31b1728b-683f-46a0-8d54-c50d887e15c7">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Change internal ID"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A48" id="urn:uuid:a430fbb5-cb8d-4893-a773-9c5f22f9c178">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Change alternate patient ID"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A49" id="urn:uuid:7a2881ef-15d8-4d06-9c9e-ed0c1e420eff">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Change patient account number"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A50" id="urn:uuid:5326d059-d73d-46bf-875e-c607249c9c81">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Change visit number"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="M09" id="urn:uuid:6b11b9aa-5b8f-44da-b41a-b60ea10fa9b1">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MFN/MFK - Test/Observation (Categorical) Master File"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="M10" id="urn:uuid:4576e9ac-2493-4de3-8b2a-f056ea3c2b5c">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MFN/MFK - Test/observation batteries Master File"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="M11" id="urn:uuid:9fb6b40f-697e-454a-92fc-8e629f5afcae">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MFN/MFK - Test/calculated observations master file"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="P07" id="urn:uuid:4602c608-fc20-4cfb-9e7b-c4214aceeb0a">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PEX - Unsolicited initial individual product experience report"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="P08" id="urn:uuid:e6588c81-f422-4c53-8644-b9358c181bee">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PEX - Unsolicited update individual product experience report"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="P09" id="urn:uuid:31ef2f39-1363-4059-8db3-a131cdcd5cdf">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SUM - Summary product experience report"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="CNQ" id="urn:uuid:83c3f533-5035-4f70-95f4-98078c8e4243">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="QRY/EQQ/SPQ/VQQ/RQQ - Cancel query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PC1" id="urn:uuid:b7b1c03d-c144-41c3-9096-a20ce7833555">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPR - PC/ Problem Add"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PC2" id="urn:uuid:a82778b9-a97b-46cd-ad1e-83638f00d7c2">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPR - PC/ Problem Update"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PC3" id="urn:uuid:e31cbc9c-63ff-4178-bcbd-a52a2bd4db27">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPR - PC/ Problem Delete"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PC4" id="urn:uuid:981c30f4-1809-4e69-8fce-f755a01f55ea">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPR - PC/ Problem Query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PC5" id="urn:uuid:18c0674e-3618-4ed3-a89f-981eb39d433c">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPR - PC/ Problem Response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PC6" id="urn:uuid:94cd3731-3a85-432d-9a55-abf6969bd6d6">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPR - PC/ Goal Add"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PC7" id="urn:uuid:086f95da-afac-4886-a6ed-adbcc9070045">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPR - PC/ Goal Update"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PC8" id="urn:uuid:e1e72b7c-f5ce-4632-95df-9d170c546e00">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPR - PC/ Goal Delete"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PC9" id="urn:uuid:1cc6d33f-2b2e-4b06-8819-bc57e426cc88">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPR - PC/ Goal Query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PCB" id="urn:uuid:3543262d-8393-4d79-888f-ace2359eb9f6">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPP - PC/ Pathway (Problem Oriented) Add"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PCC" id="urn:uuid:19806cfd-107b-4a79-a94b-9f4d65de9cc9">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPP - PC/ Pathway (Problem Oriented) Update"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PCD" id="urn:uuid:6a54af2c-b3a3-420f-9268-cc78299785b0">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPP - PC/ Pathway (Problem Oriented) Delete"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PCE" id="urn:uuid:dba4825d-1ca8-43a6-bf97-8d816438840e">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="QRY - PC/ Pathway (Problem Oriented) Query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PCF" id="urn:uuid:6192644c-b3a5-42ab-9310-ee6c965e8a5a">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PTR - PC/ Pathway (Problem Oriented) Query Response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PCG" id="urn:uuid:6fcb2910-2f90-4dc9-8b36-b3e1e40d9d85">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPG/ACK - PC/ Pathway (Goal Oriented) Add"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PCH" id="urn:uuid:ab3d9832-46f4-40ed-9034-8d8f35eb5fa4">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPG/ACK - PC/ Pathway (Goal Oriented) Update"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PCJ" id="urn:uuid:b8da16ee-a22a-4bf4-8680-a3ab41deb4dd">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPG/ACK - PC/ Pathway (Goal Oriented) Delete"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PCK" id="urn:uuid:34c2a49c-3c6a-4d09-a3b2-db2a1d383e51">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="QRY - PC/ Pathway (Goal Oriented) Query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PCL" id="urn:uuid:188962a3-91df-4e7b-9b17-d7136df23e22">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="PPT - PC/ Pathway (Goal Oriented) Query Response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="R05" id="urn:uuid:020fe86f-48ba-4795-a578-923678ca7a99">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="QRY/DSR - query for display results"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="R06" id="urn:uuid:ce4414bd-5598-4345-8c49-faf3a360e6a0">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="UDM - unsolicited update/display results"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="S26" id="urn:uuid:0c0d2f04-514f-4d3e-a4ff-b84b454cb3de">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Notification that patient did not show up for schedule appointment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="T10" id="urn:uuid:091222ec-759f-4883-9cb3-dbfe78244b54">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MDM/ACK - Document replacement notification and content"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="T11" id="urn:uuid:f8b177d1-38fa-4820-8683-8dc730ecdb20">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="MDM/ACK - Document cancel notification"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="T12" id="urn:uuid:1f93fdf8-b0e2-4ddf-94b6-b2af6d18bc8b">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="QRY/DOC - Document query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Q06" id="urn:uuid:75de9dd1-9a45-4be0-b46e-af36c641649e">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="OSQ/OSR - Query for order status"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="A51" id="urn:uuid:c729c520-2c98-4226-9243-e44e022465aa">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT/ACK - Change alternate visit ID"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Q04" id="urn:uuid:8260ed30-e2d7-4be7-abb4-d0cfa1c6376a">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="EQQ/TBR - Embedded Query Language Query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Q06" id="urn:uuid:b97feba0-3688-4a7f-b484-a0a39fdd786a">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="OSQ/OSR - Query Response for Order Status"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Q07" id="urn:uuid:98fe37c6-1c5a-4da9-815e-aa705e323c68">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="VQQ/TBR - Virtual Table Query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Q08" id="urn:uuid:3ca6c2b0-9228-4141-9125-9cb2f8ee05dc">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="SPQ/EDR - Stored Procedure Request"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Q09" id="urn:uuid:f39761f3-c5e1-4d44-b040-ff67bbba29e4">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="RQQ/ERP - Even Replay Query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+      </rim:ClassificationNode>
+      <!-- End EventType -->
+      <!-- Begin MessageType -->
+      <rim:ClassificationNode code="Message Type" id="urn:uuid:51b4633d-dcdf-471a-be16-ae93d5cda05d">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="Message Type"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString charset="UTF-8" value="This is the classification scheme for the HL7 Table (0076)"/>
+        </rim:Description>
+        <rim:ClassificationNode code="ACK" id="urn:uuid:9e626ede-d7f2-4f72-abd5-ed914966ff6f">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="General acknowledgment message"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="ADR" id="urn:uuid:92df6ad2-366f-4da7-8b10-c18262b99510">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Patient query response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="ADT" id="urn:uuid:03d4bbb3-8ba9-4605-be31-ab61662f67c3">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="ADT message"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="ARD" id="urn:uuid:2789de9e-1a15-4947-ba74-d9c7a94e91b7">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Ancillary RPT (display)"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="BAR" id="urn:uuid:f52ac3be-c35a-4ab8-8932-eb7e9e5175bc">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Add/change billing account"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="CRM" id="urn:uuid:9b9b2409-fff8-4566-a552-8e9cbf13e472">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Clinical study registration"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="CSU" id="urn:uuid:f801d0c0-bf15-4442-99e6-d7e96313b4e2">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Unsolicited clinical study data"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="DFT" id="urn:uuid:be4d07c4-d440-439e-b4fa-858147c37476">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Detail financial transaction"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="DSR" id="urn:uuid:d1909e39-a8cb-4a64-a0ca-ef343f7b4fdd">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Display response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="EDR" id="urn:uuid:25d1a9de-48cb-413e-b3d7-b1e37fe9268e">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Enhanced display response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="ERP" id="urn:uuid:1481a96c-a36b-4335-8ef3-984a1b6500cd">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Event replay response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="EQQ" id="urn:uuid:c70eabfb-e7f2-4a3d-94ae-8004e87f545e">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Embedded query language query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="MCF" id="urn:uuid:9102a6bf-568c-485c-afec-85327ef0591b">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Delayed acknowledgment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PPG" id="urn:uuid:2127d53b-dd94-4714-bbb5-8481a6f1d4e7">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Patient pathway (goal-oriented) message"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PPP" id="urn:uuid:5e6cf2f7-3652-42f6-978e-f5c72305eba7">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Patient pathway (problem-oriented) message"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PPT" id="urn:uuid:2370c5b4-c739-4411-8b66-f99ce293b1c4">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Patient pathway (goal-oriented) response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="MDM" id="urn:uuid:46fb172d-6f0d-46fb-b371-8361d05dec79">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Documentation message"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="MFN" id="urn:uuid:71fb8337-55bf-4694-ab04-98acc80eae92">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Master files notification"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="MFK" id="urn:uuid:4c2086e3-6a89-47f6-a6c3-95ae18573aa0">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Master files application ack"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="MFD" id="urn:uuid:1350f66f-9ff3-48de-b32b-d03430601b24">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Master files delayed application ack"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="MFQ" id="urn:uuid:0c28dfb6-0a73-4698-8dfd-8db72d3bc0f3">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Master files query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="MFR" id="urn:uuid:eb12058d-b021-4c01-9bc8-db5ae8de04cb">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Master files query response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="ORF" id="urn:uuid:240756de-67b7-44f5-b5d4-949acc2f396b">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Observ. result/record response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="ORM" id="urn:uuid:304631a8-d71f-4dbb-83be-bebdf07bb3d2">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Order message"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="ORR" id="urn:uuid:2c28b13d-d301-4de4-a0f8-f869e3ab42a0">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Order acknowledgment message"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="ORU" id="urn:uuid:7a809d66-aeea-452e-a345-9eea9af268c5">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Observ result/unsolicited"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="OSQ" id="urn:uuid:2eb34270-cd79-4c67-8d47-d58ba99670b0">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Order status query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="OSR" id="urn:uuid:b4b00771-74c4-40a5-a034-d00f27bf733b">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Order status response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="QRY" id="urn:uuid:ae43e2d1-2ef4-47db-b460-8367980ab2df">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Query, original mode"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PEX" id="urn:uuid:2a91bbe7-8b07-43dd-b13c-89dd9f7b4d8d">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Product experience"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PGL" id="urn:uuid:c5d1a467-c8bf-454b-85c3-87e367ba2d35">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Patient goal"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PIN" id="urn:uuid:ac1e6769-7130-4a4b-816a-ed8d06b62182">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Patient insurance information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PPR" id="urn:uuid:34db32bb-90ca-47a6-b133-b3d21399f9c0">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Patient problem"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RAR" id="urn:uuid:583a5b49-fe37-464e-a3f2-ad97f0a3574c">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Pharmacy administration information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RAS" id="urn:uuid:a1a71c91-303d-4469-8f12-e6ccbc43c94b">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Pharmacy administration message"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RCI" id="urn:uuid:faca977a-6614-4d5e-97bf-f3ce50bb77b2">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Return clinical information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RCL" id="urn:uuid:4ae96a39-bdf9-4004-96bf-e018ae3ab240">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Return clinical list"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RDE" id="urn:uuid:337e14ca-d473-424d-9919-ce68019a9752">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Pharmacy encoded order message"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RDR" id="urn:uuid:fd0da223-0996-4591-915f-982362f9e6f5">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Pharmacy dispense information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RDS" id="urn:uuid:e6bad6c7-ca78-4e67-84f8-c3044544a9d0">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Pharmacy dispense message"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RGV" id="urn:uuid:712f9a74-eeac-4aee-b0cf-b3d24486eab6">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Pharmacy give message"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RGR" id="urn:uuid:b548a190-2234-46fa-ace2-927a89222f01">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Pharmacy dose information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="REF" id="urn:uuid:2a00a71c-bb9f-42c4-bb3d-a70e7530f6b9">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Patient referral"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RER" id="urn:uuid:706b4775-7c02-4c22-aca5-87081764b4dc">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Pharmacy encoded order information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RQC" id="urn:uuid:97aa39f1-59fb-432c-8d43-f14ea6bbbe90">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Request clinical information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RQP" id="urn:uuid:47824c1c-8115-495e-8d9f-9bb5a2369c49">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Request patient demographics"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="ROR" id="urn:uuid:b408633e-72e1-4782-a19b-dd843e034521">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Pharmacy prescription order response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RPA" id="urn:uuid:ba1da64a-b4da-4bd1-8396-caf10b5110f8">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Return patient authorization"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RPI" id="urn:uuid:1d97f45a-036a-4df2-bdb1-86644d66a27f">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Return patient information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RPL" id="urn:uuid:76dec939-49ae-4dd5-a4e2-9bec0349250b">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Return patient display list"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RPR" id="urn:uuid:06e25b0d-ee80-4b19-9154-e7cddfd1daf9">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Return patient list"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RQA" id="urn:uuid:395e7d11-7aba-4098-af45-8f801e92ef93">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Request patient authorization"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RQI" id="urn:uuid:52f9872b-92b9-4945-bbe9-e7c844ca9c43">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Request patient information"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RRA" id="urn:uuid:f597a6d9-190c-4536-8e01-d2a30986f020">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Pharmacy administration acknowledgment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RRD" id="urn:uuid:c1cf7e11-22a8-4668-9cbe-ff1b6f337e6d">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Pharmacy dispense acknowledgment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RRE" id="urn:uuid:25f82545-6e81-401b-af8e-ca9dcdbe4dfd">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Pharmacy encoded order acknowledgment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RRG" id="urn:uuid:0c75fe3c-67a6-47d3-abdb-d5ca1db46802">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Pharmacy give acknowledgment"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="RRI" id="urn:uuid:a064f8f5-0e4c-4a41-b175-a34f9c960e16">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Return patient referral"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="SIU" id="urn:uuid:ee1c0f4f-897f-4cd6-add2-e78c50aa9c1f">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Schedule information unsolicited"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="SPQ" id="urn:uuid:7c90c227-7687-49bd-b4bc-d0a426214019">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Stored procedure request"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="SQM" id="urn:uuid:1feca9b1-60d1-4606-853c-efe19e0576b0">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Schedule query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="SQR" id="urn:uuid:3c5e4882-da2f-4de9-b1c5-8da4559abdfc">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Schedule query response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="SRM" id="urn:uuid:b924e132-615f-4a76-bb6a-9577be964976">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Schedule request"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="SRR" id="urn:uuid:3a76b119-6917-4ce4-aa74-c97ee9467ebf">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Scheduled request response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="TBR" id="urn:uuid:f29d633f-ad8f-4a46-ab81-b2ed2f265f42">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Tabular data response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="UDM" id="urn:uuid:a7d8e524-ed99-4df1-8679-f5a42ec40777">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Unsolicited display message"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="VQQ" id="urn:uuid:247e9037-b7d4-4231-9b22-f7c164462921">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Virtual table query"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="VXQ" id="urn:uuid:0a3d84ba-fb4b-410d-a78f-dfdf2faee39d">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Query for vaccination record"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="VXX" id="urn:uuid:c42e425b-8eb5-492d-adcf-aaa37cfca437">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Vaccination query response with multiple PID matches"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="VXR" id="urn:uuid:5dbe0056-8269-4ca0-826b-cdce6e07f4b7">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Vaccination query record response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="VXU" id="urn:uuid:a2fc08f4-e997-4398-849d-a743325232cb">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Unsolicited vaccinnation record update"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PPV" id="urn:uuid:24a197fb-0f51-49ef-8d44-94fc6ba185c0">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Patient goal response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PRR" id="urn:uuid:e7882d74-8acb-468b-bfd1-ae8b943a38ac">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Patient problem response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="PTR" id="urn:uuid:7e81a0a4-1aa4-4592-ad0a-acb79b7221bd">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Patient pathway (problem-oriented) response"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="QCK" id="urn:uuid:e1e1e38c-6369-4f10-9da5-d0b698bd9fb3">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Query general acknowledgement"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="SUR" id="urn:uuid:9a688fcc-3eb8-43d1-b39e-f7b1daea39a2">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Summary product experience report"/>
+          </rim:Name>
+          <rim:Description/>
+        </rim:ClassificationNode>
+      </rim:ClassificationNode>
+      <!-- End MessageType -->
+      <!-- Begin MessageStructID -->
+      <rim:ClassificationNode code="Message structure" id="urn:uuid:39f6de53-4e17-41da-ad92-fe45700c93fe">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="Message structure"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString charset="UTF-8" value="This is the classification scheme for the HL7 Table (0354)"/>
+        </rim:Description>
+        <rim:ClassificationNode code="ADT_A01" id="urn:uuid:c288bf10-f1e2-4a33-ad83-f51ff5f369b7">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="A01, A04, A05, A08, A13, A14, A28, A31"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="ADT_A02" id="urn:uuid:f6d1887b-f7bd-4233-b0aa-a463ee6982df">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="A02, A21, A22, A23, A25, A26, A27, A29, A32, A33"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+      </rim:ClassificationNode>
+      <!-- End MessageStructID -->
+      <!-- Begin Role -->
+      <rim:ClassificationNode code="Role" id="urn:uuid:0607a42b-c66e-4aaf-987c-e25f3edcfe6f">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="Role"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString charset="UTF-8" value="This is the classification scheme for the HL7 Table (XXXX)"/>
+        </rim:Description>
+        <rim:ClassificationNode code="Sender" id="urn:uuid:0c2bc913-f099-4698-85a6-96b922e5fdb0">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Message generator (Sender)"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="Receiver" id="urn:uuid:4480f458-b6c8-456a-b144-c37fabe84b6a">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Message parser (Receiver)"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+      </rim:ClassificationNode>
+      <!-- End Role -->
+      <!-- Begin Version -->
+      <rim:ClassificationNode code="Version ID" id="urn:uuid:87286b7f-4f1f-4de7-8165-893d6ba35290">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="Version ID"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString charset="UTF-8" value="This is the classification scheme for the HL7 Table (0104)"/>
+        </rim:Description>
+        <rim:ClassificationNode code="2.0" id="urn:uuid:f56e65b9-c415-4367-8adc-e14eb6099776">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Release 2.0  September 1988"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="2.0D" id="urn:uuid:9d537729-74be-47b7-9223-b0a58ec7989a">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Demo 2.0  October 1988"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="2.1" id="urn:uuid:2be91012-8af9-4338-8c40-8a0d7d29c718">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Release 2.1  March 1990"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="2.2" id="urn:uuid:59455c67-9fd9-470d-a49a-c7141d6445c1">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Release 2.2  December 1994"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="2.3" id="urn:uuid:bdf8ab5c-0306-45ea-9865-80a40a093ede">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Release 2.3 March 1997"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="2.3.1" id="urn:uuid:4cb93808-3c7b-4c1b-b985-cae1c2a9a88a">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Release 2.3.1"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="2.3.2" id="urn:uuid:6c9d5b28-1544-4b1e-a4d6-996e14b2bf6d">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Release 2.3.2"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+        <rim:ClassificationNode code="2.4" id="urn:uuid:435c876d-0d67-4c26-8d70-919f05453507">
+          <rim:Name>
+            <rim:LocalizedString charset="UTF-8" value="Release 2.4"/>
+          </rim:Name>
+        </rim:ClassificationNode>
+      </rim:ClassificationNode>
+      <!-- End Version -->
+    </rim:ClassificationScheme>
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

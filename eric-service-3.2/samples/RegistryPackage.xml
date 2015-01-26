@@ -1,0 +1,14 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/RegistryPackage.xml,v 1.1.1.1 2003/09/24 03:41:24 farrukh_najmi Exp $-->
+<RegistryPackage xmlns = "urn:oasis:names:tc:ebxml-regrep:rim:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:rim:xsd:2.0 rim.xsd" id = "urn:uuid:a2345678-1234-1234-123456789012" objectType = "RegistryPackage" majorVersion = "0" minorVersion = "1" status = "Submitted">
+	<Name xmlns = "">
+		<LocalizedString value = "Package for Acme"/>
+	</Name>
+	<RegistryObjectList xmlns = "urn:oasis:names:tc:ebxml-regrep:rim:xsd:2.0">
+		<ExtrinsicObject contentURI = "" id = "urn:uuid:a2345678-1234-1234-123456789013">
+			<Name xmlns = "">
+				<LocalizedString value = "CPP for Acme"/>
+			</Name>
+		</ExtrinsicObject>
+	</RegistryObjectList>
+</RegistryPackage>

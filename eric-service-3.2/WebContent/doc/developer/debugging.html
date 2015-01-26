@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- $Header: /cvsroot/ebxmlrr/omar/doc/3.0/developer/debugging.html,v 1.8 2007/07/27 14:23:36 farrukh_najmi Exp $-->
+    <html>
+      <head>
+          <title>freebXML Registry - Debugging Guide</title>
+      </head>
+      <body class="composite">
+    <div class="h3">
+        <h2><a name="Debugging">Debugging</a></h2>
+    <p>There are three steps to getting started with debugging the
+    registry/repository:</p>
+    <ul>
+    <li>Compiling with debugging enabled</li>
+    <li>Running the client or server or both with debugging
+    enabled</li>
+    <li>Attaching to the running program to debug it</li>
+    </ul>
+
+    <div>
+    <h2>Compiling With Debugging Enabled</h2>
+
+    <p>Make sure that the value of the <tt>compile.debug</tt> property
+    is <tt>true</tt> in your <tt>build.xml</tt> or in your
+    <tt>build.properties</tt> file, if it is defined in that file.</p>
+
+    </div>
+
+    <div>
+    <h2>Running With Debugging Enabled</h2>
+
+    <div>
+    <h3>Running The Server With Debugging Enabled</h3>
+
+    <p>Since the registry server operates as one or more servlets in
+    servlet container, it is simpler to attach a JPDA-enabled debugger
+    to the running servlet container that has debugging enabled than
+    to try to run the servlet container in a debugger.</p>
+
+    <p>The specifics of starting a servlet container with debugging
+    enabled varies with the container, and there may be more than one
+    way to do it for a particular servlet container.  This document
+    describes two ways of starting Tomcat with debugging enabled, but
+    if you use a different method or a different servlet container,
+    please provide the information so we can add it here.</p>
+
+    <p>Running a servlet container with debugging enabled slows it
+    down considerably, so it's best to do this only when you're
+    actually going to debug the program.</p>
+
+    <div>
+    <h4>Commands for Running Tomcat with Debugging Enabled</h4>
+
+    <div>
+    <h5>Using <tt>catalina jpda start</tt></h5>
+
+    <p>Tomcat has built-in support for debugging with a JPDA enabled
+    debugger.  To use it, start Tomcat with the <tt>catalina.sh</tt>
+    script (on Unix) or <tt>catalina.bat</tt> script (on Windows) with
+    ant extra <tt>jpda</tt> argument.  Tomcat then runs with default
+    values for the JPDA settings for how the debugger can connect to
+    Tomcat.  To be sure of the settings, you can set the
+    <tt>JPDA_TRANSPORT</tt> and <tt>JPDA_ADDRESS</tt> environment
+    variables before starting Tomcat:</p>
+
+     <p><em>bash</em>:</p>
+
+    <pre>declare -x JPDA_TRANSPORT=dt_socket
+declare -x JPDA_ADDRESS=8000
+$JWSDP_HOME/bin/catalina.sh jpda start</pre>
+
+     <p><em>csh</em>:</p>
+
+    <pre>setenv JPDA_TRANSPORT dt_socket
+setenv JPDA_ADDRESS 8000
+$JWSDP_HOME/bin/catalina.sh jpda start</pre>
+
+     <p><em>Windows</em>:</p>
+
+    <pre>set JPDA_TRANSPORT=dt_socket
+set JPDA_ADDRESS=8000
+%JWSDP_HOME%\bin\catalina jpda start</pre>
+
+    </div>
+
+    <div>
+    <h5>Using <tt>catalina start</tt> and <tt>CATALINA_OPTS</tt></h5>
+
+    <p>Alternatively, you can set the <tt>java</tt> program's
+     command-line arguments for the JPDA settings.  For Tomcat, you
+     specify them in the <tt>CATALINA_OPTS</tt> environment variable
+     and the <tt>catalina.sh</tt> or <tt>catalina.bat</tt> script
+     adds the value of the environment variable to the <tt>java</tt>
+     command that starts Tomcat; for example:</p>
+
+     <p><em>bash</em>:</p>
+    <pre>declare -x CATALINA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000"
+$JWSDP_HOME/bin/catalina.sh start</pre>
+
+     <p><em>csh</em>:</p>
+
+    <pre>setenv CATALINA_OPTS "-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000"
+$JWSDP_HOME/bin/catalina.sh start</pre>
+
+     <p><em>Windows</em>:</p>
+
+    <pre>set JPDA_TRANSPORT=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000
+%JWSDP_HOME%\bin\catalina start</pre>
+
+    </div>
+    </div>
+
+    <div>
+    <h4>Ant Targets for Running Tomcat with Debugging Enabled</h4>
+
+    <p>The <tt>server.debugSocket</tt> Ant property sets the port
+number to use when connecting to Tomcat after it has been started with
+one of these targets.  You can set the
+    property in your <tt>build.properties</tt>, and that will override
+    the default set in <tt>build.xml</tt>.</p>
+
+    <div>
+    <h5><tt>debug.tomcat</tt> Ant Target</h5>
+
+    <p>This starts Tomcat with the <tt>CATALINA_OPTS</tt> environment
+variable set to the value necessary for debugging Tomcat.</p>
+    </div>
+
+    <div>
+    <h5><tt>jpda.tomcat</tt> Ant Target</h5>
+
+    <p>This starts Tomcat with the <tt>JPDA_TRANSPORT</tt> and
+<tt>JPDA_ADDRESS</tt> environment variables set to the value necessary
+for debugging Tomcat.</p>
+    </div>
+
+    </div>
+
+    <div>
+    <h3>Running The Registry Browser Java UI With Debugging Enabled</h3>
+
+    <p>You can start the Registry Browser Java UI with debugging enabled using
+    the <tt>debug.browser</tt> Ant target</p>
+
+    <p>The <tt>client.debugSocket</tt> Ant property specifies the
+    port to which to attach to debug the browser.  You can set the
+    property in your <tt>build.properties</tt>, and that will override
+    the default set in <tt>build.xml</tt>.</p>
+
+    </div>
+
+    <div>
+    <h3>Running a Unit Test With Debugging Enabled</h3>
+
+    <p>You can start a single unit test with debugging enabled using
+    the <tt>debug.single</tt> Ant target; for example:</p>
+
+<pre>ant -Dtest=org.freebxml.omar.client.xml.registry.I18NTest debug.single</pre>
+
+    <p>The <tt>test.debugSocket</tt> Ant property specifies the
+    port to which to attach to debug the browser.  You can set the
+    property in your <tt>build.properties</tt>, and that will override
+    the default set in <tt>build.xml</tt>.</p>
+
+    </div>
+
+    <div>
+    <h3>Running The Admin Tool With Debugging Enabled</h3>
+
+    <p>You can start the Admin Tool with debugging enabled using
+    the <tt>debug.adminTool</tt> Ant target; for example:</p>
+
+<pre>ant -DadminTool.args="-command ls" debug.adminTool</pre>
+
+    <p>The <tt>client.debugSocket</tt> Ant property specifies the
+    port to which to attach to debug the browser.  You can set the
+    property in your <tt>build.properties</tt>, and that will override
+    the default set in <tt>build.xml</tt>.</p>
+
+    <p>If you want to debug the Admin Tool while using it
+    interactively, you'll have to provide the appropriate command-line
+arguments when you start the Admin Tool; for example:</p>
+
+<pre>java -Xdebug -Xrunjdwp:transport=dt_socket,address=1044,server=y,suspend=y -jar build/lib/admin-tool.jar</pre>
+
+    </div>
+
+    </div>
+    <div>
+    <h2>Attaching to the Running Program to Debug It</h2>
+
+    <p>Most Java debuggers and IDEs provide a way to attach to a
+    running program to debug it.
+
+    <div>
+    <h3><tt>jdb</tt> Java Debugger</h3>
+
+    <p>Attaching to the running program is very simple with the
+    <tt>jdb</tt> Java debugger:</p>
+
+    <pre>jdb -attach &lt;address> -sourcepath &lt;directories separated by ":"></pre>
+
+    <p>Where:</p>
+
+    <dl>
+    <dt>&lt;address></dt>
+    <dd>Address specified when starting the program</dd>
+    </dl>
+
+    </div>
+    <div>
+    <h3>NetBeans IDE</h3>
+
+    <p>Debugging the running program using NetBeans is almost as
+    simple, but you first need to do some setting up so that NetBeans
+    knows where to find your source code that you are debugging.  See
+    the <a href="usingNetBeans.html">Using NetBeans</a> page for
+    how to set up NetBeans and how to attach the NetBeans debugger to a
+    running program.</p>
+
+    </div>
+    </div>
+    </div>      </body>
+    </html>

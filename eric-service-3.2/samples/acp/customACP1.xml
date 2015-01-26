@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PolicySet PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:permit-overrides" PolicySetId="urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:policy:restricted-access-control-policyset" xmlns="urn:oasis:names:tc:xacml:1.0:policy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xacml:1.0:policy  http://www.oasis-open.org/committees/download.php/915/cs-xacml-schema-policy-01.xsd">
+  <Description>This PolicySet restricts the default Access Control Policy to limit read access to specified subjects.</Description>
+  <Target>
+    <Subjects>
+      <AnySubject/>
+    </Subjects>
+    <Resources>
+      <AnyResource/>
+    </Resources>
+    <Actions>
+      <AnyAction/>
+    </Actions>
+  </Target>
+  <PolicyIdReference>urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:policy:policyid:permit-owner-all</PolicyIdReference>
+  <PolicyIdReference>urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:policy:policyid:permit-registryadministrator-all</PolicyIdReference>
+  <Policy PolicyId="urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:policy:permit-delete-access-control-policy" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides" xmlns="urn:oasis:names:tc:xacml:1.0:policy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xacml:1.0:policy  C:\tmp\xacml\cs-xacml-schema-policy-01.xsd">
+    <Description>Allow Subject with specifed id to perform delete action on any resource.</Description>
+    <Target>
+      <Subjects>
+        <AnySubject/>
+      </Subjects>
+      <Resources>
+        <AnyResource/>
+      </Resources>
+      <Actions>
+        <AnyAction/>
+      </Actions>
+    </Target>
+    <Rule Effect="Permit" RuleId="urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:rule:ruleid:permit-delete-rule">
+      <Description>Allow Subject with specifed id to perform delete action on any resource.</Description>
+      <Target>
+        <Subjects>
+          <Subject>
+            <SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+              <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">urn:freebxml:registry:predefinedusers:farrukh</AttributeValue>
+              <SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+            </SubjectMatch>
+          </Subject>
+        </Subjects>
+        <Resources>
+          <AnyResource/>
+        </Resources>
+        <Actions>
+          <Action>
+            <ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+              <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">delete</AttributeValue>
+              <ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+            </ActionMatch>
+          </Action>
+        </Actions>
+      </Target>
+    </Rule>
+  </Policy>
+  <Policy PolicyId="urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:policy:permit-update-access-control-policy" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides" xmlns="urn:oasis:names:tc:xacml:1.0:policy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xacml:1.0:policy  C:\tmp\xacml\cs-xacml-schema-policy-01.xsd">
+    <Description>Allow Subjects with ProjectLead role to perform update action on any resource.</Description>
+    <Target>
+      <Subjects>
+        <AnySubject/>
+      </Subjects>
+      <Resources>
+        <AnyResource/>
+      </Resources>
+      <Actions>
+        <AnyAction/>
+      </Actions>
+    </Target>
+    <Rule Effect="Permit" RuleId="urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:rule:ruleid:permit-update-rule">
+      <Description>Allow Subjects with ProjectLead role to perform read action on any resource.</Description>
+      <Target>
+        <Subjects>
+          <Subject>
+            <SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+              <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">/urn:oasis:names:tc:ebxml-regrep:classificationScheme:SubjectRole/ProjectMember/ProjectLead</AttributeValue>
+              <SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:ebxml-regrep:3.0:rim:acp:subject:roles" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+            </SubjectMatch>
+          </Subject>
+        </Subjects>
+        <Resources>
+          <AnyResource/>
+        </Resources>
+        <Actions>
+          <Action>
+            <ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+              <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">update</AttributeValue>
+              <ActionAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string"/>
+            </ActionMatch>
+          </Action>
+        </Actions>
+      </Target>
+    </Rule>
+  </Policy>
+</PolicySet>

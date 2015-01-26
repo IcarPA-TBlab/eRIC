@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query:AdhocQueryRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" id="urn:uuid:99e06ed3-b2b0-43c7-be71-91ce24388402" maxResults="-1" startIndex="0">
+	<rs:RequestSlotList xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0">
+		<rim:Slot  name="urn:oasis:names:tc:ebxml-regrep:rs:getChildObjects">
+			<rim:ValueList>
+				<rim:Value>true</rim:Value>
+			</rim:ValueList>
+		</rim:Slot>
+	</rs:RequestSlotList>
+	<query:ResponseOption returnComposedObjects="true" returnType="LeafClass"/>
+	<rim:AdhocQuery  id="urn:uuid:cfe05316-d9b4-478b-a4b2-d9cc832d5080">
+		<rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+			select * from classificationscheme
+		</rim:QueryExpression>
+	</rim:AdhocQuery>
+</query:AdhocQueryRequest>

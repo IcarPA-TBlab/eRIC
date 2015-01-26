@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/gm/AvailableVehicleResponse.dtd,v 1.1.1.1 2003/09/24 03:55:06 farrukh_najmi Exp $-->
+<!ELEMENT AvailableVehiclesResponse (DocumentFunctionId,thisDocumentIdentifier,thisDocumentGenerationDateTime,PartnerInfo,VehicleQueryData+)>
+<!ELEMENT VehicleQueryResponse (vin,color,price,mileage)>
+<!ELEMENT thisDocumentIdentifier (ProprietaryDocumentIdentifier)>
+<!ELEMENT thisDocumentGenerationDateTime (DateTimeStamp)>
+<!ELEMENT PartnerInfo (Name,TelephoneNumber,EmailAddress)>
+<!ELEMENT VehicleQueryData (Make,Model,Year,VehicleQueryResponse+)>
+<!ELEMENT DocumentFunctionId (#PCDATA)>
+<!ELEMENT vin (#PCDATA)>
+<!ELEMENT color (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT mileage (#PCDATA)>
+<!ELEMENT ProprietaryDocumentIdentifier (#PCDATA)>
+<!ELEMENT DateTimeStamp (#PCDATA)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT TelephoneNumber (#PCDATA)>
+<!ELEMENT EmailAddress (#PCDATA)>
+<!ELEMENT Make (#PCDATA)>
+<!ELEMENT Model (#PCDATA)>
+<!ELEMENT Year (#PCDATA)>

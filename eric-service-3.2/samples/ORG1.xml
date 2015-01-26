@@ -1,0 +1,54 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/ORG1.xml,v 1.2 2005/03/21 18:39:52 farrukh_najmi Exp $-->
+<AdhocQueryRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 query.xsd">
+	<ResponseOption returnType = "LeafClass"/>
+	<FilterQuery>
+		<OrganizationQuery>
+			<TargetAssociationBranch>
+				<AssociationFilter>
+					<Clause>
+						<SimpleClause leftArgument = "associationType">
+							<StringClause stringPredicate = "Equal">SubmittedBy</StringClause>
+						</SimpleClause>
+					</Clause>
+				</AssociationFilter>
+				<RegistryObjectQuery>
+					<RegistryObjectFilter>
+						<Clause>
+							<SimpleClause leftArgument = "objectType">
+								<StringClause stringPredicate = "Equal">CPP</StringClause>
+							</SimpleClause>
+						</Clause>
+					</RegistryObjectFilter>
+					<SourceAssociationBranch>
+						<AssociationFilter>
+							<Clause>
+								<SimpleClause leftArgument = "associationType">
+									<StringClause stringPredicate = "Equal">AuditedBy</StringClause>
+								</SimpleClause>
+							</Clause>
+						</AssociationFilter>
+						<AuditableEventQuery>
+							<AuditableEventFilter>
+								<Clause>
+									<SimpleClause leftArgument = "timestamp_">
+										<RationalClause logicalPredicate = "GE">
+											<IntClause>20010101</IntClause>
+										</RationalClause>
+									</SimpleClause>
+								</Clause>
+							</AuditableEventFilter>
+						</AuditableEventQuery>
+					</SourceAssociationBranch>
+				</RegistryObjectQuery>
+			</TargetAssociationBranch>
+			<PostalAddressFilter>
+				<Clause>
+					<SimpleClause leftArgument = "country">
+						<StringClause stringPredicate = "Equal">France</StringClause>
+					</SimpleClause>
+				</Clause>
+			</PostalAddressFilter>
+		</OrganizationQuery>
+	</FilterQuery>
+</AdhocQueryRequest>

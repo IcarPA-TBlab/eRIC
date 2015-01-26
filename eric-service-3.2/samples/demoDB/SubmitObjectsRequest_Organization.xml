@@ -1,0 +1,260 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/demoDB/SubmitObjectsRequest_Organization.xml,v 1.21 2006/08/02 12:50:51 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../../../../ebxmlrr-spec/misc/3.0/schema/lcm.xsd">
+  <rs:RequestSlotList>  
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+  <rim:RegistryObjectList>      
+    <rim:Organization lid="urn:freebxml:registry:demoDB:Sun" id="urn:freebxml:registry:demoDB:Sun" primaryContact="urn:freebxml:registry:predefinedusers:farrukh">
+      <rim:Slot name="urn:freebxml:registry:demo:NASDAQ-Symbol">
+        <rim:ValueList>
+          <rim:Value>SUNW</rim:Value>
+        </rim:ValueList>
+      </rim:Slot>
+      <rim:Slot name="urn:freebxml:registry:demo:ScottMcNealy:home-phone-number">
+        <rim:ValueList>
+          <rim:Value>415-123-4567</rim:Value>
+        </rim:ValueList>
+      </rim:Slot>
+      
+      <rim:Name>
+        <rim:LocalizedString value="Sun Microsystems Inc." xml:lang="en-US"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="Makes fine Java software." xml:lang="en-US"/>
+      </rim:Description>
+      <!--Following commented as it requires loading NAICS taxonomy which is not part of demo db-->
+      <!--rim:Classification id="urn:uuid:27cd0472-a634-4957-9a1a-bae7b3bf1a7e" classificationNode="urn:uuid:4333395d-05ef-48d9-b905-f1468cc4a47a" classifiedObject="urn:freebxml:registry:demoDB:Sun">
+        <rim:Name>
+          <rim:LocalizedString value="Software Publishers" xml:lang="en-US"/>
+        </rim:Name>
+      </rim:Classification>
+      <rim:Classification id="urn:uuid:b6836b26-05b5-4607-8d92-bf07a13e1ea4" classificationNode="urn:uuid:5814e155-2b4e-464e-bcf1-fa045911ed94" classifiedObject="urn:freebxml:registry:demoDB:Sun">
+        <rim:Name>
+          <rim:LocalizedString value="Computer and Peripheral Equipment Manufacturing" xml:lang="en-US"/>
+        </rim:Name>
+      </rim:Classification-->
+      <rim:Classification id="urn:uuid:c4e3486b-0f44-4c4e-8c33-b99c52beba3a" classificationNode="urn:uuid:1152986f-f5fd-4e69-963b-9088678a2e73" classifiedObject="urn:freebxml:registry:demoDB:Sun">
+        <rim:Name>
+          <rim:LocalizedString value="United States" xml:lang="en-US"/>
+        </rim:Name>
+      </rim:Classification>
+      <rim:Classification id="urn:freebxml:registry:demoDB:Sun:dunsClassification" classificationScheme="urn:freebxml:registry:demoDB:classificationScheme:DUNS" value="DUNS+12345678" classifiedObject="urn:freebxml:registry:demoDB:Sun" />
+      <rim:ExternalIdentifier id="urn:uuid:3972377f-fe91-4540-9c01-d243cfd6cc1a" registryObject="urn:freebxml:registry:demoDB:Sun" identificationScheme="urn:freebxml:registry:demoDB:classificationScheme:NYSETicker" value="SUNW">
+        <rim:Name>
+          <rim:LocalizedString value="Sun Microsystems" xml:lang="en-US"/>
+        </rim:Name>
+      </rim:ExternalIdentifier>
+      <rim:Address city="Burlington" country="USA" postalCode="01867" stateOrProvince="MA" street="Network Dr." streetNumber="1"/>
+      <rim:TelephoneNumber areaCode="781" countryCode="1" number="442-0703" phoneType="OfficePhone"/>
+      <rim:TelephoneNumber areaCode="781" countryCode="1" number="442-0704" phoneType="FAX"/>
+    </rim:Organization>
+    <!--AffiliatedWith assoc to add primary contact as user of organization -->
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:AffiliatedWith" id="urn:uuid:e11f6224-d65d-46d7-99da-8d0b912cea90" sourceObject="urn:freebxml:registry:predefinedusers:farrukh" targetObject="urn:freebxml:registry:demoDB:Sun"/>
+    <!-- NYSE-Ticker scheme -->
+    <rim:ObjectRef id="urn:freebxml:registry:demoDB:classificationScheme:NYSETicker"/>
+    <!-- ClassificationNode for "Software Publishers" -->
+    <rim:ObjectRef id="urn:uuid:4333395d-05ef-48d9-b905-f1468cc4a47a"/>
+    <!-- ClassificationNode for "Computer and Peripheral Equipment Manufacturing" -->
+    <rim:ObjectRef id="urn:uuid:5814e155-2b4e-464e-bcf1-fa045911ed94"/>
+    <!-- ClassificationNode for "United State" -->
+    <rim:ObjectRef id="urn:uuid:1152986f-f5fd-4e69-963b-9088678a2e73"/>
+    <rim:Service lid="urn:freebxml:registry:demoDB:ebXMLRegistryService" id="urn:freebxml:registry:demoDB:ebXMLRegistryService">
+      <rim:Name>
+        <rim:LocalizedString value="ebXML Registry Service" xml:lang="en-US"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="Sun's OASIS ebXML Registry V3.0 service" xml:lang="en-US"/>
+      </rim:Description>
+      <rim:ServiceBinding service="urn:freebxml:registry:demoDB:ebXMLRegistryService" accessURI="http://registry.csis.hku.hk:8201/ebxmlrr/registry/soap" id="urn:freebxml:registry:demoDB:ebXMLRegistryServiceBinding">
+        <rim:Name>
+          <rim:LocalizedString value="ebXML Registry Service SOAP binding" xml:lang="en-US"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString value="SOAP binding to Sun's ebXML Registry Service" xml:lang="en-US"/>
+        </rim:Description>
+        <rim:SpecificationLink id="urn:freebxml:registry:demoDB:ebXMLRegistryServiceSpecLink" serviceBinding="urn:freebxml:registry:demoDB:ebXMLRegistryServiceBinding" specificationObject="urn:freebxml:registry:demoDB:ebXMLRegistryServiceSpecObj">
+          <rim:Name>
+            <rim:LocalizedString value="Link to registry WSDL spec." xml:lang="en-US"/>
+          </rim:Name>
+          <rim:Description>
+            <rim:LocalizedString value="Link to registry WSDL spec." xml:lang="en-US"/>
+          </rim:Description>
+        </rim:SpecificationLink>
+      </rim:ServiceBinding>
+    </rim:Service>
+    <!--OffersService Association -->
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:OffersService" id="urn:uuid:4a44232c-c95a-4456-aef9-9eb119a1282e" sourceObject="urn:freebxml:registry:demoDB:Sun" targetObject="urn:freebxml:registry:demoDB:ebXMLRegistryService"/>
+    <rim:ExternalLink externalURI="http://www.oasis-open.org/committees/regrep/documents/2.5/services/ebXMLRegistrySOAPService.wsdl" id="urn:freebxml:registry:demoDB:ebXMLRegistryServiceSpecObj">
+      <rim:Name>
+        <rim:LocalizedString value="WSDL description for ebXML Registry"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="WSDL description for ebXML Registry"/>
+      </rim:Description>
+    </rim:ExternalLink>
+    <rim:User id="urn:freebxml:registry:predefinedusers:farrukh">
+      <rim:Address city="Burlington" country="USA" stateOrProvince="MA" street="Network Dr." streetNumber="1"/>
+      <rim:PersonName firstName="Farrukh" lastName="Najmi" middleName="Salahudin"/>
+      <rim:TelephoneNumber areaCode="781" countryCode="1" number="442-9017" phoneType="OfficePhone"/>
+      <rim:TelephoneNumber areaCode="781" countryCode="1" number="442-9018" phoneType="FAX"/>
+      <rim:EmailAddress address="Farrukh.Najmi@Sun.COM" type="work"/>
+      <rim:EmailAddress address="farrukh_najmi@yahoo.com" type="alternate work"/>
+    </rim:User>
+    <!--HasMember Associations -->    
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:HasMember" id="urn:uuid:04df7ac2-edb3-4215-9af3-918d72741866" sourceObject="urn:uuid:9c26accf-4c83-4e5c-b330-c4a10721faea" targetObject="urn:freebxml:registry:demoDB:Sun"/>
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:HasMember" id="urn:uuid:4f4634cb-a78c-48fe-a5d8-d4529cacc26f" sourceObject="urn:freebxml:registry:demoDB:SunHWPackage" targetObject="urn:freebxml:registry:demoDB:Sun"/>
+
+    <!--Person added as a test data for Person class-->
+    <rim:Person lid="urn:freebxml:registry:demoDB:TestPerson" id="urn:freebxml:registry:demoDB:TestPerson">
+      <rim:Address city="Burlington" country="USA" stateOrProvince="MA" street="Network Dr." streetNumber="1"/>
+      <rim:PersonName firstName="Test" lastName="Person" middleName=""/>
+      <rim:TelephoneNumber areaCode="781" countryCode="1" number="442-9017" phoneType="OfficePhone"/>
+      <rim:TelephoneNumber areaCode="781" countryCode="1" number="442-9018" phoneType="FAX"/>
+      <rim:EmailAddress address="Farrukh.Najmi@Sun.COM" type="work"/>
+      <rim:EmailAddress address="farrukh_najmi@yahoo.com" type="alternate work"/>
+    </rim:Person>
+    <rim:RegistryPackage id="urn:uuid:9c26accf-4c83-4e5c-b330-c4a10721faea">
+      <rim:Name>
+        <rim:LocalizedString value="Suns Java Package"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="Suns package of Java related products and services"/>
+      </rim:Description>
+      <rim:RegistryObjectList>
+        <rim:ExternalLink externalURI="http://java.sun.com" id="urn:uuid:53b5d5c0-ddf9-4a57-bd6e-fe4a2ab262af">
+          <rim:Name>
+            <rim:LocalizedString value="The source for Java Technologies"/>
+          </rim:Name>
+          <rim:Description>
+            <rim:LocalizedString value="The source for Java Technologies"/>
+          </rim:Description>
+        </rim:ExternalLink>
+        <rim:ExtrinsicObject id="urn:uuid:98b89cd4-87c2-4ddd-a08c-d85cd12fc947">
+          <rim:Name>
+            <rim:LocalizedString value="JAXR 1.0 Final"/>
+          </rim:Name>
+          <rim:Description>
+            <rim:LocalizedString value="Final version of Java API for XML Registries (JAXR) specification"/>
+          </rim:Description>
+        </rim:ExtrinsicObject>
+        <rim:ExtrinsicObject id="urn:uuid:f068d199-d68b-4abc-9b91-91d47f088633">
+          <rim:Name>
+            <rim:LocalizedString value="JAXR 1.0 Proposed Final Draft"/>
+          </rim:Name>
+          <rim:Description>
+            <rim:LocalizedString value="Proposed Final Draft of Java API for XML Registries (JAXR) specification"/>
+          </rim:Description>
+        </rim:ExtrinsicObject>
+        <rim:ExternalLink externalURI="http://jcp.org/jsr/detail/93.jsp" id="urn:uuid:2b94a8a8-31e0-4742-aced-8cfad7c6d996">
+          <rim:Name>
+            <rim:LocalizedString value="JAXR Website"/>
+          </rim:Name>
+          <rim:Description>
+            <rim:LocalizedString value="JAXR Website"/>
+          </rim:Description>
+        </rim:ExternalLink>
+        <!--ExternallyLinks assos-->
+        <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:ExternallyLinks" id="urn:uuid:4929699b-14d0-4338-9063-a60d635a09c5" sourceObject="urn:uuid:2b94a8a8-31e0-4742-aced-8cfad7c6d996" targetObject="urn:uuid:f068d199-d68b-4abc-9b91-91d47f088633"/>
+        <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:ExternallyLinks" id="urn:uuid:b1364b08-ff9b-4e6b-821f-c761648b356f" sourceObject="urn:uuid:2b94a8a8-31e0-4742-aced-8cfad7c6d996" targetObject="urn:uuid:98b89cd4-87c2-4ddd-a08c-d85cd12fc947"/>
+        <!--Supersedes AssocType-->
+        <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:Supersedes" id="urn:uuid:13ce7b06-1857-4822-bd2f-c21592880d19" sourceObject="urn:uuid:98b89cd4-87c2-4ddd-a08c-d85cd12fc947" targetObject="urn:uuid:4929699b-14d0-4338-9063-a60d635a09c5"/>
+        <rim:ExtrinsicObject id="urn:uuid:28b4759e-d251-4451-9c66-cda65867d2ec">
+          <rim:Name>
+            <rim:LocalizedString value="JAXM Specification"/>
+          </rim:Name>
+          <rim:Description>
+            <rim:LocalizedString value="Java API for XML Messaging (JAXM) specification"/>
+          </rim:Description>
+        </rim:ExtrinsicObject>
+        <rim:ExternalLink externalURI="http://jcp.org/jsr/detail/67.jsp" id="urn:uuid:a389cff7-d0f8-406c-b7bd-d451e58f090e">
+          <rim:Name>
+            <rim:LocalizedString value="JAXM Website"/>
+          </rim:Name>
+          <rim:Description>
+            <rim:LocalizedString value="JAXM Website"/>
+          </rim:Description>
+        </rim:ExternalLink>
+        <!--ExternallyLinks Association-->
+        <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:ExternallyLinks" id="urn:uuid:ba30f7ac-35ee-4d4e-ac63-ed967c8d69bc" sourceObject="urn:uuid:a389cff7-d0f8-406c-b7bd-d451e58f090e" targetObject="urn:uuid:28b4759e-d251-4451-9c66-cda65867d2ec"/>
+      </rim:RegistryObjectList>
+    </rim:RegistryPackage>
+    <rim:RegistryPackage lid="urn:freebxml:registry:demoDB:SunHWPackage" id="urn:freebxml:registry:demoDB:SunHWPackage">
+      <rim:Name>
+        <rim:LocalizedString value="Suns hardware package"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="Suns package for hardware related products and services"/>
+      </rim:Description>
+      <rim:RegistryObjectList>
+        <rim:ExternalLink externalURI="http://www.sun.com/hardware/" id="urn:uuid:69d7ec05-b6a6-42fd-93d2-d626b0343fde">
+          <rim:Name>
+            <rim:LocalizedString value="Sun Microsystems Hardware"/>
+          </rim:Name>
+          <rim:Description>
+            <rim:LocalizedString value="Sun Microsystems Hardware products"/>
+          </rim:Description>
+        </rim:ExternalLink>
+      </rim:RegistryObjectList>
+    </rim:RegistryPackage>
+    
+    <!--
+    Parameterized Adhoc Query for finding ExtrinsicObjects by lid, versionName and contentVersionName.
+    -->
+    <rim:AdhocQuery lid="urn:oasis:names:tc:ebxml-regrep:query:RegistryObjectVersionQuery" id="urn:oasis:names:tc:ebxml-regrep:query:RegistryObjectVersionQuery">
+        <rim:Name>
+            <rim:LocalizedString value="RegistryObject Version Query"/>
+        </rim:Name>
+        <rim:Description>
+            <rim:LocalizedString value="Ad hoc query for discovering Registry objects by logical
+identifier and version name"/>
+        </rim:Description>
+        <rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+SELECT  * FROM ExtrinsicObject WHERE lid LIKE ''$lid'' AND versionName LIKE ''$versionName'' ORDER BY versionName;
+        </rim:QueryExpression>
+    </rim:AdhocQuery>
+        
+    <!--
+    Parameterized Adhoc Query for finding ExtrinsicObjects by lid, versionName and contentVersionName.
+    -->
+    <rim:AdhocQuery lid="urn:oasis:names:tc:ebxml-regrep:query:ExtrinsicObjectVersionQuery" id="urn:oasis:names:tc:ebxml-regrep:query:ExtrinsicObjectVersionQuery">
+        <rim:Name>
+            <rim:LocalizedString value="ExtrinsicObject Version Query"/>
+        </rim:Name>
+        <rim:Description>
+            <rim:LocalizedString value="Ad hoc query for discovering ExtrinsicObjects by logical
+identifier, version name and content version name"/>
+        </rim:Description>
+        <rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+SELECT  * FROM ExtrinsicObject WHERE lid LIKE ''$lid'' AND versionName LIKE ''$versionName'' AND contentVersionName LIKE ''$contentVersionName'' ORDER BY versionName, contentVersionName;
+        </rim:QueryExpression>
+    </rim:AdhocQuery>
+    
+    <!--
+    Parameterized Adhoc Query for submitting an entire Arbitrary query.
+    -->
+    <rim:AdhocQuery lid="urn:oasis:names:tc:ebxml-regrep:query:ArbitraryQuery" id="urn:oasis:names:tc:ebxml-regrep:query:ArbitraryQuery">
+        <rim:Name>
+            <rim:LocalizedString value="Arbitrary Query"/>
+        </rim:Name>
+        <rim:Description>
+            <rim:LocalizedString value="Ad hoc query consisting of a SQL query string; replace
+contents of Query String field with your own query"/>
+        </rim:Description>
+        <rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+$query;
+        </rim:QueryExpression>
+    </rim:AdhocQuery>
+  </rim:RegistryObjectList>
+    
+</SubmitObjectsRequest>

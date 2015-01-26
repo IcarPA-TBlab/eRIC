@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- $Header: /cvsroot/ebxmlrr/omar/doc/3.0/BrowserConfigGuide.html,v 1.7 2005/07/25 18:13:57 doballve Exp $-->
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=iso-8859-1">
+	<TITLE>Browser Configuration Guide</TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice 7  (Linux)">
+	<META NAME="CREATED" CONTENT="20041214;19354400">
+	<META NAME="CHANGEDBY" CONTENT="Paul Sterk">
+	<META NAME="CHANGED" CONTENT="20041220;21364600">
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+
+<DIV CLASS="H2">
+<H2>Browser Configuration Guide - Table of Contents</H2>
+<P>The browser configuration guide explains how to configure or
+customize both the Registry Browser Java and Web UIs.</P>
+<OL>
+	<LI><P><A HREF="#userDefinedQueries">User Defined Queries</A></P>
+	<LI><P><A HREF="#userDefinedQueryPanels">Configuring User Defined
+	Query Panels</A></P>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#unauthUsers">Setting
+	Credentials For Anonymous Users</A></P>
+</OL>
+</DIV>
+
+<DIV CLASS="H2">
+<H2><A NAME="userDefinedQueries">User Defined Queries</A></H2>
+<P><B>Introduction</B></P>
+<P>The User Defined Queries feature allows
+users to deploy queries without writing code. To do this, complete
+the following steps:</P>
+<OL>
+	<LI><P>Load the query into the database</P>
+	<LI><P>Configure the query in the config.xml file.</P>
+</OL>
+<P><B>Loading Queries into the Database</B></P>
+<OL>
+	<LI><P>First, enter an AdhocQuery entry into the
+	omar/misc/samples/SubmitObjectsRequest_AdhocQueries.xml file. Below
+	is an example:</P>
+	<PRE>&lt;rim:AdhocQuery lid=&quot;urn:oasis:names:tc:ebxml-regrep:query:RegistryObjectVersionQuery&quot;
+      id=&quot;UUID of Query&quot;&gt;
+      &lt;rim:Name&gt;
+          &lt;rim:LocalizedString value=&quot;Name of Query&quot;/&gt;
+      &lt;/rim:Name&gt;
+      &lt;rim:Description&gt;
+          &lt;rim:LocalizedString value=&quot;Description of Query&quot;/&gt;
+      &lt;/rim:Description&gt;
+      &lt;rim:QueryExpression queryLanguage=&quot;urn:uuid:c26215e8-7732-4c7f-8b04-bd8115c325e9&quot;&gt;
+          SELECT * FROM ExtrinsicObject WHERE lid LIKE '$lid' AND versionName LIKE '$versionName' AND
+           contentVersionName LIKE '$contentVersionName' ORDER BY versionName, contentVersionName;
+      &lt;/rim:QueryExpression&gt;
+  &lt;/rim:AdhocQuery&gt;</PRE>
+        </P>In the above example, the $lid, $versionName and
+	$contentVersionName are all parameterized query placeholder values.
+	The Registry Client will insert values for one, some or all of these
+	into a query form. The Thin Client ensures that the query form's
+	fields have a one to one mapping with a placeholder value. In this
+	example, a query form may have three input fields, each one mapping
+	to a placeholder value. When the Registry Client submits the query,
+	each of the user's values are mapped to correct placeholder value.
+	The Thin Client will then insert the values for each placeholder
+	into the SQL string. If there is no value mapped to the placeholder,
+	the predicate that contains that placeholder is pruned from the SQL
+	query string. The Thin Client then submits the query to the JAXR
+	Provider Package.</P></LI>
+	<LI><P>Run ant loadAdhocQuery to load the contents of the
+	SubmitObjectsRequest_AdhocQueries.xml file into the database.</P></LI>
+</OL>
+<P><B>Configuring Queries in config.xml</B></P>
+<OL>
+	<LI><P STYLE="margin-bottom: 0in">Place an entry for your new query
+	in the
+	omar/src/java/it/cnr/eric/client/ui/common/conf/config.xml
+	file. For example:</P>
+	<PRE STYLE="margin-bottom: 0.2in">&lt;Query&gt;</PRE>
+		<PRE STYLE="margin-bottom: 0.2in">&lt;AdhocQueryRef id=&quot;urn:uuid:d242d228-eba7-43e0-91ce-88aacbcc167c&quot;/&gt;
+    &lt;Parameter parameterName=&quot;$objectTypePath&quot; datatype=&quot;taxonomyElement&quot; defaultValue=&quot;RegistryObject&quot;&gt;
+      &lt;rim:Name&gt;
+        &lt;rim:LocalizedString value=&quot;Object Type&quot;/&gt;
+      &lt;/rim:Name&gt;
+      &lt;rim:Description&gt;
+        &lt;rim:LocalizedString value=&quot;Type of Registry Object&quot;/&gt;
+      &lt;/rim:Description&gt;
+      &lt;rim:SlotList&gt;
+        &lt;rim:Slot name=&quot;domain&quot;&gt;
+          &lt;rim:ValueList&gt;
+            &lt;rim:Value&gt;urn:uuid:a7ec3db9-9342-4016-820c-cff66c0bb021&lt;/rim:Value&gt;
+          &lt;/rim:ValueList&gt;
+        &lt;/rim:Slot&gt;
+      &lt;/rim:SlotList&gt;
+    &lt;/Parameter&gt;
+    &lt;Parameter parameterName=&quot;$name&quot; datatype=&quot;string&quot; defaultValue=&quot;%&quot;&gt;
+      &lt;rim:Name&gt;
+        &lt;rim:LocalizedString value=&quot;Name&quot;/&gt;
+      &lt;/rim:Name&gt;
+      &lt;rim:Description&gt;
+        &lt;rim:LocalizedString value=&quot;Name of Registry Object&quot;/&gt;
+      &lt;/rim:Description&gt;
+    &lt;/Parameter&gt;
+    &lt;Parameter parameterName=&quot;$description&quot; datatype=&quot;string&quot; defaultValue=&quot;%&quot;&gt;
+      &lt;rim:Name&gt;
+        &lt;rim:LocalizedString value=&quot;Description&quot;/&gt;
+      &lt;/rim:Name&gt;
+      &lt;rim:Description&gt;
+        &lt;rim:LocalizedString value=&quot;Description of Registry Object&quot;/&gt;&lt;/rim:Description&gt;
+    &lt;/Parameter&gt;
+    &lt;Parameter parameterName=&quot;$classificationPath&quot; datatype=&quot;taxonomyElement&quot;&gt;
+      &lt;rim:Name&gt;
+        &lt;rim:LocalizedString value=&quot;Classification Schemes&quot;/&gt;
+      &lt;/rim:Name&gt;
+      &lt;rim:Description&gt;
+        &lt;rim:LocalizedString value=&quot;All Classification Schemes in Registry&quot;/&gt;
+      &lt;/rim:Description&gt;
+      &lt;rim:SlotList&gt;
+        &lt;rim:Slot name=&quot;domain&quot;&gt;
+          &lt;rim:ValueList&gt;
+            &lt;rim:Value&gt;urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ClassificationScheme&lt;/rim:Value&gt;
+          &lt;/rim:ValueList&gt;
+        &lt;/rim:Slot&gt;
+      &lt;/rim:SlotList&gt;
+    &lt;/Parameter&gt; </PRE>
+	<PRE STYLE="margin-bottom: 0.2in">&lt;/Query&gt;</PRE>
+	<P STYLE="margin-bottom: 0in">The above example shows one &lt;Query&gt;
+	entry. It has an &lt;AdhocQueryRef&gt; that points to the query
+	stored in the database. There are four parameters, one for each of
+	the parameterized query placeholders - $objectTypePath, $name,
+	$description and $classificationPath. Two parameters have a data
+	type of 'string', and two have a type of 'taxonomyElement'.</P>
+        <P>The following datatypes are currently supported:</P>
+	<TABLE WIDTH=594 BORDER=1 CELLPADDING=4 CELLSPACING=3>
+		<COL WIDTH=145>
+		<COL WIDTH=422>
+		<THEAD>
+			<TR VALIGN=TOP>
+				<TH WIDTH=145 BGCOLOR="#e6e6e6">
+					<P>Datatype</P>
+				</TH>
+				<TH WIDTH=422 BGCOLOR="#e6e6e6">
+					<P>Default Component</P>
+				</TH>
+			</TR>
+		</THEAD>
+		<TBODY>
+			<TR VALIGN=TOP>
+				<TD WIDTH=145>
+					<P>string</P>
+				</TD>
+				<TD WIDTH=422>
+					<P>Text field</P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=145>
+					<P>taxonomyElement</P>
+				</TD>
+				<TD WIDTH=422>
+					<P>Drop down list box - Single Classification Scheme or
+					Concept<BR>Tree - All Classification Schemes</P>
+				</TD>
+			</TR>
+			<TR VALIGN=TOP>
+				<TD WIDTH=145>
+					<P>boolean</P>
+				</TD>
+				<TD WIDTH=422>
+					<P>Checkbox</P>
+				</TD>
+			</TR>
+		</TBODY>
+	</TABLE>
+	<span style="font-style: italic;">Table 1</span>
+        <P>In the above
+	example, the $objectTypePath taxonomyElement has a uuid that points
+	to a single classification scheme. As such, it is displayed using a
+	drop down list box. The $classificationPath taxonomyElement had a
+	LID with the value
+	urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ClassificationScheme.
+	Therefore, it points to all classification schemes, and according to
+	Table 1, is displayed with a tree component.</P>
+        <P>The first entry
+	in the config.xml file is the first entry displayed in the drop down
+	list box. You can change the order of the &lt;Query&gt; entries, to
+	have a different query be the first displayed.</P>
+	</LI>
+	<LI><P>Remove your
+	~/omar/3.0-post-alpha2-dev/jaxr-ebxml/registry-browser-config.xml
+	file. The new config.xml will be deployed in its place.</P></LI>
+	<LI><P>Run ant deploy.restart</P></LI>
+	<LI><P>Verify that you can see your new queries in the Thin Client's
+	Discovery panel.</P></LI>
+</OL>
+<P><B>Troubleshooting</B></P>
+<OL>
+	<LI><P>If you get the following exception in your browser or log
+	file:</P>
+	<PRE><B>exception</B> 
+javax.servlet.ServletException: Error testing property 'textValue' in bean of type null
+javax.faces.webapp.FacesServlet.service(FacesServlet.java:209)</PRE>
+	<PRE><B>root cause</B>
+javax.faces.el.PropertyNotFoundException: Error testing property 'textValue' in bean of type null
+com.sun.faces.el.PropertyResolverImpl.getType(PropertyResolverImpl.java:342)
+com.sun.faces.el.impl.ArraySuffix.getType(ArraySuffix.java:240)</PRE>
+        <P>This means that either:</P>
+	<OL>
+		<LI><P>The value of a parameterName attribute of a &lt;Parameter&gt;
+		element does not match any placeholders in the SQL string in the
+		database. For example, using the ExtrinsicObject Version query
+		above, a parameterName=&quot;$versionDescription&rdquo; would cause
+		this exception because 'versionDescription' is not a valid
+		placeholder in the SQL string.</P></LI>
+		<LI><P>The Thin Client was not able to parse the placeholder in the
+		SQL string. It may be do to an invalid character in the SQL string.</P></LI>
+	</OL>
+</OL>
+</DIV>
+
+<DIV CLASS="H2">
+<H2><A NAME="userDefinedQueryPanels">Configuring User DefinedQuery Panels</A></H2>
+<P>The user defined query panels can be configured through the
+following properties:</P>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=4 CELLSPACING=3>
+	<COL WIDTH=128*>
+	<COL WIDTH=128*>
+	<THEAD>
+		<TR VALIGN=TOP>
+			<TH WIDTH=50% BGCOLOR="#cccccc">
+				<P>Property</P>
+			</TH>
+			<TH WIDTH=50% BGCOLOR="#cccccc">
+				<P>Description</P>
+			</TH>
+		</TR>
+	</THEAD>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=50%>
+				<P>jaxr-ebxml.registryBrowser.objectTypeCombo.initialSelectionIndex</P>
+			</TD>
+			<TD WIDTH=50%>
+				<P>This sets the initial index of the Object Type drop down list.
+				By default, the first entry displayed is RegistryObject with
+				index 1. This property is used to display other object types as
+				the first entry seen.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=50%>
+				<P>jaxr-ebxml.registryBrowser.objectTypeCombo.initialFetchDepth</P>
+			</TD>
+			<TD WIDTH=50%>
+				<P>This sets the depth of the initial fetch of the Object Type
+				drop down list. The default is 4. It can be used to limit the
+				fetch if performance problems, or other issues, occur.</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=50%>
+				<P>jaxr-ebxml.registryBrowser.ConceptsTreeModel.hiddenSchemesList</P>
+			</TD>
+			<TD WIDTH=50%>
+				<P>This indicates which classification schemes to hide from the
+				user. This is done through a pipe-delimited list of UUIDs.</P>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P><I>Table 2</I></P>
+</DIV>
+
+<DIV CLASS="H2">
+<H2><A NAME="unauthUsers">Setting Credentials For Anonymous Users</A></H2>
+<P>This feature involves configuring credentials for anonymous users.
+ In other words, it is possible to load credentials for one user
+without requiring explicit authentication.  This can be useful when
+doing prototyping or development, when the overhead of explicit
+authentication is not needed.</P>
+<P>Please follow these steps:</P>
+<OL>
+	<LI><P>Create a user and its credentials.  If such a user does not
+	already exist, do the following:</P>
+	<OL>
+		<LI><P>Create the following properties in omar/build.properties:</P>
+		<PRE>testUserAlias=&quot;testuser&rdquo;<BR>
+                testUserPass=&quot;testuserpasswd&rdquo;</PRE></LI>
+		<LI><P>Run the 'ant createTestUser' target.  This will create the
+		Test User and load its credentials into the client keystore file. 
+		Default keystore file is ${user.home}/omar/&lt;current
+		build&gt;/jaxr-ebxml/security/keystore.jks.</P></LI>
+	</OL>
+	<LI><P>In the jaxr-ebxml.properties file, set the key password of
+	the user.  For example:</P>
+	<PRE>jaxr-ebxml.security.keypass=testuserpasswd</PRE></LI>
+	<LI><P>In omar-common.properties, set the name of the anonymous user
+	principal.  For example:</P>
+	<PRE>omar.security.anonymousUserPrincipalName=testuser</PRE></LI>
+	<LI><P>Run the 'ant deploy' target and bounce Tomcat.</P>
+</OL>
+<P>When you access the Thin Client, it will use the
+omar.security.anonymousUserPrincipalName property to determine the
+user principal. It will then use the jaxr-ebxml.security.keypass
+property to load the user's credentials from the client keystore. 
+These credentials are then set in the ConnectionImpl object for the
+duration of the user's session. The Thin Client will display the
+anonymous user's name in the banner.  If anonymous user credentials
+are not set, the Thin Client will display 'Registry Guest'.</P>
+</DIV>
+
+</BODY>
+</HTML>

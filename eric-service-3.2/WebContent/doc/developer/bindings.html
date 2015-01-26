@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- $Header: /cvsroot/ebxmlrr/omar/doc/3.0/developer/bindings.html,v 1.4 2007/07/27 14:23:36 farrukh_najmi Exp $-->
+    <html>
+      <head>
+          <title>freebXML Registry - JAXB Binding Guide</title>
+      </head>
+      <body class="composite">
+    <div class="h2">
+        <h2><a name="bindings">Working with Bindings</a></h2>
+    <p>The registry implementation has two separate and distinct uses
+    for accessing XML documents from Java using bindings created by
+    JAXB:</p>
+
+    <ul>
+
+    <li>Accessing ebXML documents using bindings created from the
+    schemas in the ebXMLrr spec</li>
+
+    <li>Accessing the client browser configuration document using
+    bindings created from the schema for the configuration file</li>
+
+    </ul>
+
+    <div>
+    <h2>What is JAXB?</h2>
+
+    <p>The <a href="http://java.sun.com/xml/jaxb/">JAXB page on
+    java.sun.com</a> currently (June 2004) defines JAXB as:</p>
+
+    <blockquote>Java Architecture for XML Binding (JAXB) provides a
+    convenient way to bind an XML schema to a representation in Java
+    code. This makes it easy for you to incorporate XML data and
+    processing functions in applications based on Java technology
+    without having to know much about XML itself.</blockquote>
+
+    <p>There is an introductory article on JAXB at <a
+    href="http://java.sun.com/developer/technicalArticles/WebServices/jaxb/"
+    >http://java.sun.com/developer/technicalArticles/WebServices/jaxb/</a>.</p>
+
+    </div>
+
+    <div>
+    <h2>Binding for ebXML Schema</h2>
+
+    <p>Creating the binding code is part of the <tt>ebxmlrr-spec</tt>
+    project, not the <tt>omar</tt> project, since:</p>
+
+    <ul>
+
+    <li>The generated binding code is useful for <em>any</em> ebXML
+    Registry implementation</li>
+
+    <li>The spec doesn't change very often, so the binding seldom
+    needs to be recreated</li>
+
+    </ul>
+
+    <p>The jar files for the binding source code, compiled class
+     files, and documentation are included in the <tt>omar</tt>
+     distribution.</p>
+
+    <div>
+    <h3>Generating the Binding</h3>
+
+    <p>You need the <tt>ebxmlrr-spec</tt> project to be able to
+    generate the binding.</p>
+
+    <p>There are three Ant targets in the <tt>ebxmlrr-spec</tt>
+    project that are useful:</p>
+
+    <ul>
+
+    <li><tt>bindingv3</tt> - generates the Java code</li>
+
+    <li><tt>doc</tt> - creates the Javadoc documentation from the
+    generated code</li>
+
+    <li><tt>dist</tt> - creates the separate jar files for the
+    binding's class files and the binding's Javadocs (and the W3C DSIG
+    Javadocs, which are out of scope for this discussion).  The class
+    files are in <tt>oasis-regrep.jar</tt>, and the Javadocs in
+    <tt>oasis-regrep-doc.jar</tt>.</li>
+
+    </ul>
+
+    </div>
+
+    <div>
+    <h3>Using the Binding</h3>
+
+    <p><tt>oasis-regrep.jar</tt> and <tt>oasis-regrep-doc.jar</tt> are
+    in <tt>misc/lib</tt> (as is <tt>oasis-regrep-src.jar</tt> which
+    contains the source code), and all three are copied into
+    <tt>build/lib</tt> when you build nearly any target.</p>
+
+    <p>To give an idea how often the binding is used, at the time of
+    this writing, the binding classes are used by classes in the
+    following packages:</p>
+
+    <ul>
+
+    <li><tt>org.freebxml.omar.client.ui.swing</tt></li>
+
+
+    <li><tt>org.freebxml.omar.client.ui.thin</tt></li>
+
+
+    <li><tt>org.freebxml.omar.client.xml.registry</tt></li>
+
+
+    <li><tt>org.freebxml.omar.client.xml.registry.infomodel</tt></li>
+
+
+    <li><tt>org.freebxml.omar.common</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.common</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.event</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.event.listener.server</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.interfaces</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.interfaces.rest</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.interfaces.soap</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.lcm</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.lcm.quota</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.persistence</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.persistence.rdb</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.query</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.query.filter</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.query.sql</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.security.authentication</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.security.authorization</tt></li>
+
+
+    <li><tt>org.freebxml.omar.server.util</tt></li>
+
+    </ul>
+
+    </div>
+
+    </div>
+
+    <div>
+    <h2>Binding for Client Configuration</h2>
+
+    <p>The jar files for the bindingcompiled binding and its documentation
+    only are included in the <tt>omar</tt> distribution.</p>
+
+    <div>
+    <h3>Generating the Binding</h3>
+
+    <p>The schema for the user interface configuration XML files is at
+    <tt>src/java/it/cnr/eric/client/ui/common/conf/browserConfig.xsd</tt>.</p>
+
+    <p>There are two Ant targets in the <tt>omar</tt>
+    project that are useful:</p>
+
+    <ul>
+
+    <li><tt>check.bindings</tt> - checks that the generated code
+    is up to date with respect to the schema</li>
+
+    <li><tt>bindings</tt> - creates the
+    generated code from the schema</li>
+
+    </ul>
+
+    </div>
+
+    <div>
+    <h3>Using the Binding</h3>
+
+    <p>It is not surprising that, at the time of this writing, the
+    binding classes are used only within client packages:</p>
+
+    <ul>
+
+    <li><tt>org.freebxml.omar.client.ui.common</tt></li>
+
+
+    <li><tt>org.freebxml.omar.client.ui.swing</tt></li>
+
+
+    <li><tt>org.freebxml.omar.client.ui.thin</tt></li>
+
+    </ul>
+
+    </div>
+
+    </div>
+
+    </div>      </body>
+    </html>

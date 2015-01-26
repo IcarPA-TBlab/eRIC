@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/RegistryEntry3.xml,v 1.1.1.1 2003/09/24 03:41:24 farrukh_najmi Exp $-->
+<AdhocQueryRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 query.xsd">
+	<ResponseOption returnType = "RegistryEntry"/>
+	<FilterQuery>
+		<RegistryEntryQuery>
+			<ClassifiedByBranch>
+				<ClassificationFilter>
+					<Clause>
+						<SimpleClause leftArgument = "nodeRepresentation">
+							<StringClause stringPredicate = "Equal">321118</StringClause>
+						</SimpleClause>
+					</Clause>
+				</ClassificationFilter>
+				<ClassificationSchemeQuery>
+					<NameBranch>
+						<LocalizedStringFilter>
+							<Clause>
+								<SimpleClause leftArgument = "value">
+									<StringClause stringPredicate = "Equal">urn:org:un:spsc:cs2001</StringClause>
+								</SimpleClause>
+							</Clause>
+						</LocalizedStringFilter>
+					</NameBranch>
+				</ClassificationSchemeQuery>
+			</ClassifiedByBranch>
+			<RegistryEntryFilter>
+				<Clause>
+					<CompoundClause connectivePredicate = "And">
+						<Clause>
+							<SimpleClause leftArgument = "objectType">
+								<StringClause stringPredicate = "Equal">CPP</StringClause>
+							</SimpleClause>
+						</Clause>
+						<Clause>
+							<SimpleClause leftArgument = "status">
+								<StringClause stringPredicate = "Equal">Approved</StringClause>
+							</SimpleClause>
+						</Clause>
+					</CompoundClause>
+				</Clause>
+			</RegistryEntryFilter>
+		</RegistryEntryQuery>
+	</FilterQuery>
+</AdhocQueryRequest>

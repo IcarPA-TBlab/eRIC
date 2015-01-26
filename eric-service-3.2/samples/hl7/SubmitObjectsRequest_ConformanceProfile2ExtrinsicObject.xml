@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/hl7/SubmitObjectsRequest_ConformanceProfile2ExtrinsicObject.xml,v 1.6 2007/05/25 17:18:52 farrukh_najmi Exp $ -->
+<!-- Must be loaded after SubmitObjectsRequest_objectTypesSchemes -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../../../../ebxmlrr-spec/misc/3.0/schema/lcm.xsd">
+  <rs:RequestSlotList>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+  <rim:RegistryObjectList>
+    <rim:ExtrinsicObject id="urn:uuid:a4acaca0-4c29-4ce3-afe3-d370eadf1853" objectType="urn:uuid:0bebcce6-e784-4472-af6b-8f3fb322b02d">
+      <rim:Name>
+        <rim:LocalizedString value="Sample HL7 Conformance Profile 2"/>
+      </rim:Name>
+    </rim:ExtrinsicObject>
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

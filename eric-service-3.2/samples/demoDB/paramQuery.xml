@@ -1,0 +1,15 @@
+﻿<!--
+     Parameterized Adhoc Query to get Clients User object.
+     Matches the User object for the client.
+-->
+<rim:AdhocQuery id="urn:oasis:names:tc:ebxml-regrep:query:GetCallersUser">
+  <rim:Name>
+    <rim:LocalizedString value="Get Client's User"/>
+  </rim:Name>
+  <rim:Description>
+    <rim:LocalizedString value="Parameterized Adhoc Query for getCallersUser. Matches the User object for the client."/>
+  </rim:Description>
+  <rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+  SELECT * FROM User_ u WHERE u.id = $currentUser;
+  </rim:QueryExpression>
+</rim:AdhocQuery>

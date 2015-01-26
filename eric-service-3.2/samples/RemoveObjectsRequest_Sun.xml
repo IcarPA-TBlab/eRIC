@@ -1,0 +1,13 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/RemoveObjectsRequest_Sun.xml,v 1.3 2005/01/31 20:33:13 farrukh_najmi Exp $-->
+<rs:RemoveObjectsRequest 
+	xmlns = "urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" 
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0 http://www.oasis-open.org/committees/regrep/documents/2.1/schema/rim.xsd urn:oasis:names:tc:ebxml-regrep:registry:xsd:2.1 http://www.oasis-open.org/committees/regrep/documents/2.1/schema/rs.xsd" 
+	xmlns:rim = "urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" 
+	xmlns:rs = "urn:oasis:names:tc:ebxml-regrep:registry:xsd:2.1">  
+
+	<ObjectRefList>
+		<ObjectRef id="urn:freebxml:registry:demoDB:Sun"/>
+	</ObjectRefList>
+</rs:RemoveObjectsRequest>

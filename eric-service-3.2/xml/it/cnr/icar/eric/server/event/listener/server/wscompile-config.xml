@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wscompile-config.xml>
+
+<configuration
+    xmlns="http://java.sun.com/xml/ns/jax-rpc/ri/config">
+    <wsdl
+        location="../ebxmlrr-spec/misc/2.5/services/NotificationListenerBinding.wsdl"
+        packageName="it.cnr.eric.server.event.listener.server" />
+</configuration>

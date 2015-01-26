@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<webServices
+    xmlns="http://java.sun.com/xml/ns/jax-rpc/ri/dd"
+    version="1.0"
+    targetNamespaceBase="urn:oasis:names:tc:ebxml-regrep:cms:wsdl:3.0"
+    typeNamespaceBase="urn:oasis:names:tc:ebxml-regrep:query:xsd:3.0"
+    urlPatternBase="/validationTest">
+
+    <endpoint
+        name="CPPAValidation"
+        displayName="Testing Content Validation Service that validates CPPA documents."
+        description="Validates CPPA documents."
+        wsdl="/WEB-INF/CMSBindings.wsdl"
+        interface="it.cnr.eric.common.jaxrpc.cms.validation.server.ContentValidationServicePortType"
+        implementation="it.cnr.eric.service.validationTest.cppaValidation.CPPAValidation"
+	model="/WEB-INF/model-wsdl-rpcenc.xml.gz"/>
+
+    <endpointMapping
+        endpointName="CPPAValidation"
+        urlPattern="/cppaValidation"/>
+
+</webServices>

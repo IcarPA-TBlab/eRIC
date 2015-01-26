@@ -1,0 +1,38 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/AE1.xml,v 1.2 2005/03/21 18:39:51 farrukh_najmi Exp $-->
+<AdhocQueryRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 query.xsd">
+	<ResponseOption returnType = "LeafClass"/>
+	<FilterQuery>
+		<AuditableEventQuery>
+			<TargetAssociationBranch>
+				<AssociationFilter>
+					<Clause>
+						<SimpleClause leftArgument = "associationType">
+							<StringClause stringPredicate = "Equal">AuditedBy</StringClause>
+						</SimpleClause>
+					</Clause>
+				</AssociationFilter>
+				<RegistryEntryQuery>
+					<NameBranch>
+						<LocalizedStringFilter>
+							<Clause>
+								<SimpleClause leftArgument = "value">
+									<StringClause stringPredicate = "Equal">urn:path:myitem</StringClause>
+								</SimpleClause>
+							</Clause>
+						</LocalizedStringFilter>
+					</NameBranch>
+				</RegistryEntryQuery>
+			</TargetAssociationBranch>
+			<AuditableEventFilter>
+				<Clause>
+					<SimpleClause leftArgument = "timestamp_">
+						<RationalClause logicalPredicate = "GE">
+							<DateTimeClause>1999-05-31T13:20:00-05:00</DateTimeClause>
+						</RationalClause>
+					</SimpleClause>
+				</Clause>
+			</AuditableEventFilter>
+		</AuditableEventQuery>
+	</FilterQuery>
+</AdhocQueryRequest>

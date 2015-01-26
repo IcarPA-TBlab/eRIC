@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/extDB/wsrp/SubmitObjectsRequest_WSRPExample.xml,v 1.4 2007/05/25 17:18:52 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../../../../../ebxmlrr-spec/misc/3.0/schema/lcm.xsd">
+  <rs:RequestSlotList>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+	<rim:RegistryObjectList>
+		<!--The main Producer Service. The Portlets it hosts are modeled as related Services-->
+		<rim:Service id="urn:acme:service:producer:newsAndStock">
+			<!--Slot for the requiresRegistration attribute-->
+			<rim:Slot name="urn:oasis:names:tc:wsrp:ServiceDescription:requiresRegistration">
+				<rim:ValueList>
+					<rim:Value>false</rim:Value>
+				</rim:ValueList>
+			</rim:Slot>
+			<!--Slot for the requiresInitCookie attribute-->
+			<rim:Slot name="urn:oasis:names:tc:wsrp:ServiceDescription:requiresInitCookie">
+				<rim:ValueList>
+					<rim:Value>perUser</rim:Value>
+				</rim:ValueList>
+			</rim:Slot>
+			
+			<rim:Name>
+				<rim:LocalizedString value="label.ACMEWSRPProducerService" xml:lang="en-US"/>
+			</rim:Name>
+			<rim:Description>
+				<rim:LocalizedString value="label.ACMEWSRPProducerService.desc" xml:lang="en-US"/>
+			</rim:Description>
+			<!--Classify this Service with the canonical objectType for a Producer Service -->
+			<rim:Classification id="urn:acme:service:producer:newsAndStock:classification:producer" classificationNode="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:objectType:Producer" classifiedObject="urn:acme:service:producer:newsAndStock">
+				<rim:Name>
+					<rim:LocalizedString value="label.producer" xml:lang="en-US"/>
+				</rim:Name>
+			</rim:Classification>
+      
+			<!--Classify this Service as supporting version 1.0 of WSRP specs -->
+      <rim:Classification id="urn:acme:service:producer:newsAndStock:classification:wsrpVersion" classificationNode="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:classificationScheme:WSRPVersion:10" classifiedObject="urn:acme:service:producer:newsAndStock">
+        <rim:Name>
+          <rim:LocalizedString value="label.1_0" charset="UTF-8" xml:lang="en-US"/>
+        </rim:Name>
+      </rim:Classification>
+      
+			
+			<rim:ServiceBinding service="urn:acme:service:producer:newsAndStock" accessURI="http://content.acme.com/producer_service" id="producerServiceSOAPBinding">
+				<rim:Name>
+					<rim:LocalizedString value="label.ACMEWSRPProducerServiceSOAPbinding" xml:lang="en-US"/>
+				</rim:Name>
+				<rim:Description>
+					<rim:LocalizedString value="label.ACMEWSRPProducerServiceSOAPbinding.desc" xml:lang="en-US"/>
+				</rim:Description>
+				<rim:SpecificationLink serviceBinding="producerServiceSOAPBinding" id="producerServiceSOAPBindingSpecLink" specificationObject="wsrp_v1_types.xsd">
+					<rim:Name>
+						<rim:LocalizedString value="label.LinktoACMEProducerServiceWSDL" xml:lang="en-US"/>
+					</rim:Name>
+					<rim:Description>
+						<rim:LocalizedString value="label.LinktoACMEProducerServiceWSDL.desc" xml:lang="en-US"/>
+					</rim:Description>
+				</rim:SpecificationLink>
+			</rim:ServiceBinding>
+		</rim:Service>
+		<!--Associate Org and Service with OffersService canonical associationType -->
+		<rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:OffersService" id="urn:uuid:4a44232c-c95a-4456-aef9-9eb119a1282e" sourceObject="urn:acme:organization:acme" targetObject="urn:acme:service:producer:newsAndStock"/>
+
+    <!--The News Portlet-->
+		<rim:Service id="urn:acme:service:portlet:news">
+			<!--Provide portletHandle for this Portlet-->
+			<rim:Slot name="urn:oasis:names:tc:wsrp:PortletDescription:portletHandle">
+				<rim:ValueList>
+					<rim:Value>NewsPortlet</rim:Value>
+				</rim:ValueList>
+			</rim:Slot>
+			<!--Provide MarkupTypes supported by this Portlet-->
+			<rim:Slot name="urn:oasis:names:tc:wsrp:PortletDescription:markupType">
+				<rim:ValueList>
+					<rim:Value>text/html</rim:Value>
+					<rim:Value>text/xml</rim:Value>
+				</rim:ValueList>
+			</rim:Slot>
+                        
+			<rim:Name>
+				<rim:LocalizedString value="label.ACMENewsPortlet" xml:lang="en-US"/>
+			</rim:Name>
+			<rim:Description>
+				<rim:LocalizedString value="label.ACMENewsPortlet.desc" xml:lang="en-US"/>
+			</rim:Description>
+			<!--Classify this Service with the canonical objectType for a Portlet -->
+			<rim:Classification id="urn:uuid:44003ed0-53c0-4790-a372-e5c3e7f3b91d" classificationNode="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:objectType:Portlet" classifiedObject="urn:acme:service:portlet:news">
+				<rim:Name>
+					<rim:LocalizedString value="label.portlet" xml:lang="en-US"/>
+				</rim:Name>
+			</rim:Classification>
+      
+      <!--Classify this Service as supporting version 1.0 of WSRP specs -->
+      <rim:Classification id="urn:uuid:b4a21c72-2b9c-41b7-ac67-c1f6db210fce" classificationNode="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:classificationScheme:WSRPVersion:10" classifiedObject="urn:acme:service:portlet:news">
+        <rim:Name>
+          <rim:LocalizedString value="label.1_0" charset="UTF-8" xml:lang="en-US"/>
+        </rim:Name>
+      </rim:Classification>
+		</rim:Service>
+
+        
+		<!--Associate host Producer service with Portlet service. Association type is HasPortlet. -->
+		<rim:Association associationType="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:associationType:HasPortlet" id="urn:uuid:4a44232c-c95a-4456-aef9-9eb119a1282e" sourceObject="urn:acme:service:producer:newsAndStock" targetObject="urn:acme:service:portlet:news"/>
+		<!--The Stock Portlet-->
+		<rim:Service id="urn:acme:service:portlet:stock">
+			<!--Provide portletHandle for this Portlet-->
+			<rim:Slot name="urn:oasis:names:tc:wsrp:PortletDescription:portletHandle">
+				<rim:ValueList>
+					<rim:Value>StockPortlet</rim:Value>
+				</rim:ValueList>
+			</rim:Slot>
+			<!--Provide MarkupTypes supported by this Portlet-->
+			<rim:Slot name="urn:oasis:names:tc:wsrp:PortletDescription:markupType">
+				<rim:ValueList>
+					<rim:Value>text/html</rim:Value>
+					<rim:Value>text/xml</rim:Value>
+				</rim:ValueList>
+			</rim:Slot>
+                        
+			<rim:Name>
+				<rim:LocalizedString value="label.ACMEStockPortlet" xml:lang="en-US"/>
+			</rim:Name>
+			<rim:Description>
+				<rim:LocalizedString value="label.ACMEStockPortlet.desc" xml:lang="en-US"/>
+			</rim:Description>
+			<!--Classify this Service with the canonical objectType for a Portlet -->
+			<rim:Classification id="urn:uuid:e61d36a8-0357-4af6-bc46-9be38bdccf8b" classificationNode="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:objectType:Portlet" classifiedObject="urn:acme:service:portlet:stock">
+				<rim:Name>
+					<rim:LocalizedString value="label.portlet" xml:lang="en-US"/>
+				</rim:Name>
+			</rim:Classification>
+      
+      <!--Classify this Service as supporting version 1.0 of WSRP specs -->
+      <rim:Classification id="urn:uuid:13d30715-14a0-4fb7-8517-c3b12e5261a6" classificationNode="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:classificationScheme:WSRPVersion:10" classifiedObject="urn:acme:service:portlet:stock">
+        <rim:Name>
+          <rim:LocalizedString value="label.1_0" charset="UTF-8" xml:lang="en-US"/>
+        </rim:Name>
+      </rim:Classification>
+		</rim:Service>
+		<!--Associate host Producer service with Portlet service. Association type is HasPortlet. -->
+		<rim:Association associationType="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:associationType:HasPortlet" id="urn:uuid:4a44232c-c95a-4456-aef9-9eb119a1282e" sourceObject="urn:acme:service:producer:newsAndStock" targetObject="urn:acme:service:portlet:stock"/>
+
+		<rim:Organization id="urn:acme:organization:acme" primaryContact="urn:freebxml:registry:predefinedusers:farrukh">
+			<rim:Name>
+				<rim:LocalizedString value="label.ACMEContentInc" xml:lang="en-US"/>
+			</rim:Name>
+			<rim:Description>
+				<rim:LocalizedString value="label.ACMEContentInc.desc" xml:lang="en-US"/>
+			</rim:Description>
+			<!--Classify Organization by geography-->
+			<rim:Classification id="urn:uuid:976b2845-d51d-4f9e-9d3e-a9ad149dde0c" classificationNode="urn:uuid:1152986f-f5fd-4e69-963b-9088678a2e73" classifiedObject="urn:freebxml:registry:demoDB:Sun">
+				<rim:Name>
+					<rim:LocalizedString value="label.UnitedStates" xml:lang="en-US"/>
+				</rim:Name>
+			</rim:Classification>
+			<rim:Address city="Burlington" country="USA" postalCode="01867" stateOrProvince="MA" street="Network Dr." streetNumber="1"/>
+			<rim:TelephoneNumber areaCode="123" countryCode="1" number="456-7890" phoneType="OfficePhone"/>
+			<rim:TelephoneNumber areaCode="123" countryCode="1" number="456-7891" phoneType="FAX"/>
+		</rim:Organization>
+    <!--AffiliatedWith assoc to add primary contact as user of organization -->
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:AffiliatedWith" id="urn:uuid:1fd8ba3b-f940-4461-9248-f0af7e187bc8" sourceObject="urn:freebxml:registry:predefinedusers:farrukh" targetObject="urn:acme:organization:acme"/>
+		<!-- ClassificationNode for "United States" -->
+		<rim:ObjectRef id="urn:uuid:1152986f-f5fd-4e69-963b-9088678a2e73"/>
+		
+		<!--Reference the URL to wsrp_v1_types.xsd -->
+		<rim:ExternalLink externalURI="http://www.oasis-open.org/committees/wsrp/specifications/version1/wsrp_v1_types.xsd" id="wsrp_v1_types">
+			<rim:Name>
+				<rim:LocalizedString value="label.WSRPWSDLDataTypeDefinition"/>
+			</rim:Name>
+			<rim:Description>
+				<rim:LocalizedString value="label.WSRPWSDLDataTypeDefinition.desc"/>
+			</rim:Description>
+		</rim:ExternalLink>
+		<rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:ExternallyLinks" id="wsrp_v1_types-Ass" sourceObject="wsrp_v1_types" targetObject="urn:acme:service:producer:newsAndStock"/>
+		<!--Reference the URL to wsrp_v1_interfaces.xsd -->
+		<rim:ExternalLink externalURI="http://www.oasis-open.org/committees/wsrp/specifications/version1/wsrp_v1_interfaces.xsd" id="wsrp_v1_interfaces">
+			<rim:Name>
+				<rim:LocalizedString value="label.WSRPWSDLInterfaceDefinition"/>
+			</rim:Name>
+			<rim:Description>
+				<rim:LocalizedString value="label.WSRPWSDLInterfaceDefinition.desc"/>
+			</rim:Description>
+		</rim:ExternalLink>
+		<rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:ExternallyLinks" id="wsrp_v1_interfaces-Ass" sourceObject="wsrp_v1_interfaces" targetObject="urn:acme:service:producer:newsAndStock"/>
+		<!--Reference the URL to wsrp_v1_bindings.xsd -->
+		<rim:ExternalLink externalURI="http://www.oasis-open.org/committees/wsrp/specifications/version1/wsrp_v1_bindings.xsd" id="wsrp_v1_bindings">
+			<rim:Name>
+				<rim:LocalizedString value="label.WSRPWSDLBindingsDefinition"/>
+			</rim:Name>
+			<rim:Description>
+				<rim:LocalizedString value="label.WSRPWSDLBindingsDefinition.desc"/>
+			</rim:Description>
+		</rim:ExternalLink>
+		<rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:ExternallyLinks" id="wsrp_v1_bindings-Ass" sourceObject="wsrp_v1_bindings" targetObject="urn:acme:service:producer:newsAndStock"/>
+	</rim:RegistryObjectList>
+</SubmitObjectsRequest>

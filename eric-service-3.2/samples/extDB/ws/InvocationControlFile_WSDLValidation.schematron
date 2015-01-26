@@ -1,0 +1,20 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/extDB/ws/InvocationControlFile_WSDLValidation.schematron,v 1.2 2005/11/21 15:52:38 farrukh_najmi Exp $ -->
+<schema xmlns="http://www.ascc.net/xml/schematron">
+	<title>A Schematron rules file for validating WSDL according to the ebXML Registry profile for Web Services</title>
+  <pattern name="Section 6.2 Business Rules: First rule">
+    <rule context="wsdl:binding">
+  	<assert test="soap:binding">message.errorBindingMustBeSoap</assert>
+    </rule>
+  </pattern>
+  <!--pattern name="Section 6.2 Business Rules: Second rule">
+    <rule context="soap:binding">
+  	<assert test="string(@style) = 'document'">message.errorBindingStyleMustBeDocument</assert>
+    </rule>
+  </pattern-->
+  <pattern name="Section 6.2 Business Rules: Second rule">
+    <rule context="soap:binding">
+        <assert test="string(@transport) = 'http://schemas.xmlsoap.org/soap/http'">message.errorTransportMustBeHttp</assert>
+    </rule>
+  </pattern>
+</schema>

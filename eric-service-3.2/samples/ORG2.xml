@@ -1,0 +1,20 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/ORG2.xml,v 1.1.1.1 2003/09/24 03:41:23 farrukh_najmi Exp $-->
+<AdhocQueryRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 query.xsd">
+	<ResponseOption returnType = "LeafClass" returnComposedObjects = "True"/>
+	<FilterQuery>
+		<OrganizationQuery>
+			<OrganizationParentBranch>
+				<NameBranch>
+					<LocalizedStringFilter>
+						<Clause>
+							<SimpleClause leftArgument = "value">
+								<StringClause stringPredicate = "Equal">XYZ</StringClause>
+							</SimpleClause>
+						</Clause>
+					</LocalizedStringFilter>
+				</NameBranch>
+			</OrganizationParentBranch>
+		</OrganizationQuery>
+	</FilterQuery>
+</AdhocQueryRequest>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jaxrpc-ri.xml>
+
+
+<webServices
+    xmlns="http://java.sun.com/xml/ns/jax-rpc/ri/dd"
+    version="1.0"
+    targetNamespaceBase="urn:oasis:names:tc:ebxml-regrep:NotificationListenerBinding:wsdl:2.5"
+    typeNamespaceBase="urn:oasis:names:tc:ebxml-regrep:query:xsd:2.5"
+    urlPatternBase="/ebxmlrr">
+
+    <endpoint
+        name="NotificationListener"
+        displayName="Notification Listener for ebXML Registry"
+        description="Listens to event notifications from an ebXML Registry." 
+        wsdl="/WEB-INF/NotificationListenerBinding.wsdl"
+        interface="it.cnr.eric.common.jaxrpc.notificationListener.server.NotificationListenerPortType"  
+        implementation="it.cnr.icar.eric.server.event.listener.server.NotificationListenerPortTypeImpl" 
+	     model="/WEB-INF/model-wsdl-rpcenc.xml.gz"/>
+ 
+    <endpointMapping
+        endpointName="NotificationListener"
+        urlPattern="/notificationListener"/>
+
+</webServices>

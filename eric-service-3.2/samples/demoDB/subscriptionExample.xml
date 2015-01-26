@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rim:Subscription id="urn:freebxml:registry:demoDB:subscription:EpidemicAlert" selector="urn:freebxml:registry:demoDB:query:EpidemicAlertQuery" xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0  ../../../../ebxmlrr-spec/misc/3.0/schema/rim.xsd">
+  <!--
+       The selector is a reference to a query object that has the following query defined
+       SELECT * FROM Service s, AuditableEvent e, AffectectedObject ao,
+       Classification c1, Classification c2
+       ClassificationNode cn1, ClassificationNode cn2 WHERE
+       e.eventType = 'Created' AND ao.id = s.id AND ao.parent=e.id AND
+       c1.classifiedObject = s.id AND c1.classificationNode = cn1.id AND
+       cn1.path LIKE '%Plumbing' AND
+       c2.classifiedObject = s.id AND c2.classificationNode = cn2.id AND
+       cn2.path LIKE '%A Little Town%'
+  -->
+  <!-- Next endPoint is an email address -->
+  <rim:NotifyAction notificationOption="urn:oasis:names:tc:ebxml-regrep:NotificationOptionType:Objects" endPoint="mailto:farrukh.najmi@sun.com"/>
+  <!-- Next endPoint is a service via reference to its ServiceBinding object -->
+  <rim:NotifyAction notificationOption="urn:oasis:names:tc:ebxml-regrep:NotificationOptionType:Objects" endPoint="urn:freebxml:registry:demoDB:serviceBinding:EpidemicAlertListenerServiceBinding"/>
+</rim:Subscription>

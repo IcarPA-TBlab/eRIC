@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- $Header: /cvsroot/ebxmlrr/omar/doc/3.0/developer/usingNetBeans.html,v 1.7 2007/07/27 14:23:36 farrukh_najmi Exp $-->
+<html>
+  <head>
+      <title>freebXML Registry - Using NetBeans</title>
+  </head>
+  <body class="composite">
+
+    <div class="h2">
+    <h2><a name="usingNetBeans">Using NetBeans</a></h2>
+    <p>NetBeans is an integrated development environment (IDE) for Java
+    and other languages.</p>
+    <p>You can get a free copy of NetBeans at <a
+    href="http://www.netbeans.org/">http://www.netbeans.org/</a>.
+    These instructions assume that you have been able to download,
+    install, and start NetBeans.</p>
+    </div>
+
+    <div class="h2">
+    <h2>Creating a Project for the Registry</h2>
+    <ol>
+    <li>Open the "Project Manager" either from the "Project" menu or
+    by pressing Ctrl+Shift-N.
+    <p align="center"><a name="figure-1"><img src="images/project-menu.png"/><br>
+    <b>Figure 1 - "Project" Menu</b></a></p>
+    </li>
+    <li>Select "New..." in the "Project Manager" dialog box.
+    <p align="center"><a name="figure-2"><img src="images/project-manager.png"/><br>
+    <b>Figure 2 - "Project Manager" Dialog Box</b></a></p>
+    </li>
+    <li>Enter the project name that you want to use (e.g., "omar") in
+    the "Create New 
+    Project" dialog box.
+    <p align="center"><a name="figure-3"><img src="images/create-new-project.png"/><br>
+    <b>Figure 3 - "Create New Project" Dialog Box</b></a></p>
+    </li>
+    </ol>
+    </div>
+
+    <div class="h2">
+    <h2>Adding Files to the Project</h2>
+    <ol>
+    <li>In the "Filesystems" tab, right-click on "Filesystems" and
+    select "Local Directory" in the "Mount" submenu.
+    <p align="center"><a name="figure-4"><img src="images/mount-local-directory.png"/><br>
+    <b>Figure 4 - Mount Local Directory</b></a></p>
+    </li>
+    <li>Navigate to the source code for the registry and select <tt>lib</tt>
+    from the <tt>misc</tt> directory.
+    <p align="center"><a name="figure-5"><img src="images/misc-lib.png"/><br>
+    <b>Figure 5 - Selecting <tt>misc/lib</tt></b></a></p>
+    <p>Although you probably put the source code in a different place
+    than shown in this example, the relative location of
+    subdirectories in the source code will be the same as shown here.</p>
+    </li>
+    <li>Repeat for <tt>src/java</tt> and <tt>test</tt>.
+	<p>For debugging to work, you need to select directories
+containing the root-level Java package.  For omar, they are the
+directories shown, since they each contain a <tt>org</tt> directory
+that corresponds to the <tt>org</tt> in the
+<tt>org.freebxml.omar...</tt> package names used in the source
+code.</p> <p>You could, for example, select <tt>src</tt> instead and
+still be able to edit the code in NetBeans, but you wouldn't be able
+to step into the code when debugging.</p>
+	</li>
+    <li>If you are also debugging the sunxacml code, which is not part
+    of the registry source code, mount its directory as well.</li>
+    </ol>
+    <p>You should now have three (or four) "local filesystems".</p>
+    <p align="center"><a name="figure-6"><img src="images/local-filesystems.png"/><br>
+    <b>Figure 6 - Local Filesystems</b></a></p>
+    </div>
+
+    <div class="h2">
+    <h2>Setting the Project Main Class</h2>
+    <p>When you want to run a project's program from within NetBeans,
+    you should set the project's "main class".</p>
+    <p>This is probably not so necessary when you are attaching to a
+    running program.</p>
+    <ol>
+    <li>Navigate to the class in the "Filesystems" tab.</li>
+    <li>Right-click on the class and select "Set as Project Main Class".
+    <p align="center"><a name="figure-7"><img src="images/project-main-class.png"/><br>
+    <b>Figure 7 - Setting the Project's Main Class</b></a></p>
+    </li>
+    </ol>
+    </div>
+
+    <div class="h2">
+    <h2>Attaching the Debugger to a Running Program</h2>
+    <p>The simplest way to debug the registry server is to start its
+    servlet container with debugging enabled and then attach the
+    NetBeans debugger to the running servlet container.</p>
+    <p>See the <a href="debugging.html">Debugging</a> page for how to
+    start the servlet container with debugging enabled.</p>
+    <ol>
+    <li>Select "Debug > Start Session > Attach...".
+    <p align="center"><a name="figure-8"><img src="images/attach.png"/><br>
+    <b>Figure 8 - Debug > Start Session > Attach...</b></a></p>
+    <li>Enter the correct host name and port number in the dialog box
+    and select "OK".
+    <p align="center"><a name="figure-9"><img src="images/attach-dialog.png"/><br>
+    <b>Figure 9 - "Attach" Dialog Box</b></a></p>
+    </ol>
+    </div>
+
+    <div class="h2">
+    <h2>Setting a Breakpoint</h2>
+    <ol>
+    <li>In the "Filesystems" tab, navigate to the source code file
+    containing the line at which to break, and left-click on the
+    file's name or icon to select the file.</li>
+    <li>In the pane containing the source code, right-click on the
+    line at which to break and select "Toggle Breakpoint".
+    <p align="center"><a name="figure-10"><img src="images/toggle-breakpoint.png"/><br>
+    <b>Figure 10 - Selecting "Toggle Breakpoint"</b></a></p>
+    <p>Alternatively, you can select the line with a left-click and
+    then press Shift-F8 on your keyboard to toggle the breakpoint.
+    </li>
+    </ol>
+    <p>Lines with a breakpoint set are highlighted in pink.</p>
+    </div>
+
+    <div class="h2">
+    <h2><a name="cvsCheckout">Getting OMAR from SF CVS</a></h2>
+    <p>You can use NetBeans to checkout and manage your local copy of the CVS
+    files. These are the instructions to set it up and checkout OMAR (based on
+    NetBeans 4.0):</p>
+    <ol>
+    <li>Create the empty working directory for ebxmlrr (e.g. /home/diego/cvs/ebxmlrr).</li>
+    <li>Use the menus to register your working directory:<br>
+    menu Versioning | Versioning manager | add</li>
+    <li>Enter the repository details as in the picture. If you have write access
+    to CVS and an SSH agent to provide keys, you can use 'ext' authentication and
+    your sourceforge username instead of anonymous.
+    <p align="center"><img alt="Register working directory" src="images/nb-cvs-config-1.jpg"/><br>
+    <a name="figure-11"><b>Figure 11 - Register Working Directory</b></a></p></li>
+    <li>Set the module to 'omar' so that you won't checkout unnecessary modules.
+    <p align="center"><img alt="Set module to 'omar'" src="images/nb-cvs-config-2.jpg"/><br>
+    <a name="figure-11"><b>Figure 12 - Set module to 'omar'</b></a></p></li>
+    <li>Finish the wizard (checkout might take a while). After that you can open
+    the project normaly with NetBeans and your files will have cvs versioning
+    support.</li>
+    </ol>
+    <p>You can also register a working dirictory which you have already checked
+    out (using command line cvs tool, for instance). To process is similar and
+    the other parameter will be filled once you choose the working directory.</p>
+    </div>
+
+  </body>
+</html>

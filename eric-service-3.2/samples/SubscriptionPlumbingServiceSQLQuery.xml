@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by Nikola Stojanovic (self) -->
+<tns:Subscription xmlns:tns="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0 ../../../ebxmlrr-spec/misc/schema/v3/rim.xsd urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0 ../../../ebxmlrr-spec/misc/schema/v3/query.xsd  " id="e3373a7b-4958-4e55-8820-d03a191fb76a" notificationInterval="P10D" selector="urn:uuid:8ea2c0f5-b14a-4f46-88b2-f69e35405d86">
+
+<!-- The selector is a reference to a query object that has the following query defined
+SELECT * FROM Service s, AuditableEvent e, AffectectedObject ao,
+ Classification c1, Classification c2
+ ClassificationNode cn1, ClassificationNode cn2 WHERE
+  e.eventType = 'Created' AND ao.id = s.id AND ao.parent=e.id AND
+  c1.classifiedObject = s.id AND c1.classificationNode = cn1.id AND 
+    cn1.path LIKE '%Plumbing' AND
+  c2.classifiedObject = s.id AND c2.classificationNode = cn2.id AND 
+    cn2.path LIKE '%A Little Town%'	
+-->
+	<Action xsi:type="tns:NotifyActionType" notificationOption="urn:oasis:names:tc:ebxml-regrep:NotificationOptionType:Objects" endPoint="mailto:someone@littletown.us"/>
+</tns:Subscription>

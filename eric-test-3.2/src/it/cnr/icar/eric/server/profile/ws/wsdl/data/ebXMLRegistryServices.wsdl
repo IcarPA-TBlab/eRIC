@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ebXMLRegistrySOAPService" targetNamespace="urn:your:urn:goes:here" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:bindings="urn:your:urn:goes:here" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <documentation>
+    Author: Matt MacKenzie, Farrukh Najmi
+    This is the the informative SOAP binding in WSDL for the OASIS ebXML Registry services.
+    It relies on ebXMLRegistryBindings.wsdl for messages and portTypes.
+  </documentation>
+  <import location="ebXMLRegistryBindings.wsdl" namespace="urn:your:urn:goes:here"/>
+  <service name="TestEbXMLRegistrySOAPService">
+    <port binding="bindings:TestQueryManagerSOAPBinding" name="TestQueryManagerPort">
+      <soap:address location="http://your.server.com/soap"/>
+    </port>
+    <port binding="bindings:TestLifeCycleManagerSOAPBinding" name="TestLifeCycleManagerPort">
+      <soap:address location="http://your.server.com/soap"/>
+    </port>
+  </service>
+</definitions>

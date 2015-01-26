@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/query/filter/AuditableEventQuery.xml,v 1.2 2005/03/29 09:20:40 farrukh_najmi Exp $ -->
+<AuditableEventQuery xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" 
+  xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" 
+  xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" 
+  xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" 
+  xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0  ../../../../../ebxmlrr-spec/misc/3.0/schema/query.xsd">
+  
+  <!--AffectedObjectQuery xsi:type="query:RegistryObjectQueryType">
+    <PrimaryFilter comparator="EQ" domainAttribute="id"
+      value="urn:freebxml:registry:demoDB:Sun" xsi:type="query:StringFilterType"/>
+  </AffectedObjectQuery>
+  
+  <EventTypeQuery xsi:type="query:ClassificationNodeQueryType">
+    <PrimaryFilter comparator="Like" domainAttribute="path"
+      value="%Deprecated%" xsi:type="query:StringFilterType"/>  
+  </EventTypeQuery-->
+  
+  <UserQuery xsi:type="query:UserQueryType">
+    <PrimaryFilter comparator="Like" domainAttribute="id"
+      value="%ikola%" xsi:type="query:StringFilterType"/>  
+  </UserQuery>
+  
+  
+</AuditableEventQuery>

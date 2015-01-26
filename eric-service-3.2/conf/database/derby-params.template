@@ -1,0 +1,77 @@
+
+  <!-- A Tomcat LifecycleListener which performs Derby-specific actions
+       when application or container events occur.  In production this
+       Listener may be moved to the top level of the server.xml file.  The
+       default is to handle application life cycle events.  If moved, will
+       handle container instead.
+
+       When configured for Derby, initialization routines will set
+       ${derby.system.home} property to ${catalina.base}/conf.  That is
+       where derby.properties should be placed.  This Tomcat-specific
+       Listener class does nothing else unless startupServer or
+       shutdownDatabase is true.
+
+       Parameters specific to this implementation include:
+       * startupServer
+         When this parameter is true, the database server is
+         started as the life cycle begins.
+       * shutdownDatabase
+         When this parameter is true, the database is shut down (check
+         pointed) at the end of the life cycle.  Should be 'true' for most
+	 Derby configurations to avoid recovery issues on next startup.  An
+	 exception would be any Derby client mode situation in which other
+	 processes may currently be using the database.  For example, set
+	 this to 'false' if multiple Tomcat / Eric instances share a single
+	 Derby database (when and if that circumstance is known to work at
+	 all - our cache architecture likely makes this unworkable today).
+       * shutdownServer
+         When this parameter is true, the database server is shut
+	 down at the end of the life cycle.
+	 Ignored if startupServer is false
+
+       * helperClass
+         String containing database-specific helper class name.  This
+	 class contains methods which should be executed when life cycle
+	 start and end events occur.  This parameter must have a value.
+       * helperFallbackClass
+	 String containing database-specific helper class name.  This
+	 class is used if the helperClass cannot be instantiated.
+
+       * databaseClass
+         String containing the class name needed to perform database
+	 shut down.
+	 Ignored if shutdownDatabase is false.
+       * databasePassword
+         String containing the password needed to perform database
+	 shut down.
+	 Ignored if shutdownDatabase is false.
+       * databaseShutdownURL
+         String containing the URL needed to perform database shut
+	 down.
+	 Ignored if shutdownDatabase is false.
+       * databaseUsername
+         String containing the username needed to perform database
+	 shut down.
+	 Ignored if shutdownDatabase is false.
+
+       Only the Tomcat-defined className parameter and the helperClass
+       parameter are required.
+
+       ??? For now, shutdown server if we started it.
+  -->
+  <Listener className=
+	    "it.cnr.eric.server.container.TomcatListener"
+	    startupServer="$$DB_START_SERVER$$"
+	    shutdownDatabase="true"
+	    helperClass=
+	    "it.cnr.eric.server.container.DerbyNetworkHelper"
+	    helperFallbackClass=
+	    "it.cnr.eric.server.container.DerbyHelper"
+	    shutdownServer="true"
+	    databaseClass=
+	    "$$DB_DRIVER_CLASS$$"
+	    databasePassword="$$DB_PASSWORD$$"
+	    databaseShutdownURL=
+	    "$$DB_SHUTDOWN_URL$$"
+	    databaseUsername="$$DB_USERNAME$$"
+	    />

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/extDB/wsrp/SubmitObjectsRequest_WSRPSubscription.xml,v 1.3 2007/05/25 17:18:52 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../../../../../ebxmlrr-spec/misc/3.0/schema/lcm.xsd">
+  <rs:RequestSlotList>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+	<rim:RegistryObjectList>
+		<rim:Subscription id="urn:freebxml:registry:demoDB:subscription:EpidemicAlert" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:Subscription" selector="urn:freebxml:registry:demoDB:query:EpidemicAlertQuery">
+			<!-- Next endPoint is an email address -->
+			<rim:NotifyAction notificationOption="urn:oasis:names:tc:ebxml-regrep:NotificationOptionType:Objects" endPoint="mailto:farrukh.najmi@sun.com"/>
+			<!-- Next endPoint is a service via reference to its ServiceBinding object -->
+			<rim:NotifyAction notificationOption="urn:oasis:names:tc:ebxml-regrep:NotificationOptionType:Objects" endPoint="urn:freebxml:registry:demoDB:serviceBinding:EpidemicAlertListenerServiceBinding"/>
+		</rim:Subscription>
+		<!--The query used as a selector for Subscription. -->
+		<!--query:SQLQuery id="urn:freebxml:registry:demoDB:query:EpidemicAlertQuery">
+			<query:QueryString>
+SELECT * from Service s, Name nm, Description d, Slot slot
+WHERE
+ AND (nm.parent = portlet.id AND UPPER ( nm.value ) LIKE UPPER ( ''$name'' ) ) 
+ AND (d.parent = portlet.id AND UPPER ( d.value ) LIKE UPPER ( ''$description'' ) ) 
+ AND (Slot.parent = portlet, Slot.name = ''urn:oasis:names:tc:wsrp:v1:PortletDescription:portletHandle''
+ 	AND Slot.value LIKE ''$portletHandle'')
+ AND (Slot.name = ''urn:oasis:names:tc:wsrp:v1:PortletDescription:markupType''
+ 	AND Slot.value LIKE ''$markupType''
+ AND (portlet.id IN ( SELECT classifiedObject FROM Classification WHERE classificationNode IN (  SELECT id
+ FROM ClassificationNode WHERE path LIKE ''/urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType/RegistryObject/ExtrinsicObject/WSRP/Portlet%'' ) ))        
+        </query:QueryString>
+		</query:SQLQuery-->
+		<!--The listener service and its binding-->
+		<rim:Service id="urn:freebxml:registry:demoDB:service:EpidemicAlertListenerService">
+			<rim:Name>
+				<rim:LocalizedString value="label.WSRPEventListener" xml:lang="en-US"/>
+			</rim:Name>
+			<rim:Description>
+				<rim:LocalizedString value="label.consumerListener" xml:lang="en-US"/>
+			</rim:Description>
+			<rim:ServiceBinding service="urn:freebxml:registry:demoDB:service:EpidemicAlertListenerService" accessURI="http:/listener.consumer.com:8080/NotificationListener/notificationListener" id="urn:freebxml:registry:demoDB:serviceBinding:EpidemicAlertListenerServiceBinding">
+				<rim:Name>
+					<rim:LocalizedString value="label.listenerBinding" xml:lang="en-US"/>
+				</rim:Name>
+			</rim:ServiceBinding>
+		</rim:Service>
+	</rim:RegistryObjectList>
+</SubmitObjectsRequest>

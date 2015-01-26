@@ -1,0 +1,8 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/ClassificationScheme1.xml,v 1.1.1.1 2003/09/24 03:40:34 farrukh_najmi Exp $-->
+<AdhocQueryRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 http://www.oasis-open.org/committees/regrep/documents/2.0/schema/query.xsd">
+	<ResponseOption returnType = "ObjectRef"/>
+	<FilterQuery>
+		<ClassificationSchemeQuery/>
+	</FilterQuery>
+</AdhocQueryRequest>

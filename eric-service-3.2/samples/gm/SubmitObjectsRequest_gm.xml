@@ -1,0 +1,234 @@
+<?xml version = "1.0"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/gm/SubmitObjectsRequest_gm.xml,v 1.7 2005/10/18 15:24:12 vikram_blr Exp $-->
+<rs:SubmitObjectsRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0 http://www.oasis-open.org/committees/regrep/documents/2.1/schema/rim.xsd urn:oasis:names:tc:ebxml-regrep:registry:xsd:2.1 http://www.oasis-open.org/committees/regrep/documents/2.1/schema/rs.xsd" xmlns:rim = "urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs = "urn:oasis:names:tc:ebxml-regrep:registry:xsd:2.1">
+	<LeafRegistryObjectList>
+
+
+		<User id = "urn:uuid:1bd9679c-0fd5-4b39-b413-c87f193bf2fa" organization = "gmOrgId">
+			<Address streetNumber = "1" street = "Jefferson Dr" city = "Burlington" stateOrProvince = "MA" country = "USA"/>
+			<PersonName firstName = "GMUser" middleName = "Middle" lastName = "Last"/>
+			<TelephoneNumber countryCode = "1" areaCode = "407" number = "123-1234" phoneType = "OfficePhone"/>
+			<EmailAddress address = "GMUser@GM.COM" type = "work"/>
+		</User>           
+ 
+		<Organization id = "gmOrgId" primaryContact = "urn:uuid:1bd9679c-0fd5-4b39-b413-c87f193bf2fa">
+			<Name>
+				<LocalizedString lang = "en-US" value = "General Motors Corp."/>
+			</Name>
+
+			<Description>
+				<LocalizedString lang = "en-US" value = "World's largest automobile manufacturer. The world's automotive sales leader since 1931!"/>
+			</Description>
+
+			<!-- Can have arbitrary extensible attributes called Slots on any object -->
+			<Slot name = "NYSE Symbol">
+				<ValueList>
+					<Value>GM</Value>
+				</ValueList>
+			</Slot>
+
+			<Slot name = "Chairman">
+				<ValueList>
+					<Value>John F. Smith Jr.</Value>
+				</ValueList>
+			</Slot>
+
+
+			<Classification classificationNode="urn:uuid:d7a8e4b8-c0a0-4734-a146-b3c605c534bf" classifiedObject="gmOrgId">
+				<Name>
+					<LocalizedString lang="en-US" value="Automobile Manufacturing" />
+				</Name>				
+			</Classification>
+
+			<Classification classificationNode="urn:uuid:1152986f-f5fd-4e69-963b-9088678a2e73" classifiedObject="gmOrgId">
+				<Name>
+					<LocalizedString lang="en-US" value="United States" />
+				</Name>				
+			</Classification>
+
+			<ExternalIdentifier identificationScheme="urn:freebxml:registry:demoDB:classificationScheme:NYSETicker" value="GM">
+				<Name>
+					<LocalizedString lang="en-US" value="GM" />
+				</Name>								
+			</ExternalIdentifier>
+
+			<Address streetNumber = "1" street = "Jefferson Dr" city = "Detroit" stateOrProvince = "MI" postalCode = "01234" country = "USA"/>
+			<TelephoneNumber countryCode = "1" areaCode = "351" number = "123-1234" phoneType = "OfficePhone"/>
+
+		</Organization>
+
+		<!--NYSE-Ticker scheme -->
+		<ObjectRef id="urn:freebxml:registry:demoDB:classificationScheme:NYSETicker" />
+		
+		<!-- ClassificationNode for "Automobile Manufacturing" -->
+		<ObjectRef id="urn:uuid:d7a8e4b8-c0a0-4734-a146-b3c605c534bf"/>
+
+		<!-- ClassificationNode for "United States" -->
+		<ObjectRef id="urn:uuid:1152986f-f5fd-4e69-963b-9088678a2e73"/>
+
+		<ExternalLink id = "gmWebSiteId" externalURI="http://www.gm.com">
+			<Name>
+				<LocalizedString value = "General Motors - Welcome to GM.com"/>
+			</Name>
+			<Description>
+				<LocalizedString value = "Main web site for GM"/>
+			</Description>
+		</ExternalLink>
+		<Association id = "gmOrgId-gmWebSiteId" associationType = "urn:oasis:names:tc:ebxml-regrep:AssociationType:ExternallyLinks" sourceObject = "gmWebSiteId" targetObject = "gmOrgId" />    
+		
+		<!-- Custom Classification schemes -->  
+		<ClassificationScheme id="bpsClassificationSchemeId"
+		    isInternal="true" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode" xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0">
+		    <Name>
+		        <LocalizedString charset="UTF-8" value="Business Process Classification Scheme"/>
+		    </Name>
+		    <Description>
+		        <LocalizedString charset="UTF-8" value="This is the classification scheme for classifying business processes"/>
+		    </Description>
+
+	        <ClassificationNode
+	            id="purchasingId" code="Purchasing">
+	            <Name>
+	                <LocalizedString charset="UTF-8" value="Purchasing"/>
+	            </Name>
+	        </ClassificationNode>
+	        <ClassificationNode
+	            id="envoicingId" code="Invoicing">
+	            <Name>
+	                <LocalizedString charset="UTF-8" value="Invoicing"/>
+	            </Name>
+	        </ClassificationNode>
+		</ClassificationScheme>	
+		    
+		<RegistryPackage id = "rentalCarPurchasePackageId">
+			<Name>
+				<LocalizedString value = "Rental Car Purchasing Package"/>
+			</Name>
+			<Description>
+				<LocalizedString value = "Contains technical documents related to Rental Car Purchasing process"/>
+			</Description>
+
+			<RegistryObjectList>
+
+				<ExtrinsicObject id = "CPAId" objectType="CPA">                        
+					<Name>
+						<LocalizedString value = "Template CPA for Rental Car Buyers"/>
+					</Name>
+					<Description>
+						<LocalizedString value = "This template Colloboration Protocol Agreemnt (CPA) is specified by GM for use by GM's Rental Car Buyers"/>
+					</Description>       
+				</ExtrinsicObject>        
+
+				<Association id = "gmOrgId-CPAId" associationType = "HasTemplateCPA" sourceObject = "gmOrgId" targetObject = "CPAId" />    
+
+				<ExtrinsicObject id = "BPSId" objectType="BusinessProcess">                        
+					<Name>
+						<LocalizedString value = "Rental Car Purchasing Process"/>
+					</Name>
+					<Description>
+						<LocalizedString value = "Business Process Specification (BPS) for Rental Car Purchasing Process"/>
+					</Description>       
+
+					<Classification classificationNode="purchasingId" classifiedObject="BPSId">
+						<Name>
+							<LocalizedString lang="en-US" value="Purchasing" />
+						</Name>				
+					</Classification>
+				</ExtrinsicObject>        
+
+				<Association id = "gmOrgId-BPSId" associationType = "HasBusinessProcess" sourceObject = "gmOrgId" targetObject = "BPSId" />    
+
+				<RegistryPackage id = "rentalCarPurchaseDTDsPackageId">
+					<Name>
+						<LocalizedString value = "Rental Car Purchasing DTDs Package"/>
+					</Name>
+					<Description>
+						<LocalizedString value = "Contains DTDs defining messages used by Rental Car Purchasing process"/>
+					</Description>
+
+					<RegistryObjectList>
+
+						<!-- Next are 8 DTDs used to define messages exchanged during the rental car purchasing process -->
+						<ExtrinsicObject id = "dtd1Id" objectType="DTD">                        
+							<Name>
+								<LocalizedString value = "DTD for Available Vehicles Query"/>
+							</Name>
+							<Description>
+								<LocalizedString value = "Defines message structure for Available Vehicles Query"/>
+							</Description>       
+						</ExtrinsicObject>        
+						    
+						<ExtrinsicObject id = "dtd2Id" objectType="DTD">                        
+							<Name>
+								<LocalizedString value = "DTD for Available Vehicles Response"/>
+							</Name>
+							<Description>
+								<LocalizedString value = "Defines message structure for Available Vehicles Response"/>
+							</Description>       
+						</ExtrinsicObject>        
+						    
+						<ExtrinsicObject id = "dtd3Id" objectType="DTD">                        
+							<Name>
+								<LocalizedString value = "DTD for Dealer Location Query"/>
+							</Name>
+							<Description>
+								<LocalizedString value = "Defines message structure for Dealer Location Query"/>
+							</Description>       
+						</ExtrinsicObject>        
+						    
+						<ExtrinsicObject id = "dtd4Id" objectType="DTD">                        
+							<Name>
+								<LocalizedString value = "DTD for Dealer Location Response"/>
+							</Name>
+							<Description>
+								<LocalizedString value = "Defines message structure for Dealer Location Response"/>
+							</Description>       
+						</ExtrinsicObject>        
+						    
+						<ExtrinsicObject id = "dtd5Id" objectType="DTD">                        
+							<Name>
+								<LocalizedString value = "DTD for Vehicles History Query"/>
+							</Name>
+							<Description>
+								<LocalizedString value = "Defines message structure for Vehicles History Query"/>
+							</Description>       
+						</ExtrinsicObject>        
+						    
+						<ExtrinsicObject id = "dtd6Id" objectType="DTD">                        
+							<Name>
+								<LocalizedString value = "DTD for Vehicles History Response"/>
+							</Name>
+							<Description>
+								<LocalizedString value = "Defines message structure for Vehicles History Response"/>
+							</Description>       
+						</ExtrinsicObject>        
+						    
+						<ExtrinsicObject id = "dtd7Id" objectType="DTD">                        
+							<Name>
+								<LocalizedString value = "DTD for Vehicles Purchase Request"/>
+							</Name>
+							<Description>
+								<LocalizedString value = "Defines message structure for Vehicles Purchase Request"/>
+							</Description>       
+						</ExtrinsicObject>        
+						    
+						<ExtrinsicObject id = "dtd8Id" objectType="DTD">                        
+							<Name>
+								<LocalizedString value = "DTD for Vehicles Purchase Approval"/>
+							</Name>
+							<Description>
+								<LocalizedString value = "Defines message structure for Vehicles Purchase Approval"/>
+							</Description>       
+						</ExtrinsicObject>        
+
+					</RegistryObjectList>   
+				</RegistryPackage>
+				<Association id = "BPSId-rentalCarPurchaseDTDsPackageId" associationType = "UsesDTD" sourceObject = "BPSId" targetObject = "rentalCarPurchaseDTDsPackageId" />    
+				    
+			</RegistryObjectList>   
+		</RegistryPackage>    
+		<Association id = "gmOrgId-rentalCarPurchasePackageId" associationType = "HasPackage" sourceObject = "gmOrgId" targetObject = "rentalCarPurchasePackageId" />    
+
+		    
+	</LeafRegistryObjectList>
+</rs:SubmitObjectsRequest>

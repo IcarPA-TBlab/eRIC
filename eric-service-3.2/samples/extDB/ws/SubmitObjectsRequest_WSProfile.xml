@@ -1,0 +1,438 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/extDB/ws/SubmitObjectsRequest_WSProfile.xml,v 1.17 2007/05/21 18:31:39 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest 
+  xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" 
+  xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" 
+  xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" 
+  xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" 
+  xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../../../../../ebxmlrr-spec/misc/3.0/schema/lcm.xsd">
+
+  <rs:RequestSlotList>  
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+      
+  <rim:RegistryObjectList>
+  
+    <rim:ClassificationScheme lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:ProtocolType" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:ProtocolType" isInternal="true" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.ProtocolType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.ProtocolType.desc"/>
+      </rim:Description>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:ProtocolType:SOAP" code="SOAP" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:ProtocolType:SOAP"/>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:ProtocolType:AS2" code="AS2" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:ProtocolType:AS2"/>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:ProtocolType:Atom" code="Atom" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:ProtocolType:Atom"/>
+    </rim:ClassificationScheme>
+
+    <rim:ClassificationScheme lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:TransportType" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:TransportType" isInternal="true" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.TransportType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.TransportType.desc"/>
+      </rim:Description>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:TransportType:HTTP" code="HTTP" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:TransportType:HTTP"/>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:TransportType:MOM" code="MOM" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:TransportType:MOM"/>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:TransportType:BEEP" code="BEEP" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:TransportType:BEEP"/>
+    </rim:ClassificationScheme>        
+    
+    <rim:ClassificationScheme lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:SOAPStyleType" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:classificationScheme:SOAPStyleType" isInternal="true" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.SOAPStyleType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="label.SOAPType.desc"/>
+      </rim:Description>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:SOAPStyleType:RPC" code="RPC" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:SOAPStyleType:RPC"/>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:SOAPStyleType:Document" code="Document" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:SOAPStyleType:Document"/>
+    </rim:ClassificationScheme>        
+    
+    <!--
+    The WSDL ObjectType definition.
+    This node uses oasis namespace URN as it will be added to ebXML Registry 3.1.
+    -->    
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject" lid="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL"  code="WSDL" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.WSDL"/>
+      </rim:Name>
+      <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL" lid="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:PortType"  code="PortType" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:PortType">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="label.PortType"/>
+        </rim:Name>
+      </rim:ClassificationNode>  
+      <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL" lid="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:Binding"  code="Binding" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:Binding">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="label.Binding"/>
+        </rim:Name>
+      </rim:ClassificationNode>  
+      <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL" lid="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:Port"  code="Port" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:Port">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="label.Port"/>
+        </rim:Name>
+      </rim:ClassificationNode>  
+      <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL" lid="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:Service"  code="Service" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:Service">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="label.Service"/>
+        </rim:Name>
+      </rim:ClassificationNode>  
+    </rim:ClassificationNode>  
+
+    <!--SubjectRole scheme extensions-->    
+    <!--rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:SubjectRole" lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:subjectRole:ServicePublisher" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:subjectRole:ServicePublisher">
+      <rim:Name>
+        <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="label.ServicePublisher"/>
+      </rim:Name>
+    </rim:ClassificationNode>    
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:SubjectRole" lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:subjectRole:ServiceAdministrator" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:subjectRole:ServiceAdministrator">
+      <rim:Name>
+        <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="label.ServiceAdministrator"/>
+      </rim:Name>
+    </rim:ClassificationNode-->        
+            
+    <!--
+    Parameterized Adhoc Query for WSDL Discovery query.
+    -->
+    <rim:AdhocQuery lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:WSDLDiscoveryQuery" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:WSDLDiscoveryQuery">
+      <rim:Name>
+        <rim:LocalizedString value="label.WSDLDiscoveryQuery"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="label.WSDLDiscoveryQuery.desc"/>
+      </rim:Description>
+      <rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+SELECT DISTINCT ro.* FROM RegistryObject ro, Name_ nm, Description d, Slot tns, Slot ins
+WHERE (1=1)
+ AND (ro.objectType = ''urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL'')
+ AND (nm.parent = ro.id AND UPPER ( nm.value ) LIKE UPPER ( ''$name'' ) ) 
+ AND (d.parent = ro.id AND UPPER ( d.value ) LIKE UPPER ( ''$description'' ) )  
+ AND (ro.status IN (  SELECT id
+ FROM ClassificationNode WHERE path LIKE ''$status'' ) )
+ AND (ro.id = tns.parent 
+  AND tns.name_ = ''urn:oasis:names:tc:ebxml-regrep:profile:ws:wsdl:targetNamespace''
+  AND tns.value LIKE ''$targetNamespace'')
+ AND (ro.id = ins.parent 
+  AND ins.name_ = ''urn:oasis:names:tc:ebxml-regrep:profile:ws:wsdl:importedNamespaces''
+  AND ins.value LIKE ''$importedNamespaces'')
+ 
+        </rim:QueryExpression>
+    </rim:AdhocQuery>
+
+    <!--
+    Parameterized Adhoc Query for WSDL PortType Discovery query.
+    -->
+    <rim:AdhocQuery lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:PortTypeDiscoveryQuery" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:PortTypeDiscoveryQuery">
+      <rim:Name>
+        <rim:LocalizedString value="label.WSDLPortTypeDiscoveryQuery"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="label.WSDLPortTypeDiscoveryQuery.desc"/>
+      </rim:Description>
+      <rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+SELECT DISTINCT portType.* FROM ExtrinsicObject portType, Name_ portTypeName, Description portTypeDesc, Slot portTypeTNS
+WHERE
+ portType.objectType = ''urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:PortType''
+ AND (portTypeName.parent = portType.id AND UPPER ( portTypeName.value ) LIKE UPPER ( ''$portType.name'' ) ) 
+ AND (portTypeDesc.parent = portType.id AND UPPER ( portTypeDesc.value ) LIKE UPPER ( ''$portType.description'' ) ) 
+ AND (portType.status IN (  SELECT id
+ FROM ClassificationNode WHERE path LIKE ''$portType.status'' ) )
+ AND (portType.id = portTypeTNS.parent 
+  AND portTypeTNS.name_ = ''urn:oasis:names:tc:ebxml-regrep:profile:ws:wsdl:targetNamespace''
+  AND portTypeTNS.value LIKE ''$portType.targetNamespace'')  
+        </rim:QueryExpression>
+    </rim:AdhocQuery>
+    
+    <!--
+    Parameterized Adhoc Query for WSDL Binding Discovery query.
+    -->
+    <rim:AdhocQuery lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:BindingDiscoveryQuery" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:BindingDiscoveryQuery">
+      <rim:Name>
+        <rim:LocalizedString value="label.WSDLBindingDiscoveryQuery"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="label.WSDLBindingDiscoveryQuery.desc"/>
+      </rim:Description>
+      <rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+SELECT DISTINCT binding.* FROM 
+  ExtrinsicObject binding, Name_ bindingName, Description bindingDesc, Slot bindingTNS,
+  Association implements
+WHERE
+ binding.objectType = ''urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:Binding''
+ AND (bindingName.parent = binding.id AND UPPER ( bindingName.value ) LIKE UPPER ( ''$binding.name'' ) ) 
+ AND (bindingDesc.parent = binding.id AND UPPER ( bindingDesc.value ) LIKE UPPER ( ''$binding.description'' ) ) 
+ AND (binding.status IN (  SELECT id
+ FROM ClassificationNode WHERE path LIKE ''$binding.status'' ) )
+ AND (binding.id = bindingTNS.parent 
+  AND bindingTNS.name_ = ''urn:oasis:names:tc:ebxml-regrep:profile:ws:wsdl:targetNamespace''
+  AND bindingTNS.value LIKE ''$binding.targetNamespace'')  
+ AND (binding.id IN ( SELECT classifiedObject FROM Classification WHERE classificationNode IN (  SELECT id
+ FROM ClassificationNode WHERE path LIKE ''$binding.protocolType'' ) ))        
+ AND (binding.id IN ( SELECT classifiedObject FROM Classification WHERE classificationNode IN (  SELECT id
+ FROM ClassificationNode WHERE path LIKE ''$binding.transportType'' OR path LIKE ''$binding.transportType'' || ''/%'' ) )) 
+ AND (binding.id IN ( SELECT classifiedObject FROM Classification WHERE classificationNode IN (  SELECT id
+ FROM ClassificationNode WHERE path LIKE ''$binding.soapStyleType'' OR path LIKE ''$binding.soapStyleType'' || ''/%'' ) ))
+
+ AND ($considerPortType = 0 OR (
+   implements.sourceObject=binding.id AND implements.associationType=''urn:oasis:names:tc:ebxml-regrep:AssociationType:Implements'' AND implements.targetObject IN
+   (
+    SELECT DISTINCT portType.id from ExtrinsicObject portType, Name_ portTypeName, Description portTypeDesc, Slot portTypeTNS
+    WHERE
+     portType.objectType = ''urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:PortType''
+     AND (portTypeName.parent = portType.id AND UPPER ( portTypeName.value ) LIKE UPPER ( ''$portType.name'' ) ) 
+     AND (portTypeDesc.parent = portType.id AND UPPER ( portTypeDesc.value ) LIKE UPPER ( ''$portType.description'' ) ) 
+     AND (portType.status IN (  SELECT id
+     FROM ClassificationNode WHERE path LIKE ''$portType.status'' ) )
+     AND (portType.id = portTypeTNS.parent 
+      AND portTypeTNS.name_ = ''urn:oasis:names:tc:ebxml-regrep:profile:ws:wsdl:targetNamespace''
+      AND portTypeTNS.value LIKE ''$portType.targetNamespace'')  
+   ))
+ )
+        </rim:QueryExpression>
+    </rim:AdhocQuery>
+
+    <!--
+    Parameterized Adhoc Query for WSDL Port Discovery query.
+    -->
+    <rim:AdhocQuery lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:PortDiscoveryQuery" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:PortDiscoveryQuery">
+      <rim:Name>
+        <rim:LocalizedString value="label.WSDLPortDiscoveryQuery"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="label.WSDLPortDiscoveryQuery.desc"/>
+      </rim:Description>
+      <rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+SELECT DISTINCT port.* FROM 
+  ServiceBinding port, Name_ portName, Description portDesc, Slot portTNS,
+  Association implements
+WHERE
+ (port.id IN ( SELECT classifiedObject FROM Classification WHERE classificationNode = ''urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:Port'' ) )        
+ 
+ AND (portName.parent = port.id AND UPPER ( portName.value ) LIKE UPPER ( ''$port.name'' ) ) 
+ AND (portDesc.parent = port.id AND UPPER ( portDesc.value ) LIKE UPPER ( ''$port.description'' ) ) 
+ AND (port.status IN (  SELECT id
+ FROM ClassificationNode WHERE path LIKE ''$port.status'' ) )
+ AND (port.id = portTNS.parent 
+  AND portTNS.name_ = ''urn:oasis:names:tc:ebxml-regrep:profile:ws:wsdl:targetNamespace''
+  AND portTNS.value LIKE ''$port.targetNamespace'')
+ AND (port.accessURI LIKE ''$port.accessURI'')
+
+ AND ($considerBinding = 0 OR (
+   implements.sourceObject=port.id AND implements.associationType=''urn:oasis:names:tc:ebxml-regrep:AssociationType:Implements'' AND implements.targetObject IN
+   (   
+    SELECT DISTINCT binding.id FROM 
+      ExtrinsicObject binding, Name_ bindingName, Description bindingDesc, Slot bindingTNS,
+      Association implements
+    WHERE
+     binding.objectType = ''urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:Binding''
+     AND (bindingName.parent = binding.id AND UPPER ( bindingName.value ) LIKE UPPER ( ''$binding.name'' ) ) 
+     AND (bindingDesc.parent = binding.id AND UPPER ( bindingDesc.value ) LIKE UPPER ( ''$binding.description'' ) ) 
+     AND (binding.status IN (  SELECT id
+     FROM ClassificationNode WHERE path LIKE ''$binding.status'' ) )
+     AND (binding.id = bindingTNS.parent 
+      AND bindingTNS.name_ = ''urn:oasis:names:tc:ebxml-regrep:profile:ws:wsdl:targetNamespace''
+      AND bindingTNS.value LIKE ''$binding.targetNamespace'')  
+     AND (binding.id IN ( SELECT classifiedObject FROM Classification WHERE classificationNode IN (  SELECT id
+     FROM ClassificationNode WHERE path LIKE ''$binding.protocolType'' ) ))        
+     AND (binding.id IN ( SELECT classifiedObject FROM Classification WHERE classificationNode IN (  SELECT id
+     FROM ClassificationNode WHERE path LIKE ''$binding.transportType'' OR path LIKE ''$binding.transportType'' || ''/%'') )) 
+     AND (binding.id IN ( SELECT classifiedObject FROM Classification WHERE classificationNode IN (  SELECT id
+     FROM ClassificationNode WHERE path LIKE $binding.soapStyleType OR path LIKE $binding.soapStyleType || ''/%'') ))
+
+     AND ($considerPortType = 0 OR (
+       implements.sourceObject=binding.id AND implements.associationType=''urn:oasis:names:tc:ebxml-regrep:AssociationType:Implements'' AND implements.targetObject IN
+       (
+        SELECT DISTINCT portType.id from ExtrinsicObject portType, Name_ portTypeName, Description portTypeDesc, Slot portTypeTNS
+        WHERE
+         portType.objectType = ''urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:PortType''
+         AND (portTypeName.parent = portType.id AND UPPER ( portTypeName.value ) LIKE UPPER ( ''$portType.name'' ) ) 
+         AND (portTypeDesc.parent = portType.id AND UPPER ( portTypeDesc.value ) LIKE UPPER ( ''$portType.description'' ) ) 
+         AND (portType.status IN (  SELECT id
+         FROM ClassificationNode WHERE path LIKE ''$portType.status'' ) )
+         AND (portType.id = portTypeTNS.parent 
+          AND portTypeTNS.name_ = ''urn:oasis:names:tc:ebxml-regrep:profile:ws:wsdl:targetNamespace''
+          AND portTypeTNS.value LIKE ''$portType.targetNamespace'')  
+       )
+     ))      
+   ))
+ )
+        </rim:QueryExpression>
+    </rim:AdhocQuery>
+    
+        
+    <!--
+    Parameterized Adhoc Query for WSDL Service Discovery query.
+    -->
+    <rim:AdhocQuery lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:ServiceDiscoveryQuery" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:ServiceDiscoveryQuery">
+      <rim:Name>
+        <rim:LocalizedString value="label.WSDLServiceDiscoveryQuery"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="label.WSDLServiceDiscoveryQuery.desc"/>
+      </rim:Description>
+      <rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+SELECT DISTINCT service.* FROM 
+  Service service, Name_ serviceName, Description serviceDesc, Slot serviceTNS,
+  ServiceBinding port
+WHERE
+ (service.id IN ( SELECT classifiedObject FROM Classification WHERE classificationNode = ''urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:Service'' ) )        
+ 
+ AND (serviceName.parent = service.id AND UPPER ( serviceName.value ) LIKE UPPER ( ''$service.name'' ) ) 
+ AND (serviceDesc.parent = service.id AND UPPER ( serviceDesc.value ) LIKE UPPER ( ''$service.description'' ) ) 
+ AND (service.status IN (  SELECT id
+ FROM ClassificationNode WHERE path LIKE ''$service.status'' ) )
+ AND (service.id = serviceTNS.parent 
+  AND serviceTNS.name_ = ''urn:oasis:names:tc:ebxml-regrep:profile:ws:wsdl:targetNamespace''
+  AND serviceTNS.value LIKE ''$service.targetNamespace'')
+
+ AND ($considerPort = 0 OR (
+  service.id = port.service AND port.id IN
+  (
+  
+    SELECT DISTINCT port.id FROM 
+      ServiceBinding port, Name_ portName, Description portDesc, Slot portTNS,
+      Association implements
+    WHERE
+     (port.id IN ( SELECT classifiedObject FROM Classification WHERE classificationNode = ''urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:Port'' ) )        
+
+     AND (portName.parent = port.id AND UPPER ( portName.value ) LIKE UPPER ( ''$port.name'' ) ) 
+     AND (portDesc.parent = port.id AND UPPER ( portDesc.value ) LIKE UPPER ( ''$port.description'' ) ) 
+     AND (port.status IN (  SELECT id
+     FROM ClassificationNode WHERE path LIKE ''$port.status'' ) )
+     AND (port.id = portTNS.parent 
+      AND portTNS.name_ = ''urn:oasis:names:tc:ebxml-regrep:profile:ws:wsdl:targetNamespace''
+      AND portTNS.value LIKE ''$port.targetNamespace'')
+     AND (port.accessURI LIKE ''$port.accessURI'')
+
+     AND ($considerBinding = 0 OR (
+       implements.sourceObject=port.id AND implements.associationType=''urn:oasis:names:tc:ebxml-regrep:AssociationType:Implements'' AND implements.targetObject IN
+       (   
+        SELECT DISTINCT binding.id FROM 
+          ExtrinsicObject binding, Name_ bindingName, Description bindingDesc, Slot bindingTNS,
+          Association implements
+        WHERE
+         binding.objectType = ''urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:Binding''
+         AND (bindingName.parent = binding.id AND UPPER ( bindingName.value ) LIKE UPPER ( ''$binding.name'' ) ) 
+         AND (bindingDesc.parent = binding.id AND UPPER ( bindingDesc.value ) LIKE UPPER ( ''$binding.description'' ) ) 
+         AND (binding.status IN (  SELECT id
+         FROM ClassificationNode WHERE path LIKE ''$binding.status'' ) )
+         AND (binding.id = bindingTNS.parent 
+          AND bindingTNS.name_ = ''urn:oasis:names:tc:ebxml-regrep:profile:ws:wsdl:targetNamespace''
+          AND bindingTNS.value LIKE ''$binding.targetNamespace'')  
+         AND (binding.id IN ( SELECT classifiedObject FROM Classification WHERE classificationNode IN (  SELECT id
+         FROM ClassificationNode WHERE path LIKE ''$binding.protocolType'' ) ))        
+         AND (binding.id IN ( SELECT classifiedObject FROM Classification WHERE classificationNode IN (  SELECT id
+         FROM ClassificationNode WHERE path LIKE $binding.transportType OR path LIKE $binding.transportType || ''/%'') )) 
+         AND (binding.id IN ( SELECT classifiedObject FROM Classification WHERE classificationNode IN (  SELECT id
+         FROM ClassificationNode WHERE path LIKE ''$binding.soapStyleType'' OR path LIKE ''$binding.soapStyleType'' || ''/%'') ))
+
+         AND ($considerPortType = 0 OR (
+           implements.sourceObject=binding.id AND implements.associationType=''urn:oasis:names:tc:ebxml-regrep:AssociationType:Implements'' AND implements.targetObject IN
+           (
+            SELECT DISTINCT portType.id from ExtrinsicObject portType, Name_ portTypeName, Description portTypeDesc, Slot portTypeTNS
+            WHERE
+             portType.objectType = ''urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL:PortType''
+             AND (portTypeName.parent = portType.id AND UPPER ( portTypeName.value ) LIKE UPPER ( ''$portType.name'' ) ) 
+             AND (portTypeDesc.parent = portType.id AND UPPER ( portTypeDesc.value ) LIKE UPPER ( ''$portType.description'' ) ) 
+             AND (portType.status IN (  SELECT id
+             FROM ClassificationNode WHERE path LIKE ''$portType.status'' ) )
+             AND (portType.id = portTypeTNS.parent 
+              AND portTypeTNS.name_ = ''urn:oasis:names:tc:ebxml-regrep:profile:ws:wsdl:targetNamespace''
+              AND portTypeTNS.value LIKE ''$portType.targetNamespace'')  
+           )
+         ))    
+       )
+     ))
+  ))
+ )
+        </rim:QueryExpression>
+    </rim:AdhocQuery>
+    
+    <!--
+    Parameterized Adhoc Query for WSDL Port Discovery query.
+    -->
+    <rim:AdhocQuery lid="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:GetPortsImplementingPortType" id="urn:oasis:names:tc:ebxml-regrep:profile:ws:query:GetPortsImplementingPortType">
+      <rim:Name>
+        <rim:LocalizedString value="label.GetPortsImplementingPortType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="label.GetPortsImplementingPortType.desc"/>
+      </rim:Description>
+      <rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+SELECT DISTINCT port.* FROM 
+  ServiceBinding port, ExtrinsicObject binding, ExtrinsicObject portType,
+  Association portImplementsBinding, Association bindingImplementsPortType
+WHERE
+ portType.id = ''$portType.id'' AND
+ (bindingImplementsPortType.sourceObject = binding.id AND 
+  bindingImplementsPortType.targetObject = portType.id AND
+  bindingImplementsPortType.associationType = ''urn:oasis:names:tc:ebxml-regrep:AssociationType:Implements'') AND
+ (portImplementsBinding.sourceObject = port.id AND 
+  portImplementsBinding.targetObject = binding.id AND
+  portImplementsBinding.associationType = ''urn:oasis:names:tc:ebxml-regrep:AssociationType:Implements'') 
+        </rim:QueryExpression>
+    </rim:AdhocQuery>
+    
+                
+    <rim:ExtrinsicObject id="urn:oasis:names:tc:ebxml-regrep:profiles:ws:wsdl:invocationControlFile:default" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:XML" mimeType="text/xml">
+      <rim:Name>
+        <rim:LocalizedString value="label.InvocationControlFileName"/>
+      </rim:Name>
+    </rim:ExtrinsicObject>
+    <!-- ValidationControlFileFor assoc between test.xml and 'WSDL in ObjectTypes scheme -->
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:InvocationControlFileFor:CatalogingControlFileFor" id="urn:uuid:812929c3-8602-4613-ba02-e83d926248ea" sourceObject="urn:oasis:names:tc:ebxml-regrep:profiles:ws:wsdl:invocationControlFile:default" targetObject="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL"/>
+    <!-- XML ObjectType, Defined in SubmitObjectsRequest_objectTypesSchemes -->
+    <rim:ObjectRef id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:XML"/>
+
+    <!-- Content Cataloging Service for WSDL documents. -->
+    <rim:Service lid="urn:oasis:names:tc:ebxml-regrep:profiles:ws:wsdl:cataloging:Service:default" id="urn:oasis:names:tc:ebxml-regrep:profiles:ws:wsdl:cataloging:Service:default">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="label.WSDLCatalogerServiceName"/>
+      </rim:Name>
+      <!-- ContentManagementService classification -->
+      <rim:Classification classificationNode="urn:oasis:names:tc:ebxml-regrep:ContentManagementService:ContentCatalogingService" classifiedObject="urn:oasis:names:tc:ebxml-regrep:profiles:ws:wsdl:cataloging:Service:default" id="urn:uuid:676b4fb7-910f-4f52-995f-da48ad83d412"/>
+      <!-- InvocationModel classification -->
+      <rim:Classification classificationNode="urn:oasis:names:tc:ebxml-regrep:InvocationModel:Inline" classifiedObject="urn:oasis:names:tc:ebxml-regrep:profiles:ws:wsdl:cataloging:Service:default" id="urn:uuid:6683a6b7-90df-4ce9-8f7d-f650ee941209"/>
+      <!-- ErrorHandlingModel classification -->
+      <rim:Classification classificationNode="urn:oasis:names:tc:ebxml-regrep:ErrorHandlingModel:FailOnError" classifiedObject="urn:oasis:names:tc:ebxml-regrep:profiles:ws:wsdl:cataloging:Service:default" id="urn:uuid:96cbde2a-e13a-4787-8ef6-b767e9f72cdf"/>
+      <rim:ServiceBinding accessURI="http://localhost:8080/ws/wsdlCataloging" id="urn:oasis:names:tc:ebxml-regrep:profiles:ws:wsdl:cataloging:ServiceBinding:default" service="urn:oasis:names:tc:ebxml-regrep:profiles:ws:wsdl:cataloging:Service:default">
+        <rim:Name>
+          <rim:LocalizedString charset="UTF-8" value="label.WSDLCatalogerServiceBindingName"/>
+        </rim:Name>
+      </rim:ServiceBinding>
+    </rim:Service>
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:OffersService" id="urn:uuid:49a3412e-fe10-40d2-81ef-912417a44440" sourceObject="urn:freebxml:registry:Organization:freebXMLRegistry" targetObject="urn:oasis:names:tc:ebxml-regrep:profiles:ws:wsdl:cataloging:Service:default"/>
+    <!-- Assoc between image Cataloging Service and 'WSDL' ClassificationNode in ObjectTypes scheme -->
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:ContentManagementServiceFor" id="urn:uuid:f966ead3-adbe-4464-a7f7-a84b8eac8f77" sourceObject="urn:oasis:names:tc:ebxml-regrep:profiles:ws:wsdl:cataloging:Service:default" targetObject="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL"/>
+    <!-- The freebXML organization -->
+    <rim:ObjectRef id="urn:freebxml:registry:Organization:freebXMLRegistry"/>
+    
+    <!-- Schematron Invocation Control File for WSDL Validation -->
+    <rim:ExtrinsicObject id="urn:uuid:c66bdb4c-1587-4bce-8ea4-c0f60486d779" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:XML:Schematron" mimeType="text/xml">
+      <rim:Name>
+        <rim:LocalizedString value="InvocationControlFile_WSDLValidation.schematron"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="label.DefaultSchematronInvocationControlFile"/>
+      </rim:Description>
+    </rim:ExtrinsicObject>
+    <!-- ValidationControlFileFor assoc between InvocationControlFile_WSDLValidation.xsl and 'WSDL' in ObjectTypes scheme -->
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:InvocationControlFileFor:ValidationControlFileFor" id="urn:uuid:039dff74-ee2f-4350-92f0-ba9006d97e47" sourceObject="urn:uuid:c66bdb4c-1587-4bce-8ea4-c0f60486d779" targetObject="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL"/>
+        <!-- Content Validation Service for WSDL documents. -->
+    <!-- Assoc between default XML Validation Service and wsdl ClassificationNode in ObjectTypes scheme -->
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:ContentManagementServiceFor" id="urn:uuid:89cacdc2-14dc-423e-a69e-f31db02a7c6b" sourceObject="urn:oasis:names:tc:ebxml-regrep:Service:CanonicalXMLValidationService" targetObject="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL"/>
+    <!-- WSDL ObjectType, Defined in SubmitObjectsRequest_ObjectTypesSchemes -->
+    <rim:ObjectRef id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL"/>
+
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

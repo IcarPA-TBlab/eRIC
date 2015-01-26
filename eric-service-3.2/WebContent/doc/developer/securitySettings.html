@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- $Header: /cvsroot/ebxmlrr/omar/doc/3.0/developer/securitySettings.html,v 1.3 2007/07/27 14:23:36 farrukh_najmi Exp $-->
+<html>
+<head>
+  <title>freebXML Registry - Security Guide</title>
+</head>
+<body class="composite">
+<div class="h3">
+<h2><a name="codingConventions">Security</a></h2>
+<div>
+<h2>Web UI - Configuring an Anonymous User Principal Name<br>
+</h2>
+<p><span style="font-weight: bold;">Introduction</span><br>
+<br>
+In order to submit content to the Registry, a Registry Client must have
+the proper credentials. One kind of proper credential is a client
+certficate. When submitting content using the Web UI, the client
+certificate may be imported into your web browser and sent to the web
+container over a secure connection. The certificate is used by the Web
+UI to identify and authenticate the Client. See the <a
+ href="../UsingHTTPS.html">Using HTTPS</a> document for details. This
+is the recommended configuration for production deployments.<br>
+</p>
+<p>For developer deployments, however, there is another Web UI option
+that does involve less configuration.&nbsp; You can set a property to
+indicate which user principal name to use for authentication.&nbsp; The
+user principal name maps to the alias of the client certificate. So,
+instead of each user sending their client certificate over a secure
+connection, the Registry will load a client certificate from the client
+keystore file using the principal name.&nbsp; The client keystore is
+located in this file:<br>
+</p>
+<pre>${user.home}/${omar.name}/${dist.version}/jaxr-ebxml/security/keystore.jks</pre>
+<p></p>
+<p>The omar.name and dist.version properties are set in
+omar/build.properties.<br>
+<br>
+Note: this option is only available for Web UI deployments that do not
+have container-managed authentication. This kind of authentication
+involves the web container protecting the Web UI's resources such as
+its JSP pages. The container manages the authentication, and, as a
+result, handles the setting of the Client's principal name.&nbsp; Since
+the container sets the principal name, configuring an anonymous one is
+not an option.<br>
+</p>
+<p><span style="font-weight: bold;">Getting Started</span><br>
+</p>
+<p>To enable this option, do the following:<br>
+</p>
+<ol>
+  <li>Create a user account and its associated credentials (client
+certificate)<br>
+The client certificate will be loaded by the Web UI during
+authentication.&nbsp; The easiest approach is to run the
+'createTestUser' target contained in omar/build-dist.xml.&nbsp; The
+principal name (certificate alias) is set to 'testuser'.&nbsp; See the
+build.xml for how this is set via the ${testUserAlias} property.<br>
+    <br>
+  </li>
+  <li>Set the following property to the certificate's alias in
+omar-common.properties:<br>
+    <pre>omar.security.anonymousUserPrincipalName=&lt;certificate alias&gt;</pre>
+In the above example, &lt;certificate alias&gt; is replaced by
+'testuser'.<br>
+    <br>
+  </li>
+  <li>Run the 'ant deploy' target.<br>
+    <br>
+  </li>
+  <li>Restart your web container.<br>
+    <br>
+  </li>
+  <li>When you publish content to the Registry, the Web UI will use the
+above property to load the client certificate from the client keystore.
+It will then set the Current User: &lt;certificate alias&gt; in the Web
+UI's banner page, replacing the default 'Current User: Registry Guest'
+setting for unauthenticated users. The change of the Current User is a
+visual way to determine that this kind of authentication was successful.<br>
+    <br>
+    <br>
+  </li>
+</ol>
+</div>
+<br>
+</div>
+</body>
+</html>

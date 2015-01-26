@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/demoDB/SubmitObjectsRequest_ObjectTypeTCKExtension.xml,v 1.4 2007/05/25 17:18:51 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../schema/lcm.xsd" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:query21="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rim30="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../schema/lcm.xsd">
+  <rs:RequestSlotList>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+  <rim:RegistryObjectList>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:CPP"  code="CPP" id="urn:uuid:bea52b52-1d58-42bc-adb4-91fa856a4dd2">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="CPP"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:CPA"  code="CPA" id="urn:uuid:abfe6098-9ebc-4378-9ce4-d965288b5fd0">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="CPA"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:Process"  code="Process" id="urn:uuid:c9ea1ed4-f8e4-43d4-923f-fd62a5b45e8d">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="Process"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:WSDL"  code="WSDL" id="urn:uuid:091c3a58-54f8-4d66-a162-fb4707d241f6">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="WSDL"/>
+      </rim:Name>
+    </rim:ClassificationNode>  
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:Association"  code="Association" id="urn:uuid:27b2e7c5-1f38-4469-b6fa-f3e8373bd107">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="Association"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:AuditableEvent"  code="AuditableEvent" id="urn:uuid:22299ac2-080f-40ba-90dd-86b659cdddb7">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="AuditableEvent"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:Classification"  code="Classification" id="urn:uuid:affdc122-49f6-4eae-8a52-ef97d71f3271">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="Classification"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:ClassificationScheme"  code="ClassificationScheme" id="urn:uuid:e18bfc05-d5fd-4740-b922-884cf933af3f">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="ClassificationScheme"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:Concept"  code="Concept" id="urn:uuid:2dfd696a-3f39-4706-a18a-f3dc6bd516af">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="Concept"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:ExternalIdentifier"  code="ExternalIdentifier" id="urn:uuid:4e15d2a4-daaa-48a8-84dd-c2278cb5fdab">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="ExternalIdentifier"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:ExternalLink"  code="ExternalLink" id="urn:uuid:bfae6457-8850-49b3-8deb-ffa418c21fac">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="ExternalLink"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:ExtrinsicObject"  code="ExtrinsicObject" id="urn:uuid:1568bde0-a5c7-4f62-aa50-a1581573720c">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="ExtrinsicObject"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:Organization"  code="Organization" id="urn:uuid:b816d34b-3102-439c-9d98-be6a7e5fdd68">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="Organization"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:Package"  code="Package" id="urn:uuid:8d1239d6-2fe8-4aba-b967-e9b39ee4b630">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="Package"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:Service"  code="Service" id="urn:uuid:c738f509-3819-495a-a359-cb35dc848152">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="Service"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:ServiceBinding"  code="ServiceBinding" id="urn:uuid:bfcab6f7-a6e6-4e5f-be5e-a4080077fe4c">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="ServiceBinding"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:SpecificationLink"  code="SpecificationLink" id="urn:uuid:60057863-4f0c-4bcb-84f8-c650b9fed7a5">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="SpecificationLink"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType" lid="urn:freebxml:tckdb:ObjectType:User"  code="User" id="urn:uuid:39587594-869b-4e09-bcec-f17a97a54427">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="User"/>
+      </rim:Name>
+    </rim:ClassificationNode>
+         
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/demoDB/SubmitObjectsRequest_SubscriptionSimple.xml,v 1.2 2007/05/25 17:18:52 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  http://docs.oasis-open.org/regrep/v3.0/schema/lcm.xsd">
+
+  <rs:RequestSlotList>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+  <rim:RegistryObjectList>
+
+    <!-- The subscription for delivering notifications of Document events -->
+    <rim:Subscription id="urn:example:com:notificationListener:documentListener" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:Subscription" selector="urn:example:com:query:documentQuery" startTime="2001-11-19T00:00:00.00000" endTime="2007-11-19T00:00:00.00000">
+      <rim:Name>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="Document Listener Subscription"/>
+      </rim:Name>
+      <!--email endPoint -->
+     <rim:NotifyAction notificationOption="urn:oasis:names:tc:ebxml-regrep:NotificationOptionType:Objects" endPoint="mailto:farrukh.najmi@sun.com"/>
+    </rim:Subscription>
+   
+    <!--
+    The query used as a selector for Subscription.
+    -->
+    <rim:AdhocQuery id="urn:example:com:query:documentQuery">
+      <rim:Name>
+        <rim:LocalizedString value="Document Query" xml:lang="en-US"/>
+      </rim:Name>
+      <rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+      SELECT eo.* FROM ExtrinsicObject eo, ClassificationNode node WHERE eo.objectType = node.id AND node.path LIKE ''/urn:oasis:names:tc:ebxml-regrep:classificationScheme:ObjectType/RegistryObject/ExtrinsicObject/Document/%''
+      </rim:QueryExpression>
+    </rim:AdhocQuery>
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

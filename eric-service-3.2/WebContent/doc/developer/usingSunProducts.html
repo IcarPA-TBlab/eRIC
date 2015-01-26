@@ -1,0 +1,16 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- $Header: /cvsroot/ebxmlrr/omar/doc/3.0/developer/usingSunProducts.html,v 1.4 2005/07/21 08:55:27 doballve Exp $-->
+<html>
+<title>
+Using Sun Products with the freebxml Registry
+</title>
+<body>
+<h2> Using Sun Products with the freebxml Registry </h2>
+<p><p>
+1. If you deploy the Registry to the Sun Java System Web Server, and need to debug the Registry code, note that it is possible to set a fixed JPDA debugger port.
+<br>
+In the SJSWS's server.xml file, add the 'address' attribute to the Java -Xrunjdwp system flag. Below is an example:
+<p>
+"-Xdebug -Xrunjdwp:transport=dt_socket,address=8190,server=y,suspend=n"
+</body>
+</html>

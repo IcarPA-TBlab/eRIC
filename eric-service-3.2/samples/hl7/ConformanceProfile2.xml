@@ -1,0 +1,1168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Specification Comments="This is a sample ADT A04 message for patient registration" ConformanceType="Constrainable" HL7OID="" HL7Version="2.4" OrgName="VHA" Role="Sender" SpecName="CIRN-PD-ADT_A04 proto.mwb" SpecVersion="0.5" Status="Active">
+  <UseCase>
+    <Actor Name="Patient">
+      <![CDATA[Person receiving care at VHA facility]]>
+    </Actor>
+    <Actor Name="Registration Clerk">
+      <![CDATA[Registers or admits patient to facility and discharges or checks patient out of facility]]>
+    </Actor>
+    <PreCondition Name="1">
+      <![CDATA[Patient previously registered or admitted to facility]]>
+    </PreCondition>
+    <PostCondition Name="1">
+      <![CDATA[Patient is discharged from facility]]>
+    </PostCondition>
+    <EventFlow Name="1">
+      <![CDATA[Patient enters facility]]>
+    </EventFlow>
+    <EventFlow Name="2">
+      <![CDATA[Patient is admitted/registered by Registration clerk]]>
+    </EventFlow>
+    <EventFlow Name="3">
+      <![CDATA[Patient is discharged from/checked out of facilty]]>
+    </EventFlow>
+    <DerivativeEvent Name="1">
+      <![CDATA[none]]>
+    </DerivativeEvent>
+  </UseCase>
+  <Conformance AccAck="ER" AppAck="ER" DynamicID="{ConfSig(1) VHA(1) 2.4(7) dynamic-profile(2) AccER_AppER(16) defer_mode_ack(1)}" MsgAckMode="Deferred" StaticID="{ConfSig(1) VHA(1) 2.4(7) static-profile(1) ADT(3) A04(4) null(0) ADT_A01(3) (1) Sender(1)}"/>
+  <Encodings>
+    <Encoding>ER7</Encoding>
+  </Encodings>
+  <Message EventDesc="Discharge a Patient/Appointment Check-out" EventType="A04" MsgStructID="ADT_A01" MsgType="ADT">
+    <Segment Max="1" Min="1" Name="MSH" Optionality="R">
+      <ImpNote>
+        <![CDATA[
+          This is just a seg imp note
+          to see if it shows ok
+          OK?
+        ]]>
+      </ImpNote>
+      <Field ConstantValue="^" Datatype="ST" ItemNo="" Length="1" Max="1" Min="1" Name="Field Separator" Optionality="R">
+        <ImpNote>
+          <![CDATA[
+            VA standard is ^, but is configurable via
+            HL7 1.6
+            pkg
+          ]]>
+        </ImpNote>
+        <DataValues ExValue="^"/>
+      </Field>
+      <Field ConstantValue="~|\&amp;" Datatype="ST" ItemNo="" Length="4" Max="1" Min="1" Name="Encoding Characters" Optionality="R">
+        <ImpNote>
+          <![CDATA[
+            This is just a seg imp note
+            to see if it shows ok
+            OK?
+          ]]>
+        </ImpNote>
+        <DataValues ExValue="~|\&amp;"/>
+      </Field>
+      <Field Datatype="EI" ItemNo="" Length="180" Max="1" Min="1" Name="Sending Application" Optionality="R">
+        <Component Datatype="ST" Length="0" Name="entity identifier" Optionality="R">
+          <DataValues ExValue="VAFC PIMS"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="namespace ID" Optionality="R"/>
+        <Component Datatype="ST" Length="0" Name="universal ID" Optionality="R"/>
+        <Component Datatype="ID" Length="0" Name="universal ID type" Optionality="R"/>
+      </Field>
+      <Field Datatype="EI" ItemNo="" Length="180" Max="1" Min="1" Name="Sending Facility" Optionality="R">
+        <Component Datatype="ST" Length="0" Name="entity identifier" Optionality="R">
+          <DataValues ExValue="573"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+      </Field>
+      <Field Datatype="EI" ItemNo="" Length="180" Max="1" Min="1" Name="Receiving Application" Optionality="R">
+        <Component Datatype="ST" Length="0" Name="entity identifier" Optionality="R">
+          <DataValues ExValue="RG CIRN"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+      </Field>
+      <Field Datatype="EI" ItemNo="" Length="180" Max="1" Min="1" Name="Receiving Facility" Optionality="R">
+        <Component Datatype="ST" Length="0" Name="entity identifier" Optionality="R">
+          <DataValues ExValue="573"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+      </Field>
+      <Field Datatype="TS" ItemNo="" Length="26" Max="1" Min="1" Name="Date/Time of Message" Optionality="R">
+        <Component Datatype="ST" Length="0" Name="YYYY[LL[DD[HHMM[SS[.S[S[S[S]]]]]]]][+/-ZZZZ]" Optionality="R">
+          <DataValues ExValue="19980624091752"/>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="degree of precision" Optionality="X"/>
+      </Field>
+      <Field Datatype="ST" ItemNo="" Length="40" Max="0" Min="0" Name="Security" Optionality="X"/>
+      <Field Datatype="CM" ItemNo="" Length="7" Max="1" Min="1" Name="Message Type" Optionality="R">
+        <DataValues ExValue="ADT~A04"/>
+      </Field>
+      <Field Datatype="ST" ItemNo="" Length="20" Max="1" Min="1" Name="Message Control ID" Optionality="R">
+        <DataValues ExValue="4556986"/>
+      </Field>
+      <Field Datatype="PT" ItemNo="" Length="0" Max="1" Min="1" Name="Processing ID" Optionality="R">
+        <Component Datatype="ID" Length="0" Name="processing ID" Optionality="R">
+          <DataValues ExValue="P"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="processing mode" Optionality="X"/>
+      </Field>
+      <Field Datatype="ID" ItemNo="" Length="8" Max="1" Min="1" Name="Version ID" Optionality="R" Table="0104"/>
+      <Field Datatype="NM" ItemNo="" Length="15" Max="0" Min="0" Name="Sequence Number" Optionality="X"/>
+      <Field Datatype="ST" ItemNo="" Length="180" Max="0" Min="0" Name="Continuation Pointer" Optionality="X"/>
+      <Field Datatype="ID" ItemNo="" Length="2" Max="1" Min="1" Name="Accept Acknowledgment Type" Optionality="R" Table="0155">
+        <DataValues ExValue="NE"/>
+      </Field>
+      <Field Datatype="ID" ItemNo="" Length="2" Max="1" Min="1" Name="Application Acknowledgment Type" Optionality="R" Table="0155">
+        <DataValues ExValue="NE"/>
+      </Field>
+      <Field Datatype="ID" ItemNo="" Length="2" Max="1" Min="1" Name="Country Code" Optionality="R">
+        <DataValues ExValue="USA"/>
+      </Field>
+      <Field Datatype="ID" ItemNo="" Length="6" Max="0" Min="0" Name="Character Set" Optionality="X" Table="0211"/>
+      <Field Datatype="CE" ItemNo="" Length="60" Max="0" Min="0" Name="Principal Language of Message" Optionality="X">
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="name of coding system" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+    </Segment>
+    <Segment Max="1" Min="1" Name="EVN" Optionality="R">
+      <Field Datatype="ID" ItemNo="" Length="3" Max="0" Min="0" Name="Event Type Code" Optionality="X" Table="0003">
+        <ImpNote>
+          <![CDATA[This is for backward comp only]]>
+        </ImpNote>
+      </Field>
+      <Field Datatype="TS" ItemNo="" Length="26" Max="1" Min="1" Name="Recorded Date/Time" Optionality="R">
+        <Component Datatype="ST" Length="0" Name="YYYY[LL[DD[HHMM[SS[.S[S[S[S]]]]]]]][+/-ZZZZ]" Optionality="R">
+          <DataValues ExValue="199809040911"/>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="degree of precision" Optionality="X"/>
+      </Field>
+      <Field Datatype="TS" ItemNo="" Length="26" Max="0" Min="0" Name="Date/Time Planned Event" Optionality="X">
+        <Component Datatype="ST" Length="0" Name="YYYY[LL[DD[HHMM[SS[.S[S[S[S]]]]]]]][+/-ZZZZ]" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="degree of precision" Optionality="X"/>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="3" Max="0" Min="0" Name="Event Reason Code" Optionality="X" Table="0062"/>
+      <Field Datatype="XCN" ItemNo="" Length="60" Max="0" Min="0" Name="Operator ID" Optionality="X" Table="0188">
+        <Component Datatype="ST" Length="0" Name="ID number" Optionality="X"/>
+        <Component Datatype="FN" Length="0" Name="family name" Optionality="X">
+          <SubComponent Datatype="ST" Length="0" Name="surname" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname prefix" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname prefix from partner/spouse" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname from partner/spouse" Optionality="X"/>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="given name" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="second or further given names or initials thereof" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="suffix" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="prefix" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="degree" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="source table" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type (ID)" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name type code" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="identifier check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type (ID)" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name representation code" Optionality="X"/>
+        <Component Datatype="CE" Length="0" Name="name context" Optionality="X">
+          <SubComponent Datatype="ST" Length="0" Name="identifier" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="text" Optionality="X"/>
+          <SubComponent Datatype="IS" Length="0" Name="name of coding system" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+          <SubComponent Datatype="IS" Length="0" Name="name of alternate coding system" Optionality="X"/>
+        </Component>
+        <Component Datatype="DR" Length="0" Name="validity range" Optionality="X">
+          <SubComponent Datatype="TS" Length="0" Name="range start date/time" Optionality="X"/>
+          <SubComponent Datatype="TS" Length="0" Name="range end date/time" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name assembly order" Optionality="X"/>
+      </Field>
+      <Field Datatype="TS" ItemNo="" Length="26" Max="0" Min="0" Name="Event Occurred" Optionality="X">
+        <Component Datatype="ST" Length="0" Name="YYYY[LL[DD[HHMM[SS[.S[S[S[S]]]]]]]][+/-ZZZZ]" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="degree of precision" Optionality="X"/>
+      </Field>
+    </Segment>
+    <Segment Max="1" Min="1" Name="PID" Optionality="R">
+      <Field Datatype="SI" ItemNo="" Length="4" Max="0" Min="0" Name="Set ID - PID" Optionality="X">
+        <DataValues ExValue="1"/>
+      </Field>
+      <Field Datatype="CX" ItemNo="" Length="250" Max="0" Min="0" Name="Patient ID" Optionality="X">
+        <Component Datatype="ST" Length="0" Name="ID" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+      </Field>
+      <Field Datatype="CX" ItemNo="" Length="0" Max="1" Min="1" Name="Patient Identifier List" Optionality="R">
+        <ImpNote>
+          <![CDATA[
+            SSN - primary (0-1)
+            Alias SSN (0-1)
+            Primary Long ID (1)
+            Primary Short ID (1)
+            Integration Control Number (ICN) (1)
+            
+            In VistA, the Alias names are paired with
+            their
+            corresponding alias identifiers (what if more
+            alias
+            names than alias identifiers or vv ?)
+          ]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="0" Name="ID" Optionality="R">
+          <Description>ID</Description>
+          <DataValues ExValue="1001086235"/>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="check digit" Optionality="RE"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="RE"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="R"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="R"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="R"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="R"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="R"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="R"/>
+        </Component>
+      </Field>
+      <Field Datatype="CX" ItemNo="" Length="20" Max="0" Min="0" Name="Alternate Patient ID - PID" Optionality="X">
+        <Component Datatype="ST" Length="0" Name="ID" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+      </Field>
+      <Field Datatype="XPN" ItemNo="" Length="250" Max="0" Min="1" Name="Patient Name" Optionality="R">
+        <ImpNote>
+          <![CDATA[
+            Legal Name - primary (This is also termed
+            the VA
+            Standardized name) (1)
+            Display Legal Name (0-1)
+            Alias (0-n)
+            Display Alias (0-n)
+            
+            In VistA, the Alias names are paired with
+            their
+            corresponding alias identifiers (what if more
+            alias
+            names than alias identifiers or vv ?)
+          ]]>
+        </ImpNote>
+        <Component Datatype="FN" Length="3" Name="family name" Optionality="R">
+          <SubComponent Datatype="ST" Length="0" Name="surname" Optionality="R"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname prefix" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname prefix from partner/spouse" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname from partner/spouse" Optionality="RE"/>
+        </Component>
+        <Component Datatype="ST" Length="3" Name="given name" Optionality="R"/>
+        <Component Datatype="ST" Length="0" Name="middle initial or name" Optionality="RE"/>
+        <Component Datatype="ST" Length="3" Name="suffix (e.g., JR or III)" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="prefix (e.g., DR)" Optionality="RE"/>
+        <Component Datatype="IS" Length="0" Name="degree (e.g., MD)" Optionality="RE"/>
+        <Component Datatype="ID" Length="0" Name="name type code" Optionality="RE"/>
+        <Component Datatype="ID" Length="0" Name="name representation code" Optionality="RE"/>
+      </Field>
+      <Field Datatype="XPN" ItemNo="" Length="250" Max="0" Min="0" Name="Mother's Maiden Name" Optionality="X">
+        <ImpNote>
+          <![CDATA[
+            Not sent by HEC
+            Not Maintained by NED
+          ]]>
+        </ImpNote>
+        <Component Datatype="FN" Length="3" Name="family name" Optionality="RE">
+          <SubComponent Datatype="ST" Length="0" Name="surname" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname prefix" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname prefix from partner/spouse" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname from partner/spouse" Optionality="RE"/>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="given name" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="middle initial or name" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="suffix (e.g., JR or III)" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="prefix (e.g., DR)" Optionality="RE"/>
+        <Component Datatype="IS" Length="0" Name="degree (e.g., MD)" Optionality="RE"/>
+        <Component Datatype="ID" Length="0" Name="name type code" Optionality="RE"/>
+        <Component Datatype="ID" Length="0" Name="name representation code" Optionality="RE"/>
+      </Field>
+      <Field Datatype="TS" ItemNo="" Length="26" Max="0" Min="0" Name="Date/Time of Birth" Optionality="X">
+        <Component Datatype="ST" Length="0" Name="YYYY[LL[DD[HHMM[SS[.S[S[S[S]]]]]]]][+/-ZZZZ]" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="degree of precision" Optionality="X"/>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="1" Max="0" Min="0" Name="Administrative Sex" Optionality="X" Table="0001"/>
+      <Field Datatype="XPN" ItemNo="" Length="250" Max="0" Min="0" Name="Patient Alias" Optionality="X">
+        <ImpNote>
+          <![CDATA[
+            No longer supported. All patient names are
+            stored in PID-5, patient name
+          ]]>
+        </ImpNote>
+        <Component Datatype="FN" Length="3" Name="family name" Optionality="X">
+          <SubComponent Datatype="ST" Length="0" Name="surname" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname prefix" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname prefix from partner/spouse" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname from partner/spouse" Optionality="X"/>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="given name" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="middle initial or name" Optionality="X"/>
+        <Component Datatype="ST" Length="3" Name="suffix (e.g., JR or III)" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="prefix (e.g., DR)" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="degree (e.g., MD)" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="name type code" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="name representation code" Optionality="X"/>
+      </Field>
+      <Field Datatype="CE" ItemNo="" Length="250" Max="0" Min="0" Name="Race" Optionality="X" Table="0005">
+        <ImpNote>
+          <![CDATA[HEC does not maintain this attribute]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="RE"/>
+        <Component Datatype="IS" Length="250" Name="name of coding system" Optionality="RE">
+          <ImpNote>
+            <![CDATA[Indicates HL7 User defined table 0005]]>
+          </ImpNote>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+      <Field Datatype="XAD" ItemNo="" Length="250" Max="0" Min="0" Name="Patient Address" Optionality="X">
+        <ImpNote>
+          <![CDATA[
+            VistA:
+            Permanent (0-1) - always first rep
+            Temporary (0-1) - always 2nd rep
+            Office (0-1) - always 3rd rep
+          ]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="0" Name="street address" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="other designation" Optionality="RE">
+          <ImpNote>
+            <![CDATA[Used for second address line where necessary]]>
+          </ImpNote>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="city" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="state or province" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="zip or postal code" Optionality="RE">
+          <ImpNote>
+            <![CDATA[zip + 4]]>
+          </ImpNote>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="country" Optionality="RE"/>
+        <Component Datatype="ID" Length="0" Name="address type" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="other geographic designation" Optionality="RE">
+          <ImpNote>
+            <![CDATA[used for 3rd address line where necessary]]>
+          </ImpNote>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="county/parish code" Optionality="RE">
+          <ImpNote>
+            <![CDATA[Use VA County code]]>
+          </ImpNote>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="census tract" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="Address representation code" Optionality="RE">
+          <ImpNote>
+            <![CDATA[Should add this]]>
+          </ImpNote>
+        </Component>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="4" Max="0" Min="0" Name="County Code" Optionality="X" Table="0289">
+        <ImpNote>
+          <![CDATA[
+            No longer supported. Use component in patient
+            Address field
+          ]]>
+        </ImpNote>
+      </Field>
+      <Field Datatype="XTN" ItemNo="" Length="250" Max="0" Min="0" Name="Phone Number - Home" Optionality="X">
+        <ImpNote>
+          <![CDATA[
+            VistA:
+            Permanent (0-1) - always 1st rep
+            Temporary (0-1) - always 2nd rep
+          ]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="0" Name="[NNN] [(999)]999-9999 [X99999] [B99999] [C any text]" Optionality="RE"/>
+        <Component Datatype="ID" Length="0" Name="telecommunication use code" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="telecommunication equipment type" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="email address" Optionality="X"/>
+        <Component Datatype="NM" Length="0" Name="country code" Optionality="RE"/>
+        <Component Datatype="NM" Length="0" Name="area/city code" Optionality="RE"/>
+        <Component Datatype="NM" Length="0" Name="phone number" Optionality="RE"/>
+        <Component Datatype="NM" Length="0" Name="extension" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="any text" Optionality="X"/>
+      </Field>
+      <Field Datatype="XTN" ItemNo="" Length="250" Max="0" Min="0" Name="Phone Number - Business" Optionality="X">
+        <ImpNote>
+          <![CDATA[
+            VistA:
+            Work - always 1st rep
+            Employer - always 2nd rep
+          ]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="0" Name="[NNN] [(999)]999-9999 [X99999] [B99999] [C any text]" Optionality="RE"/>
+        <Component Datatype="ID" Length="0" Name="telecommunication use code" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="telecommunication equipment type" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="email address" Optionality="X"/>
+        <Component Datatype="NM" Length="0" Name="country code" Optionality="RE"/>
+        <Component Datatype="NM" Length="0" Name="area/city code" Optionality="RE"/>
+        <Component Datatype="NM" Length="0" Name="phone number" Optionality="RE"/>
+        <Component Datatype="NM" Length="0" Name="extension" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="any text" Optionality="X"/>
+      </Field>
+      <Field Datatype="CE" ItemNo="" Length="250" Max="0" Min="0" Name="Primary Language" Optionality="X" Table="0296">
+        <ImpNote>
+          <![CDATA[? if this element is in VistA - seems it should be]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="name of coding system" Optionality="RE" Table="0296"/>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+      <Field Datatype="CE" ItemNo="" Length="250" Max="0" Min="0" Name="Marital Status" Optionality="X" Table="0002">
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="RE"/>
+        <Component Datatype="IS" Length="0" Name="name of coding system" Optionality="RE" Table="0002">
+          <ImpNote>
+            <![CDATA[Indicates HL7 user defined table 0002]]>
+          </ImpNote>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+      <Field Datatype="CE" ItemNo="" Length="250" Max="0" Min="0" Name="Religion" Optionality="X" Table="0006">
+        <ImpNote>
+          <![CDATA[HEC does not maintain this attribute]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="RE"/>
+        <Component Datatype="IS" Length="0" Name="name of coding system" Optionality="RE" Table="0006">
+          <ImpNote>
+            <![CDATA[
+              Should indicate standard HL7 user defined table
+              006
+            ]]>
+          </ImpNote>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+      <Field Datatype="CX" ItemNo="" Length="250" Max="0" Min="0" Name="Patient Account Number" Optionality="X">
+        <ImpNote>
+          <![CDATA[
+            Not supported by VA. ? appropriate use for
+            VBA
+            claim#
+          ]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="0" Name="ID" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+      </Field>
+      <Field Datatype="ST" ItemNo="" Length="16" Max="0" Min="0" Name="SSN Number - Patient" Optionality="X"/>
+      <Field Datatype="DLN" ItemNo="" Length="25" Max="0" Min="0" Name="Driver's Licence Number-Patient" Optionality="X">
+        <Component Datatype="ST" Length="0" Name="license number" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="issuing state, province, country" Optionality="X"/>
+        <Component Datatype="DT" Length="0" Name="expiration date" Optionality="X"/>
+      </Field>
+      <Field Datatype="CX" ItemNo="" Length="250" Max="0" Min="0" Name="Mother's Identifier" Optionality="X">
+        <Component Datatype="ST" Length="0" Name="ID" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+      </Field>
+      <Field Datatype="CE" ItemNo="" Length="250" Max="0" Min="0" Name="Ethnic Group" Optionality="X" Table="0189">
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of coding system" Optionality="X" Table="0189"/>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+      <Field Datatype="ST" ItemNo="" Length="250" Max="0" Min="0" Name="Birth Place" Optionality="X">
+        <ImpNote>
+          <![CDATA[HEC does not maintain this attribute]]>
+        </ImpNote>
+      </Field>
+      <Field Datatype="ID" ItemNo="" Length="250" Max="0" Min="0" Name="Multiple Birth Indicator" Optionality="X" Table="0136"/>
+      <Field Datatype="NM" ItemNo="" Length="2" Max="0" Min="0" Name="Birth Order" Optionality="X"/>
+      <Field Datatype="CE" ItemNo="" Length="250" Max="0" Min="0" Name="Citizenship" Optionality="X" Table="0171">
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of coding system" Optionality="X" Table="0171"/>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+      <Field Datatype="CE" ItemNo="" Length="250" Max="0" Min="0" Name="Veterans Military Status" Optionality="X" Table="0172">
+        <ImpNote/>
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="name of coding system" Optionality="RE" Table="0172"/>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+      <Field Datatype="CE" ItemNo="" Length="250" Max="0" Min="0" Name="Nationality" Optionality="X" Table="0212">
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="name of coding system" Optionality="X" Table="0212"/>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+      <Field Datatype="TS" ItemNo="" Length="26" Max="0" Min="0" Name="Patient Death Date and Time" Optionality="X">
+        <Component Datatype="ST" Length="0" Name="YYYY[LL[DD[HHMM[SS[.S[S[S[S]]]]]]]][+/-ZZZZ]" Optionality="RE">
+          <DataValues ExValue="19980624091752"/>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="degree of precision" Optionality="X"/>
+      </Field>
+      <Field Datatype="ID" ItemNo="" Length="1" Max="0" Min="0" Name="Patient Death Indicator" Optionality="X" Table="0136">
+        <ImpNote>
+          <![CDATA[
+            Calculated value in Vista
+            HEC does not currently send
+          ]]>
+        </ImpNote>
+        <Predicate>
+          <![CDATA[Valued only if PID.29 date is present]]>
+        </Predicate>
+      </Field>
+      <Field Datatype="ID" ItemNo="" Length="1" Max="0" Min="0" Name="Identity Unknown Indicator" Optionality="X" Table="0136"/>
+      <Field Datatype="IS" ItemNo="" Length="20" Max="0" Min="0" Name="Identity Reliability Code" Optionality="X" Table="0445"/>
+      <Field Datatype="TS" ItemNo="" Length="40" Max="0" Min="0" Name="Last Update Date/Time" Optionality="X">
+        <Component Datatype="NM" Length="0" Name="Date/Time" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="degree of precision" Optionality="X"/>
+        <Component Datatype="NM" Length="0" Name="Date/Time" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="degree of precision" Optionality="X"/>
+      </Field>
+      <Field Datatype="HD" ItemNo="" Length="40" Max="0" Min="0" Name="Last Update Facility" Optionality="X">
+        <Component Datatype="IS" Length="0" Name="namespace ID" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="universal ID" Optionality="RE"/>
+        <Component Datatype="ID" Length="0" Name="universal ID type (ID)" Optionality="RE"/>
+        <Component Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="universal ID type (ID)" Optionality="X"/>
+      </Field>
+      <Field Datatype="CE" ItemNo="" Length="3" Max="0" Min="0" Name="Species Code" Optionality="X">
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of coding system" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+      <Field Datatype="CE" ItemNo="" Length="3" Max="0" Min="0" Name="Breed Code" Optionality="X">
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of coding system" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+      <Field Datatype="ST" ItemNo="" Length="250" Max="0" Min="0" Name="Strain" Optionality="X"/>
+      <Field Datatype="CE" ItemNo="" Length="3" Max="0" Min="0" Name="Production Class Code" Optionality="X" Table="0429">
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of coding system" Optionality="X" Table="0429"/>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+    </Segment>
+    <Segment Max="1" Min="1" Name="PD1" Optionality="R">
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Living Dependency" Optionality="X" Table="0223"/>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Living Arrangement" Optionality="X" Table="0220"/>
+      <Field Datatype="XON" ItemNo="" Length="250" Max="1" Min="1" Name="Patient Primary Facility" Optionality="R">
+        <Component Datatype="ST" Length="247" Name="organization name" Optionality="R">
+          <ImpNote>
+            <![CDATA[CIRN Master of Record (CMOR)]]>
+          </ImpNote>
+        </Component>
+        <Component Datatype="IS" Length="3" Name="organization name type code" Optionality="R">
+          <ImpNote>
+            <![CDATA[VA Station Number]]>
+          </ImpNote>
+        </Component>
+        <Component Datatype="NM" Length="0" Name="ID Number" Optionality="RE"/>
+        <Component Datatype="NM" Length="0" Name="check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility ID" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name representation code" Optionality="X"/>
+      </Field>
+      <Field Datatype="XCN" ItemNo="" Length="250" Max="0" Min="0" Name="Patient Primary Care Provider Name &amp; ID No." Optionality="X">
+        <Component Datatype="ST" Length="0" Name="ID number" Optionality="X"/>
+        <Component Datatype="FN" Length="3" Name="family name" Optionality="X">
+          <SubComponent Datatype="ST" Length="0" Name="surname" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname prefix" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname prefix from partner/spouse" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname from partner/spouse" Optionality="X"/>
+        </Component>
+        <Component Datatype="ST" Length="3" Name="given name" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="middle initial or name" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="suffix (e.g., JR or III)" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="prefix (e.g., DR)" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="degree (e.g., MD)" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="source table" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name type code" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="identifier check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility ID" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name representation code" Optionality="X"/>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Student Indicator" Optionality="X" Table="0231"/>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Handicap" Optionality="X" Table="0295"/>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Living Will" Optionality="X" Table="0315"/>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Organ Donor" Optionality="X" Table="0316"/>
+      <Field Datatype="ID" ItemNo="" Length="2" Max="0" Min="0" Name="Separate Bill" Optionality="X" Table="0136"/>
+      <Field Datatype="CX" ItemNo="" Length="250" Max="0" Min="0" Name="Duplicate Patient" Optionality="X">
+        <Component Datatype="ST" Length="0" Name="ID" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility" Optionality="X"/>
+      </Field>
+      <Field Datatype="CE" ItemNo="" Length="250" Max="0" Min="0" Name="Publicity Indicator" Optionality="X" Table="0215">
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="name of coding system" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+      <Field Datatype="ID" ItemNo="" Length="1" Max="1" Min="1" Name="Protection Indicator" Optionality="RE" Table="0136">
+        <ImpNote>
+          <![CDATA[This needs to be fixed. CIRN has it as 0 or 1]]>
+        </ImpNote>
+        <DataValues ExValue="Y"/>
+      </Field>
+      <Field Datatype="DT" ItemNo="" Length="8" Max="1" Min="0" Name="Protection Indicator Effective Date" Optionality="CE">
+        <ImpNote>
+          <![CDATA[Think we need to add this.]]>
+        </ImpNote>
+        <Predicate>
+          <![CDATA[
+            Must be present if PD1.12 Protection indicator
+            is present
+          ]]>
+        </Predicate>
+      </Field>
+      <Field Datatype="XON" ItemNo="" Length="250" Max="0" Min="0" Name="Place of Worship" Optionality="X" Table="0004">
+        <Component Datatype="ST" Length="0" Name="organization name" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="organization name type code" Optionality="X"/>
+        <Component Datatype="NM" Length="0" Name="ID Number" Optionality="X"/>
+        <Component Datatype="NM" Length="0" Name="check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type (ID)" Optionality="X"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility" Optionality="X"/>
+      </Field>
+      <Field Datatype="CE" ItemNo="" Length="250" Max="0" Min="0" Name="Advance Directive Code" Optionality="X" Table="435">
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of coding system" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="3" Max="0" Min="0" Name="Immunization Registry Status" Optionality="X" Table="0441"/>
+      <Field Datatype="DT" ItemNo="" Length="8" Max="0" Min="0" Name="Immunization Registry Status Effective Date" Optionality="X"/>
+      <Field Datatype="DT" ItemNo="" Length="8" Max="0" Min="0" Name="Publicity Code Effective Date" Optionality="X"/>
+      <Field Datatype="IS" ItemNo="" Length="5" Max="0" Min="0" Name="Military Branch" Optionality="X" Table="0140">
+        <ImpNote>
+          <![CDATA[? Seesm we out to support]]>
+        </ImpNote>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="3" Max="0" Min="0" Name="Military Rank/Grade" Optionality="X" Table="0141">
+        <ImpNote>
+          <![CDATA[? Seems we ought to support]]>
+        </ImpNote>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="3" Max="0" Min="0" Name="Military Status" Optionality="X" Table="0142">
+        <ImpNote>
+          <![CDATA[Seems we ought to support]]>
+        </ImpNote>
+      </Field>
+    </Segment>
+    <Segment Max="1" Min="1" Name="PV1" Optionality="R">
+      <Field Datatype="SI" ItemNo="" Length="4" Max="0" Min="0" Name="Set ID - PV1" Optionality="X">
+        <DataValues ExValue="1"/>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="1" Max="1" Min="1" Name="Patient Class" Optionality="R" Table="0004">
+        <ImpNote>
+          <![CDATA[O or I only (? consistent with table 0004)]]>
+        </ImpNote>
+        <DataValues ExValue="O"/>
+      </Field>
+      <Field Datatype="PL" ItemNo="" Length="80" Max="0" Min="0" Name="Assigned Patient Location" Optionality="X">
+        <ImpNote>
+          <![CDATA[? Seems we should value]]>
+        </ImpNote>
+        <Component Datatype="IS" Length="0" Name="point of care" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="room" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="bed" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="facility" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="location status" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="person location type" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="building" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="floor" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="location description" Optionality="X"/>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Admission Type" Optionality="X" Table="0007"/>
+      <Field Datatype="CX" ItemNo="" Length="250" Max="0" Min="0" Name="Preadmit Number" Optionality="X">
+        <Component Datatype="ST" Length="0" Name="ID" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility" Optionality="X"/>
+      </Field>
+      <Field Datatype="PL" ItemNo="" Length="80" Max="0" Min="0" Name="Prior Patient Location" Optionality="X">
+        <ImpNote>
+          <![CDATA[? Should we add]]>
+        </ImpNote>
+        <Component Datatype="IS" Length="0" Name="point of care" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="room" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="bed" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="facility" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="location status" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="person location type" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="building" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="floor" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="location description" Optionality="X"/>
+      </Field>
+      <Field Datatype="XCN" ItemNo="" Length="250" Max="0" Min="0" Name="Attending Doctor" Optionality="X" Table="0010">
+        <ImpNote>
+          <![CDATA[? Do we provide]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="0" Name="ID number" Optionality="RE"/>
+        <Component Datatype="FN" Length="250" Name="family name" Optionality="RE">
+          <SubComponent Datatype="ST" Length="0" Name="surname" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname prefix" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname prefix from partner/spouse" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname from partner/spouse" Optionality="RE"/>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="given name" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="middle initial or name" Optionality="RE"/>
+        <Component Datatype="ST" Length="3" Name="suffix (e.g., JR or III)" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="prefix (e.g., DR)" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="degree (e.g., MD)" Optionality="RE"/>
+        <Component Datatype="IS" Length="0" Name="source table" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name type code" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="identifier check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility ID" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name representation code" Optionality="X"/>
+      </Field>
+      <Field Datatype="XCN" ItemNo="" Length="250" Max="0" Min="0" Name="Referring Doctor" Optionality="X" Table="0010">
+        <ImpNote>
+          <![CDATA[? Do we provide]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="3" Name="ID number" Optionality="RE"/>
+        <Component Datatype="FN" Length="250" Name="family name" Optionality="RE">
+          <SubComponent Datatype="ST" Length="0" Name="surname" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname prefix" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname prefix from partner/spouse" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname from partner/spouse" Optionality="RE"/>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="given name" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="middle initial or name" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="suffix (e.g., JR or III)" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="prefix (e.g., DR)" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="degree (e.g., MD)" Optionality="RE"/>
+        <Component Datatype="IS" Length="0" Name="source table" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name type code" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="identifier check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility ID" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name representation code" Optionality="X"/>
+      </Field>
+      <Field Datatype="XCN" ItemNo="" Length="250" Max="0" Min="0" Name="Consulting Doctor" Optionality="X" Table="0010">
+        <ImpNote>
+          <![CDATA[? Do we provide]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="0" Name="ID number" Optionality="RE"/>
+        <Component Datatype="FN" Length="250" Name="family name" Optionality="RE">
+          <SubComponent Datatype="ST" Length="0" Name="surname" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname prefix" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname prefix from partner/spouse" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname from partner/spouse" Optionality="RE"/>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="given name" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="middle initial or name" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="suffix (e.g., JR or III)" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="prefix (e.g., DR)" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="degree (e.g., MD)" Optionality="RE"/>
+        <Component Datatype="IS" Length="0" Name="source table" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name type code" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="identifier check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility ID" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name representation code" Optionality="X"/>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="3" Max="0" Min="0" Name="Hospital Service" Optionality="X" Table="0069"/>
+      <Field Datatype="PL" ItemNo="" Length="80" Max="0" Min="0" Name="Temporary Location" Optionality="X">
+        <ImpNote>
+          <![CDATA[? Do we provide]]>
+        </ImpNote>
+        <Component Datatype="IS" Length="0" Name="point of care" Optionality="RE"/>
+        <Component Datatype="IS" Length="0" Name="room" Optionality="RE"/>
+        <Component Datatype="IS" Length="0" Name="bed" Optionality="RE"/>
+        <Component Datatype="HD" Length="0" Name="facility" Optionality="RE">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="RE"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="RE"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="location status" Optionality="RE"/>
+        <Component Datatype="IS" Length="0" Name="person location type" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="building" Optionality="RE"/>
+        <Component Datatype="IS" Length="0" Name="floor" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="location description" Optionality="RE"/>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Preadmit Test Indicator" Optionality="X" Table="0087"/>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Readmission Indicator" Optionality="X" Table="0092"/>
+      <Field Datatype="IS" ItemNo="" Length="6" Max="1" Min="1" Name="Admit Source" Optionality="RE" Table="0023">
+        <ImpNote>
+          <![CDATA[Location of visit]]>
+        </ImpNote>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Ambulatory Status" Optionality="X" Table="0009"/>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="VIP Indicator" Optionality="X" Table="0099"/>
+      <Field Datatype="XCN" ItemNo="" Length="250" Max="1" Min="1" Name="Admitting Doctor" Optionality="RE" Table="0010">
+        <ImpNote>
+          <![CDATA[? Do we provide]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="0" Name="ID number" Optionality="RE"/>
+        <Component Datatype="FN" Length="250" Name="family name" Optionality="RE">
+          <SubComponent Datatype="ST" Length="0" Name="surname" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname prefix" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname prefix from partner/spouse" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname from partner/spouse" Optionality="RE"/>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="given name" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="middle initial or name" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="suffix (e.g., JR or III)" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="prefix (e.g., DR)" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="degree (e.g., MD)" Optionality="RE"/>
+        <Component Datatype="IS" Length="3" Name="source table" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name type code" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="identifier check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="3" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility ID" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name representation code" Optionality="X"/>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Patient Type" Optionality="X" Table="0018"/>
+      <Field Datatype="CX" ItemNo="" Length="250" Max="1" Min="1" Name="Visit Number" Optionality="RE">
+        <Component Datatype="ST" Length="0" Name="ID" Optionality="RE">
+          <ImpNote>
+            <![CDATA[
+              Pointer to entry in OUTPATIENT ENCOUNTER
+              file
+              This is erroneously shown as an NM in CIRN
+              spec
+            ]]>
+          </ImpNote>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility" Optionality="X"/>
+      </Field>
+      <Field Datatype="FC" ItemNo="" Length="50" Max="0" Min="0" Name="Financial Class" Optionality="X" Table="0064">
+        <Component Datatype="IS" Length="0" Name="financial class" Optionality="X"/>
+        <Component Datatype="TS" Length="0" Name="effective date" Optionality="X"/>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Charge Price Indicator" Optionality="X" Table="0032"/>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Courtesy Code" Optionality="X" Table="0045"/>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Credit Rating" Optionality="X" Table="0046"/>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Contract Code" Optionality="X" Table="0044"/>
+      <Field Datatype="DT" ItemNo="" Length="8" Max="0" Min="0" Name="Contract Effective Date" Optionality="X"/>
+      <Field Datatype="NM" ItemNo="" Length="12" Max="0" Min="0" Name="Contract Amount" Optionality="X"/>
+      <Field Datatype="NM" ItemNo="" Length="3" Max="0" Min="0" Name="Contract Period" Optionality="X"/>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Interest Code" Optionality="X" Table="0073"/>
+      <Field Datatype="IS" ItemNo="" Length="1" Max="0" Min="0" Name="Transfer to Bad Debt Code" Optionality="X" Table="0110"/>
+      <Field Datatype="DT" ItemNo="" Length="8" Max="0" Min="0" Name="Transfer to Bad Debt Date" Optionality="X"/>
+      <Field Datatype="IS" ItemNo="" Length="10" Max="0" Min="0" Name="Bad Debt Agency Code" Optionality="X" Table="0021"/>
+      <Field Datatype="NM" ItemNo="" Length="12" Max="0" Min="0" Name="Bad Debt Transfer Amount" Optionality="X"/>
+      <Field Datatype="NM" ItemNo="" Length="12" Max="0" Min="0" Name="Bad Debt Recovery Amount" Optionality="X"/>
+      <Field Datatype="IS" ItemNo="" Length="1" Max="0" Min="0" Name="Delete Account Indicator" Optionality="X" Table="0111"/>
+      <Field Datatype="DT" ItemNo="" Length="8" Max="0" Min="0" Name="Delete Account Date" Optionality="X"/>
+      <Field Datatype="IS" ItemNo="" Length="3" Max="0" Min="0" Name="Discharge Disposition" Optionality="X" Table="0112"/>
+      <Field Datatype="CM" ItemNo="" Length="25" Max="0" Min="0" Name="Discharged to Location" Optionality="X" Table="0113"/>
+      <Field Datatype="CE" ItemNo="" Length="250" Max="0" Min="0" Name="Diet Type" Optionality="X">
+        <Component Datatype="ST" Length="0" Name="identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of coding system" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="name of alternate coding system" Optionality="X"/>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Servicing Facility" Optionality="X" Table="0115"/>
+      <Field Datatype="IS" ItemNo="" Length="1" Max="0" Min="0" Name="Bed Status" Optionality="X" Table="0116"/>
+      <Field Datatype="IS" ItemNo="" Length="2" Max="0" Min="0" Name="Account Status" Optionality="X" Table="0117"/>
+      <Field Datatype="PL" ItemNo="" Length="80" Max="0" Min="0" Name="Pending Location" Optionality="X">
+        <Component Datatype="IS" Length="0" Name="point of care" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="room" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="bed" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="facility" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="location status" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="person location type" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="building" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="floor" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="location description" Optionality="X"/>
+      </Field>
+      <Field Datatype="PL" ItemNo="" Length="80" Max="0" Min="0" Name="Prior Temporary Location" Optionality="X">
+        <Component Datatype="IS" Length="0" Name="point of care" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="room" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="bed" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="facility" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="location status" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="person location type" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="building" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="floor" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="location description" Optionality="X"/>
+      </Field>
+      <Field Datatype="TS" ItemNo="" Length="26" Max="0" Min="0" Name="Admit Date/Time" Optionality="X">
+        <ImpNote>
+          <![CDATA[? Do we value]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="0" Name="YYYY[LL[DD[HHMM[SS[.S[S[S[S]]]]]]]][+/-ZZZZ]" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="degree of precision" Optionality="X"/>
+      </Field>
+      <Field Datatype="TS" ItemNo="" Length="26" Max="0" Min="0" Name="Discharge Date/Time" Optionality="X">
+        <ImpNote>
+          <![CDATA[? Do we value]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="0" Name="YYYY[LL[DD[HHMM[SS[.S[S[S[S]]]]]]]][+/-ZZZZ]" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="degree of precision" Optionality="X"/>
+      </Field>
+      <Field Datatype="NM" ItemNo="" Length="12" Max="0" Min="0" Name="Current Patient Balance" Optionality="X"/>
+      <Field Datatype="NM" ItemNo="" Length="12" Max="0" Min="0" Name="Total Charges" Optionality="X"/>
+      <Field Datatype="NM" ItemNo="" Length="12" Max="0" Min="0" Name="Total Adjustments" Optionality="X"/>
+      <Field Datatype="NM" ItemNo="" Length="12" Max="0" Min="0" Name="Total Payments" Optionality="X"/>
+      <Field Datatype="CX" ItemNo="" Length="250" Max="0" Min="0" Name="Alternate Visit ID" Optionality="X" Table="0203">
+        <Component Datatype="ST" Length="0" Name="ID" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type" Optionality="X"/>
+        </Component>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility" Optionality="X"/>
+      </Field>
+      <Field Datatype="IS" ItemNo="" Length="1" Max="0" Min="0" Name="Visit Indicator" Optionality="X" Table="0326"/>
+      <Field Datatype="XCN" ItemNo="" Length="0" Max="1" Min="1" Name="Other Healthcare Provider" Optionality="RE">
+        <ImpNote>
+          <![CDATA[? Do we value]]>
+        </ImpNote>
+        <Component Datatype="ST" Length="0" Name="ID number" Optionality="RE"/>
+        <Component Datatype="FN" Length="0" Name="family name" Optionality="RE">
+          <SubComponent Datatype="ST" Length="0" Name="surname" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname prefix" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="own surname" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname prefix from partner/spouse" Optionality="RE"/>
+          <SubComponent Datatype="ST" Length="0" Name="surname from partner/spouse" Optionality="RE"/>
+        </Component>
+        <Component Datatype="ST" Length="0" Name="given name" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="second or further given names or initials thereof" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="suffix" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="prefix" Optionality="RE"/>
+        <Component Datatype="ST" Length="0" Name="degree" Optionality="RE"/>
+        <Component Datatype="IS" Length="0" Name="source table" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning authority" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type (ID)" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name type code" Optionality="X"/>
+        <Component Datatype="ST" Length="0" Name="identifier check digit" Optionality="X"/>
+        <Component Datatype="ID" Length="0" Name="code identifying the check digit scheme employed" Optionality="X"/>
+        <Component Datatype="IS" Length="0" Name="identifier type code" Optionality="X"/>
+        <Component Datatype="HD" Length="0" Name="assigning facility" Optionality="X">
+          <SubComponent Datatype="IS" Length="0" Name="namespace ID" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="universal ID" Optionality="X"/>
+          <SubComponent Datatype="ID" Length="0" Name="universal ID type (ID)" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name representation code" Optionality="X"/>
+        <Component Datatype="CE" Length="0" Name="name context" Optionality="X">
+          <SubComponent Datatype="ST" Length="0" Name="identifier" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="text" Optionality="X"/>
+          <SubComponent Datatype="IS" Length="0" Name="name of coding system" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="alternate identifier" Optionality="X"/>
+          <SubComponent Datatype="ST" Length="0" Name="alternate text" Optionality="X"/>
+          <SubComponent Datatype="IS" Length="0" Name="name of alternate coding system" Optionality="X"/>
+        </Component>
+        <Component Datatype="DR" Length="0" Name="validity range" Optionality="X">
+          <SubComponent Datatype="TS" Length="0" Name="range start date/time" Optionality="X"/>
+          <SubComponent Datatype="TS" Length="0" Name="range end date/time" Optionality="X"/>
+        </Component>
+        <Component Datatype="ID" Length="0" Name="name assembly order" Optionality="X"/>
+      </Field>
+    </Segment>
+  </Message>
+</Specification>

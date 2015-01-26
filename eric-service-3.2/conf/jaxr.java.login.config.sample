@@ -1,0 +1,6 @@
+jaxr-ebxml-provider {
+
+  com.sun.security.auth.module.KeyStoreLoginModule required
+    debug="true"
+    keyStoreURL="file:${user.home}${/}eric${/}${dist.version}${/}jaxr-ebxml${/}security${/}keystore.jks";
+};

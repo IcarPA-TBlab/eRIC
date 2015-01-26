@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE setup.xml>
+
+<project basedir="." default="usage" name="eric">
+    <description>ebXML Registry by ICAR CNR</description>
+    
+    <dirname property="eric.basedir" file="${ant.file.eric}"/>
+ 
+     <!-- load local and default properties -->
+    <property name="setup.properties" value="${eric.basedir}/setup.properties"/>
+    <property file="${setup.properties}"/>
+    
+    <property name="app.name" value="eRIC"/>
+    <property name="app.version" value="3.2"/>
+
+	<property name="common.classes" location="${eric.basedir}/../eric-common-${app.version}/bin"/>
+	<property name="client.classes" location="${eric.basedir}/../eric-client-${app.version}/bin"/>
+ 	<property name="server.classes" location="${eric.basedir}/../eric-server-${app.version}/bin"/>
+ 	<property name="regrep.classes" location="${eric.basedir}/../oasis-regrep-3.0/bin"/>
+
+    <property name="setup.home" value="${eric.basedir}/build"/>
+    <property name="setup.lib" location="${eric.basedir}/../eric-libraries-${app.version}/lib"/>
+    <property name="setup.samples" location="${setup.home}/samples"/>
+    <property name="setup.classes" location="${setup.home}/classes"/>
+	
+	<property name="eric.conf" value="${eric.basedir}/conf"/>
+    <property name="eric.conf.database" value="${eric.conf}/database"/>
+	<property name="eric.conf.xsl" value="${eric.conf}/xsl"/>
+
+    <property name="eric.security.dir" value="${eric.home}/data/security"/>
+    <property name="eric.security.keystoreFile" value="${eric.security.dir}/keystore.jks"/>
+    <property name="eric.security.keystoreType" value="jks"/>
+    <property name="eric.security.keystorePassword" value="ebxmlrr"/>
+
+    <property name="eric-setup.security.appserverTruststoreFile" value="${eric.home}/data/security/appserver-truststore.jks"/>
+    <property name="eric-setup.security.JVMCacertsFile" value="${java.home}/lib/security/cacerts"/>
+    <property name="eric-setup.security.appserverTruststorePassword" value="changeit"/>
+
+    <property name="eric.url.soap" value="${eric.registry.baseurl}/soap"/>
+    <property name="eric.url.http" value="${eric.registry.baseurl}/http"/>
+	
+	<!-- These properties enable pluggable sql scripts to support additional RDBMs vendors  -->
+    <property name="createdb.script" value="${eric.basedir}/conf/database/database.sql"/>
+    <property name="cleandb.script" value="${eric.basedir}/conf/database/cleanup.sql"/>
+    <property name="jdbcDriver.fullpath" value="${setup.lib}/${jdbcDriver}"/>
+
+    <!--
+    The following limit is chosen to match ebXML Registry SQL Schema.
+    Databases have different physical limits for this parameter.
+    Oracle has the smallest known limit of 4000.
+    Deployments MAY choose to increase this parameter.
+  -->
+    <property name="dbAdhocQueryQueryLength" value="4096" />
+
+    <condition property="dbAllJars" value="${dbDeploymentJars}">
+        <!-- simple case, ${dbDeploymentJars} contains ${jdbcDriver} -->
+        <contains string="${dbDeploymentJars}" substring="${jdbcDriver}"/>
+    </condition>
+    <!-- otherwise, ${dbDeploymentJars} and ${jdbcDriver} are distinct sets -->
+    <property name="dbAllJars" value="${dbDeploymentJars},${jdbcDriver}"/>
+	
+	<path id="server.run.classpath">
+	  <pathelement path="${regrep.classes}"/>
+	  <pathelement path="${server.classes}"/>
+		<pathelement path="${common.classes}"/>
+		<fileset dir="${setup.lib}">
+			<include name="*.jar"/>
+		</fileset>
+	  <!--path refid="server.run.classpath.mayneed"/-->
+	</path>
+
+	<patternset id="ant.files">
+	    <include name="ant.jar"/>
+	    <include name="ant-launcher.jar"/>
+	    <include name="ant-nodeps.jar"/>
+	</patternset>
+	<path id="ant.classpath">
+	    <fileset dir="./ant">
+	        <patternset refid="ant.files"/>
+	    </fileset>
+	</path>
+	
+	  <macrodef name="fork-antCall">
+	    <attribute name="target"
+		       description="Ant target to be invoked in separate Java VM."/>
+	    <sequential>
+	      <java classname="org.apache.tools.ant.launch.Launcher"
+		    dir="${eric.basedir}"
+		    failonerror="yes"
+		    fork="true">
+		<arg value="@{target}"/>
+
+		<classpath refid="ant.classpath"/>
+		<sysproperty key="java.endorsed.dirs" value="${build.lib.endorsed}"/>
+
+		<!-- following must be relayed; otherwise, things do not work if
+		     these were overridden from default values -->
+		<arg value="-Dcommon.classes=${common.classes}"/>
+		<arg value="-Dclient.classes=${client.classes}"/>
+		<arg value="-Dserver.classes=${server.classes}"/>
+		<arg value="-Dregrep.classes=${regrep.classes}"/>
+		<arg value="-Dsetup.home=${setup.home}"/>
+		<arg value="-Dsetup.lib=${setup.lib}"/>
+		<arg value="-Dsetup.properties=${setup.properties}"/>
+		<!--arg value="-Dbuild.test=${build.test}"/-->
+		<!--arg value="-Dbuild.webapps=${build.webapps}"/-->
+		<!--arg value="-Djavacc.home=${javacc.home}"/-->
+		<!--arg value="-Deric.lib=${eric.lib}"/-->
+		<arg value="-Deric.name=${eric.name}"/>
+	    <arg value="-DlocalCall=${localCall}"/>
+		<arg value="-buildfile"/>
+	    <arg file="setup.xml"/>
+
+		<!-- A matter of asking a question to which there is only one
+		     correct answer. -->
+		<!--arg value="-Dsrc.home=${src.home}"/>
+		<arg value="-Dsrc.java=${src.java}"/>
+		<arg value="-Dsrc.resources=${src.resources}"/-->
+	      </java>
+	    </sequential>
+	  </macrodef>
+
+
+	  <macrodef name="soapSender">
+	    <attribute name="req"/>
+	    <attribute name="alias" default="RegistryOperator"/>
+	    <!--
+	    For predefined users, keyPassword may be an empty string and SOAPSender will figure it out.
+	    For all other users, it MUST be set to the valid keyPassword matching the alias in keyStore.
+	    -->
+	    <attribute name="keyPassword" default=""/>
+	    <attribute name="keyStore" default="${eric.security.keystoreFile}"/>
+	    <attribute name="keyStoreType" default="${eric.security.keystoreType}"/>
+	    <attribute name="keyStorePassword" default="${eric.security.keystorePassword}"/>
+	    <attribute name="localCall" default="${localCall}"/>
+	    <attribute name="url" default="${eric.url.soap}"/>
+	    <attribute name="res" default="response.xml"/>
+	    <attribute name="classpathName" default="server.run.classpath"/>
+	    <attribute name="maxmemory" default="256m"/>
+	    <attribute name="jvmarg" default=""/>
+	    <element name="attachments" optional="true" implicit="true"/>
+	    <sequential>
+	      <java classname="it.cnr.icar.eric.server.util.SOAPSender"
+	      failonerror="true" fork="true" maxmemory="@{maxmemory}">
+	        <jvmarg line="@{jvmarg}"/>
+	        <sysproperty key="http.proxyHost" value="${proxyHost}"/>
+	        <sysproperty key="http.proxyPort" value="${proxyPort}"/>
+	        <sysproperty key="http.nonProxyHosts" value="${nonProxyHosts}"/>
+	        <sysproperty key="org.apache.commons.logging.Log" value="${apacheLog}"/>
+	        <sysproperty key="java.endorsed.dirs" value="${build.lib.endorsed}"/>
+	        <sysproperty key="eric.home" value="${eric.home}"/>
+	        <arg value="req=@{req}"/>
+	        <arg value="alias=@{alias}"/>
+	        <arg value="keyPassword=@{keyPassword}"/>
+	        <arg value="keyStore=@{keyStore}"/>
+	        <arg value="keyStoreType=@{keyStoreType}"/>
+	        <arg value="keyStorePassword=@{keyStorePassword}"/>
+	        <arg value="localCall=@{localCall}"/>
+	        <arg value="url=@{url}"/>
+	        <arg value="res=@{res}"/>
+	        <attachments/>
+	        <classpath refid="@{classpathName}"/>
+	      </java>
+	    </sequential>
+	  </macrodef>
+
+
+	<patternset id="jaxr.client.compile.files">
+	  <include name="eric-common.jar"/>
+	</patternset>
+	<path id="jaxr.client.compile.classpath">
+		<pathelement path="${common.classes}"/>
+	  <fileset dir="${setup.lib}">
+	  	<include name="*.jar"/>
+	  </fileset>
+	</path>
+
+    <!-- locale list for populating localized content into minDB and extDB -->
+    <property name="localeList" value="en_US"/>
+	
+    <!-- Directory for storing sample requests documents -->
+    <property name="samples" value="${eric.basedir}/samples"/>
+	<property name="src.xml" value="${eric.basedir}/xml"/>
+
+	<!-- Main targets -->
+	
+ 	<target name="cleandb" depends="prepare-cleandb, fix.dbURL" description="Clean all tables and views">
+	    <echo message="cleaning all tables and views in database at: ${dbURL.fixed}"/>
+	    <sql autocommit="true" driver="${jdbcClassName}" onerror="continue" password="${dbPassword}" print="yes" src="${cleandb.script}" url="${dbURL.fixed}" userid="${dbUsername}">
+		    <classpath>
+	        	<pathelement location="${jdbcDriver.fullpath}"/>
+	      	</classpath>
+    	</sql>
+  	</target>
+ 
+	  <target name="createMinDB" depends="createIntrinsicDB, loadMinDB" description="Create the minimal database">
+	    <echo message="Create the minimal database"/>
+	    <echo message="eric.home: ${eric.home}"/>
+	  </target>
+	
+	  <target name="createDemoDB" depends="createMinDB, loadDemoDB" description="Create the demo database">
+	    <echo message="Create the demo database"/>
+	    <echo message="eric.home: ${eric.home}"/>
+	  </target>
+
+	<target name="genKeys" description="Generates keys for default users">
+	    <dirname file="${eric.security.keystoreFile}" property="eric.security.keystoreDir"/>
+	    <echo message="Regenerating server keystore and initializing it with keys for pre-defined users: ${eric.security.keystoreFile}" />
+	    <mkdir dir="${eric.security.keystoreDir}"/>
+	    <delete failonerror="false" file="${eric.security.keystoreFile}"/>
+
+	    <genkey keyalg="RSA" alias="urn:freebxml:registry:predefinedusers:registryguest" keypass="urn:freebxml:registry:predefinedusers:registryguest" keystore="${eric.security.keystoreFile}" storepass="${eric.security.keystorePassword}" storetype="${eric.security.keystoreType}" validity="365">
+	      <dname>
+	        <param name="CN" value="RegistryGuest"/>
+	        <param name="OU" value="unknown"/>
+	        <param name="O" value="Source Forge"/>
+	        <param name="C" value="anywhere"/>
+	      </dname>
+	    </genkey>
+	    <genkey keyalg="RSA" alias="urn:freebxml:registry:predefinedusers:nikola" keypass="urn:freebxml:registry:predefinedusers:nikola" keystore="${eric.security.keystoreFile}" storepass="${eric.security.keystorePassword}" storetype="${eric.security.keystoreType}" validity="365">
+	      <dname>
+	        <param name="CN" value="Nikola Stojanovic"/>
+	        <param name="OU" value="Research and Development"/>
+	        <param name="O" value="Taraba, Inc."/>
+	        <param name="C" value="US"/>
+	      </dname>
+	    </genkey>
+	    <genkey keyalg="RSA" alias="urn:freebxml:registry:predefinedusers:farrukh" keypass="urn:freebxml:registry:predefinedusers:farrukh" keystore="${eric.security.keystoreFile}" storepass="${eric.security.keystorePassword}" storetype="${eric.security.keystoreType}" validity="365">
+	      <dname>
+	        <param name="CN" value="Farrukh Najmi"/>
+	        <param name="OU" value="Java Software"/>
+	        <param name="O" value="Sun Microsystems"/>
+	        <param name="C" value="US"/>
+	      </dname>
+	    </genkey>
+	    <genkey keyalg="RSA" alias="urn:freebxml:registry:predefinedusers:registryoperator" keypass="urn:freebxml:registry:predefinedusers:registryoperator" keystore="${eric.security.keystoreFile}" storepass="${eric.security.keystorePassword}" storetype="${eric.security.keystoreType}" validity="365">
+	      <dname>
+	        <param name="CN" value="RegistryOperator"/>
+	        <param name="OU" value="freebXML Registry"/>
+	        <param name="O" value="freebXML"/>
+	        <param name="C" value="US"/>
+	      </dname>
+	    </genkey>
+	    <antcall target="genKeys.appserver-truststore"/>
+	  </target>
+	
+    <target name="usage">
+        <echo message="eRIC Setup instructions"/>
+        <echo message="-----------------------"/>
+        <echo message=""/>
+        <echo message=" While there are many more targets, the following hi-level target are typically used:"/>
+        <echo message=" "/>
+        <echo message="   genKeys              --> Builds KeyStore and loads it with keys for pre-defined Users"/>
+        <echo message="   createMinDB          --> Create the minimal database."/>
+    	<echo message="   createDemoDB         --> Create the demo database."/>
+        <echo message="   cleandb              --> Cleans all the tables at the database server"/>
+    </target>
+
+	<!-- Secondary targets -->
+
+    <target name="build.proNotExist" unless="build.propExist">
+        <fail message="${setup.properties} cannot be found. This file is provided as part of the eRIC distribution."/>
+    </target>
+
+	  <target name="genKeys.appserver-truststore" depends="init,genKeys.clean-appserver-truststore,genKeys.copy-JVM-Cacerts">
+	    <exec executable="${java.home}/bin/keytool" failonerror="true">
+	      <arg value="-export"/>
+	      <arg value="-alias"/>
+	      <arg value="urn:freebxml:registry:predefinedusers:registryoperator"/>
+	      <arg value="-keystore"/>
+	      <arg value="${eric.security.keystoreFile}"/>
+	      <arg value="-storepass"/>
+	      <arg value="${eric.security.keystorePassword}"/>
+	      <arg value="-file"/>
+	      <arg value="${eric.security.dir}/RegistryOperator.cert"/>
+	    </exec>
+	    <exec executable="${java.home}/bin/keytool">
+	      <arg value="-import"/>
+	      <arg value="-alias"/>
+	      <arg value="urn:freebxml:registry:predefinedusers:registryoperator"/>
+	      <arg value="-keystore"/>
+	      <arg value="${eric-setup.security.appserverTruststoreFile}"/>
+	      <arg value="-storepass"/>
+	      <arg value="${eric-setup.security.appserverTruststorePassword}"/>
+	      <arg value="-file"/>
+	      <arg value="${eric.security.dir}/RegistryOperator.cert"/>
+	      <arg value="-noprompt"/>
+	    </exec>
+	    <!-- At this point should the RegistryOperator.cert file be deleted? -->
+	  </target>
+	  <target name="genKeys.clean-appserver-truststore">
+	    <delete failonerror="false" file="${eric-setup.security.appserverTruststoreFile}"/>
+	  </target>
+	  <target name="genKeys.copy-JVM-Cacerts" unless="eric-setup.security.dontTrustJVMCacerts">
+	    <copy file="${eric-setup.security.JVMCacertsFile}" tofile="${eric-setup.security.appserverTruststoreFile}" overwrite="true"/>
+	  </target>
+	
+    <target name="init">
+        <echo message="setup.home = ${setup.home}"/>
+        <echo message="setup.classes = ${setup.classes}" />
+        <echo message="setup.properties = ${setup.properties}" />
+        
+        <tstamp/>
+        <available file="${setup.properties}" property="build.propExist"/>
+        <antcall target="build.proNotExist"/>
+        <mkdir dir="${setup.home}"/>
+        <mkdir dir="${setup.home}/conf"/>
+        <mkdir dir="${setup.home}/conf/database"/>
+        <!--mkdir dir="${setup.lib}"/-->
+        <!--mkdir dir="${setup.classes}"/-->
+    </target>
+	
+	  <target name="loadMinDB" depends="i18n.minDB, loadSchemes, loadConfig, loadXSLT"/>
+	  <target name="loadDemoDB" depends="loadMinDB, loadExtSchemes, loadGeo, loadOrg, loadRoles, loadPicture, loadWSProfile, loadCPPA, loadHL7, loadSubscription, loadCatalogingTest"/>
+
+	  <target name="loadExtSchemes">
+	    <echo message="Loading External Schemes"/>
+	    <soapSender req="${samples}/demoDB/SubmitObjectsRequest_extSchemes.xml"/>
+	  </target>
+	  <target name="loadGeo">
+	    <echo message="Loading ISO 3166 taxonomy as RegistryOperator"/>
+	    <soapSender req="${samples}/demoDB/SubmitObjectsRequest_ISO3166.xml"/>
+	  </target>
+	  <target name="loadOrg">
+	    <echo message="Loading sample Organization data"/>
+	    <soapSender req="${samples}/demoDB/SubmitObjectsRequest_Organization.xml"/>
+	  </target>
+	  <target name="loadRoles">
+	    <echo message="Loading sample Subject Role data"/>
+	    <soapSender req="${samples}/demoDB/SubmitObjectsRequest_Roles.xml">
+	      <arg value="attach=${samples}/acp/folderACP1.xml,text/xml,urn:freebxml:registry:demoDB:acp:folderACP1"/>
+	    </soapSender>
+	  </target>
+	  <target name="loadPicture">
+	    <soapSender req="${samples}/demoDB/SubmitObjectsRequest_Picture1.xml">
+	      <arg value="attach=${samples}/demoDB/Zeus.jpg,image/jpeg,urn:freebxml:registry:demoDB:ExtrinsicObject:zeusDescription"/>
+	      <arg value="attach=${samples}/acp/customACP1.xml,text/xml,urn:freebxml:registry:demoDB:acp:customACP1"/>
+	    </soapSender>
+	  </target>
+	  <target name="loadWSProfile" depends="i18n.extDB.ws">
+	    <echo message="Loading Web Services Profile as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/extDB/ws/SubmitObjectsRequest_WSProfile.xml">
+	      <arg value="attach=${setup.samples}/extDB/ws/InvocationControlFile_WSDLValidation.schematron,text/xml,urn:uuid:c66bdb4c-1587-4bce-8ea4-c0f60486d779"/>
+	   </soapSender>
+	  </target>
+	  <target name="i18n.extDB.ws">
+	    <property name="extDB.ws.i18n.dir" location="${setup.samples}/extDB/ws"/>
+	    <mkdir dir="${extDB.ws.i18n.dir}"/>
+	    <java classname="it.cnr.icar.eric.common.I18nXSLTTask"
+	      fork="true" failonerror="true">
+	      <sysproperty key="java.endorsed.dirs" value="${build.lib.endorsed}"/>
+	      <classpath>
+	        <path refid="jaxr.client.compile.classpath"/>
+	        <pathelement location="${src.resources}"/>
+	      </classpath>
+	      <arg value="-xsltFile"/>
+	      <arg value="${src.xml}/it/cnr/icar/eric/common/I18n-rim.xsl"/>
+	      <arg value="-sourceDir"/>
+	      <arg value="${samples}/extDB/ws"/>
+	      <arg value="-destDir"/>
+	      <arg value="${extDB.ws.i18n.dir}"/>
+	      <arg value="-bundleBaseName"/>
+	      <arg value="it.cnr.icar.eric.common.bundles.extDB.ws.ResourceBundle"/>
+	      <arg value="-localeList"/>
+	      <arg value="${localeList}"/>
+	    </java>
+	    <!-- Manually copy other files than *.xml -->
+	    <copy todir="${extDB.ws.i18n.dir}">
+	      <fileset dir="${samples}/extDB/ws">
+	        <include name="*"/>
+	        <exclude name="*.xml"/>
+	      </fileset>
+	    </copy>
+	  </target>
+	  <target name="loadCPPA" depends="loadSchemes_cppa, loadConfig_cppa, loadData_cppa">
+	    <echo message="Loading ebXML CPPA binding"/>
+	    <echo message="eric.home: ${eric.home}"/>
+	  </target>
+	  <target name="loadSchemes_cppa" depends="loadObjectTypes_cppa" >
+	    <!-- Loads the extensions to canonical schemes as defined by this domain specific binding to ebXML Registry -->
+	  </target>
+	  <target name="loadObjectTypes_cppa">
+	    <echo message="Extending ObjectTypes for CPPA taxonomy as RegistryOperator"/>
+	    <soapSender req="${samples}/cppa/SubmitObjectsRequest_ObjectTypeScheme.xml"/>
+	  </target>
+	  <target name="loadConfig_cppa">
+	    <soapSender req="${samples}/cppa/SubmitObjectsRequest_Config.xml">
+	      <arg value="attach=${samples}/cppa/InvocationControlFile_CPP.xsl,text/xml,urn:freebxml:registry:sample:profile:cpp:cms:InvocationControlFile_CPP.xsl"/>
+	      <arg value="attach=${samples}/cppa/FilteringControlFile_CPP.xsl,text/xml,urn:freebxml:registry:sample:profile:cpp:cms:FilteringControlFile_CPP.xsl"/>
+	    </soapSender>
+	  </target>
+	  <target name="loadData_cppa">
+	    <soapSender req="${samples}/cppa/SubmitObjectsRequest_CPP1ExtrinsicObject.xml">
+	      <arg value="attach=${samples}/cppa/CPP1.xml,text/xml,urn:freebxml:registry:sample:profile:cpp:instance:cpp1"/>
+	    </soapSender>
+	  </target>
+	  <target name="loadHL7" depends="loadSchemes_hl7, loadConfig_hl7, loadData_hl7">
+	    <echo message="Loading Health Level 7 (HL7) binding"/>
+	    <echo message="eric.home: ${eric.home}"/>
+	  </target>
+	  <target name="loadSchemes_hl7" depends="loadObjectTypes_hl7">
+	    <!-- Loads the extensions to canonical schemes as defined by this domain specific binding to ebXML Registry -->
+	  </target>
+	  <target name="loadObjectTypes_hl7">
+	    <echo message="Extending ObjectTypes for HL7 taxonomy as RegistryOperator"/>
+	    <soapSender req="${samples}/hl7/SubmitObjectsRequest_ObjectTypeScheme.xml"/>
+	  </target>
+	  <target name="loadConfig_hl7">
+	    <soapSender req="${samples}/hl7/SubmitObjectsRequest_Config.xml">
+	      <arg value="attach=${samples}/hl7/InvocationControlFile_HL7CP.xsl,text/xml,urn:uuid:2afc3378-387e-44dc-95a5-d1498de6497a"/>
+	    </soapSender>
+	  </target>
+	  <target name="loadData_hl7">
+	    <soapSender req="${samples}/hl7/SubmitObjectsRequest_ConformanceProfile1ExtrinsicObject.xml">
+	      <arg value="attach=${samples}/hl7/ConformanceProfile1.xml,text/xml,urn:uuid:82572fbb-841d-4b9b-b3f9-a2c364cd8928"/>
+	    </soapSender>
+	    <soapSender req="${samples}/hl7/SubmitObjectsRequest_ConformanceProfile2ExtrinsicObject.xml">
+	      <arg value="attach=${samples}/hl7/ConformanceProfile2.xml,text/xml,urn:uuid:a4acaca0-4c29-4ce3-afe3-d370eadf1853"/>
+	    </soapSender>
+	  </target>
+	  <target name="loadSubscription">
+	    <soapSender req="${samples}/demoDB/SubmitObjectsRequest_Subscription.xml"/>
+	  </target>
+	  <target name="loadCatalogingTest" depends="loadCatalogingServices, loadObjectTypes_catalogingTest, loadConfig_catalogingTest"/>
+	  <target name="loadCatalogingServices">
+	    <echo message="Loading test Content Cataloging Services as RegistryOperator"/>
+	    <soapSender req="${samples}/cms/catalogingTest/SubmitObjectsRequest_WebServices.xml"/>
+	  </target>
+	  <target name="loadObjectTypes_catalogingTest">
+	    <echo message="Extending ObjectTypes for test XML objects taxonomy as RegistryOperator"/>
+	    <soapSender req="${samples}/cms/catalogingTest/SubmitObjectsRequest_ObjectTypeScheme.xml"/>
+	  </target>
+	  <target name="loadConfig_catalogingTest">
+	    <soapSender req="${samples}/cms/catalogingTest/SubmitObjectsRequest_CPPACatalogingConfig.xml">
+	      <arg value="attach=${samples}/cppa/InvocationControlFile_CPP.xsl,text/xml,urn:uuid:50ea1df2-5bb8-44c0-8d70-a1e18d84001e"/>
+	    </soapSender>
+	  </target>
+	
+	  <target name="i18n.minDB">
+	    <property name="minDB.i18n.dir" location="${setup.samples}/minDB"/>
+	    <delete dir="${minDB.i18n.dir}"/>
+	    <mkdir dir="${minDB.i18n.dir}"/>
+	  	
+	    <java classname="it.cnr.icar.eric.common.I18nXSLTTask"
+	      fork="true" failonerror="true">
+	      <sysproperty key="java.endorsed.dirs" value="${setup.lib.endorsed}"/>
+	      <classpath>
+	        <path refid="jaxr.client.compile.classpath"/>
+	        <pathelement location="${src.resources}"/>
+	      </classpath>
+	      <arg value="-xsltFile"/>
+	      <arg value="${src.xml}/it/cnr/icar/eric/common/I18n-rim.xsl"/>
+	      <arg value="-sourceDir"/>
+	      <arg value="${samples}/minDB"/>
+	      <arg value="-destDir"/>
+	      <arg value="${minDB.i18n.dir}"/>
+	      <arg value="-bundleBaseName"/>
+		  <arg value="it.cnr.icar.eric.common.bundles.minDB.ResourceBundle"/>
+			  <!--arg value="misc.samples.minDB.ResourceBundle"/-->
+	      <arg value="-localeList"/>
+	      <arg value="${localeList}"/>
+	    </java>
+	    <!-- Manually copy other files than *.xml -->
+	    <copy todir="${minDB.i18n.dir}">
+	      <fileset dir="${samples}/minDB">
+	        <include name="*"/>
+	        <!--exclude name="*.xml"/-->
+	      </fileset>
+	    </copy>
+	  </target>
+	
+	  <target name="loadSchemes" depends="loadDataTypes, loadObjectTypes, loadStatusTypes, loadEventTypes, loadStabilityTypes, loadNodeTypes, loadNotificationOptionTypes, loadDeletionScopeTypes, loadResponseStatusTypes, loadErrorSeverityTypes, loadAssocTypes, loadPhoneTypes, loadEmailTypes, loadSubjectRoles, loadSubjectGroups, loadCMS, loadErrorHandlingModels, loadInvocationModels, loadQueryLangs">
+	    <!-- Loads the canonical schemes as defined by the ebXML Registry specifications -->
+	  </target>
+	  <target name="loadObjectTypes" depends="i18n.minDB">
+	    <echo message="Loading ObjectType taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_ObjectTypeScheme.xml"/>
+	  </target>
+	  <target name="loadDataTypes" depends="i18n.minDB">
+	    <echo message="Loading DataType taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_DataTypeScheme.xml"/>
+	  </target>
+	  <target name="loadStatusTypes" depends="i18n.minDB">
+	    <echo message="Loading StatusType taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_StatusTypeScheme.xml"/>
+	  </target>
+	  <target name="loadEventTypes" depends="i18n.minDB">
+	    <echo message="Loading EventType taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_EventTypeScheme.xml"/>
+	  </target>
+	  <target name="loadStabilityTypes" depends="i18n.minDB">
+	    <echo message="Loading StabilityType taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_StabilityTypeScheme.xml"/>
+	  </target>
+	  <target name="loadNodeTypes" depends="i18n.minDB">
+	    <echo message="Loading NodeType taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_NodeTypeScheme.xml"/>
+	  </target>
+	  <target name="loadNotificationOptionTypes" depends="i18n.minDB">
+	    <echo message="Loading NotificationOptionType taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_NotificationOptionTypeScheme.xml"/>
+	  </target>
+	  <target name="loadDeletionScopeTypes" depends="i18n.minDB">
+	    <echo message="Loading DeletionScopeType taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_DeletionScopeTypeScheme.xml"/>
+	  </target>
+	  <target name="loadResponseStatusTypes" depends="i18n.minDB">
+	    <echo message="Loading ResponseStatusType taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_ResponseStatusTypeScheme.xml"/>
+	  </target>
+	  <target name="loadErrorSeverityTypes" depends="i18n.minDB">
+	    <echo message="Loading ErrorSeverityType taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_ErrorSeverityTypeScheme.xml"/>
+	  </target>
+	  <target name="loadAssocTypes" depends="i18n.minDB">
+	    <echo message="Loading AssociationType taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_AssociationTypeScheme.xml"/>
+	  </target>
+	  <target name="loadPhoneTypes" depends="i18n.minDB">
+	    <echo message="Loading PhoneType taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_PhoneTypeScheme.xml"/>
+	  </target>
+	  <target name="loadEmailTypes" depends="i18n.minDB">
+	    <echo message="Loading EmailType taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_EmailTypeScheme.xml"/>
+	  </target>
+	  <target name="loadSubjectRoles" depends="i18n.minDB">
+	    <echo message="Loading SubjectRole taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_SubjectRoleScheme.xml"/>
+	  </target>
+	  <target name="loadSubjectGroups" depends="i18n.minDB">
+	    <echo message="Loading SubjectGroup taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_SubjectGroupScheme.xml"/>
+	  </target>
+	  <target name="loadCMS" depends="i18n.minDB">
+	    <echo message="Loading ContentManagementService taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_CMSScheme.xml"/>
+	  </target>
+	  <target name="loadErrorHandlingModels" depends="i18n.minDB">
+	    <echo message="Loading ErrorHandlingModel taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_ErrorHandlingModelScheme.xml"/>
+	  </target>
+	  <target name="loadInvocationModels" depends="i18n.minDB">
+	    <echo message="Loading InvocationModel taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_InvocationModelScheme.xml"/>
+	  </target>
+	  <target name="loadQueryLangs" depends="i18n.minDB">
+	    <echo message="Loading QueryLanguage taxonomy as RegistryOperator"/>
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_QueryLangScheme.xml"/>
+	  </target>
+	  <target name="loadConfig" depends="i18n.minDB">
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_Config.xml">
+	      <arg value="attach=${samples}/acp/defaultACP.xml,text/xml,urn:oasis:names:tc:ebxml-regrep:acp:defaultACP"/>
+	      <arg value="attach=${samples}/acp/adminOnlyFolderACP.xml,text/xml,urn:oasis:names:tc:ebxml-regrep:acp:adminOnlyACP"/>
+	      <arg value="attach=${samples}/minDB/notificationToHTML.xsl,text/xml,urn:freebxml:registry:xslt:notificationToHTML.xsl"/>
+	    </soapSender>
+	  </target>
+	  <target name="loadXSLT" depends="i18n.minDB">
+	    <soapSender req="${setup.samples}/minDB/SubmitObjectsRequest_XSLT.xml">
+	      <arg value="attach=${setup.samples}/minDB/Common.xsl,text/xml,urn:uuid:82239fb0-c075-44e3-ac37-a8ea69383907"/>
+	      <arg value="attach=${setup.samples}/minDB/RegistryObject.xsl,text/xml,urn:uuid:0f4e8307-b208-4e91-97b6-aadd0134e3cd"/>
+	      <arg value="attach=${setup.samples}/minDB/RegistryEntry.xsl,text/xml,urn:uuid:326a388d-d467-4f91-a31a-9da8c1a39cef"/>
+	      <arg value="attach=${setup.samples}/minDB/Service.xsl,text/xml,urn:uuid:64275ff5-e943-491f-b1ad-f1242a9dd023"/>
+	      <arg value="attach=${setup.samples}/minDB/ServiceBinding.xsl,text/xml,urn:uuid:8b7886ee-69eb-48a6-a254-830227cdcfc5"/>
+	    </soapSender>
+	  </target>
+
+	<target name="fix.dbURL">
+	    <!-- replace backslashes for windows.. -->
+	    <path id="eric.home.path">
+	    	<pathelement location="${eric.home}"/>
+	    </path>
+	    <pathconvert targetos="unix" property="slashed.eric.home" refid="eric.home.path"/>
+	
+	    <mkdir dir="${setup.home}"/>
+	    <propertyfile file="${setup.home}/fixed.properties" comment="Build-time file for fixing properties">
+	    	<entry key="dbURL.fixed" value="${dbURL}"/>
+	    </propertyfile>
+	    <replace file="${setup.home}/fixed.properties" token="$$eric.home" value="${slashed.eric.home}"/>
+	    <property file="${setup.home}/fixed.properties"/>
+	    <echo message="Fixed DB URL: ${dbURL.fixed}"/>
+    </target>
+
+	  <target name="check-database-type">
+	    <!-- If you add another database type, make sure you add an <equals>
+	         for the new type to the <condition> that sets ${database-is-unknown}. -->
+	    <condition property="database-is-oracle">
+	      <equals arg1="${database}" arg2="oracle" trim="true"/>
+	    </condition>
+	    <condition property="database-is-postgresql">
+	      <equals arg1="${database}" arg2="postgresql" trim="true"/>
+	    </condition>
+	    <condition property="database-is-hsqldb">
+	      <equals arg1="${database}" arg2="hsqldb" trim="true"/>
+	    </condition>
+	    <condition property="database-is-derby">
+	      <equals arg1="${database}" arg2="derby" trim="true"/>
+	    </condition>
+	    <condition property="database-is-mysql">
+	      <equals arg1="${database}" arg2="mysql" trim="true"/>
+	    </condition>
+	    <condition property="database-is-undefined">
+	      <not>
+	        <isset property="database"/>
+	      </not>
+	    </condition>
+	    <condition property="database-is-unknown">
+	      <not>
+	        <or>
+	          <equals arg1="${database}" arg2="oracle" trim="true"/>
+	          <equals arg1="${database}" arg2="postgresql" trim="true"/>
+	          <equals arg1="${database}" arg2="hsqldb" trim="true"/>
+	          <equals arg1="${database}" arg2="derby" trim="true"/>
+	          <equals arg1="${database}" arg2="mysql" trim="true"/>
+	        </or>
+	      </not>
+	    </condition>
+	    <fail if="database-is-undefined"
+	      message="The 'database' property has not been set."/>
+	    <fail if="database-is-unknown"
+	      message="Value of 'database' property is '${database}', which is an unknown database type."/>
+	  </target>
+	
+	  <target name="call-createdb">
+	    <!-- Run in different JVM, to support HSQLDB embedded mode -->
+	    <fork-antCall target="createdb"/>
+	  </target>
+
+	  <!-- Create Database -->
+	  <target name="createdb" depends="fix.dbURL, prepare-createdb" >
+	    <echo message="Database type: ${database}"/>
+	    <echo message="creating an empty database at: ${dbURL.fixed}"/>
+	    <sql autocommit="true" driver="${jdbcClassName}" password="${dbPassword}" print="yes" src="${createdb.script}" url="${dbURL.fixed}" userid="${dbUsername}">
+	      <classpath>
+	        <pathelement location="${jdbcDriver.fullpath}"/>
+	      </classpath>
+	    </sql>
+	  </target>
+
+	<target name="createIntrinsicDB" depends="call-createdb, call-createrepdb, call-loadIntrinsicData">
+	    <echo message="Created a minimal database"/>
+	    <echo message="eric.home: ${eric.home}"/>
+	  </target>
+
+	  <target name="createrepdb" depends="fix.dbURL, prepare-createdb">
+	    <echo message="creating an empty repository database at: ${dbURL.fixed}"/>
+	    <!-- Run in different JVM, to support HSQLDB embedded mode -->
+	    <java classname="it.cnr.icar.eric.server.repository.hibernate.RepositoryHibernateUtil"
+		  fork="true" failonerror="true">
+	      <classpath>
+	        <pathelement path="${common.classes}"/>
+	        <pathelement path="${server.classes}"/>
+	        <pathelement location="${jdbcDriver.fullpath}"/>
+	      	<fileset dir="${setup.lib}">
+	      		<include name="*.jar"/>
+	      	</fileset>
+	      </classpath>
+	      <arg value="-cleandb=true"/>
+	      <arg value="-createdb=true"/>
+	      <sysproperty key="eric.home" value="${eric.home}"/>
+	    </java>
+	  </target>
+	  <!-- much like an alias for above target -->
+	  <target name="call-createrepdb" depends="createrepdb"/>
+
+	  <target name="loadIntrinsicData" depends="fix.dbURL">
+	    <echo message="Loading instrinsic factory data in database at: ${dbURL.fixed}"/>
+	    <sql autocommit="false" driver="${jdbcClassName}" password="${dbPassword}" print="yes" src="./conf/database/intrinsicData.sql" url="${dbURL.fixed}" userid="${dbUsername}">
+	      <classpath>
+	        <pathelement location="${jdbcDriver.fullpath}"/>
+	      </classpath>
+	    </sql>
+	  </target>
+	  <target name="call-loadIntrinsicData">
+	    <!-- Run in different JVM, to support HSQLDB embedded mode -->
+	    <fork-antCall target="loadIntrinsicData"/>
+	  </target>
+
+    <!-- Set up for filtering done during copies below -->
+    <filterset id="common.filters" begintoken="$$$$" endtoken="$$$$">
+        <filter token="eric.name" value="${eric.name}"/>
+        <filter token="DB_DIALECT" value="${dbDialect}"/>
+        <filter token="DB_LARGE_BINARY_TYPE" value="${dbLargeBinaryType}"/>
+        <filter token="DB_LARGE_BINARY_TYPE_LENGTH" value="${dbLargeBinaryTypePropLength}"/>
+        <filter token="ADHOCQUERY_QUERY_COL_LENGTH" value="${dbAdhocQueryQueryLength}"/>
+        <filter token="DB_NAME" value="${dbName}"/>
+        <filter token="DB_TRANSACTION_ISOLATION" value="${dbTransactionIsolation}"/>
+        <filter token="DIST-VERSION" value="${dist.version}"/>
+        <filter token="eric_SERVER_BASE_URL" value="${eric.registry.baseurl}"/>
+    </filterset>
+	
+    <target name="prepare-cleandb" depends="prepare-database-filtersfile">
+	    <copy file="${createdb.script}.template"
+	      tofile="${cleandb.script}"
+	      overwrite="true">
+	    	<filterset refid="common.filters"/>
+	      <filterset>
+	        <filtersfile file="${eric.conf.database}/cleandb-filters.properties"/>
+	        <filtersfile file="${database-filtersfile}"/>
+	      </filterset>
+	    </copy>
+  	</target>
+ 
+	 <target name="prepare-createdb" depends="prepare-database-filtersfile">
+	    <copy file="${createdb.script}.template"
+	      tofile="${createdb.script}"
+	      overwrite="true">
+	    	<filterset refid="common.filters"/>
+	      <filterset>
+	        <filtersfile file="${eric.conf.database}/createdb-filters.properties"/>
+	        <filtersfile file="${database-filtersfile}"/>
+	      </filterset>
+	    </copy>
+	  </target>
+	
+	<target name="prepare-database-filtersfile" depends="check-database-type,prepare-oracle-filtersfile, prepare-postgresql-filtersfile, prepare-hsqldb-filtersfile, prepare-derby-filtersfile, prepare-mysql-filtersfile"/>
+
+	<target name="prepare-oracle-filtersfile" if="database-is-oracle">
+		<property name="database-filtersfile" value="${eric.conf.database}/oracle-filter.properties"/>
+	</target>
+	<target name="prepare-postgresql-filtersfile" if="database-is-postgresql">
+		<property name="database-filtersfile" value="${eric.conf.database}/postgresql-filter.properties"/>
+	</target>
+	<target name="prepare-hsqldb-filtersfile" if="database-is-hsqldb">
+		<property name="database-filtersfile" value="${eric.conf.database}/hsqldb-filter.properties"/>
+	</target>
+	<target name="prepare-derby-filtersfile" if="database-is-derby">
+		<property name="database-filtersfile" value="${eric.conf.database}/derby-filter.properties"/>
+	</target>
+	<target name="prepare-mysql-filtersfile" if="database-is-mysql">
+		<property name="database-filtersfile" value="${eric.conf.database}/mysql-filter.properties"/>
+	</target>
+
+    <target name="-read.dbParams" unless="dbParams">
+        <!-- This only gets executed when ${dbParamsFile} is set since default
+         ${dbParams} value is set above -->
+        <loadfile failonerror="false"
+                  property="dbParams"
+                  srcFile="${eric.conf.database}/${dbParamsFile}"/>
+    </target>
+	
+	  <target name="setup.erichome">
+	    <copy todir="${eric.home}/data/xsl">
+	      <fileset dir="${eric.conf.xsl}" includes="*.xsl"/>
+	    </copy>
+	  </target>
+   
+</project>

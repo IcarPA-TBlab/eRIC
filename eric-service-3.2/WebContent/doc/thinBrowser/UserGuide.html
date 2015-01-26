@@ -1,0 +1,290 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- $Header: /cvsroot/ebxmlrr/omar/doc/3.0/thinBrowser/UserGuide.html,v 1.12 2005/07/21 08:55:28 doballve Exp $-->
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE"
+ content="text/html; charset=iso-8859-1">
+  <title>Web UI Registry Browser User Guide</title>
+  <meta name="GENERATOR" content="StarOffice 7  (Linux)">
+  <meta name="AUTHOR" content="Ingling.Hu@Sun.COM">
+  <meta name="CREATED" content="20050124;18514600">
+  <meta name="CHANGEDBY" content="Paul Sterk">
+  <meta name="CHANGED" content="20050124;18540800">
+  <style>
+	<!--
+		TD P { color: #000000 }
+		h2 { color: #000000 }
+		P { color: #000000 }
+		TH P { color: #000000 }
+		A:link { color: #0000ff }
+		A:visited { color: #663399 }
+	-->
+	</style>
+</head>
+<body lang="en-US" text="#000000" link="#0000ff" vlink="#663399"
+ bgcolor="#ffffff" dir="ltr">
+<h2>Registry Browser - Web UI Browser User Guide</h2>
+<p align="center"><font size="4">(Early Draft v0.1)</font></p>
+
+<h2><a name="introduction"></a>1. Introduction</h2>
+<p>This document describes how to use the Web UI Registry Browser to
+query and drill down into Registry and Repository content. The
+Registry Browser Web UI currently provides read-only access to
+content. A future release will have a publish feature.</p>
+<p>The Registry Browser Web UI is based on Java Server Faces 1.1_01
+and designed to work with standard web browsers such as Mozilla,
+Netscape and Internet Explorer. It requires that JavaScript be
+supported and enabled in the browser. </p>
+
+<h2><a name="getting_started"></a>2. Getting Started</h2>
+<p>This section describes what you need to do to get started using
+the Registry Browser Web UI browser.</p>
+<p>First, the Registry must be installed, configured and started.
+See the <a href="http://ebxmlrr.sourceforge.net/3.0/SetupGuide.html">
+SetupGuide.html</a> for details. After that, no user configuration is required.</p>
+<p>Next, start a web browser. If the Registry is installed on a
+local machine using default configuration, enter the following URL in
+your browser:</p>
+<p><code>http://localhost:8080/omar/registry/thin/WelcomePage.jsp</code></p>
+<p>The URL shown above is the default. 'localhost' should resolve to
+your local machine name, '8080' is the default port, and
+'omar/registry/thin/browser.jsp' is the default URI. If the
+Registry is not deployed locally, or not deployed using default
+properties, obtain the URL from the Registry Administrator.</p>
+<p>After that, the Registry Browser Web UI should appear in your web
+browser. The following sections provide more information on layout, discovery,
+search results and drill down features.</p>
+
+<h2><a name="overall_layout"></a>3. Overall Layout</h2>
+<p>The Registry Browser Web UI is organized as follows - it has one
+main frame that contains a frameset of four additional frames:</p>
+<ol>
+  <li>
+    <p style="margin-bottom: 0in;">Banner Frame - this is the top,
+horizontal frame with a logo, title and tool bar. </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0in;">Discovery Frame - this is left side
+frame with links to Explore Registry and Search Registry. As the
+title suggests, this frame is used to discover what content is in the
+Registry and Repository. The content is made up of Registry Informaton
+Model (RIM) metadata objects.</p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0in;">Search Results Frame - this is the
+right upper frame that contains the results of a query or explore task.
+It contains a tabular display of RIM object search results. A
+subset of the RIM object's attributes is displayed as columns, and each
+result is displayed as rows. A drill-down can be done on each
+search result.</p>
+  </li>
+  <li>
+    <p>Detail Frame - this is the right lower frame that contains the
+results of the drill-down. The result contains all the RIM
+object's attributes and composed objects displayed in one file
+tab. Other RIM objects, related to the drill down object, are
+also displayed in separate, sequential file folders.</p>
+  </li>
+</ol>
+<p>See sections below for more details.</p>
+
+<h2><a name="discovering_content"></a>4. Discovering Content</h2>
+<p><a name="explore_registry"></a><a name="search_registry"></a>There
+are two ways to discover Registry content: exploring content using
+file folders and querying content using query forms. Each is
+discussed in subsections below:</p>
+<h3>4.1 Explore Registry</h3>
+<p>In the Discovery page, click on the Explore
+Registry link. The Explore Registry page will load in the
+Discovery frame. This page allows you to navigate through Registry
+and Repository content using a hierarchy of file folders. The
+root folder, named 'registry', contains all Registry content, and is
+similar to the UNIX root directory. </p>
+<p>Click on the expansion image directly left of the folder to expand the
+'registry' folder. You should see a subfolder named 'userData'. This
+is the default folder where all user content is placed.</p>
+<p> To review the contents of a folder, click on the folder image or the
+folder name. The search results will appear in the
+SearchResultsFrame directly to the right. You may review
+details of each item by clicking on the Details link located in the
+first column of the search results table. See the <a
+ href="#search_result_drill_downs">Search
+Result Drill Downs</a> section below for details.</p>
+
+<h3>4.2 Search Registry</h3>
+<p>In the Discovery page, click on the
+Search Registry link. The Search Registry page will load in the
+Discovery frame. At the top of the page is a drop-down list,
+called 'Select ad-hoc query', that contains a list of preconfigured
+queries. Clicking a member of this list, causes a new query
+form to be loaded in the Search Registry page. Business Query
+query is the default query in the list, and will be used in the
+following description.</p>
+
+<h3>4.2.1 Business Query Form</h3>
+<p>This form enables querying based on the RIM type,
+name, description and one or more classifications. It is
+equivalent to the Business Query contained in the Thick Client.
+This query is good for general querying - more specific queries can
+be configured for specific target audiences.</p>
+<p>The default ObjectType is 'RegistryObject' which is the parent type of
+all RIM objects. Not surprisingly, executing a query with this type
+will return a large result set. For smaller result sets, choose
+a different type such as 'Service' or 'Organization'. Then,
+click the Search button. The search results will appear in the
+SearchResultsFrame in the upper right. This kind of query is
+not filtered in any way - all objects are returned. See below
+for how to filter the result set.</p>
+<p>The Name, Description and
+Classifications are all used to filter the search results. For
+example, select 'Service' from the ObjectType list box, enter
+'%ebXML%' into the Name field, and click the Search button.
+You should see one search result: </p>
+<table border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <th>
+      <p>Details</p>
+      </th>
+      <th>
+      <p>ObjectType</p>
+      </th>
+      <th>
+      <p>Name</p>
+      </th>
+      <th>
+      <p>Description</p>
+      </th>
+      <th>
+      <p>Version</p>
+      </th>
+    </tr>
+    <tr>
+      <td>
+      <p><u>Details</u></p>
+      </td>
+      <td>
+      <p>Service</p>
+      </td>
+      <td>
+      <p>ebXML Registry Service</p>
+      </td>
+      <td>
+      <p>Sun's OASIS ebXML Registry V3.0 service</p>
+      </td>
+      <td>
+      <p>
+      </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><a name="displaying_search_results"></a>
+<a name="search_result_drill_downs"></a></p>
+<p>The '%' is used as the wildcard character. </p>
+
+<h3>4.2.2 Displaying Search Results</h3>
+<p>The search results from a
+query are displayed in the SearchResultsFrame in the upper right.
+They are displayed in a tabular format - RIM object attributes are
+displayed as table columns, each RIM object is displayed as table
+rows.</p>
+<p>The columns displayed to the user can be configured for
+each RIM object. For example, Service objects can display five
+attributes, Extrinsic Objects display four attributes and so on.
+See the Registry Browser Web UI Configuration Guide for details.</p>
+<p>If there are more rows in the result set than the Registry Browser Web
+UI can display, the scroller at the bottom of the Search Results page
+can be used to navigate forward and backward through the set.</p>
+<p>Each row in the search results contains a Details column with a link to
+the Details page. Click on any of the links to see an object's
+details.</p>
+
+<h3>4.2.2 Search Result Drill Downs</h3>
+<p>The search result table contains links to a Details page for any RIM
+object. Execute a query as explained previously. Click on
+the Details link. The Details page displays in the DetailFrame
+in the lower right. Scroll down the page to see all the
+object's attributes and composed objects. Other objects,
+related to the drill down object, are also displayed in adjacent tab
+folders. Click on any of these other tabs to see details on
+these related objects.</p>
+
+<h2><a name="creating_relationships"></a>5. Creating Relationships</h2>
+<p>There are two kinds of relationships: references and
+associations. A reference is a unidirectional relationship from
+source to target object. An assocation is a bidirectional
+relationship that contains additional metadata such as what kind of an
+assocation it is.</p>
+<p>References are only supported between some pairs of object types.
+For example, a Service source object can have a reference to a
+ServiceBinding object. Assocations can be created between any two
+object types. If a reference is valid, the Reference option will
+be shown first. Users still have the option of creating an
+Asssocation. Click the radio button in the Relationship table to
+toggle between Reference and Association types.</p>
+
+<h3>5.1 Creating References</h3>
+<ol>
+  <li>Select the source object.</li>
+  <li>Click the Reference radio button, if it is not already clicked.
+The valid reference attribute should display.</li>
+  <li>Click the Save button to save the reference.</li>
+</ol>
+
+<h3>5.2 Creating Associations</h3>
+<ol>
+  <li>Select the source object.</li>
+  <li>Click the Assocation radio button, if it is not already
+clicked. The Assocation.jsp page should appear.</li>
+  <li>Fill out the Assocation.jsp form.</li>
+  <li>Click the Save button to save the association.</li>
+</ol>
+
+<h2><a name="publish"></a>6. Publishing</h2>
+<p>Before you can publish, you must first register. See the <a
+ href="../UserRegistrationGuide.html">User Registration Guide</a> for
+more details.</p>
+<p><span id="publishView:addNewRO:addNewROSteps">To create a new
+registry object, perform these steps:</span>
+</p>
+<ol>
+  <li>Click Create a New Registry Object in the left sidebar. The
+Create a New Registry Object page should appear in the left sidebar.</li>
+  <li><span id="publishView:addNewRO:addNewROStepsView:addNewROSteps1">Choose
+an object type from the drop-down list and click Add.</span></li>
+  <li><span id="publishView:addNewRO:addNewROStepsView:addNewROSteps2">Type
+entries in the fields of the Details form.</span></li>
+  <li><span id="publishView:addNewRO:addNewROStepsView:addNewROSteps2">Optionally,
+click on the object's tab folders, such as Slot, and add composed
+objects.</span></li>
+  <li><span id="publishView:addNewRO:addNewROStepsView:addNewROSteps3">Click
+Save.</span></li>
+</ol>
+
+<h2><a name="pinning_objects"></a>7. Pinning Objects</h2>
+<p>In order to create an Assocation, you must select two Registry
+objects. Usually, these are objects with different object types.
+One way to get a result set with two different object types, is to
+'pin' the first object in the result set so that it appears in the
+second result set. This enables you to do a first query for one
+object type, such as Organization, pin the Organization object, and
+then do a second query for a different object type, such as
+Service. You can then select both these objects and create an
+Assocation between them.</p>
+<p><span id="publishView:addNewRO:addNewROSteps">To pin a
+registry object, perform these steps:</span></p>
+<ol>
+  <li>Use the Search Form in the left sidebar to create a first set of
+objects</li>
+  <li>Click the checkbox in the Pin column in the far right of the row</li>
+  <li>Click Clear in the Search Form. The pinned object is still
+visible, and the nonpinned objects are cleared.</li>
+  <li>Use the Search Form to create a second set of new objects. You
+can now click the Pick checkboxes of both objects, and proceed to
+create an Association between them by clicking Relate in the toolbar.</li>
+</ol>
+<p>To remove the pin, click the Pin checkbox a second time, and click
+Clear. The pinned object should now no longer be visible.</p>
+</body>
+</html>

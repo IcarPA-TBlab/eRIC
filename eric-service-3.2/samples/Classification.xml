@@ -1,0 +1,22 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/Classification.xml,v 1.3 2005/01/31 20:32:42 farrukh_najmi Exp $-->
+<ClassificationScheme id = "Geography-id" isInternal="true" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode" xmlns = "urn:oasis:names:tc:ebxml-regrep:rim:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:rim:xsd:2.0 rim.xsd" >
+	<Name xmlns = "">
+		<LocalizedString value = "Geography"/>
+	</Name>
+
+	<Description xmlns = "">
+		<LocalizedString value = "This is a sample Geography scheme"/>
+	</Description>
+
+	<ClassificationNode id = "NorthAmerica-id" parent = "Geography-id" code = "NorthAmerica" > 
+		<ClassificationNode id = "UnitedStates-id" parent = "NorthAmerica-id" code = "UnitedStates" /> 
+		<ClassificationNode id = "Canada-id" parent = "NorthAmerica-id" code = "Canada" /> 
+	</ClassificationNode>
+
+	<ClassificationNode id = "Asia-id" parent = "Geography-id" code = "Asia" > 
+		<ClassificationNode id = "Japan-id" parent = "Asia-id" code = "Japan" >
+			<ClassificationNode id = "Tokyo-id" parent = "Japan-id" code = "Tokyo" />
+		</ClassificationNode>
+	</ClassificationNode>
+</ClassificationScheme>

@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/SubmitObjectsRequest_WebService.xml,v 1.3 2005/01/31 20:34:33 farrukh_najmi Exp $-->
+<rs:SubmitObjectsRequest 
+	xmlns = "urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" 
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0 http://www.oasis-open.org/committees/regrep/documents/2.1/schema/rim.xsd urn:oasis:names:tc:ebxml-regrep:registry:xsd:2.1 http://www.oasis-open.org/committees/regrep/documents/2.1/schema/rs.xsd" 
+	xmlns:rim = "urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" 
+	xmlns:rs = "urn:oasis:names:tc:ebxml-regrep:registry:xsd:2.1">  
+
+	<LeafRegistryObjectList>
+
+		<!-- Ref to Organization (Sun) that offers the web service. This is already stored in registry -->
+		<ObjectRef id="urn:freebxml:registry:demoDB:Sun"/>
+		
+		<!-- Associates web service with the organization that offers it. -->
+		<Association id = "sun-indexerService" associationType = "OfferedBy" 
+			sourceObject = "indexerService" targetObject = "urn:freebxml:registry:demoDB:Sun" />    
+
+		<!-- The web service definition -->
+		<Service id="indexerService">
+			<Name>
+				<LocalizedString lang="en_US" value = "Name space indexing service for ebXML Registry V3"/>
+			</Name>
+			<Description>
+				<LocalizedString lang="en_US" value = "Indexes XML schema and content according to name space definitions and useages"/>
+			</Description>
+
+			<ServiceBinding accessURI="http://www.sun.com/ebxmlrr/registry/nameSpaceIndexer">
+				<SpecificationLink specificationObject="wsdlForContentIndexer">
+					<UsageDescription>
+						<LocalizedString lang="en_US" value = "Clients of the ebXML Registry need not invoke this service directly. It is meant to be invoked by the ebXML Registry"/>
+					</UsageDescription>
+				</SpecificationLink>
+			</ServiceBinding>
+		</Service>
+		
+		<!-- The ExtrinsicObject for the WSDL file. Note that the actual WSDL file is a repository item and is an attachment to the SOAP message carrying this request -->
+		<ExtrinsicObject id="wsdlForContentIndexer" mimeType="text/xml">
+			<Name>
+				<LocalizedString lang="en_US" value = "The WSDL document for the Name space indexing service for ebXML Registry V3"/>
+			</Name>
+		</ExtrinsicObject>
+
+	</LeafRegistryObjectList>
+</rs:SubmitObjectsRequest>

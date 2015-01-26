@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- $Header: /cvsroot/ebxmlrr/omar/doc/3.0/developer/addingPackage.html,v 1.5 2007/07/27 14:23:36 farrukh_najmi Exp $-->
+    <html>
+      <head>
+          <title>freebXML Registry - Extension Guide</title>
+      </head>
+      <body class="composite">
+    <div class="h2">
+        <h2><a name="addingPackage">Adding a Top-level Package</a></h2>
+
+    <p>Adding a top-level package that you will compile as a separate
+    operation and that a user will run separately doesn't happen very
+    often.</p>
+
+    <p>There are several steps in making new top-level package that
+    you can compile and run using package-specific Ant targets.</p>
+
+    <ul>
+
+    <li>Add patternsets and paths for common, compile-time, and run-time
+    classpaths to <tt>build-compile.xml</tt></li>
+
+    <li>Add a compile target to <tt>build-compile.xml</tt></li>
+
+    <li>Add the compile target to the next higher-level compile
+    target in <tt>build-compile.xml</tt></li>
+
+    <li>Add an Ant property for the jar or war file's name to
+    <tt>build-compile.xml</tt></li>
+
+    <li>Add a jar target to
+    <tt>build-compile.xml</tt></li>
+
+    <li>Add the new jar target as a dependency of the 'jars' target in
+    <tt>build-compile.xml</tt></li>
+
+    </ul>
+
+    <div>
+    <h2>Adding Patternsets and Classpaths to <tt>build-compile.xml</tt></h2>
+
+    <p>Each top-level package typically has three patternsets and two classpaths defined
+    in <tt>build-compile.xml</tt>:</p>
+
+    <ul>
+
+    <li><tt>xxx.common.files</tt> - Files common to both
+    compile-time and run-time.</li>
+
+    <li><tt>xxx.compile.files</tt> - The common files plus files
+    that are needed when compiling the package but not necessary when
+    running it.</li>
+
+    <li><tt>xxx.compile.classpath</tt> -
+    <tt>xxx.compile.files</tt> expressed as a classpath.</li>
+
+    <li><tt>xxx.run.files</tt> - The common files plus files
+    that are needed when running the package but not necessary when
+    compiling it.</li>
+
+    <li><tt>xxx.run.classpath</tt> - <tt>xxx.run.files</tt>
+    expressed as a classpath.</li>
+
+    </ul>
+
+    <div>
+    <h3>Example</h3>
+
+    <pre>&lt;!-- Classpath used to compile the Bulk Loader -->
+&lt;patternset id="bulkLoader.common.files">
+    &lt;include name="${jaxr.provider.name}.jar"/>
+    &lt;include name="omar-common.jar"/>
+    &lt;include name="commons-logging.jar"/>
+    &lt;include name="ant.jar"/>
+&lt;/patternset>
+
+&lt;patternset id="bulkLoader.compile.files">
+    &lt;patternset refid="jaxr.client.compile.files"/>
+    &lt;patternset refid="bulkLoader.common.files"/>
+&lt;/patternset>
+&lt;path id="bulkLoader.compile.classpath">
+    &lt;fileset dir="${build.lib}">
+        &lt;patternset refid="bulkLoader.compile.files"/>
+    &lt;/fileset>
+&lt;/path>
+
+&lt;patternset id="bulkLoader.run.files">
+    &lt;patternset refid="jaxr.provider.run.files"/>
+    &lt;patternset refid="bulkLoader.common.files"/>
+&lt;/patternset>
+&lt;path id="bulkLoader.run.classpath">
+    &lt;fileset dir="${build.lib}">
+        &lt;patternset refid="bulkLoader.run.files"/>
+    &lt;/fileset>
+&lt;/path></pre>
+
+    </div>
+
+    </div>
+
+    <div>
+    <h2>Adding a Compile Target to <tt>build-compile.xml</tt></h2>
+
+    <p>Running this target compiles the package after all the target's
+    dependencies have been satisfied.</p>
+
+    <div>
+    <h3>Example</h3>
+
+    <pre>&lt;target name="compile.bulkLoader" depends="jar.ebxml.provider" description="Compile the bulk loader">
+    &lt;javac fork="true" memoryMaximumSize="100m" debug="${compile.debug}" deprecation="${compile.deprecation}" destdir="${build.lib}/classes" optimize="${compile.optimize}" srcdir="${src.java}">        
+        &lt;classpath refid="bulkLoader.compile.classpath"/>
+        &lt;include name="it/cnr/omar/client/bulkLoader/**"/>
+    &lt;/javac>
+&lt;/target></pre>
+
+    </div>
+
+    </div>
+
+    <div>
+    <h2>Adding the Compile Target to the Next Higher-Level
+    Compile Target in <tt>build-compile.xml</tt></h2>
+
+    <p>The next higher-level ".compile" target is probably
+    <tt>compile.client</tt>, <tt>compile.common</tt>, or
+    <tt>compile.server</tt>.  If your package does not fit in any of
+    those three categories, then it should probably be a dependency of
+    <tt>compile.all</tt>.</p>
+
+    <div>
+    <h3>Example</h3>
+
+    <pre>&lt;target name="compile.client"
+        depends="compile.ebxml.provider, compile.browser, compile.client.thin,
+                 <b>compile.bulkLoader</b>, compile.ebxml.provider.tests"/></pre>
+
+    </div>
+
+    </div>
+
+    <div>
+    <h2>Adding an Ant Property for the Jar or War File's Name</h2>
+
+    <p>You should add this to the similar properties defined in
+    <tt>build-compile.xml</tt>.</p>
+
+    <div>
+    <h3>Example</h3>
+
+    <pre>&lt;!-- Properties for *ar names -->
+&lt;property name="browser.name" value="registry-browser"/>
+<b>&lt;property name="bulkLoader.name" value="bulk-loader"/></b>
+&lt;property name="jaxr.admin.name" value="jaxr-ebxml-admin"/>
+&lt;property name="jaxr.provider.name" value="jaxr-ebxml"/>
+&lt;property name="jaxr.test.name" value="jaxr-ebxml-test"/></pre>
+
+    </div>
+
+    </div>
+
+    <div>
+    <h2>Adding a Jar Target</h2>
+
+    <p>The created jar file should include a manifest that:</p>
+
+    <ul>
+
+    <li>Identifies the package and attributes it to the project.</li>
+
+    <li>Specifies the package's main class as the jar's main
+    class.</li>
+
+    <li>Specifies all other required jars in this jar's
+    classpath.</li>
+
+    </ul>
+
+    <div>
+    <h3>Example</h3>
+
+    <pre>&lt;target name="jar.bulkLoader" depends="compile.bulkLoader"
+        description="create jar file containing only the Bulk Loader">
+             
+    &lt;!-- Remove path prefixes from list of files and build a list for Class-Path -->
+    &lt;pathconvert property="bulkLoader.manifest.classpath"
+                 setonempty="false"
+                 dirsep="/" pathsep=" "
+                 refid="bulkLoader.run.classpath">
+        &lt;map from="${build.lib}${file.separator}"
+             to=""/>
+    &lt;/pathconvert>
+
+    &lt;manifest file="${build.lib}/bulk-loader.manifest"
+              mode="replace">
+        
+        &lt;attribute name="Main-Class" 
+                   value="org.freebxml.omar.client.bulkLoader.BulkLoaderTool"/>
+        &lt;attribute name="Class-Path" 
+                   value="${bulkLoader.manifest.classpath}"/>
+        &lt;attribute name="Build-Time" 
+                   value="${DSTAMP}${TSTAMP}"/>
+        
+        &lt;section name="com/sun/xml/registry/client/bulkLoader">
+            &lt;attribute name="Specification-Title"
+                       value="Bulk Loader"/>
+            &lt;attribute name="Specification-Version"
+                       value="${dist.version}"/>
+            &lt;attribute name="Specification-Vendor"
+                       value="freebxml"/>
+            &lt;attribute name="Implementation-Title"
+                       value="Bulk Loader"/>
+            &lt;attribute name="Implementation-Version"
+                       value="${dist.version}"/>
+            &lt;attribute name="Implementation-Vendor"
+                       value="freebxml"/>
+            &lt;attribute name="Implementation-URL"
+                       value="http://ebxmlrr.sourceforge.net/"/>
+        &lt;/section>
+        
+    &lt;/manifest>
+    
+    &lt;copy todir="${build.lib}/classes" file="conf/log4j.properties"/>
+    
+    &lt;copy todir="${build.lib}/classes/META-INF"
+          file="conf/mime.types"/>
+
+    &lt;jar manifest="${build.lib}/bulk-loader.manifest"
+         jarfile="${build.lib}/${bulkLoader.name}.jar"
+         basedir="${build.lib}/classes">
+        &lt;metainf dir="${build.lib}/classes/META-INF">
+            &lt;include name="mime.types"/>
+        &lt;/metainf>
+        &lt;include name="it/cnr/omar/client/bulkLoader/**"/>
+        &lt;include name="commons-logging.properties"/>
+        &lt;include name="log4j.properties"/>
+    &lt;/jar>
+
+&lt;/target></pre>
+
+    </div>
+
+    </div>
+
+    <div>
+    <h2>Adding the New Jar Target to 'jars' Target</h2>
+
+    <p>Once you do this, the new jar target will be compiled along
+    with the other jars whenever the 'jars' target is run.</p>
+
+    <ul>
+
+    <li>Identifies the package and attributes it to the project.</li>
+
+    <li>Specifies the package's main class as the jar's main
+    class.</li>
+
+    <li>Specifies all other required jars in this jar's
+    classpath.</li>
+
+    </ul>
+
+    <div>
+    <h3>Example</h3>
+
+    <pre>&lt;target name="jars"
+        depends="jar.ebxml.provider, jar.browser, jar.adminTool, <b>jar.bulkLoader</b>, jar.ebxml.provider.tests"
+        description="Build jar files"/></pre>
+
+    </div>
+
+    </div>
+
+    </div>      </body>
+    </html>

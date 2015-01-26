@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.3 U (http://www.xmlspy.com) by Peter Burgess (Tietoenator) -->
+<GetContentRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0 ../schema/rim.xsd urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0 ../schema/query.xsd">
+	<rim:ObjectRefList>
+		<rim:ObjectRef id="e3373a7b-4958-4e55-8820-d03a191fb76a"/>
+	</rim:ObjectRefList>
+</GetContentRequest>

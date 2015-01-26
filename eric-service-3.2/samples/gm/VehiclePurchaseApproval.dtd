@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/gm/VehiclePurchaseApproval.dtd,v 1.1.1.1 2003/09/24 03:55:07 farrukh_najmi Exp $-->
+<!ELEMENT thisDocumentIdentifier (ProprietaryDocumentIdentifier)>
+<!ELEMENT VehiclePurchaseRequest (DocumentFunctionCode,thisDocumentIdentifier,thisDocumentGenerationDateTime,PartnerInfo,PurchaseRequestData+,PaymentData)>
+<!ELEMENT thisDocumentGenerationDateTime (DateTimeStamp)>
+<!ELEMENT PartnerInfo (Name,TelephoneNumber,EmailAddress)>
+<!ELEMENT PurchaseRequestData (vin,ApprovalIndicator)>
+<!ELEMENT PaymentData (billingamount,cctype,ccnumber,expirationDate)>
+<!ELEMENT ApprovalIndicator (approvalcode,reason)>
+<!ELEMENT ProprietaryDocumentIdentifier (#PCDATA)>
+<!ELEMENT DocumentFunctionCode (#PCDATA)>
+<!ELEMENT DateTimeStamp (#PCDATA)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT TelephoneNumber (#PCDATA)>
+<!ELEMENT EmailAddress (#PCDATA)>
+<!ELEMENT vin (#PCDATA)>
+<!ELEMENT billingamount (#PCDATA)>
+<!ELEMENT cctype (#PCDATA)>
+<!ELEMENT ccnumber (#PCDATA)>
+<!ELEMENT expirationDate (#PCDATA)>
+<!ELEMENT approvalcode (#PCDATA)>
+<!ELEMENT reason (#PCDATA)>

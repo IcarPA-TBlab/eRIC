@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/cms/catalogingTest/SubmitObjectsRequest_CPPACatalogingConfig.xml,v 1.3 2006/06/02 03:16:52 psterk Exp $ -->
+<!-- Must be loaded after SubmitObjectsRequest_objectTypesSchemes -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../../../../ebxmlrr-spec/misc/3.0/schema/lcm.xsd">
+  <rim:RegistryObjectList>
+    <rim:ExtrinsicObject id="urn:uuid:50ea1df2-5bb8-44c0-8d70-a1e18d84001e" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:XSLT" mimeType="text/xml">
+      <rim:Name>
+        <rim:LocalizedString value="InvocationControlFile_CPPACataloging.xsl"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="Sample invocation control file for 'CPPACataloging' content."/>
+      </rim:Description>
+    </rim:ExtrinsicObject>
+    <!-- ValidationControlFileFor assoc between InvocationControlFile_CPPAValidation.xsl and 'CPPACataloging' in ObjectTypes scheme -->
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:InvocationControlFileFor:CatalogingControlFileFor" id="urn:uuid:92418a05-eb1b-4bb5-8579-dc9accb1469a" sourceObject="urn:uuid:50ea1df2-5bb8-44c0-8d70-a1e18d84001e" targetObject="urn:uuid:eb11b777-eb16-455e-8837-8c98aae3c0db"/>
+    <!-- XML ObjectType, Defined in SubmitObjectsRequest_objectTypesSchemes -->
+    <rim:ObjectRef id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:XML"/>
+    <!-- 'CPPACataloging' ObjectType, Defined in SubmitObjectsRequest_objectTypesSchemes -->
+    <rim:ObjectRef id="urn:uuid:eb11b777-eb16-455e-8837-8c98aae3c0db"/>
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/demoDB/SubmitObjectsRequest_Subscription.xml,v 1.17 2007/05/23 19:25:51 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../../../../ebxmlrr-spec/misc/3.0/schema/lcm.xsd">
+  <rs:RequestSlotList>  
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+  <rim:RegistryObjectList>
+      
+    <!-- Add objectType tree for Epidemic Alert -->
+    <rim:ClassificationNode code="EpidemicAlert" id="urn:freebxml:registry:demoDB:ObjectType:EpidemicAlert" parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="Epidemic Alert"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="Contains an Alert regarding an Epidemic breakout."/>
+      </rim:Description>
+    </rim:ClassificationNode>
+      
+    <rim:Subscription id="urn:freebxml:registry:demoDB:subscription:EpidemicAlert" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:Subscription" selector="urn:freebxml:registry:demoDB:query:EpidemicAlertQuery" startTime="2001-11-19T00:00:00.00000" endTime="2007-11-19T00:00:00.00000">
+      <rim:Name>
+        <rim:LocalizedString value="Mayo Clinic's Epidemic Alert Subscription"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="This is a demo subscription. When a new epidemic report is submitted to the Repository, a selector detects it and executes two notify actions: the first is an email and the second is a call to an alert web service."/>
+      </rim:Description>
+      <!-- Next endPoint is an email address -->
+      <rim:NotifyAction notificationOption="urn:oasis:names:tc:ebxml-regrep:NotificationOptionType:Objects" endPoint="mailto:farrukh_najmi@yahoo.com"/>
+      <!-- Next endPoint is a service via reference to its ServiceBinding object -->
+      <rim:NotifyAction notificationOption="urn:oasis:names:tc:ebxml-regrep:NotificationOptionType:Objects" endPoint="urn:freebxml:registry:demoDB:serviceBinding:EpidemicAlertListenerServiceBinding"/>
+    </rim:Subscription>
+    <!-- The query used as a selector for Subscription. -->
+    <rim:AdhocQuery id="urn:freebxml:registry:demoDB:query:EpidemicAlertQuery">
+      <rim:QueryExpression queryLanguage="urn:oasis:names:tc:ebxml-regrep:QueryLanguage:SQL-92">
+      SELECT * FROM ExtrinsicObject eo WHERE eo.objectType = ''urn:freebxml:registry:demoDB:ObjectType:EpidemicAlert''
+      </rim:QueryExpression>
+    </rim:AdhocQuery>
+    <!-- The listener service and its binding -->
+    <rim:Service id="urn:freebxml:registry:demoDB:service:EpidemicAlertListenerService">
+      <rim:Name>
+        <rim:LocalizedString value="Epidemic Alert Listener Service" xml:lang="en-US"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="Mayo Clinics Epidemic Alert Listener Service" xml:lang="en-US"/>
+      </rim:Description>
+      <!-- AccessURI to Hima's service: http://65.234.234.144:7080/axis/services/NotificationListenerPort -->
+      <!-- Default AccessURI: http://localhost:8080/NotificationListener/notificationListener -->
+      <rim:ServiceBinding service="urn:freebxml:registry:demoDB:service:EpidemicAlertListenerService" accessURI="http://localhost:8080/NotificationListener/notificationListener" id="urn:freebxml:registry:demoDB:serviceBinding:EpidemicAlertListenerServiceBinding">
+        <rim:Name>
+          <rim:LocalizedString value="Epidemic Alert Listener Service binding" xml:lang="en-US"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString value="SOAP binding to Mayo Clinics Epidemic Alert Listener Service" xml:lang="en-US"/>
+        </rim:Description>
+      </rim:ServiceBinding>
+    </rim:Service>
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

@@ -1,0 +1,61 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/demoDB/SubmitObjectsRequest_extSchemes.xml,v 1.9 2007/05/25 17:18:52 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest    
+  xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" 
+  xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" 
+  xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" 
+  xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  http://oasis-open.org/committees/regrep/documents/3.0/schema/lcm.xsd">
+      
+  <rs:RequestSlotList>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+  <rim:RegistryObjectList>
+  
+    <rim:ClassificationNode parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject" lid="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL"  code="WSDL" id="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject:WSDL"/>
+    
+    <rim:ClassificationScheme id="urn:freebxml:registry:demoDB:classificationScheme:NYSETicker" isInternal="false" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="NYSE Ticker"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="This is the identification scheme for New York Stock Exchange Ticker symbols"/>
+      </rim:Description>
+    </rim:ClassificationScheme>
+    <rim:ClassificationScheme xsi:type="rim:ClassificationSchemeType" id="urn:freebxml:registry:demoDB:classificationScheme:USTaxPayerId" isInternal="false" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="US Taxpayer Id"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="This is the identification scheme for the IRS to identify a tax payer in the US."/>
+      </rim:Description>
+    </rim:ClassificationScheme>
+    <rim:ClassificationScheme id="urn:freebxml:registry:demoDB:classificationScheme:DUNS" isInternal="false" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="DUNS"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="This is the identification scheme for the DUNS and Bradstreet number identifying a corporation."/>
+      </rim:Description>
+    </rim:ClassificationScheme>
+    <rim:ClassificationScheme id="urn:freebxml:registry:demoDB:classificationScheme:USSocialSecurityNumber" isInternal="false" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="US Social Security Number"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="This is the identification scheme used by US government to identify people."/>
+      </rim:Description>
+    </rim:ClassificationScheme>
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

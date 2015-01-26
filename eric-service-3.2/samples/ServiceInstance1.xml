@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Service minorVersion="0" userVersion="v1.0" majorVersion="1" status="Submitted"
+    objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:Service"
+    id="urn:oasis:names:tc:ebxml-regrep:Service:CanonicalXMLCatalogingService"
+    xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0"
+    > 
+<Name>
+<LocalizedString xml:lang="en-US" charset="UTF-8" value="XWS Sample Service"/>
+</Name>
+<Description>
+<LocalizedString xml:lang="en-US" charset="UTF-8" value="This sample service is based on the DRPL Demo Service. It is not meant for production requests, but rather is a reference service for proof-of-concept work. Please see the separately registered DRPL Service for a production service"/>
+</Description>
+<Slot name="SIC">
+<ValueList>
+<Value>512
+</Value>
+</ValueList>
+</Slot>
+<Slot name="URL to Project Page">
+<ValueList>
+<Value>http://xwsregistry/xws/drpl
+</Value></ValueList>
+</Slot>
+<Classification classifiedObject="urn:oasis:names:tc:ebxml-regrep:Service:CanonicalXMLCatalogingService" classificationNode="urn:oasis:names:tc:ebxml-regrep:ContentManagementService:ContentCatalogingService" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:Classification" id="urn:uuid:847c002d-2e4b-404c-b4bb-a1e343380e1d">
+<Name>
+<LocalizedString xml:lang="en-US" charset="UTF-8" value="ContentCatalogingService"/>
+</Name>
+<Description/>
+</Classification>
+<Classification classifiedObject="urn:oasis:names:tc:ebxml-regrep:Service:CanonicalXMLCatalogingService" classificationNode="urn:oasis:names:tc:ebxml-regrep:InvocationModel:Inline" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:Classification" id="urn:uuid:d1606054-c3c1-4a22-a130-8b853acc7b30">
+<Name>
+<LocalizedString xml:lang="en-US" charset="UTF-8" value="Inline"/>
+</Name>
+<Description/>
+</Classification>
+<Classification nodeRepresentation="Prototype" classifiedObject="urn:oasis:names:tc:ebxml-regrep:Service:CanonicalXMLCatalogingService" classificationNode="urn:uuid:cc2525b3-7de5-4a24-a5e1-8cb1ec44dea2" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:Classification" id="urn:uuid:0c734e20-9477-46eb-a199-bd130a84e48a">
+<Name>
+<LocalizedString xml:lang="en" charset="UTF-8" value="Prototype Life Cycle"/>
+</Name>
+<Description>
+<LocalizedString xml:lang="en" charset="UTF-8" value="prototype life cycle"/>
+</Description>
+</Classification>
+<Classification classifiedObject="urn:oasis:names:tc:ebxml-regrep:Service:CanonicalXMLCatalogingService" classificationNode="urn:oasis:names:tc:ebxml-regrep:ErrorHandlingModel:FailOnError" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:Classification" id="urn:uuid:2e82543f-ca57-4d4d-89a8-a96957b322dc">
+<Name>
+<LocalizedString xml:lang="en-US" charset="UTF-8" value="FailOnError"/>
+</Name>
+<Description/>
+</Classification>
+<ServiceBinding service="urn:oasis:names:tc:ebxml-regrep:Service:CanonicalXMLCatalogingService" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ServiceBinding" id="urn:oasis:names:tc:ebxml-regrep:ServiceBinding:CanonicalXMLCatalogingServiceBinding"><Name><LocalizedString xml:lang="en-US" charset="UTF-8" value="Default XML Cataloging Service binding"/>
+</Name>
+<Description>
+<LocalizedString xml:lang="en-US" charset="UTF-8" value="Service Binding to Default XML Cataloging Service"/>
+</Description>
+</ServiceBinding>
+</Service>
+

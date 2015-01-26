@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- $Header: /cvsroot/ebxmlrr/omar/doc/3.0/developer/codingConventions.html,v 1.8 2007/07/27 14:23:36 farrukh_najmi Exp $-->
+    <html>
+      <head>
+          <title>freebXML Registry - Coding Conventions</title>
+      </head>
+      <body class="composite">
+    <div class="h3">
+        <h2><a name="codingConventions">Coding Conventions</a></h2>
+
+    <div>
+    <h2>JDK Version.</h2>
+
+    <p>Be compatible with JDK 1.4.2.</p>
+    </div>
+
+    <div>
+    <h2>Indentation, tab stops, etc.</h2>
+
+    <p>There is currently no project-specific conventions for coding style.  Just follow the <a href="http://java.sun.com/docs/codeconv/index.html">Code Conventions for the Java Programming Language</a>.</p>
+
+    <p>At the time of this writing, the team is looking at using the Jalopy (<a href="http://jalopy.sourceforge.net">http://jalopy.sourceforge.net</a>) Java Source Code Formatter Beautifier Pretty Printer to reinforce consistency.</p>
+
+    </div>
+
+    <div>
+    <h2>Logging</h2>
+
+    <div>
+    <h3>Initializing logging</h3>
+
+    <p>For the logging setup to include the name of the correct class
+    name when outputting log messages, you should create a static
+    <tt>log</tt> variable in each class that you define, similar to
+    the following:</p>
+
+    <pre>import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class <i>class-name</i> ... {
+    private static final Log log = LogFactory.getLog(<i>class-name</i>.class.getName());
+...
+}</pre>
+
+    <p>
+
+    </div>
+
+    <div>
+    <h3>Using logging</h3>
+
+    <p>You can create log messages of varying severity, and whether or
+    not they are output when the program runs depends on the runtime
+    settings.  The templates for the methods from the <tt>Log</tt>
+    interface, in increasing order of severity, are:</p>
+
+    <pre>void trace(java.lang.Object message)
+void trace(java.lang.Object message, java.lang.Throwable t)
+
+void debug(java.lang.Object message)
+void debug(java.lang.Object message, java.lang.Throwable t)
+
+void info(java.lang.Object message)
+void info(java.lang.Object message, java.lang.Throwable t) 
+
+void warn(java.lang.Object message)
+void warn(java.lang.Object message, java.lang.Throwable t)
+
+void error(java.lang.Object message)
+void error(java.lang.Object message, java.lang.Throwable t)
+
+void fatal(java.lang.Object message)
+void fatal(java.lang.Object message, java.lang.Throwable t)
+</pre>
+    </div>
+
+    <div>
+    <h3>Logging only when necessary</h3>
+
+    <p>The <tt>Log</tt> interface includes methods for testing the
+    current logging level.  You can use these to test whether or not
+    to execute the potentially expensive code related to logging.</p>
+
+    <pre>boolean isTraceEnabled()
+boolean isDebugEnabled()
+boolean isInfoEnabled()
+boolean isWarnEnabled()
+boolean isErrorEnabled()
+boolean isFatalEnabled()</pre>
+
+    </div>
+
+    </div>
+
+    <div>
+    <h2>Standard Header</h2>
+
+    <p>The standard header that should be included in all Java files is:</p>
+
+<pre>/*
+ * ====================================================================
+ *
+ * This code is subject to the freebxml License, Version 1.1
+ *
+ * Copyright (c) 2001 - 2004 freebxml.org.  All rights reserved.
+ *
+ * &#x24;Header$
+ * ====================================================================
+ */</pre>
+
+	<p>Note the the <tt>&#x24;Header$</tt> keyword will be
+expanded and updated to reflect the current state of the file whenever
+you check the file into CVS.</p>
+
+    </div>
+
+    <div>
+    <h2>Standard Footer in Documentation Files</h2>
+
+    <p>The standard footer will be added by Maven script. Do not add any footer or banner.</p>
+
+    </div>
+      </body>
+    </html>

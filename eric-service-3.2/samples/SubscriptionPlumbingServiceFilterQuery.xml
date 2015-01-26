@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by Nikola Stojanovic (self) -->
+<tns:Subscription xmlns:tns="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:registry:xsd:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0 ../../../ebxmlrr-spec/misc/schema/v3/rim.xsd urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0 ../../../ebxmlrr-spec/misc/schema/v3/query.xsd  urn:oasis:names:tc:ebxml-regrep:event:xsd:3.0 ../../../ebxmlrr-spec/misc/schema/v3/event.xsd" id="e3373a7b-4958-4e55-8820-d03a191fb76a" notificationInterval="P10D">
+	<Selector xsi:type="tns:QuerySelectorType">
+		<Query xsi:type="query:FilterQueryType">
+			<query:ServiceQuery>
+				<query:AuditableEventQuery>
+					<query:AuditableEventFilter>
+						<query:Clause>
+							<query:SimpleClause leftArgument="eventType">
+								<query:StringClause stringPredicate="Equal">Created</query:StringClause>
+							</query:SimpleClause>
+						</query:Clause>
+					</query:AuditableEventFilter>
+				</query:AuditableEventQuery>
+				<query:ClassifiedByBranch>
+					<query:ClassificationNodeQuery>
+						<query:ClassificationNodeFilter>
+							<query:Clause>
+								<query:SimpleClause leftArgument="path">
+									<query:StringClause stringPredicate="EndsWith">Plumbing</query:StringClause>
+								</query:SimpleClause>
+							</query:Clause>
+						</query:ClassificationNodeFilter>
+					</query:ClassificationNodeQuery>
+				</query:ClassifiedByBranch>
+				<query:ClassifiedByBranch>
+					<query:ClassificationSchemeQuery>
+						<query:NameBranch>
+							<query:LocalizedStringFilter>
+								<query:Clause>
+									<query:SimpleClause leftArgument="value">
+										<query:StringClause stringPredicate="Equal">Geography</query:StringClause>
+									</query:SimpleClause>
+								</query:Clause>
+							</query:LocalizedStringFilter>
+						</query:NameBranch>
+					</query:ClassificationSchemeQuery>
+					<query:ClassificationNodeQuery>
+						<query:ClassificationNodeFilter>
+							<query:Clause>
+								<query:SimpleClause leftArgument="code">
+									<query:StringClause stringPredicate="Contains">A Little Town</query:StringClause>
+								</query:SimpleClause>
+							</query:Clause>
+						</query:ClassificationNodeFilter>
+					</query:ClassificationNodeQuery>
+				</query:ClassifiedByBranch>
+			</query:ServiceQuery>
+		</Query>
+	</Selector>
+	<Action xsi:type="tns:EmailNotifyActionType" notificationOption="urn:oasis:names:tc:ebxml-regrep:NotificationOptionType:Objects">
+		<rim:EmailAddress address="someone@littletown.us"/>
+	</Action>
+</tns:Subscription>

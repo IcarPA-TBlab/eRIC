@@ -1,0 +1,16 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/ClassificationNodeQuery.xml,v 1.1.1.1 2003/09/24 03:40:34 farrukh_najmi Exp $-->
+<AdhocQueryRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 query.xsd">
+	<ResponseOption returnType = "LeafClass" returnComposedObjects = "true"/>
+	<FilterQuery>
+		<ClassificationNodeQuery>
+			<ClassificationNodeFilter xmlns = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0">
+				<ns1:Clause xmlns:ns1 = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0">
+					<ns1:SimpleClause leftArgument = "path">
+						<ns1:StringClause stringPredicate = "Equal">/ Geography-id/*/*/Tokyo</ns1:StringClause>
+					</ns1:SimpleClause>
+				</ns1:Clause>
+			</ClassificationNodeFilter>
+		</ClassificationNodeQuery>
+	</FilterQuery>
+</AdhocQueryRequest>

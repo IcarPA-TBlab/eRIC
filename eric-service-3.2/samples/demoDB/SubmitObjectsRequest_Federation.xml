@@ -1,0 +1,42 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/demoDB/SubmitObjectsRequest_Federation.xml,v 1.1 2006/06/21 20:49:58 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../../../../ebxmlrr-spec/misc/3.0/schema/lcm.xsd">
+  <rs:RequestSlotList>  
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+  <rim:RegistryObjectList>
+    <rim:Federation id="urn:sun:registry:demo:federation1" replicationSyncLatency="P1D">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="Demo Federation"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="A demo federation of of ebXML Registries."/>
+      </rim:Description>
+    </rim:Federation>    
+    <rim:ObjectRef id="urn:uuid:6cdbeb04-c3f8-4ab9-89eb-d4f21156012d" home="http://localhost:8080/omar/registry" />
+    <!--rim:ObjectRef id="urn:uuid:34c0bac9-16b9-48f1-af90-93bb6041e834" home="http://localhost:6480/soar/registry" /-->
+    <rim:Registry catalogingLatency="P1D" id="urn:uuid:34c0bac9-16b9-48f1-af90-93bb6041e834" home="http://localhost:6480/soar/registry" operator="urn:freebxml:registry:Organization:freebXMLRegistry" replicationSyncLatency="P1D" specificationVersion="3.0" conformanceProfile="registryFull">
+      <rim:Name>
+        <rim:LocalizedString charset="UTF-8" value="Sun Service Registry"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString charset="UTF-8" value="A demo instance of Sun Service Registry"/>
+      </rim:Description>
+    </rim:Registry>
+        
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:HasFederationMember" id="urn:sun:registry:demo:association:hasMember1" sourceObject="urn:sun:registry:demo:federation1" targetObject="urn:uuid:6cdbeb04-c3f8-4ab9-89eb-d4f21156012d" />    
+    <rim:Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:HasFederationMember" id="urn:sun:registry:demo:association:hasMember1" sourceObject="urn:sun:registry:demo:federation1" targetObject="urn:uuid:34c0bac9-16b9-48f1-af90-93bb6041e834" />    
+      
+  </rim:RegistryObjectList>
+    
+</SubmitObjectsRequest>

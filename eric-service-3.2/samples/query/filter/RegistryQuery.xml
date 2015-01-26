@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/query/filter/RegistryQuery.xml,v 1.1 2005/03/29 09:20:40 farrukh_najmi Exp $ -->
+<RegistryQuery xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" 
+  xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" 
+  xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" 
+  xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" 
+  xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0  ../../../../../ebxmlrr-spec/misc/3.0/schema/query.xsd">
+  
+  
+  <OperatorQuery xsi:type="query:OrganizationQueryType">
+    <PrimaryFilter comparator="Like" domainAttribute="id"
+      value="%free%" xsi:type="query:StringFilterType"/>  
+  </OperatorQuery>
+  
+</RegistryQuery>

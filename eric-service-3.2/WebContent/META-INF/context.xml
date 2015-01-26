@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jndi-context>
+
+<Context path="/eric" docBase="eric">
+
+  <Manager className="org.apache.catalina.session.PersistentManager" saveOnRestart="false">
+        <Store className="org.apache.catalina.session.FileStore" />
+  </Manager>
+
+
+  <!--Logger className="org.apache.catalina.logger.FileLogger"
+	  prefix="eric."
+	  suffix=".log"
+	  swallowOutput="true"
+	  timestamp="true"/-->
+
+  		
+  		<!-- 
+  		factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+  		description="DB DataSource for eric service"
+  		-->
+
+  <Resource name="jdbc/eric-registry"
+	    scope="Shareable"
+	    type="javax.sql.DataSource"
+	    driverClassName="org.postgresql.Driver"
+	    url="jdbc:postgresql://localhost:5432/eric"
+	    username="eric"
+	    password="eric"
+	    initialSize="20"
+	    maxWait="10000"
+	    maxIdle="50"
+	    maxActive="50"
+	    removeAbandoned="true"
+	    removeAbandonedTimeout="300"
+	    logAbandoned="true"
+	    poolPreparedStatement="true"
+  />
+
+</Context>

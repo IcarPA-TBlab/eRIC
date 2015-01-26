@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/extDB/wsrp/SubmitObjectsRequest_WSRPProfile.xml,v 1.4 2007/05/25 17:18:52 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../../../../../ebxmlrr-spec/misc/3.0/schema/lcm.xsd">
+  <rs:RequestSlotList>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  
+	<rim:RegistryObjectList>
+		<!-- Add canonical objectType tree for WSRP -->
+		<rim:ClassificationNode code="WSRP" id="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:objectType:WSRP" parent="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject">
+			<rim:Name>
+				<rim:LocalizedString charset="UTF-8" value="label.wsrp"/>
+			</rim:Name>
+			<rim:Description>
+				<rim:LocalizedString charset="UTF-8" value="label.baseNode"/>
+			</rim:Description>
+			<rim:ClassificationNode code="Portlet" id="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:objectType:Portlet">
+				<rim:Name>
+					<rim:LocalizedString charset="UTF-8" value="label.portlet"/>
+				</rim:Name>
+			</rim:ClassificationNode>
+			<rim:ClassificationNode code="Producer" id="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:objectType:Producer">
+				<rim:Name>
+					<rim:LocalizedString charset="UTF-8" value="label.producer"/>
+				</rim:Name>
+			</rim:ClassificationNode>
+		</rim:ClassificationNode>
+	
+		<!-- Add canonical associationTypes tree for WSRP -->
+		<rim:ClassificationNode code="WSRP" id="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:associationType:HasPortlet" parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:AssociationType">
+			<rim:Name>
+				<rim:LocalizedString charset="UTF-8" value="label.hasPortlet"/>
+			</rim:Name>
+			<rim:Description>
+				<rim:LocalizedString charset="UTF-8" value="label.producerService"/>
+			</rim:Description>
+		</rim:ClassificationNode>
+
+    <!--Add new canonical WSRPVersion canonical scheme -->
+    <rim:ClassificationScheme nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode" isInternal="true" id="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:classificationScheme:WSRPVersion">
+      <rim:Name>
+        <rim:LocalizedString value="label.WSRPVersion" charset="UTF-8" xml:lang="en-US"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString value="label.validVersions" charset="UTF-8" xml:lang="en-US"/>
+      </rim:Description>
+      <rim:ClassificationNode parent="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:classificationScheme:WSRPVersion" code="1.0" id="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:classificationScheme:WSRPVersion:10">
+        <rim:Name>
+          <rim:LocalizedString value="label.1_0" charset="UTF-8" xml:lang="en-US"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString value="label.WSRP1_0Specification" charset="UTF-8" xml:lang="en-US"/>
+        </rim:Description>
+      </rim:ClassificationNode>
+      <rim:ClassificationNode parent="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:classificationScheme:WSRPVersion" code="2.0" id="urn:oasis:names:tc:wsrp:pfb:ebxml:registry:classificationScheme:WSRPVersion:20">
+        <rim:Name>
+          <rim:LocalizedString value="label.2_0" charset="UTF-8" xml:lang="en-US"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString value="label.WSRP2_0Specification" charset="UTF-8" xml:lang="en-US"/>
+        </rim:Description>
+      </rim:ClassificationNode>
+    </rim:ClassificationScheme>
+                    
+                
+	</rim:RegistryObjectList>
+</SubmitObjectsRequest>

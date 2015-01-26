@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<rs:AddSlotsRequest
+	xmlns = "urn:oasis:names:tc:ebxml-regrep:rim:xsd:2.0" 
+	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:rim:xsd:2.0 http://www.oasis-open.org/committees/regrep/documents/2.0/schema/rim.xsd urn:oasis:names:tc:ebxml-regrep:registry:xsd:2.0 http://www.oasis-open.org/committees/regrep/documents/2.0/schema/rs.xsd" 
+	xmlns:rim = "urn:oasis:names:tc:ebxml-regrep:rim:xsd:2.0" 
+	xmlns:rs = "urn:oasis:names:tc:ebxml-regrep:registry:xsd:2.0">
+
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/AddSlotsRequest.xml,v 1.1.1.1 2003/09/24 03:40:34 farrukh_najmi Exp $-->
+
+    <!-- This id is the id of a ClassificationNode of SubmitObjectsRequest_ISO3166.xml-->
+	<rim:ObjectRef id="urn:uuid:4fd867ed-7f78-4cba-adfd-e9f3c993ba61"/>
+	<!-- ObjectRef: 1 or more, optional slotType attribute-->
+	<rim:Slot name="Slot 1">
+		<!-- ValueList: 1-->
+		<rim:ValueList>
+			<rim:Value>
+                 Slot 1 Value 1
+			</rim:Value>
+		</rim:ValueList>
+	</rim:Slot>
+<!--
+	<rim:Slot name="Slot 1">
+		<rim:ValueList>
+			<rim:Value>
+                 Slot 1 Value 1
+			</rim:Value>
+		</rim:ValueList>
+	</rim:Slot>
+-->
+	<rim:Slot name="Slot 2">
+		<rim:ValueList>
+			<rim:Value>
+                 Slot 1 Value 1
+			</rim:Value>
+		</rim:ValueList>
+	</rim:Slot>
+<!--
+	<rim:Slot name="Slot 2">
+		<rim:ValueList>
+			<rim:Value>
+                 Slot 1 Value 1
+			</rim:Value>
+		</rim:ValueList>
+	</rim:Slot>
+-->
+</rs:AddSlotsRequest>

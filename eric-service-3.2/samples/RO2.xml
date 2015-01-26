@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<AdhocQueryRequest xmlns = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "urn:oasis:names:tc:ebxml-regrep:query:xsd:2.0 query.xsd">
+	<ResponseOption returnType = "RegistryObject"/>
+	<FilterQuery>
+		<RegistryObjectQuery>
+			<ClassifiedByBranch>
+				<ClassificationNodeQuery>
+					<DescriptionBranch>
+						<LocalizedStringFilter>
+							<Clause>
+								<SimpleClause leftArgument = "value">
+									<StringClause stringPredicate = "Equal">transistor</StringClause>
+								</SimpleClause>
+							</Clause>
+						</LocalizedStringFilter>
+					</DescriptionBranch>
+				</ClassificationNodeQuery>
+			</ClassifiedByBranch>
+		</RegistryObjectQuery>
+	</FilterQuery>
+</AdhocQueryRequest>

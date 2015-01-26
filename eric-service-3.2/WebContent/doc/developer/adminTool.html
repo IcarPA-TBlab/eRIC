@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- $Header: /cvsroot/ebxmlrr/omar/doc/3.0/developer/adminTool.html,v 1.5 2005/07/21 08:55:27 doballve Exp $-->
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Admin Tool Developer Guide</title>
+</head>
+<body>
+<div class="h2">
+<h2>Admin Tool Developer Guide</h2>
+<p>The admin tool utility provides a simple, command-line interface
+for common administration tasks such as adding Associations to the
+registry and removing objects from the registry</p>
+
+<p>This developer guide covers how to configure and extend the admin
+tool.  For information on how to run the admin tool, see the <a
+href="../AdminToolGuide.html">admin tool user guide</a>.</p>
+
+<div>
+<h2>Additional Command-Line Parameters</h2>
+
+<p>The following parameters that are not documented in the admin tool
+user guide are recognised when starting the admin
+tool:</p>
+
+<pre>[-debug]
+</pre>
+
+<p>Where:
+
+<dl>
+
+<dt><tt>-debug</tt></dt>
+
+<dd>Enables outputting of additional messages that are helpful when
+debugging the admin tool.</dd>
+
+</dl>
+
+</div>
+
+<div>
+<h2>Classes Implementing the <tt>AdminShell</tt> Interface</h2>
+
+<p>The <tt>AdminTool</tt> object that you run when you execute the jar
+file calls an object that implements the <tt>AdminShell</tt> interface
+to do the work.  You must specify which class to use either as the
+value of the
+<tt>omar.client.adminTool.AdminShellFactory.adminShellClass</tt>
+property in your <tt>jaxr-ebxml.properties</tt> file or on the command
+line using the <tt>-class</tt> parameter.</p>
+
+<p>There is currently only one class provided for your use:
+<tt>org.freebxml.omar.client.adminTool.SimpleAdminShell</tt>.</p>
+
+<div>
+<h2>Implementing a new <tt>AdminFunction</tt></h2>
+
+<p>The easiest way it to copy and modify one of the existing classes
+in <tt>org.freebxml.omar.client.adminTool.function</tt>.</p>
+
+<p>Once you've written the class, add it to the
+<tt>org.freebxml.omar.client.adminTool.AdminShellFunctions</tt>
+properties file.
+
+<div>
+<h3>Built-in Commands</h3>
+
+<p>The <tt>help</tt> and <tt>quit</tt> commands are built into
+<tt>SimpleAdminShell</tt> because they require extra knowledge of the
+workings of the admin tool.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2>Implementing the <tt>AdminFunction</tt> Interface</h2>
+
+<div>
+<h3>Exceptions</h3>
+
+<p>The methods in <tt>AdminFunction</tt> throw <tt>Exception</tt>
+rather than, say, <tt>AdminFunctionException</tt> because any
+exception is caught by the <tt>AdminShell</tt> implementation and,
+potentially, shown to the user.  If <tt>AdminFunction</tt> methods
+caught and rethrew exceptions as <tt>AdminFunctionException</tt> it
+would just add unnecessary complexity to the stack trace seen by the
+user.</p>
+
+</div>
+
+</div>
+
+<div>
+<h2>Property Files</h2>
+
+<p>The admin tool uses multiple property files.  At the time of this
+writing, they are:
+
+<dl>
+
+<dt><tt>org.freebxml.omar.client.adminTool.AddFunctions</tt></dt>
+
+<dd>Mapping of subcommands of the <tt>add</tt> command to class
+names.</dd>
+
+<dt><tt>org.freebxml.omar.client.adminTool.AdminFunctionResources</tt></dt>
+
+<dd>Localizable strings used by any admin function.</dd>
+
+<dt><tt>org.freebxml.omar.client.adminTool.AdminShellFunctions</tt></dt>
+
+<dd>Mapping of command names to class names; for example:<pre>ls=org.freebxml.omar.client.admin.function.Ls</pre></dd>
+
+<dt><tt>org.freebxml.omar.client.adminTool.AdminShellResources</tt></dt>
+
+<dd>Localizable strings used by <tt>AdminTool</tt>,
+<tt>AdminShellFactory</tt> and any <tt>AdminShell</tt> implementation.</dd>
+
+<dt><tt>org.freebxml.omar.client.adminTool.InfoFunctions</tt></dt>
+
+<dd>Unused at present.</dd>
+
+</dl>
+</div>
+
+<div>
+<h2>Debugging</h2>
+
+<div>
+<h3>Batch mode</h3>
+
+<p>Use the <tt>debug.adminTool</tt> target and attach your debugger to
+the port number stated in the output from the Ant task, typically
+1044.</p>
+
+</div>
+
+<div>
+<h3>Interactive</h3>
+
+<p>You have to specify the additional debugging parameters in the Java
+command line yourself, e.g:</p>
+
+<pre>java -Xdebug -Xrunjdwp:transport=dt_socket,address=<i>&lt;port></i>,server=y,suspend=y \
+-jar build/lib/admin-tool.jar  -alias <i>&lt;alias></i> -keypass <i>&lt;keypass></i></pre>
+
+<p>You must attach your debugger to the port number that you specified
+in the <tt>address</tt> component of the <tt>runjdwp</tt> argument.</p>
+
+</div>
+
+</div>
+
+</div>
+</body>
+</html>

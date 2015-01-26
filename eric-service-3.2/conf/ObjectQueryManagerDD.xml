@@ -1,0 +1,91 @@
+<!DOCTYPE ObjectQueryManagerDD.xml>
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="urn:com.sun.ebxml.registry.ObjectQueryManager">
+<!--$Header: /cvsroot/ebxmlrr/eric/conf/ObjectQueryManagerDD.xml,v 1.1.1.1 2003/09/24 03:55:54 farrukh_najmi Exp $-->
+  <isd:provider type="java"
+	scope="Application"
+    methods="getRootClassificationNodes getClassificationTree getClassifiedObjects submitAdhocQuery getContent">
+    <isd:java class="com.sun.ebxml.registry.soap.ObjectQueryManager"/>
+  </isd:provider>
+
+  <isd:mappings>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	 xmlns:x="urn:org.ebxml.registry"  qname="x:GetRootClassificationNodesRequest"
+      javaType="com.sun.ebxml.registry.bindings.GetRootClassificationNodesRequest" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:GetClassificationTreeRequest"
+      javaType="com.sun.ebxml.registry.bindings.GetClassificationTreeRequest" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:GetClassifiedObjectsRequest"
+      javaType="com.sun.ebxml.registry.bindings.GetClassifiedObjectsRequest" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:AdhocQueryRequest"
+      javaType="com.sun.ebxml.registry.bindings.AdhocQueryRequest" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:GetContentRequest"
+      javaType="com.sun.ebxml.registry.bindings.GetContentRequest" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+
+
+	<!-- Response mappins -->
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:GetRootClassificationNodesResponse"
+      javaType="com.sun.ebxml.registry.bindings.GetRootClassificationNodesResponse" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:GetClassificationTreeResponse"
+      javaType="com.sun.ebxml.registry.bindings.GetClassificationTreeResponse" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:GetClassifiedObjectsResponse"
+      javaType="com.sun.ebxml.registry.bindings.GetClassifiedObjectsResponse" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:AdhocQueryResponse"
+      javaType="com.sun.ebxml.registry.bindings.AdhocQueryResponse" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:GetContentResponse"
+      javaType="com.sun.ebxml.registry.bindings.GetContentResponse" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:RegistryResponse"
+      javaType="com.sun.ebxml.registry.bindings.RegistryResponse" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
+	  xmlns:x="urn:org.ebxml.registry" qname="x:RegistryErrorList"
+      javaType="com.sun.ebxml.registry.bindings.RegistryErrorList" 
+	  java2XMLClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer" 
+	  xml2JavaClassName="com.sun.ebxml.registry.util.RelaxerBindingSerializer"/>
+  </isd:mappings>
+	  
+
+  <isd:faultListener>org.apache.soap.server.DOMFaultListener</isd:faultListener>
+</isd:service>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/query/filter/SpecificationLinkQuery.xml,v 1.1 2005/03/29 09:20:41 farrukh_najmi Exp $ -->
+<SpecificationLinkQuery xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" 
+  xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" 
+  xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" 
+  xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" 
+  xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0  ../../../../../ebxmlrr-spec/misc/3.0/schema/query.xsd">
+  
+  <SpecificationObjectQuery xsi:type="query:RegistryObjectQueryType">
+    <PrimaryFilter comparator="Like" domainAttribute="id"
+      value="%ebXML%" xsi:type="query:StringFilterType"/>
+  </SpecificationObjectQuery>        
+</SpecificationLinkQuery>

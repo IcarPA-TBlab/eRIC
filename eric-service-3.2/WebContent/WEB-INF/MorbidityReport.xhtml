@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Header: /cvsroot/ebxmlrr/eric/src/xml/it/cnr/eric/client/ui/thin/MorbidityReport.xhtml,v 1.2 2006/06/15 15:35:40 farrukh_najmi Exp $ -->
+<html xmlns:chiba="http://chiba.sourceforge.net/2003/08/xforms"
+    xmlns:xforms="http://www.w3.org/2002/xforms"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xml:base="http://localhost:8080/chiba/">
+    <head>
+    <xforms:model>
+        <xforms:submission id="morbidity_report" xforms:replace="all" xforms:action="/eric/registry/thin" xforms:method="post" />
+        <xforms:bind id="N10006" xforms:nodeset="/lcm:SubmitObjectsRequest"/>
+        <xforms:bind id="N10043" 
+             xforms:nodeset="/lcm:SubmitObjectsRequest/rim:RegistryObjectList/rim:ExtrinsicObject/rim:Slot[1]/rim:ValueList/rim:Value"
+             xforms:required="true()"
+             xforms:type="string"/>
+        <xforms:bind id="N10046" 
+             xforms:nodeset="/lcm:SubmitObjectsRequest/rim:RegistryObjectList/rim:ExtrinsicObject/rim:Slot[2]/rim:ValueList/rim:Value"
+             xforms:required="true()"
+             xforms:type="string"/>
+        <xforms:bind id="N10049" 
+             xforms:nodeset="/lcm:SubmitObjectsRequest/rim:RegistryObjectList/rim:ExtrinsicObject/rim:Slot[3]/rim:ValueList/rim:Value"
+             xforms:required="true()"
+             xforms:type="string"/>
+
+        <xforms:instance>
+             <lcm:SubmitObjectsRequest 
+                  xmlns="urn:oasis:names:tc:ebxml-regrep:lcm:xsd:2.5" 
+                  xmlns:rim="urn:oasis:names:tc:ebxml-regrep:rim:xsd:2.5" 
+                  xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:lcm:xsd:2.5" 
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             >
+                 <rim:RegistryObjectList>
+                     <rim:ExtrinsicObject 
+                         id="" 
+                         mimeType="text/xml" 
+                         objectType="urn:freebxml:registry:demoDB:ObjectType:EpidemicAlert">
+                         <rim:Slot name="Patient Name">
+                             <rim:ValueList>
+                                 <rim:Value></rim:Value>
+                             </rim:ValueList>
+                         </rim:Slot>
+                         <rim:Slot name="Diagnosis">
+                             <rim:ValueList>
+                                 <rim:Value></rim:Value>
+                             </rim:ValueList>
+                         </rim:Slot>
+                         <rim:Slot name="Location">
+                             <rim:ValueList>
+                                 <rim:Value>Minnesota</rim:Value>
+                             </rim:ValueList>
+                         </rim:Slot>
+                     </rim:ExtrinsicObject>
+                 </rim:RegistryObjectList>
+            </lcm:SubmitObjectsRequest>
+        </xforms:instance>
+    </xforms:model>
+    </head>
+    <body>
+    <xforms:group>
+        <xforms:label>Patient Information</xforms:label>
+        <xforms:input id="Patient Name" xforms:bind="N10043">
+            <xforms:label>Enter Patient's Name</xforms:label>
+            <xforms:alert>Please enter patient's name here</xforms:alert>
+            <xforms:hint>Please input the patient's name into this field</xforms:hint>
+        </xforms:input>
+        <xforms:input id="Diagnosis" xforms:bind="N10046">
+            <xforms:label>Enter Diagnosis:</xforms:label>
+            <xforms:alert>Please enter diagnosis name here</xforms:alert>
+            <xforms:hint>Please input the diagnosis into this field</xforms:hint>
+        </xforms:input>
+        <xforms:input id="Location" xforms:bind="N10049">
+            <xforms:label>Enter Patient Location By State:</xforms:label>
+            <xforms:alert>Please enter patient's location by state here</xforms:alert>
+            <xforms:hint>Please input the patient's location by state into this field</xforms:hint>
+        </xforms:input>
+        <xforms:group>
+            <xforms:trigger id="sendit">
+                <xforms:label>Submit Report</xforms:label>
+                <xforms:action>
+                    <xforms:send id="submit" xforms:submission="morbidity_report"/>
+                </xforms:action>
+            </xforms:trigger>
+            <xforms:trigger id="clear">
+                <xforms:label>Clear Form</xforms:label>
+                <xforms:action>
+                    <xforms:resetInstance id="reset"/>
+                </xforms:action>
+            </xforms:trigger>
+        </xforms:group>
+    </xforms:group>
+    </body>
+</html>

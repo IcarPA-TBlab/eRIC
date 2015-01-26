@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--$Header: /cvsroot/ebxmlrr/omar/misc/samples/gm/DealerLocationResponse.dtd,v 1.1.1.1 2003/09/24 03:55:06 farrukh_najmi Exp $-->
+<!ELEMENT thisDocumentIdentifier (ProprietaryDocumentIdentifier)>
+<!ELEMENT DealerLocationResponse (DocumentFunctionCode,thisDocumentIdentifier,thisDocumentGenerationDateTime,PartnerInfo,DealerLocationQueryData+)>
+<!ELEMENT thisDocumentGenerationDateTime (DateTimeStamp)>
+<!ELEMENT PartnerInfo (Name,TelephoneNumber,EmailAddress)>
+<!ELEMENT DealerLocationQueryData (vin,DealerLocationResponseData)>
+<!ELEMENT DealerLocationResponseData (name,address,city,state,zipcode)>
+<!ELEMENT ProprietaryDocumentIdentifier (#PCDATA)>
+<!ELEMENT DocumentFunctionCode (#PCDATA)>
+<!ELEMENT DateTimeStamp (#PCDATA)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT TelephoneNumber (#PCDATA)>
+<!ELEMENT EmailAddress (#PCDATA)>
+<!ELEMENT vin (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT state (#PCDATA)>
+<!ELEMENT zipcode (#PCDATA)>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ebXMLRegistrySOAPService" targetNamespace="urn:your:urn:goes:here" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:bindings="urn:your:urn:goes:here" xmlns:interfaces="urn:your:urn:goes:here" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:your:urn:goes:here" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <documentation>
+    Author: Matt MacKenzie, Farrukh Najmi
+    This is the the normative SOAP binding in WSDL for the OASIS ebXML Registry services.
+  </documentation>
+  <import location="ebXMLRegistryInterfaces.wsdl" namespace="urn:your:urn:goes:here"/>
+  <binding name="TestQueryManagerSOAPBinding" type="interfaces:TestQueryManagerPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="submitAdhocQuery">
+      <soap:operation soapAction="urn:your:urn:goes:here:TestQueryManagerPortType#submitAdhocQuery"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <binding name="TestLifeCycleManagerSOAPBinding" type="interfaces:TestLifeCycleManagerPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="approveObjects">
+      <soap:operation soapAction="urn:your:urn:goes:here:TestLifeCycleManagerPortType#approveObjects"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="deprecateObjects">
+      <soap:operation soapAction="urn:your:urn:goes:here:TestLifeCycleManagerPortType#deprecateObjects"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="undeprecateObjects">
+      <soap:operation soapAction="urn:your:urn:goes:here:TestLifeCycleManagerPortType#undeprecateObjects"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="removeObjects">
+      <soap:operation soapAction="urn:your:urn:goes:here:TestLifeCycleManagerPortType#removeObjects"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="submitObjects">
+      <soap:operation soapAction="urn:your:urn:goes:here:TestLifeCycleManagerPortType#submitObjects"/>
+      <input>
+        <mime:multipartRelated>
+          <mime:part>
+            <soap:body part="partSubmitObjectsRequest" use="literal"/>
+          </mime:part>
+          <!--
+               mime:part for payload not included as cardinality is variable per AP 1.0:
+               R2923 A SENDER MAY send non-root MIME parts not described in the WSDL MIME binding.
+          -->
+        </mime:multipartRelated>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="updateObjects">
+      <soap:operation soapAction="urn:your:urn:goes:here:TestLifeCycleManagerPortType#updateObjects"/>
+      <input>
+        <mime:multipartRelated>
+          <mime:part>
+            <soap:body part="partUpdateObjectsRequest" use="literal"/>
+          </mime:part>
+          <!--
+               mime:part for payload not included as cardinality is variable per AP 1.0:
+               R2923 A SENDER MAY send non-root MIME parts not described in the WSDL MIME binding.
+          -->
+        </mime:multipartRelated>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+</definitions>
