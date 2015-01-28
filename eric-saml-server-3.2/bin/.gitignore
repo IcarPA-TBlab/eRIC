@@ -1,0 +1,10 @@
+/META-INF/
+/commons-logging.properties
+/crypto-server.properties
+/ehcache.xml
+/it/
+/jaxr-ebxml.properties
+/log4j.properties
+/repository.datasource.cfg.xml
+/repository.hbm.xml
+/repository.jdbc.cfg.xml

@@ -1,0 +1,13 @@
+/META-INF/
+/commons-logging.properties
+/crypto-server.properties
+/database.sql.template
+/derby.properties
+/ehcache.xml
+/eric.properties
+/it/
+/jndi-context.xml
+/log4j.properties
+/repository.datasource.cfg.xml
+/repository.hbm.xml
+/repository.jdbc.cfg.xml
