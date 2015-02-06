@@ -1,0 +1,6 @@
+2015-02-03 10:44:39,281 INFO it.cnr.icar.eric.server.common.RegistryProperties[main] - Loading eric properties...
+2015-02-03 10:44:39,933 INFO it.cnr.icar.eric.server.repository.hibernate.AbstractHibernateUtil[main] - --- Rebuilding DB schema ---
+2015-02-03 10:44:40,035 INFO it.cnr.icar.eric.server.repository.hibernate.RepositoryHibernateUtil[main] - Database created
+2015-02-03 10:49:28,142 INFO it.cnr.icar.eric.server.common.RegistryProperties[main] - Loading eric properties...
+2015-02-03 10:49:28,713 INFO it.cnr.icar.eric.server.repository.hibernate.AbstractHibernateUtil[main] - --- Rebuilding DB schema ---
+2015-02-03 10:49:28,793 INFO it.cnr.icar.eric.server.repository.hibernate.RepositoryHibernateUtil[main] - Database created

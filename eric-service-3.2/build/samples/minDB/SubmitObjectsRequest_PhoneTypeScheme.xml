@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/minDB/SubmitObjectsRequest_PhoneTypeScheme.xml,v 1.10 2007/05/25 17:18:53 farrukh_najmi Exp $ -->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../schema/lcm.xsd" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:query21="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rim30="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../schema/lcm.xsd">
+  <rs:RequestSlotList>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  <rim:RegistryObjectList>
+    <rim:ClassificationScheme lid="urn:oasis:names:tc:ebxml-regrep:classificationScheme:PhoneType" id="urn:oasis:names:tc:ebxml-regrep:classificationScheme:PhoneType" isInternal="true" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode">
+      <rim:Name>
+        <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="PhoneType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="Canonical ClassificationScheme that defines the types of telephone numbers"/>
+      </rim:Description>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:PhoneType:OfficePhone" code="OfficePhone" id="urn:oasis:names:tc:ebxml-regrep:PhoneType:OfficePhone">
+        <rim:Name>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="OfficePhone"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="Office phone type"/>
+        </rim:Description>
+      </rim:ClassificationNode>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:PhoneType:HomePhone" code="HomePhone" id="urn:oasis:names:tc:ebxml-regrep:PhoneType:HomePhone">
+        <rim:Name>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="HomePhone"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="Home phone type"/>
+        </rim:Description>
+      </rim:ClassificationNode>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:PhoneType:MobilePhone" code="MobilePhone" id="urn:oasis:names:tc:ebxml-regrep:PhoneType:MobilePhone">
+        <rim:Name>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="MobilePhone"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="Mobile phone type"/>
+        </rim:Description>
+      </rim:ClassificationNode>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:PhoneType:Beeper" code="Beeper" id="urn:oasis:names:tc:ebxml-regrep:PhoneType:Beeper">
+        <rim:Name>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="Beeper"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="Beeper type"/>
+        </rim:Description>
+      </rim:ClassificationNode>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:PhoneType:FAX" code="FAX" id="urn:oasis:names:tc:ebxml-regrep:PhoneType:FAX">
+        <rim:Name>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="FAX"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="FAX type"/>
+        </rim:Description>
+      </rim:ClassificationNode>
+    </rim:ClassificationScheme>
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

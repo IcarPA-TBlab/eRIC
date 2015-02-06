@@ -16,7 +16,7 @@
 	<property name="common.classes" location="${eric.basedir}/../eric-common-${app.version}/bin"/>
 	<property name="client.classes" location="${eric.basedir}/../eric-client-${app.version}/bin"/>
  	<property name="server.classes" location="${eric.basedir}/../eric-server-${app.version}/bin"/>
- 	<property name="regrep.classes" location="${eric.basedir}/../oasis-regrep-3.0/bin"/>
+ 	<property name="regrep.classes" location="${eric.basedir}/../../OASIS-ebXML-RegRep-v3.0/oasis-regrep-3.0/bin"/>
 
     <property name="setup.home" value="${eric.basedir}/build"/>
     <property name="setup.lib" location="${eric.basedir}/../eric-libraries-${app.version}/lib"/>

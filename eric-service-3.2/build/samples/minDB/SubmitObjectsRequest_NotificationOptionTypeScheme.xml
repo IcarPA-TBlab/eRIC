@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- $Header: /cvsroot/ebxmlrr/omar/misc/samples/minDB/SubmitObjectsRequest_NotificationOptionTypeScheme.xml,v 1.7 2007/05/25 17:18:53 farrukh_najmi Exp $-->
+<SubmitObjectsRequest xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../schema/lcm.xsd" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:query21="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rim="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rim30="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0  ../schema/lcm.xsd">
+  <rs:RequestSlotList>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersion">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+    <rim:Slot name="urn:oasis:names:tc:ebxml-regrep:rim:RegistryObject:dontVersionContent">
+      <rim:ValueList>
+        <rim:Value>true</rim:Value>
+      </rim:ValueList>
+    </rim:Slot>
+  </rs:RequestSlotList>
+  <rim:RegistryObjectList>
+    <rim:ClassificationScheme lid="urn:oasis:names:tc:ebxml-regrep:classificationScheme:NotificationOptionType" id="urn:oasis:names:tc:ebxml-regrep:classificationScheme:NotificationOptionType" isInternal="true" nodeType="urn:oasis:names:tc:ebxml-regrep:NodeType:UniqueCode" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ClassificationScheme">
+      <rim:Name>
+        <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="NotificationOptionType"/>
+      </rim:Name>
+      <rim:Description>
+        <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="Canonical ClassificationScheme that defines the different ways in which a client may be notified by the registry of an event within a Subscription"/>
+      </rim:Description>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:NotificationOptionType:ObjectRefs" code="ObjectRefs" id="urn:oasis:names:tc:ebxml-regrep:NotificationOptionType:ObjectRefs" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ClassificationNode" parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:NotificationOptionType">
+        <rim:Name>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="ObjectRefs"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="Subscriber wishes to receive references to RegistryObjects that match the Subscription within a Notification."/>
+        </rim:Description>
+      </rim:ClassificationNode>
+      <rim:ClassificationNode lid="urn:oasis:names:tc:ebxml-regrep:NotificationOptionType:Objects" code="Objects" id="urn:oasis:names:tc:ebxml-regrep:NotificationOptionType:Objects" objectType="urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ClassificationNode" parent="urn:oasis:names:tc:ebxml-regrep:classificationScheme:NotificationOptionType">
+        <rim:Name>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="Objects"/>
+        </rim:Name>
+        <rim:Description>
+          <rim:LocalizedString xml:lang="en-US" charset="UTF-8" value="Subscriber wishes to receive the actual RegistryObjects that match the Subscription within a Notification."/>
+        </rim:Description>
+      </rim:ClassificationNode>
+    </rim:ClassificationScheme>
+  </rim:RegistryObjectList>
+</SubmitObjectsRequest>

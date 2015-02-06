@@ -90,7 +90,6 @@ public class ReceivedCertificate {
      *  problems decoding content (from Base64) and any caught
      *  CertificateException or SOAPException
      */
-	@SuppressWarnings("resource")
 	public ReceivedCertificate(SOAPMessage msg) throws JAXRException {
 	// @wss:Id attribute value for <BinarySecurityToken/> element of interest
 	final String tokenId = CanonicalConstants.CANONICAL_URI_SENDER_CERT;

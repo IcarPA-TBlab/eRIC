@@ -164,7 +164,7 @@ public class RegistryBSTServlet extends SOAPServlet {
         //System.err.println("onMessage called for RegistrySOAPServlet");
         SOAPMessage soapResponse = null;
         SOAPHeader sh = null;
-
+        
         try {
 	    // set 'sh' variable ASAP (before "firstly")
             SOAPPart sp = msg.getSOAPPart();
@@ -184,13 +184,14 @@ public class RegistryBSTServlet extends SOAPServlet {
             }
 
             // Log received message
-            if (log.isTraceEnabled()) {
+            //if (log.isTraceEnabled()) {
                 // Warning! BAOS.toString() uses platform's default encoding
                 ByteArrayOutputStream msgOs = new ByteArrayOutputStream();
                 msg.writeTo(msgOs);
                 msgOs.close();
-                log.trace("incoming message:\n" + msgOs.toString());
-            }
+                System.err.println(msgOs.toString());
+            //    log.trace("incoming message:\n" + msgOs.toString());
+            //}
 
             // verify signature
             // returns false if no security header, throws exception if invalid

@@ -112,7 +112,10 @@ class ClassificationSchemeDAO extends RegistryObjectDAO {
             isInternal = "'T'";
         }
 
-        String nodeType = scheme.getNodeType().toString();
+        String nodeType = null;
+        
+        if (scheme.getNodeType() != null) 
+        	nodeType = scheme.getNodeType().toString();
 
         if (nodeType == null) {
             nodeType = "UniqueCode";
