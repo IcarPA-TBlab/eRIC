@@ -96,7 +96,7 @@ public class Utility {
 
     static {
         columnNameMap.put("number", "number_");
-        columnNameMap.put("name", "name_");
+        //columnNameMap.put("name", "name_");
         columnNameMap.put("user", "user_");
         columnNameMap.put("timestamp", "timestamp_");
     }
