@@ -246,13 +246,14 @@ public class QueryManagerImpl extends AbstractPluginManager implements QueryMana
 
 					} else if (queryLang.equals(BindingUtility.CANONICAL_QUERY_LANGUAGE_ID_ebRSFilterQuery)) {
 						String queryStr = (String) queryExp.getContent().get(0);
-						
 						Unmarshaller unmarshaller = BindingUtility.getInstance().getJAXBContext().createUnmarshaller();
 						JAXBElement<FilterQueryType> ebFilterQuery = (JAXBElement<FilterQueryType>) unmarshaller.unmarshal(new StreamSource(
 								new StringReader(queryStr)));
 
 						// take ComplexType from Element
-						FilterQueryType filterQuery = ebFilterQuery.getValue(); 
+						FilterQueryType filterQuery = ebFilterQuery.getValue();
+
+//						FilterQueryType filterQuery = (FilterQueryType) queryExp.getContent().get(0);
 						
 						ebRegistryObjectListType = filterQueryProcessor.executeQuery(((ServerRequestContext) context),
 								user, filterQuery, ebResponseOptionType, paramHolder);
@@ -305,6 +306,7 @@ public class QueryManagerImpl extends AbstractPluginManager implements QueryMana
 			throw e;
 		} catch (Exception e) {
 			((ServerRequestContext) context).rollback();
+			
 			throw new RegistryException(e);
 		}
 
