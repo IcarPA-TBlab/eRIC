@@ -57,8 +57,11 @@ import javax.xml.bind.JAXBException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import javax.xml.registry.RegistryException;
+
 import org.oasis.ebxml.registry.bindings.rim.AuditableEventType;
+import org.oasis.ebxml.registry.bindings.rim.ClassificationSchemeType;
 import org.oasis.ebxml.registry.bindings.rim.ClassificationType;
 import org.oasis.ebxml.registry.bindings.rim.ExternalIdentifierType;
 import org.oasis.ebxml.registry.bindings.rim.ExternalLinkType;
@@ -288,6 +291,12 @@ class RegistryObjectDAO extends IdentifiableDAO {
 
 		RegistryObjectType ro = (RegistryObjectType) object;
 
+		String name = null;
+		if (object instanceof ClassificationSchemeType) {
+			if (ro.getName().getLocalizedString().get(0) != null)
+				name = ro.getName().getLocalizedString().get(0).getValue();
+		}
+
 		String stmtFragment = super.getSQLStatementFragment(ro);
 
 		String lid = ro.getLid();
@@ -326,7 +335,12 @@ class RegistryObjectDAO extends IdentifiableDAO {
 			// Need to force the status to Submitted
 			ro.setStatus(BindingUtility.CANONICAL_STATUS_TYPE_ID_Submitted);
 
-			stmtFragment += ", '" + lid + "', '" + objectType + "', '"
+//			stmtFragment += ", '" + lid + "', '" + objectType + "', '"
+//					+ BindingUtility.CANONICAL_STATUS_TYPE_ID_Submitted + "', " + versionName + ", " + comment;
+			stmtFragment += ", '" + lid;
+			if (name != null)
+				stmtFragment += "', '" + name;
+			stmtFragment += "', '" + objectType + "', '"
 					+ BindingUtility.CANONICAL_STATUS_TYPE_ID_Submitted + "', " + versionName + ", " + comment;
 		} else if (action == DAO_ACTION_UPDATE) {
 			objectType = getObjectType(ro);
