@@ -1,0 +1,5 @@
+bin/
+build/
+eric.log
+response.xml
+senderReq.mime
