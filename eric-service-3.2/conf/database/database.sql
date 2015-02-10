@@ -130,6 +130,7 @@ CREATE TABLE ClassScheme (
   home                      VARCHAR(256),
 --RegistryObject Attributes
   lid				VARCHAR(256) NOT NULL,
+  name			VARCHAR(1024),
   objectType		VARCHAR(256) CHECK (objectType = 'urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ClassificationScheme'),
   status			VARCHAR(256) NOT NULL,
 
