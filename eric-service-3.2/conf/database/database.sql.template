@@ -377,6 +377,7 @@
 @createdb@  home                  VARCHAR(256),
 @createdb@--RegistryObject Attributes
 @createdb@  lid				VARCHAR(256) NOT NULL,
+@createdb@  name			VARCHAR(1024),
 @createdb@  objectType		VARCHAR(256) @check.service@,
 @createdb@  status			VARCHAR(256) NOT NULL,
 @createdb@
