@@ -69,6 +69,7 @@ import org.oasis.ebxml.registry.bindings.rim.ExtrinsicObjectType;
 import org.oasis.ebxml.registry.bindings.rim.IdentifiableType;
 import org.oasis.ebxml.registry.bindings.rim.InternationalStringType;
 import org.oasis.ebxml.registry.bindings.rim.RegistryObjectType;
+import org.oasis.ebxml.registry.bindings.rim.ServiceType;
 import org.oasis.ebxml.registry.bindings.rim.VersionInfoType;
 
 /**
@@ -292,7 +293,8 @@ class RegistryObjectDAO extends IdentifiableDAO {
 		RegistryObjectType ro = (RegistryObjectType) object;
 
 		String name = null;
-		if (object instanceof ClassificationSchemeType) {
+		if ((object instanceof ClassificationSchemeType) ||
+			(object instanceof ServiceType)) {
 			if (ro.getName().getLocalizedString().get(0) != null)
 				name = ro.getName().getLocalizedString().get(0).getValue();
 		}
