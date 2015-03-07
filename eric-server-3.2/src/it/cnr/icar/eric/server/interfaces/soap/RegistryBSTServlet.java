@@ -190,6 +190,7 @@ public class RegistryBSTServlet extends SOAPServlet {
                 msg.writeTo(msgOs);
                 msgOs.close();
                 System.err.println(msgOs.toString());
+                //System.err.println(sb.getTextContent());
             //    log.trace("incoming message:\n" + msgOs.toString());
             //}
 
