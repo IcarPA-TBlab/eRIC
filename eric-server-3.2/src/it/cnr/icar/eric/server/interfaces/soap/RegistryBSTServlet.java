@@ -186,10 +186,12 @@ public class RegistryBSTServlet extends SOAPServlet {
             // Log received message
             //if (log.isTraceEnabled()) {
                 // Warning! BAOS.toString() uses platform's default encoding
+            /*
                 ByteArrayOutputStream msgOs = new ByteArrayOutputStream();
                 msg.writeTo(msgOs);
                 msgOs.close();
                 System.err.println(msgOs.toString());
+            */
                 //System.err.println(sb.getTextContent());
             //    log.trace("incoming message:\n" + msgOs.toString());
             //}
