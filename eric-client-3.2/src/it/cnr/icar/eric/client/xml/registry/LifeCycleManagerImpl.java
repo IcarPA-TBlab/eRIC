@@ -2106,7 +2106,7 @@ public abstract class LifeCycleManagerImpl implements LifeCycleManager {
 		boolean isCallersUserToBeDeleted = false;
 		User user = ((DeclarativeQueryManagerImpl) regService.getDeclarativeQueryManager()).getCallersUser();
 		String userId = user.getKey().getId();
-		if (user != null) {
+		if ((user != null) && (keys != null)) {
 			Iterator<?> keyItr = keys.iterator();
 			while (keyItr.hasNext()) {
 				Key key = (Key) keyItr.next();
