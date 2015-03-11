@@ -328,6 +328,7 @@ public class EricBenchmarkTest extends ClientTest {
     /**
      *  Gets objects matching specified name, description, status, classifications.
      */
+    /*
     public void testQueryBasic() throws Exception {
         String id = it.cnr.icar.eric.common.Utility.getInstance().createId();
         String queryId = CanonicalConstants.CANONICAL_QUERY_BasicQuery;
@@ -340,10 +341,12 @@ public class EricBenchmarkTest extends ClientTest {
         @SuppressWarnings("unused")
 		Collection<?> registryObjects = executeQuery(queryId, queryParams);
     }
+    */
     
     /**
      * WSDLDiscoveryQuery: Find WSDL files with $targetNamespace matching "%urn:goes:here"
      */
+    /*
     public void testQueryWsdl() throws Exception {
         String id = it.cnr.icar.eric.common.Utility.getInstance().createId();
         String queryId = it.cnr.icar.eric.common.profile.ws.wsdl.CanonicalConstants.CANONICAL_QUERY_WSDL_DISCOVERY;
@@ -352,10 +355,12 @@ public class EricBenchmarkTest extends ClientTest {
         @SuppressWarnings("unused")
 		Collection<?> registryObjects = executeQuery(queryId, queryParams);
     }
+    */
     
     /**
      * WSDL ServiceDiscoveryQuery: Find WSDL Service with $service.name matching "%regrep%"
      */
+    /*
     public void testQueryWsdlService() throws Exception {
         String id = it.cnr.icar.eric.common.Utility.getInstance().createId();
         String queryId = it.cnr.icar.eric.common.profile.ws.wsdl.CanonicalConstants.CANONICAL_QUERY_SERVICE_DISCOVERY;
@@ -367,6 +372,7 @@ public class EricBenchmarkTest extends ClientTest {
         @SuppressWarnings("unused")
 		Collection<?> registryObjects = executeQuery(queryId, queryParams);
     }
+    */
     
     public void testDelete() throws Exception {
         //Find and delete all objects created by this test
