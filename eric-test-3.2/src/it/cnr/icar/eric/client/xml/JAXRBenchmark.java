@@ -48,7 +48,7 @@ import it.cnr.icar.eric.common.exceptions.ObjectNotFoundException;
 
 public class JAXRBenchmark extends ClientTest {
 
-	static int loops = 1;
+	static int loops = 10;
     static String serviceId = "urn:freebxml:registry:test:client:ServiceTest:service1";
     static String org1Id = "urn:freebxml:registry:test:client:ServiceTest:org1";
     static String org2Id = "urn:freebxml:registry:test:client:ServiceTest:org2";
